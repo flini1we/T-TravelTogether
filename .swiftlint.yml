@@ -1,0 +1,62 @@
+disabled_rules: # идентификаторы правил, которые нужно исключить из проверки
+  - identifier_name
+  - nesting
+  - function_parameter_count
+
+opt_in_rules: # некоторые правила доступны только по выбору
+  - control_statement
+  - empty_count
+  - trailing_newline
+  - colon
+  - comma
+  - custom_rules
+
+included: # пути для включения при линтинге. `--path` игнорируется, если указан.
+  - TTravelTogether
+
+excluded: # пути для игнорирования при линтинге. Имеет приоритет над `included`.
+  - Pods
+  - Project/R.generated.swift
+
+# Настройка правила line_length для увеличения допустимой длины строки
+line_length:
+  warning: 200 # Предупреждение, если строка превышает 200 символов
+  error: 250   # Ошибка, если строка превышает 250 символов
+
+# Конфигурируемые правила могут быть настроены в этом файле
+# Бинарные правила могут задавать уровень серьезности
+force_cast: warning # неявно. Только предупреждение для принудительного приведения типов
+
+force_try:
+  severity: warning # явно. Только предупреждение для принудительного try
+
+type_body_length:
+  - 300 # предупреждение
+  - 400 # ошибка
+
+# Или можно задать оба явно
+file_length:
+  warning: 500
+  error: 800
+
+large_tuple: # предупреждение при использовании кортежей из 3 значений, ошибка — если их 4
+   - 3
+   - 4
+   
+# Правила именования могут задавать предупреждения/ошибки для min_length и max_length
+# Кроме того, можно задать исключенные имена
+type_name:
+  min_length: 4 # только предупреждение
+  max_length: # предупреждение и ошибка
+    warning: 30
+    error: 35
+  excluded: iPhone # исключено через строку
+  
+custom_rules:
+  disallowed_comments:
+    name: "Disallowed Comments"
+    regex: "(?m)^\\s*//\\s+(?!TODO:|MARK:).+$"
+    message: "Only // TODO: and // MARK: comments are allowed."
+    severity: error
+
+reporter: "xcode"
