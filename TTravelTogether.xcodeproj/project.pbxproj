@@ -16,6 +16,7 @@
 		CF35569F2DA8581B00290A81 /* TTravelTogetherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF35569D2DA8581B00290A81 /* TTravelTogetherTests.swift */; };
 		CF3556A32DA8581D00290A81 /* TTravelTogetherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3556A02DA8581D00290A81 /* TTravelTogetherUITests.swift */; };
 		CF3556A42DA8581D00290A81 /* TTravelTogetherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3556A12DA8581D00290A81 /* TTravelTogetherUITestsLaunchTests.swift */; };
+		CF601D322DA93D7700E98B21 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CF601D312DA93D7700E98B21 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF601D322DA93D7700E98B21 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +147,7 @@
 			);
 			name = TTravelTogether;
 			packageProductDependencies = (
+				CF601D312DA93D7700E98B21 /* SnapKit */,
 			);
 			productName = TTravelTogether;
 			productReference = CF3556522DA857DC00290A81 /* TTravelTogether.app */;
@@ -222,6 +225,9 @@
 			);
 			mainGroup = CF3556492DA857DC00290A81;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				CF601D302DA93D7700E98B21 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CF3556532DA857DC00290A81 /* Products */;
 			projectDirPath = "";
@@ -619,6 +625,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CF601D302DA93D7700E98B21 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CF601D312DA93D7700E98B21 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF601D302DA93D7700E98B21 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		CF3556912DA8581700290A81 /* TTravelTogether.xcdatamodeld */ = {
