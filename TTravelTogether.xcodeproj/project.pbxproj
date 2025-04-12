@@ -12,11 +12,17 @@
 		CF3556992DA8581700290A81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3556892DA8581700290A81 /* AppDelegate.swift */; };
 		CF35569A2DA8581700290A81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3556902DA8581700290A81 /* SceneDelegate.swift */; };
 		CF35569B2DA8581700290A81 /* TTravelTogether.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CF3556912DA8581700290A81 /* TTravelTogether.xcdatamodeld */; };
-		CF35569C2DA8581700290A81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3556922DA8581700290A81 /* ViewController.swift */; };
 		CF35569F2DA8581B00290A81 /* TTravelTogetherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF35569D2DA8581B00290A81 /* TTravelTogetherTests.swift */; };
 		CF3556A32DA8581D00290A81 /* TTravelTogetherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3556A02DA8581D00290A81 /* TTravelTogetherUITests.swift */; };
 		CF3556A42DA8581D00290A81 /* TTravelTogetherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3556A12DA8581D00290A81 /* TTravelTogetherUITestsLaunchTests.swift */; };
 		CF601D322DA93D7700E98B21 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CF601D312DA93D7700E98B21 /* SnapKit */; };
+		CFAD6A502DAACDEF003930F3 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6A4F2DAACDEF003930F3 /* LoginView.swift */; };
+		CFAD6A522DAACDFC003930F3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6A512DAACDFC003930F3 /* LoginViewModel.swift */; };
+		CFAD6A542DAACE03003930F3 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6A532DAACE03003930F3 /* LoginController.swift */; };
+		CFAD6A572DAACFB5003930F3 /* TextFieldBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6A562DAACFB5003930F3 /* TextFieldBuilder.swift */; };
+		CFAD6A5B2DAAEEF5003930F3 /* FontValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6A5A2DAAEEF5003930F3 /* FontValues.swift */; };
+		CFAD6A5D2DAAEF0A003930F3 /* PaddingValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6A5C2DAAEF0A003930F3 /* PaddingValues.swift */; };
+		CFAD6A5F2DAAF00D003930F3 /* ButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6A5E2DAAF00D003930F3 /* ButtonBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,11 +51,17 @@
 		CF35568B2DA8581700290A81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF35568C2DA8581700290A81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CF3556902DA8581700290A81 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CF3556922DA8581700290A81 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CF3556942DA8581700290A81 /* TTravelTogether.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TTravelTogether.xcdatamodel; sourceTree = "<group>"; };
 		CF35569D2DA8581B00290A81 /* TTravelTogetherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTravelTogetherTests.swift; sourceTree = "<group>"; };
 		CF3556A02DA8581D00290A81 /* TTravelTogetherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTravelTogetherUITests.swift; sourceTree = "<group>"; };
 		CF3556A12DA8581D00290A81 /* TTravelTogetherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTravelTogetherUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CFAD6A4F2DAACDEF003930F3 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		CFAD6A512DAACDFC003930F3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		CFAD6A532DAACE03003930F3 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		CFAD6A562DAACFB5003930F3 /* TextFieldBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldBuilder.swift; sourceTree = "<group>"; };
+		CFAD6A5A2DAAEEF5003930F3 /* FontValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontValues.swift; sourceTree = "<group>"; };
+		CFAD6A5C2DAAEF0A003930F3 /* PaddingValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingValues.swift; sourceTree = "<group>"; };
+		CFAD6A5E2DAAF00D003930F3 /* ButtonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,13 +113,15 @@
 		CF3556932DA8581700290A81 /* TTravelTogether */ = {
 			isa = PBXGroup;
 			children = (
-				CF3556892DA8581700290A81 /* AppDelegate.swift */,
 				CF3556912DA8581700290A81 /* TTravelTogether.xcdatamodeld */,
 				CF35568A2DA8581700290A81 /* Assets.xcassets */,
 				CF35568B2DA8581700290A81 /* Info.plist */,
 				CF35568D2DA8581700290A81 /* LaunchScreen.storyboard */,
+				CF3556892DA8581700290A81 /* AppDelegate.swift */,
 				CF3556902DA8581700290A81 /* SceneDelegate.swift */,
-				CF3556922DA8581700290A81 /* ViewController.swift */,
+				CFAD6A592DAAEEE9003930F3 /* Support */,
+				CFAD6A552DAACF9A003930F3 /* Custom */,
+				CFAD6A4D2DAACDAF003930F3 /* Modules */,
 			);
 			path = TTravelTogether;
 			sourceTree = "<group>";
@@ -127,6 +141,50 @@
 				CF3556A12DA8581D00290A81 /* TTravelTogetherUITestsLaunchTests.swift */,
 			);
 			path = TTravelTogetherUITests;
+			sourceTree = "<group>";
+		};
+		CFAD6A4D2DAACDAF003930F3 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				CFAD6A4E2DAACDB8003930F3 /* LoginScreen */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		CFAD6A4E2DAACDB8003930F3 /* LoginScreen */ = {
+			isa = PBXGroup;
+			children = (
+				CFAD6A4F2DAACDEF003930F3 /* LoginView.swift */,
+				CFAD6A532DAACE03003930F3 /* LoginController.swift */,
+				CFAD6A512DAACDFC003930F3 /* LoginViewModel.swift */,
+			);
+			path = LoginScreen;
+			sourceTree = "<group>";
+		};
+		CFAD6A552DAACF9A003930F3 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				CFAD6A582DAAEE07003930F3 /* Builders */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		CFAD6A582DAAEE07003930F3 /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+				CFAD6A562DAACFB5003930F3 /* TextFieldBuilder.swift */,
+				CFAD6A5E2DAAF00D003930F3 /* ButtonBuilder.swift */,
+			);
+			path = Builders;
+			sourceTree = "<group>";
+		};
+		CFAD6A592DAAEEE9003930F3 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				CFAD6A5A2DAAEEF5003930F3 /* FontValues.swift */,
+				CFAD6A5C2DAAEF0A003930F3 /* PaddingValues.swift */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,9 +350,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF3556992DA8581700290A81 /* AppDelegate.swift in Sources */,
+				CFAD6A572DAACFB5003930F3 /* TextFieldBuilder.swift in Sources */,
+				CFAD6A5B2DAAEEF5003930F3 /* FontValues.swift in Sources */,
+				CFAD6A542DAACE03003930F3 /* LoginController.swift in Sources */,
 				CF35569A2DA8581700290A81 /* SceneDelegate.swift in Sources */,
+				CFAD6A502DAACDEF003930F3 /* LoginView.swift in Sources */,
+				CFAD6A5D2DAAEF0A003930F3 /* PaddingValues.swift in Sources */,
+				CFAD6A5F2DAAF00D003930F3 /* ButtonBuilder.swift in Sources */,
+				CFAD6A522DAACDFC003930F3 /* LoginViewModel.swift in Sources */,
 				CF35569B2DA8581700290A81 /* TTravelTogether.xcdatamodeld in Sources */,
-				CF35569C2DA8581700290A81 /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
