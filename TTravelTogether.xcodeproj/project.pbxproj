@@ -23,6 +23,29 @@
 		CFAD6A5B2DAAEEF5003930F3 /* FontValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6A5A2DAAEEF5003930F3 /* FontValues.swift */; };
 		CFAD6A5D2DAAEF0A003930F3 /* PaddingValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6A5C2DAAEF0A003930F3 /* PaddingValues.swift */; };
 		CFAD6A5F2DAAF00D003930F3 /* ButtonBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6A5E2DAAF00D003930F3 /* ButtonBuilder.swift */; };
+		CFAD6A612DAB02C5003930F3 /* UIElementsValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6A602DAB02C5003930F3 /* UIElementsValues.swift */; };
+		CFAD6A642DABD36F003930F3 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6A632DABD36F003930F3 /* RegistrationView.swift */; };
+		CFAD6A662DABD378003930F3 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6A652DABD378003930F3 /* RegistrationController.swift */; };
+		CFAD6A682DABD381003930F3 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6A672DABD381003930F3 /* RegistrationViewModel.swift */; };
+		CFAD6AA02DABD993003930F3 /* SFProText-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFAD6A9D2DABD993003930F3 /* SFProText-Semibold.ttf */; };
+		CFAD6AA12DABD993003930F3 /* SFProText-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFAD6A942DABD993003930F3 /* SFProText-BoldItalic.ttf */; };
+		CFAD6AA22DABD993003930F3 /* SFProText-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFAD6A9A2DABD993003930F3 /* SFProText-MediumItalic.ttf */; };
+		CFAD6AA42DABD993003930F3 /* SFProText-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFAD6A982DABD993003930F3 /* SFProText-LightItalic.ttf */; };
+		CFAD6AA52DABD993003930F3 /* SFProText-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFAD6A992DABD993003930F3 /* SFProText-Medium.ttf */; };
+		CFAD6AA62DABD993003930F3 /* SFProText-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFAD6A952DABD993003930F3 /* SFProText-Heavy.ttf */; };
+		CFAD6AA72DABD993003930F3 /* SFProText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFAD6A9B2DABD993003930F3 /* SFProText-Regular.ttf */; };
+		CFAD6AA92DABD993003930F3 /* SFProText-HeavyItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFAD6A962DABD993003930F3 /* SFProText-HeavyItalic.ttf */; };
+		CFAD6AAA2DABD993003930F3 /* SFProText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFAD6A932DABD993003930F3 /* SFProText-Bold.ttf */; };
+		CFAD6AAB2DABD993003930F3 /* SFProText-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFAD6A972DABD993003930F3 /* SFProText-Light.ttf */; };
+		CFAD6AAC2DABD993003930F3 /* SFProText-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFAD6A9E2DABD993003930F3 /* SFProText-SemiboldItalic.ttf */; };
+		CFAD6AAD2DABD993003930F3 /* SFProText-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFAD6A9C2DABD993003930F3 /* SFProText-RegularItalic.ttf */; };
+		CFAD6AB02DABDBAC003930F3 /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6AAF2DABDBAC003930F3 /* CustomFonts.swift */; };
+		CFAD6AB22DABDC16003930F3 /* LabelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6AB12DABDC16003930F3 /* LabelBuilder.swift */; };
+		CFAD6AE32DAC0B30003930F3 /* UITextField+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6AE22DAC0B30003930F3 /* UITextField+extension.swift */; };
+		CFAD6AE52DAC1104003930F3 /* SystemImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6AE42DAC1104003930F3 /* SystemImages.swift */; };
+		CFAD6AE72DAC1B88003930F3 /* UITextFieldDelegateDefaultImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6AE62DAC1B88003930F3 /* UITextFieldDelegateDefaultImpl.swift */; };
+		CFAD6AEA2DAC1BE5003930F3 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6AE92DAC1BE5003930F3 /* TextFieldDelegate.swift */; };
+		CFAD6AEC2DAC21D7003930F3 /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6AEB2DAC21D7003930F3 /* UIView+extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +85,30 @@
 		CFAD6A5A2DAAEEF5003930F3 /* FontValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontValues.swift; sourceTree = "<group>"; };
 		CFAD6A5C2DAAEF0A003930F3 /* PaddingValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingValues.swift; sourceTree = "<group>"; };
 		CFAD6A5E2DAAF00D003930F3 /* ButtonBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonBuilder.swift; sourceTree = "<group>"; };
+		CFAD6A602DAB02C5003930F3 /* UIElementsValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIElementsValues.swift; sourceTree = "<group>"; };
+		CFAD6A632DABD36F003930F3 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		CFAD6A652DABD378003930F3 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		CFAD6A672DABD381003930F3 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		CFAD6A932DABD993003930F3 /* SFProText-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Bold.ttf"; sourceTree = "<group>"; };
+		CFAD6A942DABD993003930F3 /* SFProText-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-BoldItalic.ttf"; sourceTree = "<group>"; };
+		CFAD6A952DABD993003930F3 /* SFProText-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Heavy.ttf"; sourceTree = "<group>"; };
+		CFAD6A962DABD993003930F3 /* SFProText-HeavyItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-HeavyItalic.ttf"; sourceTree = "<group>"; };
+		CFAD6A972DABD993003930F3 /* SFProText-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Light.ttf"; sourceTree = "<group>"; };
+		CFAD6A982DABD993003930F3 /* SFProText-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-LightItalic.ttf"; sourceTree = "<group>"; };
+		CFAD6A992DABD993003930F3 /* SFProText-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Medium.ttf"; sourceTree = "<group>"; };
+		CFAD6A9A2DABD993003930F3 /* SFProText-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-MediumItalic.ttf"; sourceTree = "<group>"; };
+		CFAD6A9B2DABD993003930F3 /* SFProText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Regular.ttf"; sourceTree = "<group>"; };
+		CFAD6A9C2DABD993003930F3 /* SFProText-RegularItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-RegularItalic.ttf"; sourceTree = "<group>"; };
+		CFAD6A9D2DABD993003930F3 /* SFProText-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Semibold.ttf"; sourceTree = "<group>"; };
+		CFAD6A9E2DABD993003930F3 /* SFProText-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		CFAD6AAF2DABDBAC003930F3 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
+		CFAD6AB12DABDC16003930F3 /* LabelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelBuilder.swift; sourceTree = "<group>"; };
+		CFAD6AB32DABF66D003930F3 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		CFAD6AE22DAC0B30003930F3 /* UITextField+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+extension.swift"; sourceTree = "<group>"; };
+		CFAD6AE42DAC1104003930F3 /* SystemImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemImages.swift; sourceTree = "<group>"; };
+		CFAD6AE62DAC1B88003930F3 /* UITextFieldDelegateDefaultImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldDelegateDefaultImpl.swift; sourceTree = "<group>"; };
+		CFAD6AE92DAC1BE5003930F3 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
+		CFAD6AEB2DAC21D7003930F3 /* UIView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +166,10 @@
 				CF35568D2DA8581700290A81 /* LaunchScreen.storyboard */,
 				CF3556892DA8581700290A81 /* AppDelegate.swift */,
 				CF3556902DA8581700290A81 /* SceneDelegate.swift */,
+				CFAD6AE12DAC0B21003930F3 /* Extensions */,
+				CFAD6A6A2DABD81C003930F3 /* Fonts */,
 				CFAD6A592DAAEEE9003930F3 /* Support */,
+				CFAD6A692DABD41C003930F3 /* Protocols */,
 				CFAD6A552DAACF9A003930F3 /* Custom */,
 				CFAD6A4D2DAACDAF003930F3 /* Modules */,
 			);
@@ -146,7 +196,9 @@
 		CFAD6A4D2DAACDAF003930F3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				CFAD6AE82DAC1BD6003930F3 /* ExternalDelegates */,
 				CFAD6A4E2DAACDB8003930F3 /* LoginScreen */,
+				CFAD6A622DABD35E003930F3 /* RegistrationScreen */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -174,6 +226,7 @@
 			children = (
 				CFAD6A562DAACFB5003930F3 /* TextFieldBuilder.swift */,
 				CFAD6A5E2DAAF00D003930F3 /* ButtonBuilder.swift */,
+				CFAD6AB12DABDC16003930F3 /* LabelBuilder.swift */,
 			);
 			path = Builders;
 			sourceTree = "<group>";
@@ -182,9 +235,74 @@
 			isa = PBXGroup;
 			children = (
 				CFAD6A5A2DAAEEF5003930F3 /* FontValues.swift */,
+				CFAD6AAF2DABDBAC003930F3 /* CustomFonts.swift */,
 				CFAD6A5C2DAAEF0A003930F3 /* PaddingValues.swift */,
+				CFAD6A602DAB02C5003930F3 /* UIElementsValues.swift */,
+				CFAD6AE42DAC1104003930F3 /* SystemImages.swift */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		CFAD6A622DABD35E003930F3 /* RegistrationScreen */ = {
+			isa = PBXGroup;
+			children = (
+				CFAD6A632DABD36F003930F3 /* RegistrationView.swift */,
+				CFAD6A652DABD378003930F3 /* RegistrationController.swift */,
+				CFAD6A672DABD381003930F3 /* RegistrationViewModel.swift */,
+			);
+			path = RegistrationScreen;
+			sourceTree = "<group>";
+		};
+		CFAD6A692DABD41C003930F3 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		CFAD6A6A2DABD81C003930F3 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CFAD6A9F2DABD993003930F3 /* San Francisco Pro Text */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		CFAD6A9F2DABD993003930F3 /* San Francisco Pro Text */ = {
+			isa = PBXGroup;
+			children = (
+				CFAD6A932DABD993003930F3 /* SFProText-Bold.ttf */,
+				CFAD6A942DABD993003930F3 /* SFProText-BoldItalic.ttf */,
+				CFAD6A952DABD993003930F3 /* SFProText-Heavy.ttf */,
+				CFAD6A962DABD993003930F3 /* SFProText-HeavyItalic.ttf */,
+				CFAD6A972DABD993003930F3 /* SFProText-Light.ttf */,
+				CFAD6A982DABD993003930F3 /* SFProText-LightItalic.ttf */,
+				CFAD6A992DABD993003930F3 /* SFProText-Medium.ttf */,
+				CFAD6A9A2DABD993003930F3 /* SFProText-MediumItalic.ttf */,
+				CFAD6A9B2DABD993003930F3 /* SFProText-Regular.ttf */,
+				CFAD6A9C2DABD993003930F3 /* SFProText-RegularItalic.ttf */,
+				CFAD6A9D2DABD993003930F3 /* SFProText-Semibold.ttf */,
+				CFAD6A9E2DABD993003930F3 /* SFProText-SemiboldItalic.ttf */,
+			);
+			path = "San Francisco Pro Text";
+			sourceTree = "<group>";
+		};
+		CFAD6AE12DAC0B21003930F3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CFAD6AE22DAC0B30003930F3 /* UITextField+extension.swift */,
+				CFAD6AE62DAC1B88003930F3 /* UITextFieldDelegateDefaultImpl.swift */,
+				CFAD6AEB2DAC21D7003930F3 /* UIView+extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CFAD6AE82DAC1BD6003930F3 /* ExternalDelegates */ = {
+			isa = PBXGroup;
+			children = (
+				CFAD6AE92DAC1BE5003930F3 /* TextFieldDelegate.swift */,
+			);
+			path = ExternalDelegates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,6 +398,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = CF3556492DA857DC00290A81;
 			minimizedProjectReferenceProxies = 1;
@@ -304,6 +423,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF3556952DA8581700290A81 /* Assets.xcassets in Resources */,
+				CFAD6AA02DABD993003930F3 /* SFProText-Semibold.ttf in Resources */,
+				CFAD6AA12DABD993003930F3 /* SFProText-BoldItalic.ttf in Resources */,
+				CFAD6AA22DABD993003930F3 /* SFProText-MediumItalic.ttf in Resources */,
+				CFAD6AA42DABD993003930F3 /* SFProText-LightItalic.ttf in Resources */,
+				CFAD6AA52DABD993003930F3 /* SFProText-Medium.ttf in Resources */,
+				CFAD6AA62DABD993003930F3 /* SFProText-Heavy.ttf in Resources */,
+				CFAD6AA72DABD993003930F3 /* SFProText-Regular.ttf in Resources */,
+				CFAD6AA92DABD993003930F3 /* SFProText-HeavyItalic.ttf in Resources */,
+				CFAD6AAA2DABD993003930F3 /* SFProText-Bold.ttf in Resources */,
+				CFAD6AAB2DABD993003930F3 /* SFProText-Light.ttf in Resources */,
+				CFAD6AAC2DABD993003930F3 /* SFProText-SemiboldItalic.ttf in Resources */,
+				CFAD6AAD2DABD993003930F3 /* SFProText-RegularItalic.ttf in Resources */,
 				CF3556972DA8581700290A81 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,14 +482,25 @@
 			files = (
 				CF3556992DA8581700290A81 /* AppDelegate.swift in Sources */,
 				CFAD6A572DAACFB5003930F3 /* TextFieldBuilder.swift in Sources */,
+				CFAD6AE72DAC1B88003930F3 /* UITextFieldDelegateDefaultImpl.swift in Sources */,
+				CFAD6AEC2DAC21D7003930F3 /* UIView+extension.swift in Sources */,
 				CFAD6A5B2DAAEEF5003930F3 /* FontValues.swift in Sources */,
+				CFAD6A682DABD381003930F3 /* RegistrationViewModel.swift in Sources */,
+				CFAD6AB22DABDC16003930F3 /* LabelBuilder.swift in Sources */,
+				CFAD6A642DABD36F003930F3 /* RegistrationView.swift in Sources */,
 				CFAD6A542DAACE03003930F3 /* LoginController.swift in Sources */,
 				CF35569A2DA8581700290A81 /* SceneDelegate.swift in Sources */,
 				CFAD6A502DAACDEF003930F3 /* LoginView.swift in Sources */,
 				CFAD6A5D2DAAEF0A003930F3 /* PaddingValues.swift in Sources */,
 				CFAD6A5F2DAAF00D003930F3 /* ButtonBuilder.swift in Sources */,
 				CFAD6A522DAACDFC003930F3 /* LoginViewModel.swift in Sources */,
+				CFAD6AE52DAC1104003930F3 /* SystemImages.swift in Sources */,
+				CFAD6AE32DAC0B30003930F3 /* UITextField+extension.swift in Sources */,
+				CFAD6A612DAB02C5003930F3 /* UIElementsValues.swift in Sources */,
+				CFAD6AB02DABDBAC003930F3 /* CustomFonts.swift in Sources */,
 				CF35569B2DA8581700290A81 /* TTravelTogether.xcdatamodeld in Sources */,
+				CFAD6AEA2DAC1BE5003930F3 /* TextFieldDelegate.swift in Sources */,
+				CFAD6A662DABD378003930F3 /* RegistrationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +541,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				CF35568C2DA8581700290A81 /* Base */,
+				CFAD6AB32DABF66D003930F3 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -467,6 +610,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -530,6 +674,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

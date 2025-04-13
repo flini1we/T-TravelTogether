@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 final class TextFieldBuilder {
 
@@ -44,6 +45,29 @@ final class TextFieldBuilder {
         return self
     }
 
+    func paddinLeft(_ left: CGFloat) -> Self {
+        let paddingView = UIView(frame: .init(x: 0, y: 0, width: left, height: 1))
+        textField.leftView = paddingView
+        textField.leftViewMode = .always
+        return self
+    }
+
+    func clearButtonEnable() -> Self {
+        textField.clearButtonMode = .whileEditing
+        return self
+    }
+
+    func enableTogglingSecure() -> Self {
+        textField.addEyeToggle()
+        textField.textContentType = .password
+        return self
+    }
+
+    func tag(_ tag: Int) -> Self {
+        textField.tag = tag
+        return self
+    }
+
     func build() -> UITextField {
         textField
     }
@@ -53,9 +77,15 @@ private extension TextFieldBuilder {
 
     func setupPlainTextField() {
 
-        textField.borderStyle = .roundedRect
-        textField.backgroundColor = .systemGray6
+        textField.backgroundColor = .secondaryBG
         textField.textColor = .label
-        textField.clearButtonMode = .whileEditing
+        textField.attributedPlaceholder = NSAttributedString(
+            string: textField.placeholder ?? "",
+            attributes: [.foregroundColor: UIColor.placeholder]
+        )
+
+        textField.snp.makeConstraints { make in
+            make.height.equalTo(UIElementsValues.textFieldHeight.value)
+        }
     }
 }

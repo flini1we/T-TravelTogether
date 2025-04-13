@@ -1,11 +1,15 @@
 import UIKit
+import SnapKit
 
 final class ButtonBuilder {
 
     private var button: UIButton
 
     init() {
-        self.button = UIButton()
+        self.button = UIButton(configuration: .plain())
+        button.snp.makeConstraints { make in
+            make.height.equalTo(UIElementsValues.buttonHeight.value)
+        }
     }
 
     func title(_ title: String) -> Self {
@@ -13,8 +17,8 @@ final class ButtonBuilder {
         return self
     }
 
-    func tintColor(_ color: UIColor) -> Self {
-        button.tintColor = color
+    func backgroundColor(_ color: UIColor) -> Self {
+        button.backgroundColor = color
         return self
     }
 
@@ -23,8 +27,8 @@ final class ButtonBuilder {
         return self
     }
 
-    func textColor(_ color: UIColor) -> Self {
-        button.titleLabel?.textColor = color
+    func tintColor(_ color: UIColor) -> Self {
+        button.tintColor = color
         return self
     }
 
