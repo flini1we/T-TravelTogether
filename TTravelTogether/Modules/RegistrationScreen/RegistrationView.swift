@@ -18,7 +18,6 @@ final class RegistrationView: UIView {
             .placeHolder("Номер телефона")
             .returnKeyType(.continue)
             .paddinLeft(PaddingValues.default.value)
-            .clearButtonEnable()
             .build()
     }()
 
@@ -30,7 +29,7 @@ final class RegistrationView: UIView {
             .placeHolder("Пароль")
             .returnKeyType(.continue)
             .paddinLeft(PaddingValues.default.value)
-            .delegete(self)
+            .enableTogglingSecure()
             .build()
     }()
 
@@ -42,7 +41,7 @@ final class RegistrationView: UIView {
             .placeHolder("Повторите пароль")
             .returnKeyType(.done)
             .paddinLeft(PaddingValues.default.value)
-            .delegete(self)
+            .enableTogglingSecure()
             .build()
     }()
 
@@ -53,6 +52,20 @@ final class RegistrationView: UIView {
             .title("Зарегистрироваться")
             .cornerRadius(.default)
             .build()
+    }()
+
+    private(set) lazy var activityIndicator: ActivityIndicatorView = {
+        let indicator = ActivityIndicatorView()
+        indicator.alpha = 0
+        indicator.animate()
+        return indicator
+    }()
+
+    private(set) lazy var transparentBG: UIView = {
+        let view = UIView()
+        view.backgroundColor = .placeholder.withAlphaComponent(0.25)
+        view.isHidden = true
+        return view
     }()
 
     // MARK: StackView containers
@@ -77,18 +90,31 @@ final class RegistrationView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setDelegateToTextFields(_ delegate: UITextFieldDelegate) {
-        phoneNumberField.delegate = delegate
-        passwordFieldFirst.delegate = delegate
-        passwordFieldSecond.delegate = delegate
-    }
-
     func addRegisterAction(_ action: UIAction) {
         registerButton.addAction(action, for: .touchUpInside)
     }
 
     func getData() -> (name: String, password1: String, password2: String) {
         (phoneNumberField.text ?? "", passwordFieldFirst.text ?? "", passwordFieldSecond.text ?? "")
+    }
+
+    func validateButton(isValid: Bool) {
+        registerButton.alpha = isValid ? 1 : 0.5
+        registerButton.isEnabled = isValid
+    }
+
+    func toggleTransparentBGVisibility() {
+        UIView.transition(with: self, duration: 0.2, options: .transitionCrossDissolve) {
+            self.transparentBG.isHidden.toggle()
+        }
+    }
+
+    func activateIndicator() {
+        activityIndicator.alpha = 1
+    }
+
+    func deactivateIndicator() {
+        activityIndicator.alpha = 0
     }
 }
 
@@ -105,6 +131,8 @@ private extension RegistrationView {
         addSubview(imageLabel)
         addSubview(textFieldsStackView)
         addSubview(registerButton)
+        addSubview(transparentBG)
+        addSubview(activityIndicator)
     }
 
     func setupConstraints() {
@@ -124,20 +152,14 @@ private extension RegistrationView {
             make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).inset(PaddingValues.medium.value)
             make.leading.trailing.equalToSuperview().inset(PaddingValues.default.value)
         }
-    }
-}
 
-extension RegistrationView: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let currentText = textField.text else { return false }
-
-        let updatedText: String
-        if let textRange = Range(range, in: currentText) {
-            updatedText = currentText.replacingCharacters(in: textRange, with: string)
-        } else {
-            updatedText = string
+        activityIndicator.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            make.width.height.equalTo(UIElementsValues.activiryIndicator.value)
         }
-        textField.text = updatedText
-        return false
+
+        transparentBG.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }

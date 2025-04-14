@@ -30,7 +30,6 @@ final class LoginView: UIView {
             .returnKeyType(.continue)
             .keyboardType(.default)
             .paddinLeft(PaddingValues.default.value)
-            .clearButtonEnable()
             .tag(0)
             .build()
     }()

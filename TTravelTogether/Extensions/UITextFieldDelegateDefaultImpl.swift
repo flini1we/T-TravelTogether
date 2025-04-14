@@ -10,5 +10,7 @@ func defaultShouldChangeCharactersIn(textField: UITextField, range: NSRange, rep
         updatedText = string
     }
     textField.text = updatedText
+    /// send notification manual
+    NotificationCenter.default.post(name: UITextField.textDidChangeNotification, object: textField)
     return false
 }

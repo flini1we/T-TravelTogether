@@ -1,4 +1,5 @@
 import UIKit
+import Combine
 
 final class RegistrationController: UIViewController {
 
@@ -8,12 +9,20 @@ final class RegistrationController: UIViewController {
     private var viewModel: RegistrationViewModel
 
     private lazy var registerAction: UIAction = {
-        UIAction { _ in
-            print("Register")
+        UIAction { [weak self] _ in
+            self?.viewModel.register(completion: { result in
+                switch result {
+                case .success(_):
+                    self?.navigationController?.popViewController(animated: true)
+                case .failure(let failure):
+                    print(failure.localizedDescription)
+                }
+            })
         }
     }()
 
     private var textFieldDelegate: UITextFieldDelegate!
+    private var cancellables: Set<AnyCancellable> = []
 
     init(viewModel: RegistrationViewModel) {
         self.viewModel = viewModel
@@ -33,6 +42,7 @@ final class RegistrationController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupBindings()
         setupDelegate()
         setUpActions()
     }
@@ -45,7 +55,91 @@ private extension RegistrationController {
             phoneNumberField: registrationView.phoneNumberField,
             passwordField: registrationView.passwordFieldFirst,
             confirmPasswordField: registrationView.passwordFieldSecond)
-        registrationView.setDelegateToTextFields(textFieldDelegate)
+        registrationView.phoneNumberField.delegate = textFieldDelegate
+        registrationView.passwordFieldFirst.delegate = textFieldDelegate
+        registrationView.passwordFieldSecond.delegate = textFieldDelegate
+    }
+
+    func setupBindings() {
+
+        setupPhoneFieldBinding()
+        setupPasswordFieldBinding()
+        setupPasswordConfirmationFieldBinding()
+        setupDataValidationBinding()
+        setupLoadingBindings()
+    }
+
+    func setupPhoneFieldBinding() {
+
+        viewModel.$isPhoneValid
+            .dropFirst()
+            .sink { [weak self] isValid in
+                self?.registrationView.phoneNumberField.setValidationBorder(isValid)
+            }.store(in: &cancellables)
+
+        registrationView
+            .phoneNumberField
+            .textPublisher
+            .sink { [weak self] phoneNumber in
+                guard let self else { return }
+                viewModel.isPhoneValid = viewModel.validatePhone(phoneNumber)
+            }.store(in: &cancellables)
+    }
+
+    func setupPasswordFieldBinding() {
+
+        viewModel.$isPasswordValid
+            .dropFirst()
+            .sink { [weak self] isValid in
+                self?.registrationView.passwordFieldFirst.setValidationBorder(isValid)
+            }.store(in: &cancellables)
+
+        registrationView
+            .passwordFieldFirst
+            .textPublisher
+            .sink { [weak self] password in
+                guard let self else { return }
+                viewModel.isPasswordValid = viewModel.validatePassword(password)
+            }.store(in: &cancellables)
+    }
+
+    func setupPasswordConfirmationFieldBinding() {
+
+        viewModel.$isPasswordConfirmed
+            .dropFirst()
+            .sink { [weak self] isValid in
+                self?.registrationView.passwordFieldSecond.setValidationBorder(isValid)
+            }.store(in: &cancellables)
+
+        registrationView
+            .passwordFieldSecond
+            .textPublisher
+            .sink { [weak self] confirmedPassword in
+                guard let self else { return }
+                viewModel.isPasswordConfirmed = viewModel.validatePasswordEquality(original: registrationView.passwordFieldFirst.text, confirmed: confirmedPassword)
+            }.store(in: &cancellables)
+    }
+
+    func setupLoadingBindings() {
+
+        viewModel
+            .$isFetchingRequest
+            .dropFirst()
+            .sink { [weak self] isLoadin in
+                if isLoadin {
+                    self?.registrationView.activateIndicator()
+                } else {
+                    self?.registrationView.deactivateIndicator()
+                }
+                self?.registrationView.toggleTransparentBGVisibility()
+            }.store(in: &cancellables)
+    }
+
+    func setupDataValidationBinding() {
+
+        viewModel.isDataValid.sink { [weak self] isValid in
+            self?.registrationView.validateButton(isValid: isValid)
+        }.store(in: &cancellables)
     }
 
     func setUpActions() {

@@ -16,6 +16,7 @@
 		CF3556A32DA8581D00290A81 /* TTravelTogetherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3556A02DA8581D00290A81 /* TTravelTogetherUITests.swift */; };
 		CF3556A42DA8581D00290A81 /* TTravelTogetherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3556A12DA8581D00290A81 /* TTravelTogetherUITestsLaunchTests.swift */; };
 		CF601D322DA93D7700E98B21 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CF601D312DA93D7700E98B21 /* SnapKit */; };
+		CF64B92E2DAD982900255003 /* RegularExpressions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF64B92D2DAD982800255003 /* RegularExpressions.swift */; };
 		CFAD6A502DAACDEF003930F3 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6A4F2DAACDEF003930F3 /* LoginView.swift */; };
 		CFAD6A522DAACDFC003930F3 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6A512DAACDFC003930F3 /* LoginViewModel.swift */; };
 		CFAD6A542DAACE03003930F3 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6A532DAACE03003930F3 /* LoginController.swift */; };
@@ -80,6 +81,7 @@
 		CF35569D2DA8581B00290A81 /* TTravelTogetherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTravelTogetherTests.swift; sourceTree = "<group>"; };
 		CF3556A02DA8581D00290A81 /* TTravelTogetherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTravelTogetherUITests.swift; sourceTree = "<group>"; };
 		CF3556A12DA8581D00290A81 /* TTravelTogetherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTravelTogetherUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CF64B92D2DAD982800255003 /* RegularExpressions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressions.swift; sourceTree = "<group>"; };
 		CFAD6A4F2DAACDEF003930F3 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CFAD6A512DAACDFC003930F3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		CFAD6A532DAACE03003930F3 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				CFAD6A5C2DAAEF0A003930F3 /* PaddingValues.swift */,
 				CFAD6A602DAB02C5003930F3 /* UIElementsValues.swift */,
 				CFAD6AE42DAC1104003930F3 /* SystemImages.swift */,
+				CF64B92D2DAD982800255003 /* RegularExpressions.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -510,6 +513,7 @@
 				CFAD6A5B2DAAEEF5003930F3 /* FontValues.swift in Sources */,
 				CFAD6A682DABD381003930F3 /* RegistrationViewModel.swift in Sources */,
 				CFAD6AB22DABDC16003930F3 /* LabelBuilder.swift in Sources */,
+				CF64B92E2DAD982900255003 /* RegularExpressions.swift in Sources */,
 				CFAD6A642DABD36F003930F3 /* RegistrationView.swift in Sources */,
 				CFAD6A542DAACE03003930F3 /* LoginController.swift in Sources */,
 				CF35569A2DA8581700290A81 /* SceneDelegate.swift in Sources */,
