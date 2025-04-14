@@ -82,6 +82,14 @@ final class RegistrationView: UIView {
         passwordFieldFirst.delegate = delegate
         passwordFieldSecond.delegate = delegate
     }
+
+    func addRegisterAction(_ action: UIAction) {
+        registerButton.addAction(action, for: .touchUpInside)
+    }
+
+    func getData() -> (name: String, password1: String, password2: String) {
+        (phoneNumberField.text ?? "", passwordFieldFirst.text ?? "", passwordFieldSecond.text ?? "")
+    }
 }
 
 private extension RegistrationView {

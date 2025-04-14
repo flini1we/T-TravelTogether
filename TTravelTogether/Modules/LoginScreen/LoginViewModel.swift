@@ -5,11 +5,11 @@ final class LoginViewModel {
 
     @Published var isLoading: Bool = false
 
-    func login(phoneNumber: String, password: String, completion: @escaping (() -> Void)) {
+    func login(phoneNumber: String, password: String, completion: @escaping ((Result<String, Error>) -> Void)) {
         guard !phoneNumber.isEmpty, !password.isEmpty else { return }
         isLoading = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            completion()
+            completion(Bool.random() ? .success("Красава") : .failure(LoginErrors.dataValidationError))
             self.isLoading = false
         }
     }

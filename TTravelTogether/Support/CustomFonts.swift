@@ -2,12 +2,12 @@ import UIKit
 
 enum CustomFonts {
 
-    case `default`, title
+    case `default`(CGFloat), title
 
     var font: UIFont {
         switch self {
-        case .default:
-            return .systemFont(ofSize: FontValues.default.value)
+        case .default(let value):
+            return .systemFont(ofSize: value)
         case .title:
             return .boldSystemFont(ofSize: FontValues.title.value)
         }

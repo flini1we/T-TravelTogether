@@ -47,6 +47,7 @@
 		CFAD6AEA2DAC1BE5003930F3 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6AE92DAC1BE5003930F3 /* TextFieldDelegate.swift */; };
 		CFAD6AEC2DAC21D7003930F3 /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6AEB2DAC21D7003930F3 /* UIView+extension.swift */; };
 		CFAD6AF12DAC5E4D003930F3 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6AF02DAC5E4D003930F3 /* ActivityIndicatorView.swift */; };
+		CFAD6AF42DACF814003930F3 /* LoginErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6AF32DACF814003930F3 /* LoginErrors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		CFAD6AE92DAC1BE5003930F3 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 		CFAD6AEB2DAC21D7003930F3 /* UIView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
 		CFAD6AF02DAC5E4D003930F3 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
+		CFAD6AF32DACF814003930F3 /* LoginErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginErrors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 				CF35568D2DA8581700290A81 /* LaunchScreen.storyboard */,
 				CF3556892DA8581700290A81 /* AppDelegate.swift */,
 				CF3556902DA8581700290A81 /* SceneDelegate.swift */,
+				CFAD6AF22DACF80B003930F3 /* Errors */,
 				CFAD6AE12DAC0B21003930F3 /* Extensions */,
 				CFAD6A6A2DABD81C003930F3 /* Fonts */,
 				CFAD6A592DAAEEE9003930F3 /* Support */,
@@ -314,6 +317,14 @@
 				CFAD6AF02DAC5E4D003930F3 /* ActivityIndicatorView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		CFAD6AF22DACF80B003930F3 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				CFAD6AF32DACF814003930F3 /* LoginErrors.swift */,
+			);
+			path = Errors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -493,6 +504,7 @@
 			files = (
 				CF3556992DA8581700290A81 /* AppDelegate.swift in Sources */,
 				CFAD6A572DAACFB5003930F3 /* TextFieldBuilder.swift in Sources */,
+				CFAD6AF42DACF814003930F3 /* LoginErrors.swift in Sources */,
 				CFAD6AE72DAC1B88003930F3 /* UITextFieldDelegateDefaultImpl.swift in Sources */,
 				CFAD6AEC2DAC21D7003930F3 /* UIView+extension.swift in Sources */,
 				CFAD6A5B2DAAEEF5003930F3 /* FontValues.swift in Sources */,

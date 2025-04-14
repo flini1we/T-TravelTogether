@@ -48,6 +48,13 @@ final class LoginView: UIView {
             .build()
     }()
 
+    private(set) lazy var erroMessageTitle: UILabel = {
+        let label = UILabel()
+        label.textColor = .primaryRed
+        label.font = CustomFonts.default(FontValues.small.value).font
+        return label
+    }()
+
     private lazy var loginButton: UIButton = {
         ButtonBuilder()
             .tintColor(.buttonLabel)
@@ -149,9 +156,9 @@ private extension LoginView {
         addSubview(secondaryImageLabel)
         addSubview(primaryImageLabel)
         addSubview(fieldsStackView)
+        addSubview(erroMessageTitle)
         addSubview(buttonsStackView)
         addSubview(transparentBG)
-        /*addSubview(activityIndicator)*/
         addSubview(activityIndicator)
     }
 
@@ -169,6 +176,11 @@ private extension LoginView {
         fieldsStackView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(PaddingValues.medium.value)
+        }
+
+        erroMessageTitle.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(fieldsStackView.snp.bottom).offset(PaddingValues.tiny.value)
         }
 
         buttonsStackView.snp.makeConstraints { make in

@@ -7,6 +7,12 @@ final class RegistrationController: UIViewController {
     }
     private var viewModel: RegistrationViewModel
 
+    private lazy var registerAction: UIAction = {
+        UIAction { _ in
+            print("Register")
+        }
+    }()
+
     private var textFieldDelegate: UITextFieldDelegate!
 
     init(viewModel: RegistrationViewModel) {
@@ -28,16 +34,21 @@ final class RegistrationController: UIViewController {
         super.viewDidLoad()
 
         setupDelegate()
+        setUpActions()
     }
 }
 
 private extension RegistrationController {
 
     func setupDelegate() {
-        /*textFieldDelegate = TextFieldDelegate(
+        textFieldDelegate = TextFieldDelegate(
             phoneNumberField: registrationView.phoneNumberField,
             passwordField: registrationView.passwordFieldFirst,
             confirmPasswordField: registrationView.passwordFieldSecond)
-        registrationView.setDelegateToTextFields(textFieldDelegate)*/
+        registrationView.setDelegateToTextFields(textFieldDelegate)
+    }
+
+    func setUpActions() {
+        registrationView.addRegisterAction(registerAction)
     }
 }

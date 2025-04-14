@@ -20,8 +20,13 @@ final class LoginController: UIViewController {
         UIAction { [weak self] _ in
             guard let self else { return }
             let data = loginView.getData()
-            viewModel.login(phoneNumber: data.phone, password: data.password) {
-                print("Log sucess")
+            viewModel.login(phoneNumber: data.phone, password: data.password) { [weak self] result in
+                switch result {
+                case .success(let user):
+                    self?.loginView.erroMessageTitle.text = ""
+                case .failure(let error):
+                    self?.loginView.erroMessageTitle.text = (error as! LoginErrors).getError
+                }
             }
         }
     }()
