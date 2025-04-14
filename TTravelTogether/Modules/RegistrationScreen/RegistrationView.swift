@@ -113,7 +113,7 @@ private extension RegistrationView {
 
         registerButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).inset(PaddingValues.default.value)
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).inset(PaddingValues.medium.value)
             make.leading.trailing.equalToSuperview().inset(PaddingValues.default.value)
         }
     }

@@ -25,18 +25,13 @@ final class TextFieldDelegate: NSObject, UITextFieldDelegate {
         case phoneNumberField:
             passwordField.becomeFirstResponder()
         case passwordField:
-            if confirmPasswordField != nil {
-                print("nah")
+            if let confirmPasswordField {
+                confirmPasswordField.becomeFirstResponder()
             } else {
-                print("your data:")
-                print(phoneNumberField.text)
-                print(passwordField.text)
+                passwordField.resignFirstResponder()
             }
         case confirmPasswordField:
-            print("your data:")
-            print(phoneNumberField.text)
-            print(passwordField.text)
-            print(confirmPasswordField?.text)
+            confirmPasswordField?.resignFirstResponder()
         default: break
         }
         return true

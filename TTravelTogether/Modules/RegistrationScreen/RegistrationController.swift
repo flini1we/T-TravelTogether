@@ -34,10 +34,10 @@ final class RegistrationController: UIViewController {
 private extension RegistrationController {
 
     func setupDelegate() {
-        textFieldDelegate = TextFieldDelegate(
+        /*textFieldDelegate = TextFieldDelegate(
             phoneNumberField: registrationView.phoneNumberField,
             passwordField: registrationView.passwordFieldFirst,
             confirmPasswordField: registrationView.passwordFieldSecond)
-        registrationView.setDelegateToTextFields(textFieldDelegate)
+        registrationView.setDelegateToTextFields(textFieldDelegate)*/
     }
 }

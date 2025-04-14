@@ -46,6 +46,7 @@
 		CFAD6AE72DAC1B88003930F3 /* UITextFieldDelegateDefaultImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6AE62DAC1B88003930F3 /* UITextFieldDelegateDefaultImpl.swift */; };
 		CFAD6AEA2DAC1BE5003930F3 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6AE92DAC1BE5003930F3 /* TextFieldDelegate.swift */; };
 		CFAD6AEC2DAC21D7003930F3 /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6AEB2DAC21D7003930F3 /* UIView+extension.swift */; };
+		CFAD6AF12DAC5E4D003930F3 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6AF02DAC5E4D003930F3 /* ActivityIndicatorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,7 @@
 		CFAD6AE62DAC1B88003930F3 /* UITextFieldDelegateDefaultImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldDelegateDefaultImpl.swift; sourceTree = "<group>"; };
 		CFAD6AE92DAC1BE5003930F3 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 		CFAD6AEB2DAC21D7003930F3 /* UIView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
+		CFAD6AF02DAC5E4D003930F3 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				CFAD6A582DAAEE07003930F3 /* Builders */,
+				CFAD6AEF2DAC5E30003930F3 /* Views */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -303,6 +306,14 @@
 				CFAD6AE92DAC1BE5003930F3 /* TextFieldDelegate.swift */,
 			);
 			path = ExternalDelegates;
+			sourceTree = "<group>";
+		};
+		CFAD6AEF2DAC5E30003930F3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CFAD6AF02DAC5E4D003930F3 /* ActivityIndicatorView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -497,6 +508,7 @@
 				CFAD6AE52DAC1104003930F3 /* SystemImages.swift in Sources */,
 				CFAD6AE32DAC0B30003930F3 /* UITextField+extension.swift in Sources */,
 				CFAD6A612DAB02C5003930F3 /* UIElementsValues.swift in Sources */,
+				CFAD6AF12DAC5E4D003930F3 /* ActivityIndicatorView.swift in Sources */,
 				CFAD6AB02DABDBAC003930F3 /* CustomFonts.swift in Sources */,
 				CF35569B2DA8581700290A81 /* TTravelTogether.xcdatamodeld in Sources */,
 				CFAD6AEA2DAC1BE5003930F3 /* TextFieldDelegate.swift in Sources */,

@@ -64,6 +64,20 @@ final class LoginView: UIView {
             .build()
     }()
 
+    private(set) lazy var activityIndicator: ActivityIndicatorView = {
+        let indicator = ActivityIndicatorView()
+        indicator.alpha = 0
+        indicator.animate()
+        return indicator
+    }()
+
+    private(set) lazy var transparentBG: UIView = {
+        let view = UIView()
+        view.backgroundColor = .placeholder.withAlphaComponent(0.25)
+        view.isHidden = true
+        return view
+    }()
+
     // MARK: StackView containers
     private lazy var fieldsStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [
@@ -98,6 +112,28 @@ final class LoginView: UIView {
     func setupGoToRegistrationPageAction(_ action: UIAction) {
         goToRegistrationButton.addAction(action, for: .touchUpInside)
     }
+
+    func setupLoginAction(_ action: UIAction) {
+        loginButton.addAction(action, for: .touchUpInside)
+    }
+
+    func getData() -> (phone: String, password: String) {
+        (phoneNumberField.text ?? "", passwordField.text ?? "")
+    }
+
+    func toggleTransparentBGVisibility() {
+        UIView.transition(with: self, duration: 0.2, options: .transitionCrossDissolve) {
+            self.transparentBG.isHidden.toggle()
+        }
+    }
+
+    func activateIndicator() {
+        activityIndicator.alpha = 1
+    }
+
+    func deactivateIndicator() {
+        activityIndicator.alpha = 0
+    }
 }
 
 private extension LoginView {
@@ -114,6 +150,9 @@ private extension LoginView {
         addSubview(primaryImageLabel)
         addSubview(fieldsStackView)
         addSubview(buttonsStackView)
+        addSubview(transparentBG)
+        /*addSubview(activityIndicator)*/
+        addSubview(activityIndicator)
     }
 
     func setupConstraints() {
@@ -135,6 +174,15 @@ private extension LoginView {
         buttonsStackView.snp.makeConstraints { make in
             make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).inset(PaddingValues.medium.value)
             make.leading.trailing.equalToSuperview().inset(PaddingValues.medium.value)
+        }
+
+        activityIndicator.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            make.width.height.equalTo(UIElementsValues.activiryIndicator.value)
+        }
+
+        transparentBG.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
 }
