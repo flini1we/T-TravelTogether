@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-final class RegistrationViewModel {
+final class RegistrationViewModel: Registratable {
 
     @Published var isFetchingRequest = false
 
@@ -9,6 +9,18 @@ final class RegistrationViewModel {
     @Published var isPasswordValid = false
     @Published var isPasswordConfirmed = false
 
+    var isFetchingRequestPublisher: Published<Bool>.Publisher {
+        $isFetchingRequest
+    }
+    var isPhoneValidPublisher: Published<Bool>.Publisher {
+        $isPhoneValid
+    }
+    var isPasswordValidPublisher: Published<Bool>.Publisher {
+        $isPasswordValid
+    }
+    var isPasswordConfirmedPublisher: Published<Bool>.Publisher {
+        $isPasswordConfirmed
+    }
     var isDataValid: AnyPublisher<Bool, Never> {
         Publishers.CombineLatest3(
             $isPhoneValid,

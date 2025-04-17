@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-final class ButtonBuilder {
+final class ButtonBuilder: ButtonBuildable {
 
     private var button: UIButton
 

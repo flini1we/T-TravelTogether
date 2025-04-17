@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-final class TextFieldBuilder {
+final class TextFieldBuilder: TextFieldBuildable {
 
     private var textField: UITextField
 

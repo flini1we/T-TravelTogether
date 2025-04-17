@@ -3,10 +3,10 @@ import Combine
 
 final class LoginController: UIViewController {
 
-    private var loginView: LoginView {
-        view as! LoginView
+    private var loginView: LoginViewProtocol {
+        view as! LoginViewProtocol
     }
-    private var viewModel: LoginViewModel
+    private var viewModel: Loginable
 
     private lazy var goToRegistrationScreenAction: UIAction = {
         UIAction { [weak self] _ in
@@ -21,19 +21,14 @@ final class LoginController: UIViewController {
             guard let self else { return }
             let data = loginView.getData()
             viewModel.login(phoneNumber: data.phone, password: data.password) { [weak self] result in
-                switch result {
-                case .success(let user):
-                    self?.loginView.erroMessageTitle.text = ""
-                case .failure(let error):
-                    self?.loginView.erroMessageTitle.text = (error as! LoginErrors).getError
-                }
+                self?.handleLoginResult(result)
             }
         }
     }()
     private var textFieldDelegate: UITextFieldDelegate?
     private var cancellables: Set<AnyCancellable> = []
 
-    init(viewModel: LoginViewModel) {
+    init(viewModel: Loginable) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -59,16 +54,23 @@ final class LoginController: UIViewController {
 
 private extension LoginController {
 
+    func handleLoginResult(_ result: Result<String, Error>) {
+        switch result {
+        case .success(let user):
+            loginView.errorMessageTitle.text = ""
+        case .failure(let error):
+            loginView.errorMessageTitle.text = (error as! LoginErrors).getError
+        }
+    }
+
     func setupBindings() {
-        viewModel.$isLoading.dropFirst().sink { [weak self] isLoading in
-            guard let self else { return }
-            if isLoading {
-                loginView.activateIndicator()
-            } else {
-                loginView.deactivateIndicator()
-            }
-            loginView.toggleTransparentBGVisibility()
-        }.store(in: &cancellables)
+        viewModel.isLoadingPublisher
+            .dropFirst()
+            .sink { [weak self] isLoading in
+                guard let self else { return }
+                isLoading ? loginView.activateIndicator() : loginView.deactivateIndicator()
+                loginView.toggleTransparentBGVisibility()
+            }.store(in: &cancellables)
     }
 
     func setupDelegates() {

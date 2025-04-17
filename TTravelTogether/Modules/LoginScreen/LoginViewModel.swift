@@ -1,9 +1,13 @@
 import Foundation
 import Combine
 
-final class LoginViewModel {
+final class LoginViewModel: ObservableObject, Loginable {
 
     @Published var isLoading: Bool = false
+
+    var isLoadingPublisher: Published<Bool>.Publisher {
+        $isLoading
+    }
 
     func login(phoneNumber: String, password: String, completion: @escaping ((Result<String, Error>) -> Void)) {
         guard !phoneNumber.isEmpty, !password.isEmpty else { return }

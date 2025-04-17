@@ -1,6 +1,6 @@
 import UIKit
 
-final class LabelBuilder {
+final class LabelBuilder: LabelBuildable {
 
     private lazy var label: UILabel = {
         UILabel()

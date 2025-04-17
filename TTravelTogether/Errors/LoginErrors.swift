@@ -6,7 +6,11 @@ enum LoginErrors: Error {
     var getError: String {
         switch self {
         case .dataValidationError:
-            return "Упс.. Неверный номер телефона или пароль"
+            return LoginErrorsConstants.wrongData
         }
+    }
+
+    private enum LoginErrorsConstants {
+        static let wrongData: String = "Упс.. Неверный номер телефона или пароль"
     }
 }

@@ -32,7 +32,7 @@ final class TextFieldDelegate: NSObject, UITextFieldDelegate {
             }
         case confirmPasswordField:
             confirmPasswordField?.resignFirstResponder()
-        default: break
+        default: return true
         }
         return true
     }

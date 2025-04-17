@@ -15,6 +15,15 @@
 		CF35569F2DA8581B00290A81 /* TTravelTogetherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF35569D2DA8581B00290A81 /* TTravelTogetherTests.swift */; };
 		CF3556A32DA8581D00290A81 /* TTravelTogetherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3556A02DA8581D00290A81 /* TTravelTogetherUITests.swift */; };
 		CF3556A42DA8581D00290A81 /* TTravelTogetherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3556A12DA8581D00290A81 /* TTravelTogetherUITestsLaunchTests.swift */; };
+		CF3B46342DB1782D008C4CA0 /* Loginable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B46332DB1782D008C4CA0 /* Loginable.swift */; };
+		CF3B46362DB1984B008C4CA0 /* Registratable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B46352DB1984B008C4CA0 /* Registratable.swift */; };
+		CF3B46382DB1A344008C4CA0 /* AuthenticationCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B46372DB1A344008C4CA0 /* AuthenticationCoordinatorProtocol.swift */; };
+		CF3B463D2DB1A6F2008C4CA0 /* LoginViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B463C2DB1A6F2008C4CA0 /* LoginViewProtocol.swift */; };
+		CF3B464E2DB1A9E3008C4CA0 /* RegistrationViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B464D2DB1A9E3008C4CA0 /* RegistrationViewProtocol.swift */; };
+		CF5D7FB82DB1700A00490126 /* ButtonBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5D7FB72DB1700A00490126 /* ButtonBuildable.swift */; };
+		CF5D7FBA2DB170AE00490126 /* LabelBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5D7FB92DB170AE00490126 /* LabelBuildable.swift */; };
+		CF5D7FBC2DB170E900490126 /* TextFieldBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5D7FBB2DB170E900490126 /* TextFieldBuildable.swift */; };
+		CF5D7FBE2DB1716D00490126 /* IndicatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5D7FBD2DB1716D00490126 /* IndicatorProtocol.swift */; };
 		CF601D322DA93D7700E98B21 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CF601D312DA93D7700E98B21 /* SnapKit */; };
 		CF64B92E2DAD982900255003 /* RegularExpressions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF64B92D2DAD982800255003 /* RegularExpressions.swift */; };
 		CFAD6A502DAACDEF003930F3 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6A4F2DAACDEF003930F3 /* LoginView.swift */; };
@@ -81,6 +90,15 @@
 		CF35569D2DA8581B00290A81 /* TTravelTogetherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTravelTogetherTests.swift; sourceTree = "<group>"; };
 		CF3556A02DA8581D00290A81 /* TTravelTogetherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTravelTogetherUITests.swift; sourceTree = "<group>"; };
 		CF3556A12DA8581D00290A81 /* TTravelTogetherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTravelTogetherUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CF3B46332DB1782D008C4CA0 /* Loginable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Loginable.swift; path = TTravelTogether/Loginable.swift; sourceTree = SOURCE_ROOT; };
+		CF3B46352DB1984B008C4CA0 /* Registratable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Registratable.swift; path = TTravelTogether/Registratable.swift; sourceTree = SOURCE_ROOT; };
+		CF3B46372DB1A344008C4CA0 /* AuthenticationCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthenticationCoordinatorProtocol.swift; path = TTravelTogether/AuthenticationCoordinatorProtocol.swift; sourceTree = SOURCE_ROOT; };
+		CF3B463C2DB1A6F2008C4CA0 /* LoginViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewProtocol.swift; path = TTravelTogether/LoginViewProtocol.swift; sourceTree = SOURCE_ROOT; };
+		CF3B464D2DB1A9E3008C4CA0 /* RegistrationViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewProtocol.swift; sourceTree = "<group>"; };
+		CF5D7FB72DB1700A00490126 /* ButtonBuildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ButtonBuildable.swift; path = TTravelTogether/ButtonBuildable.swift; sourceTree = SOURCE_ROOT; };
+		CF5D7FB92DB170AE00490126 /* LabelBuildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LabelBuildable.swift; path = TTravelTogether/LabelBuildable.swift; sourceTree = SOURCE_ROOT; };
+		CF5D7FBB2DB170E900490126 /* TextFieldBuildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextFieldBuildable.swift; path = TTravelTogether/TextFieldBuildable.swift; sourceTree = SOURCE_ROOT; };
+		CF5D7FBD2DB1716D00490126 /* IndicatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IndicatorProtocol.swift; path = TTravelTogether/IndicatorProtocol.swift; sourceTree = SOURCE_ROOT; };
 		CF64B92D2DAD982800255003 /* RegularExpressions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressions.swift; sourceTree = "<group>"; };
 		CFAD6A4F2DAACDEF003930F3 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CFAD6A512DAACDFC003930F3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -171,12 +189,16 @@
 				CF35568B2DA8581700290A81 /* Info.plist */,
 				CF35568D2DA8581700290A81 /* LaunchScreen.storyboard */,
 				CF3556892DA8581700290A81 /* AppDelegate.swift */,
+				CF3B464C2DB1A9C6008C4CA0 /* ОдинокиеБезТаргета */,
+				CF3B46422DB1A778008C4CA0 /* Coordinators */,
+				CF3B463E2DB1A74C008C4CA0 /* Views */,
 				CF3556902DA8581700290A81 /* SceneDelegate.swift */,
 				CFAD6AF22DACF80B003930F3 /* Errors */,
 				CFAD6AE12DAC0B21003930F3 /* Extensions */,
 				CFAD6A6A2DABD81C003930F3 /* Fonts */,
 				CFAD6A592DAAEEE9003930F3 /* Support */,
 				CFAD6A692DABD41C003930F3 /* Protocols */,
+				CF3B46392DB1A3BD008C4CA0 /* Coordinator */,
 				CFAD6A552DAACF9A003930F3 /* Custom */,
 				CFAD6A4D2DAACDAF003930F3 /* Modules */,
 			);
@@ -198,6 +220,67 @@
 				CF3556A12DA8581D00290A81 /* TTravelTogetherUITestsLaunchTests.swift */,
 			);
 			path = TTravelTogetherUITests;
+			sourceTree = "<group>";
+		};
+		CF3B46392DB1A3BD008C4CA0 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		CF3B463E2DB1A74C008C4CA0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CF3B463F2DB1A74F008C4CA0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CF5D7FBB2DB170E900490126 /* TextFieldBuildable.swift */,
+				CF5D7FB72DB1700A00490126 /* ButtonBuildable.swift */,
+				CF5D7FB92DB170AE00490126 /* LabelBuildable.swift */,
+				CF5D7FBD2DB1716D00490126 /* IndicatorProtocol.swift */,
+				CF3B463C2DB1A6F2008C4CA0 /* LoginViewProtocol.swift */,
+			);
+			name = Views;
+			path = TTravelTogether/Views;
+			sourceTree = "<group>";
+		};
+		CF3B46412DB1A769008C4CA0 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				CF3B46332DB1782D008C4CA0 /* Loginable.swift */,
+				CF3B46352DB1984B008C4CA0 /* Registratable.swift */,
+			);
+			name = ViewModels;
+			path = TTravelTogether/ViewModels;
+			sourceTree = "<group>";
+		};
+		CF3B46422DB1A778008C4CA0 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		CF3B46432DB1A786008C4CA0 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				CF3B46372DB1A344008C4CA0 /* AuthenticationCoordinatorProtocol.swift */,
+			);
+			name = Coordinators;
+			path = TTravelTogether/Coordinators;
+			sourceTree = "<group>";
+		};
+		CF3B464C2DB1A9C6008C4CA0 /* ОдинокиеБезТаргета */ = {
+			isa = PBXGroup;
+			children = (
+				CF3B464D2DB1A9E3008C4CA0 /* RegistrationViewProtocol.swift */,
+			);
+			path = "ОдинокиеБезТаргета";
 			sourceTree = "<group>";
 		};
 		CFAD6A4D2DAACDAF003930F3 /* Modules */ = {
@@ -265,6 +348,9 @@
 		CFAD6A692DABD41C003930F3 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				CF3B463F2DB1A74F008C4CA0 /* Views */,
+				CF3B46412DB1A769008C4CA0 /* ViewModels */,
+				CF3B46432DB1A786008C4CA0 /* Coordinators */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -508,11 +594,15 @@
 				CF3556992DA8581700290A81 /* AppDelegate.swift in Sources */,
 				CFAD6A572DAACFB5003930F3 /* TextFieldBuilder.swift in Sources */,
 				CFAD6AF42DACF814003930F3 /* LoginErrors.swift in Sources */,
+				CF3B46362DB1984B008C4CA0 /* Registratable.swift in Sources */,
+				CF3B46342DB1782D008C4CA0 /* Loginable.swift in Sources */,
+				CF3B46382DB1A344008C4CA0 /* AuthenticationCoordinatorProtocol.swift in Sources */,
 				CFAD6AE72DAC1B88003930F3 /* UITextFieldDelegateDefaultImpl.swift in Sources */,
 				CFAD6AEC2DAC21D7003930F3 /* UIView+extension.swift in Sources */,
 				CFAD6A5B2DAAEEF5003930F3 /* FontValues.swift in Sources */,
 				CFAD6A682DABD381003930F3 /* RegistrationViewModel.swift in Sources */,
 				CFAD6AB22DABDC16003930F3 /* LabelBuilder.swift in Sources */,
+				CF5D7FB82DB1700A00490126 /* ButtonBuildable.swift in Sources */,
 				CF64B92E2DAD982900255003 /* RegularExpressions.swift in Sources */,
 				CFAD6A642DABD36F003930F3 /* RegistrationView.swift in Sources */,
 				CFAD6A542DAACE03003930F3 /* LoginController.swift in Sources */,
@@ -524,9 +614,14 @@
 				CFAD6AE52DAC1104003930F3 /* SystemImages.swift in Sources */,
 				CFAD6AE32DAC0B30003930F3 /* UITextField+extension.swift in Sources */,
 				CFAD6A612DAB02C5003930F3 /* UIElementsValues.swift in Sources */,
+				CF5D7FBC2DB170E900490126 /* TextFieldBuildable.swift in Sources */,
+				CF3B463D2DB1A6F2008C4CA0 /* LoginViewProtocol.swift in Sources */,
+				CF5D7FBE2DB1716D00490126 /* IndicatorProtocol.swift in Sources */,
 				CFAD6AF12DAC5E4D003930F3 /* ActivityIndicatorView.swift in Sources */,
+				CF3B464E2DB1A9E3008C4CA0 /* RegistrationViewProtocol.swift in Sources */,
 				CFAD6AB02DABDBAC003930F3 /* CustomFonts.swift in Sources */,
 				CF35569B2DA8581700290A81 /* TTravelTogether.xcdatamodeld in Sources */,
+				CF5D7FBA2DB170AE00490126 /* LabelBuildable.swift in Sources */,
 				CFAD6AEA2DAC1BE5003930F3 /* TextFieldDelegate.swift in Sources */,
 				CFAD6A662DABD378003930F3 /* RegistrationController.swift in Sources */,
 			);

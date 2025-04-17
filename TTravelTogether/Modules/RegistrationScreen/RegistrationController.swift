@@ -3,10 +3,10 @@ import Combine
 
 final class RegistrationController: UIViewController {
 
-    private var registrationView: RegistrationView {
-        view as! RegistrationView
+    private var registrationView: RegistrationViewProtocol {
+        view as! RegistrationViewProtocol
     }
-    private var viewModel: RegistrationViewModel
+    private var viewModel: Registratable
 
     private lazy var registerAction: UIAction = {
         UIAction { [weak self] _ in
@@ -24,7 +24,7 @@ final class RegistrationController: UIViewController {
     private var textFieldDelegate: UITextFieldDelegate!
     private var cancellables: Set<AnyCancellable> = []
 
-    init(viewModel: RegistrationViewModel) {
+    init(viewModel: Registratable) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -71,7 +71,7 @@ private extension RegistrationController {
 
     func setupPhoneFieldBinding() {
 
-        viewModel.$isPhoneValid
+        viewModel.isPhoneValidPublisher
             .dropFirst()
             .sink { [weak self] isValid in
                 self?.registrationView.phoneNumberField.setValidationBorder(isValid)
@@ -88,7 +88,7 @@ private extension RegistrationController {
 
     func setupPasswordFieldBinding() {
 
-        viewModel.$isPasswordValid
+        viewModel.isPasswordValidPublisher
             .dropFirst()
             .sink { [weak self] isValid in
                 self?.registrationView.passwordFieldFirst.setValidationBorder(isValid)
@@ -105,7 +105,7 @@ private extension RegistrationController {
 
     func setupPasswordConfirmationFieldBinding() {
 
-        viewModel.$isPasswordConfirmed
+        viewModel.isPasswordConfirmedPublisher
             .dropFirst()
             .sink { [weak self] isValid in
                 self?.registrationView.passwordFieldSecond.setValidationBorder(isValid)
@@ -122,8 +122,7 @@ private extension RegistrationController {
 
     func setupLoadingBindings() {
 
-        viewModel
-            .$isFetchingRequest
+        viewModel.isFetchingRequestPublisher
             .dropFirst()
             .sink { [weak self] isLoadin in
                 if isLoadin {

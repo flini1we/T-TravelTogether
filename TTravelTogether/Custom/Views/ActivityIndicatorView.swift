@@ -1,6 +1,6 @@
 import UIKit
 
-final class ActivityIndicatorView: UIView {
+final class ActivityIndicatorView: UIView, ActivityIndicatorProtocol {
 
     let spinningCircle = CAShapeLayer()
 
@@ -12,13 +12,25 @@ final class ActivityIndicatorView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    func animate() {
+        animateRotation(to: .pi) {
+            self.animateRotation(to: 0) {
+                self.animate()
+            }
+        }
+    }
 }
 
-extension ActivityIndicatorView {
+private extension ActivityIndicatorView {
 
-    private func setup() {
+    enum ActivityIndicatorConstants {
+        static let sctrokeEnd: CGFloat = 0.33
+    }
+
+    func setup() {
         let size = UIElementsValues.activiryIndicator.value
-        frame = .init(x: 0, y: 0, width: size, height: size)
+        frame = CGRect(x: 0, y: 0, width: size, height: size)
 
         let rect = bounds
         let circularPath = UIBezierPath(ovalIn: rect)
@@ -27,21 +39,15 @@ extension ActivityIndicatorView {
         spinningCircle.fillColor = UIColor.clear.cgColor
         spinningCircle.strokeColor = UIColor.primaryYellow.cgColor
         spinningCircle.lineWidth = size / 10
-        spinningCircle.strokeEnd = 0.33
+        spinningCircle.strokeEnd = ActivityIndicatorConstants.sctrokeEnd
         spinningCircle.lineCap = .round
 
         layer.addSublayer(spinningCircle)
     }
-
-    func animate() {
+    
+    func animateRotation(to angle: CGFloat, completion: @escaping () -> Void) {
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear) {
-            self.transform = CGAffineTransform(rotationAngle: .pi)
-        } completion: { _ in
-            UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear) {
-                self.transform = .identity
-            } completion: { _ in
-                self.animate()
-            }
-        }
+            self.transform = CGAffineTransform(rotationAngle: angle)
+        } completion: { _ in completion() }
     }
 }

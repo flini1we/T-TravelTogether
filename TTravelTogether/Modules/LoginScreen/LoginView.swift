@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-final class LoginView: UIView {
+final class LoginView: UIView, LoginViewProtocol {
     // MARK: UIElements
     private lazy var primaryImageLabel: UIImageView = {
         let imageView = UIImageView(image: .primaryLogo)
@@ -47,7 +47,7 @@ final class LoginView: UIView {
             .build()
     }()
 
-    private(set) lazy var erroMessageTitle: UILabel = {
+    private(set) lazy var errorMessageTitle: UILabel = {
         let label = UILabel()
         label.textColor = .primaryRed
         label.font = CustomFonts.default(FontValues.small.value).font
@@ -70,7 +70,7 @@ final class LoginView: UIView {
             .build()
     }()
 
-    private(set) lazy var activityIndicator: ActivityIndicatorView = {
+    private(set) lazy var activityIndicator: ActivityIndicatorProtocol = {
         let indicator = ActivityIndicatorView()
         indicator.alpha = 0
         indicator.animate()
@@ -155,7 +155,7 @@ private extension LoginView {
         addSubview(secondaryImageLabel)
         addSubview(primaryImageLabel)
         addSubview(fieldsStackView)
-        addSubview(erroMessageTitle)
+        addSubview(errorMessageTitle)
         addSubview(buttonsStackView)
         addSubview(transparentBG)
         addSubview(activityIndicator)
@@ -177,7 +177,7 @@ private extension LoginView {
             make.leading.trailing.equalToSuperview().inset(PaddingValues.medium.value)
         }
 
-        erroMessageTitle.snp.makeConstraints { make in
+        errorMessageTitle.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(fieldsStackView.snp.bottom).offset(PaddingValues.tiny.value)
         }

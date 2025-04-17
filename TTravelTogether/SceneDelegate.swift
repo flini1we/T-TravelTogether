@@ -8,7 +8,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
 
-        let loginViewModel = LoginViewModel()
+        let loginViewModel: Loginable = LoginViewModel()
         let mainNavigationContoller = UINavigationController(rootViewController: LoginController(viewModel: loginViewModel))
         window?.rootViewController = mainNavigationContoller
         window?.makeKeyAndVisible()
