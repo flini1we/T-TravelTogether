@@ -2,6 +2,7 @@ import UIKit
 import Combine
 
 final class LoginController: UIViewController {
+    weak var coordinator: AuthFlowCoordinatorProtocol?
 
     private var loginView: LoginViewProtocol {
         view as! LoginViewProtocol
@@ -10,10 +11,7 @@ final class LoginController: UIViewController {
 
     private lazy var goToRegistrationScreenAction: UIAction = {
         UIAction { [weak self] _ in
-            guard let self else { return }
-            let rigistrationViewModel = RegistrationViewModel()
-            let registrationController = RegistrationController(viewModel: rigistrationViewModel)
-            navigationController?.pushViewController(registrationController, animated: true)
+            self?.coordinator?.showRegistration()
         }
     }()
     private lazy var loginAction: UIAction = {

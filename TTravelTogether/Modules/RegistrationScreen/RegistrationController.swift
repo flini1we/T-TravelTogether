@@ -2,6 +2,7 @@ import UIKit
 import Combine
 
 final class RegistrationController: UIViewController {
+    weak var coordinator: AuthFlowCoordinatorProtocol?
 
     private var registrationView: RegistrationViewProtocol {
         view as! RegistrationViewProtocol
@@ -12,8 +13,8 @@ final class RegistrationController: UIViewController {
         UIAction { [weak self] _ in
             self?.viewModel.register(completion: { result in
                 switch result {
-                case .success(_):
-                    self?.navigationController?.popViewController(animated: true)
+                case .success(let user):
+                    self?.coordinator?.showLogin(user: user)
                 case .failure(let failure):
                     print(failure.localizedDescription)
                 }

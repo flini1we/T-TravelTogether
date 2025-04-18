@@ -3,14 +3,18 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    private var authCoordinator: AuthFlowCoordinatorProtocol?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
 
-        let loginViewModel: Loginable = LoginViewModel()
-        let mainNavigationContoller = UINavigationController(rootViewController: LoginController(viewModel: loginViewModel))
-        window?.rootViewController = mainNavigationContoller
+        let navigationController = UINavigationController()
+        let moduleFactory: ModuleFactoryProtocol = ModuleFactory()
+        authCoordinator = AuthCoordinator(navigationController: navigationController, moduleFactory: moduleFactory)
+
+        window?.rootViewController = navigationController
+        authCoordinator?.start()
         window?.makeKeyAndVisible()
     }
 
