@@ -17,8 +17,8 @@ final class LoginController: UIViewController {
     private lazy var loginAction: UIAction = {
         UIAction { [weak self] _ in
             guard let self else { return }
-            let data = loginView.getData()
-            viewModel.login(phoneNumber: data.phone, password: data.password) { [weak self] result in
+            let (phone, password) = loginView.getData()
+            viewModel.login(phoneNumber: phone, password: password) { [weak self] result in
                 self?.handleLoginResult(result)
             }
         }
