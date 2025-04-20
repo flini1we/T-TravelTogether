@@ -4,7 +4,7 @@ struct ModuleFactory: ModuleFactoryProtocol {
     func makeLoginModule() -> UIViewController {
         getModule(.login)
     }
-    
+
     func makeRegistrationModule() -> UIViewController {
         getModule(.register)
     }

@@ -40,14 +40,26 @@ final class RegistrationViewModel: Registratable {
     }
 
     func validatePhone(_ phone: String) -> Bool {
-        return phone.range(of: RegularExpressions.russianPhoneNumber.expression, options: .regularExpression) != nil
+        let isValid = phone.range(
+            of: RegularExpressions.russianPhoneNumber.expression,
+            options: .regularExpression
+        ) != nil
+        isPhoneValid = isValid
+        return isValid
     }
 
     func validatePassword(_ password: String) -> Bool {
-        password.range(of: RegularExpressions.password.expression, options: .regularExpression) != nil
+        let isValid = password.range(
+            of: RegularExpressions.password.expression,
+            options: .regularExpression
+        ) != nil
+        isPasswordValid = isValid
+        return isValid
     }
 
     func validatePasswordEquality(original password1: String?, confirmed password2: String) -> Bool {
-        self.isPasswordValid && (password1 ?? "") == password2
+        let isValid = isPasswordValid && (password1 ?? "") == password2
+        isPasswordConfirmed = isValid
+        return isValid
     }
 }

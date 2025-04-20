@@ -4,6 +4,7 @@ import Combine
 protocol Loginable {
 
     var isLoadingPublisher: Published<Bool>.Publisher { get }
+    var isLoading: Bool { get set }
 
     func login(
         phoneNumber: String,

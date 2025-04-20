@@ -83,7 +83,7 @@ private extension RegistrationController {
             .textPublisher
             .sink { [weak self] phoneNumber in
                 guard let self else { return }
-                viewModel.isPhoneValid = viewModel.validatePhone(phoneNumber)
+                viewModel.validatePhone(phoneNumber)
             }.store(in: &cancellables)
     }
 
@@ -100,7 +100,7 @@ private extension RegistrationController {
             .textPublisher
             .sink { [weak self] password in
                 guard let self else { return }
-                viewModel.isPasswordValid = viewModel.validatePassword(password)
+                viewModel.validatePassword(password)
             }.store(in: &cancellables)
     }
 
@@ -117,7 +117,7 @@ private extension RegistrationController {
             .textPublisher
             .sink { [weak self] confirmedPassword in
                 guard let self else { return }
-                viewModel.isPasswordConfirmed = viewModel.validatePasswordEquality(original: registrationView.passwordFieldFirst.text, confirmed: confirmedPassword)
+                viewModel.validatePasswordEquality(original: registrationView.passwordFieldFirst.text, confirmed: confirmedPassword)
             }.store(in: &cancellables)
     }
 

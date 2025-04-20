@@ -12,7 +12,7 @@
 		CF3556992DA8581700290A81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3556892DA8581700290A81 /* AppDelegate.swift */; };
 		CF35569A2DA8581700290A81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3556902DA8581700290A81 /* SceneDelegate.swift */; };
 		CF35569B2DA8581700290A81 /* TTravelTogether.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CF3556912DA8581700290A81 /* TTravelTogether.xcdatamodeld */; };
-		CF35569F2DA8581B00290A81 /* TTravelTogetherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF35569D2DA8581B00290A81 /* TTravelTogetherTests.swift */; };
+		CF35569F2DA8581B00290A81 /* LoginModuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF35569D2DA8581B00290A81 /* LoginModuleTest.swift */; };
 		CF3556A32DA8581D00290A81 /* TTravelTogetherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3556A02DA8581D00290A81 /* TTravelTogetherUITests.swift */; };
 		CF3556A42DA8581D00290A81 /* TTravelTogetherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3556A12DA8581D00290A81 /* TTravelTogetherUITestsLaunchTests.swift */; };
 		CF3B464E2DB1A9E3008C4CA0 /* RegistrationViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B464D2DB1A9E3008C4CA0 /* RegistrationViewProtocol.swift */; };
@@ -28,6 +28,7 @@
 		CF3B46812DB24B04008C4CA0 /* ModuleTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B46802DB24B04008C4CA0 /* ModuleTypes.swift */; };
 		CF3B46832DB24B8B008C4CA0 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B46822DB24B8B008C4CA0 /* AuthCoordinator.swift */; };
 		CF3B46862DB24C8C008C4CA0 /* ModuleFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B46852DB24C8C008C4CA0 /* ModuleFactoryProtocol.swift */; };
+		CF3B468C2DB2E0B0008C4CA0 /* RegistrationModuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B468B2DB2E0B0008C4CA0 /* RegistrationModuleTest.swift */; };
 		CF601D322DA93D7700E98B21 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CF601D312DA93D7700E98B21 /* SnapKit */; };
 		CF64B92E2DAD982900255003 /* RegularExpressions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF64B92D2DAD982800255003 /* RegularExpressions.swift */; };
 		CFAD6A502DAACDEF003930F3 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6A4F2DAACDEF003930F3 /* LoginView.swift */; };
@@ -91,7 +92,7 @@
 		CF35568C2DA8581700290A81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CF3556902DA8581700290A81 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CF3556942DA8581700290A81 /* TTravelTogether.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TTravelTogether.xcdatamodel; sourceTree = "<group>"; };
-		CF35569D2DA8581B00290A81 /* TTravelTogetherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTravelTogetherTests.swift; sourceTree = "<group>"; };
+		CF35569D2DA8581B00290A81 /* LoginModuleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModuleTest.swift; sourceTree = "<group>"; };
 		CF3556A02DA8581D00290A81 /* TTravelTogetherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTravelTogetherUITests.swift; sourceTree = "<group>"; };
 		CF3556A12DA8581D00290A81 /* TTravelTogetherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTravelTogetherUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CF3B464D2DB1A9E3008C4CA0 /* RegistrationViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewProtocol.swift; sourceTree = "<group>"; };
@@ -107,6 +108,7 @@
 		CF3B46802DB24B04008C4CA0 /* ModuleTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTypes.swift; sourceTree = "<group>"; };
 		CF3B46822DB24B8B008C4CA0 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		CF3B46852DB24C8C008C4CA0 /* ModuleFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactoryProtocol.swift; sourceTree = "<group>"; };
+		CF3B468B2DB2E0B0008C4CA0 /* RegistrationModuleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModuleTest.swift; sourceTree = "<group>"; };
 		CF64B92D2DAD982800255003 /* RegularExpressions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressions.swift; sourceTree = "<group>"; };
 		CFAD6A4F2DAACDEF003930F3 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CFAD6A512DAACDFC003930F3 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -215,7 +217,8 @@
 		CF35569E2DA8581B00290A81 /* TTravelTogetherTests */ = {
 			isa = PBXGroup;
 			children = (
-				CF35569D2DA8581B00290A81 /* TTravelTogetherTests.swift */,
+				CF3B468A2DB2E002008C4CA0 /* RegistrationModuleTests */,
+				CF3B46872DB2D3AA008C4CA0 /* LoginModuleTests */,
 			);
 			path = TTravelTogetherTests;
 			sourceTree = "<group>";
@@ -292,6 +295,22 @@
 				CF3B46852DB24C8C008C4CA0 /* ModuleFactoryProtocol.swift */,
 			);
 			path = Factorys;
+			sourceTree = "<group>";
+		};
+		CF3B46872DB2D3AA008C4CA0 /* LoginModuleTests */ = {
+			isa = PBXGroup;
+			children = (
+				CF35569D2DA8581B00290A81 /* LoginModuleTest.swift */,
+			);
+			path = LoginModuleTests;
+			sourceTree = "<group>";
+		};
+		CF3B468A2DB2E002008C4CA0 /* RegistrationModuleTests */ = {
+			isa = PBXGroup;
+			children = (
+				CF3B468B2DB2E0B0008C4CA0 /* RegistrationModuleTest.swift */,
+			);
+			path = RegistrationModuleTests;
 			sourceTree = "<group>";
 		};
 		CFAD6A4D2DAACDAF003930F3 /* Modules */ = {
@@ -644,7 +663,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF35569F2DA8581B00290A81 /* TTravelTogetherTests.swift in Sources */,
+				CF3B468C2DB2E0B0008C4CA0 /* RegistrationModuleTest.swift in Sources */,
+				CF35569F2DA8581B00290A81 /* LoginModuleTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -869,7 +889,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.yandex.TTravelTogetherTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -887,7 +907,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ru.yandex.TTravelTogetherTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
