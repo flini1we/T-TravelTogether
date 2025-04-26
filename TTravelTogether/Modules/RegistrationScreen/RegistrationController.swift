@@ -2,7 +2,7 @@ import UIKit
 import Combine
 
 final class RegistrationController: UIViewController {
-    weak var coordinator: AuthFlowCoordinatorProtocol?
+    weak var coordinator: CoordinatorProtocol?
 
     private var registrationView: RegistrationViewProtocol {
         view as! RegistrationViewProtocol
@@ -55,10 +55,10 @@ private extension RegistrationController {
         textFieldDelegate = TextFieldDelegate(
             phoneNumberField: registrationView.phoneNumberField,
             passwordField: registrationView.passwordFieldFirst,
-            confirmPasswordField: registrationView.passwordFieldSecond)
+            confirmPasswordField: registrationView.passwordFieldConfirmed)
         registrationView.phoneNumberField.delegate = textFieldDelegate
         registrationView.passwordFieldFirst.delegate = textFieldDelegate
-        registrationView.passwordFieldSecond.delegate = textFieldDelegate
+        registrationView.passwordFieldConfirmed.delegate = textFieldDelegate
     }
 
     func setupBindings() {
@@ -83,7 +83,8 @@ private extension RegistrationController {
             .textPublisher
             .sink { [weak self] phoneNumber in
                 guard let self else { return }
-                viewModel.validatePhone(phoneNumber)
+                _ = viewModel.validatePhone(phoneNumber)
+                registrationView.phoneNumberFieldHint.text = viewModel.getPhoneErrorMessage(phoneNumber)
             }.store(in: &cancellables)
     }
 
@@ -100,7 +101,8 @@ private extension RegistrationController {
             .textPublisher
             .sink { [weak self] password in
                 guard let self else { return }
-                viewModel.validatePassword(password)
+                _ = viewModel.validatePassword(password)
+                registrationView.passwordFieldHint.text = viewModel.getPasswordErrorMessage(password)
             }.store(in: &cancellables)
     }
 
@@ -109,15 +111,16 @@ private extension RegistrationController {
         viewModel.isPasswordConfirmedPublisher
             .dropFirst()
             .sink { [weak self] isValid in
-                self?.registrationView.passwordFieldSecond.setValidationBorder(isValid)
+                self?.registrationView.passwordFieldConfirmed.setValidationBorder(isValid)
             }.store(in: &cancellables)
 
         registrationView
-            .passwordFieldSecond
+            .passwordFieldConfirmed
             .textPublisher
             .sink { [weak self] confirmedPassword in
                 guard let self else { return }
-                viewModel.validatePasswordEquality(original: registrationView.passwordFieldFirst.text, confirmed: confirmedPassword)
+                _ = viewModel.validatePasswordEquality(original: registrationView.passwordFieldFirst.text, confirmed: confirmedPassword)
+                registrationView.passwordFieldConfirmedHint.text = viewModel.getConfirmedPasswordErrorMessage()
             }.store(in: &cancellables)
     }
 

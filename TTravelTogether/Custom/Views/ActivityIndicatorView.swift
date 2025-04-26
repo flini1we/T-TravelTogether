@@ -44,7 +44,7 @@ private extension ActivityIndicatorView {
 
         layer.addSublayer(spinningCircle)
     }
-    
+
     func animateRotation(to angle: CGFloat, completion: @escaping () -> Void) {
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear) {
             self.transform = CGAffineTransform(rotationAngle: angle)

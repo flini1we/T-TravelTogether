@@ -26,7 +26,7 @@ final class LoginView: UIView, LoginViewProtocol {
             .font(.systemFont(ofSize: FontValues.default.value))
             .cornerRadius(.default)
             .isSecureEntry(false)
-            .placeHolder("Номер телефона")
+            .placeHolder(.AppStrings.phoneNumber)
             .returnKeyType(.continue)
             .keyboardType(.default)
             .paddinLeft(PaddingValues.default.value)
@@ -39,7 +39,7 @@ final class LoginView: UIView, LoginViewProtocol {
             .font(.systemFont(ofSize: FontValues.default.value))
             .cornerRadius(.default)
             .isSecureEntry(true)
-            .placeHolder("Пароль")
+            .placeHolder(.AppStrings.password)
             .returnKeyType(.done)
             .paddinLeft(PaddingValues.default.value)
             .enableTogglingSecure()
@@ -57,8 +57,9 @@ final class LoginView: UIView, LoginViewProtocol {
     private lazy var loginButton: UIButton = {
         ButtonBuilder()
             .tintColor(.buttonLabel)
+            .font(CustomFonts.bold(FontValues.default.value).font)
             .backgroundColor(.primaryYellow)
-            .title("Войти")
+            .title(.AppStrings.enter)
             .cornerRadius(.default)
             .build()
     }()
@@ -66,7 +67,7 @@ final class LoginView: UIView, LoginViewProtocol {
     private lazy var goToRegistrationButton: UIButton = {
         ButtonBuilder()
             .tintColor(.primaryBlue)
-            .title("Регистрация")
+            .title(.AppStrings.toRegistration)
             .build()
     }()
 
@@ -179,7 +180,7 @@ private extension LoginView {
 
         errorMessageTitle.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(fieldsStackView.snp.bottom).offset(PaddingValues.tiny.value)
+            make.top.equalTo(fieldsStackView.snp.bottom).offset(PaddingValues.small.value)
         }
 
         buttonsStackView.snp.makeConstraints { make in

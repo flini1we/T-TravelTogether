@@ -1,7 +1,7 @@
 import Foundation
 
 enum FontValues {
-    case small, `default`, title
+    case small, `default`, big, medium, title
 
     var value: CGFloat {
         switch self {
@@ -9,8 +9,12 @@ enum FontValues {
             14
         case .default:
             16
-        case .title:
+        case .medium:
             22
+        case .big:
+            28
+        case .title:
+            32
         }
     }
 }

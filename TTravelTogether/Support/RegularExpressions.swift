@@ -6,7 +6,7 @@ enum RegularExpressions {
     var expression: String {
         switch self {
         case .russianPhoneNumber:
-            return #"^(\+7\d{10}|8\d{10})$"#
+            return #"^(\+79\d{9}|89\d{9})$"#
         case .password:
             return "^(?=.*[A-Z])(?=.*\\d).{6,}$"
         }

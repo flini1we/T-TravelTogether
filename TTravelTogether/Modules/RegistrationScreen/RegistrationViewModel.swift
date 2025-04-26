@@ -48,6 +48,19 @@ final class RegistrationViewModel: Registratable {
         return isValid
     }
 
+    func getPhoneErrorMessage(_ phone: String) -> String {
+        guard !isPhoneValid else { return "" }
+
+        if phone.starts(with: String.AppStrings.phonePrefix89) && phone.count > 11 {
+            return .AppStrings.invalidPhoneLenght
+        } else if phone.starts(with: String.AppStrings.phonePrefixPlus79) && phone.count > 12 {
+            return .AppStrings.invalidPhoneLenght
+        } else if !phone.starts(with: String.AppStrings.phonePrefix89) || !phone.starts(with: String.AppStrings.phonePrefixPlus79) {
+            return .AppStrings.invalidPhoneStartsWith
+        }
+        return ""
+    }
+
     func validatePassword(_ password: String) -> Bool {
         let isValid = password.range(
             of: RegularExpressions.password.expression,
@@ -57,9 +70,27 @@ final class RegistrationViewModel: Registratable {
         return isValid
     }
 
+    func getPasswordErrorMessage(_ password: String) -> String {
+        guard !isPasswordValid else { return "" }
+
+        if password.count < .AppIntegers.passwordMinLength {
+            return .AppStrings.invalidPasswordLengthMin
+        } else if password.count > .AppIntegers.passwordMaxLength {
+            return .AppStrings.invalidPasswordLengthMax
+        } else if !password.contains(where: { $0.isUppercase }) ||
+                  !password.contains(where: { $0.isNumber }) {
+            return .AppStrings.invalidPasswordData
+        }
+        return ""
+    }
+
     func validatePasswordEquality(original password1: String?, confirmed password2: String) -> Bool {
         let isValid = isPasswordValid && (password1 ?? "") == password2
         isPasswordConfirmed = isValid
         return isValid
+    }
+
+    func getConfirmedPasswordErrorMessage() -> String {
+        return !isPasswordConfirmed ? .AppStrings.invalidPasswordConfirmed : ""
     }
 }

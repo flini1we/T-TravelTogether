@@ -12,8 +12,8 @@ final class LoginViewModel: ObservableObject, Loginable {
     func login(phoneNumber: String, password: String, completion: @escaping ((Result<String, Error>) -> Void)) {
         guard !phoneNumber.isEmpty, !password.isEmpty else { return }
         isLoading = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            completion(Bool.random() ? .success("Красава") : .failure(LoginErrors.dataValidationError))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            completion(.success("Красава"))
             self.isLoading = false
         }
     }

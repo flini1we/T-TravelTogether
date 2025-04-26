@@ -15,9 +15,16 @@ final class RegistrationView: UIView, RegistrationViewProtocol {
             .cornerRadius(.default)
             .isSecureEntry(false)
             .keyboardType(.default)
-            .placeHolder("Номер телефона")
+            .placeHolder(.AppStrings.phoneNumber)
             .returnKeyType(.continue)
             .paddinLeft(PaddingValues.default.value)
+            .build()
+    }()
+
+    private(set) lazy var phoneNumberFieldHint: UILabel = {
+        LabelBuilder()
+            .font(CustomFonts.default(FontValues.small.value).font)
+            .textColor(.primaryRed)
             .build()
     }()
 
@@ -26,22 +33,36 @@ final class RegistrationView: UIView, RegistrationViewProtocol {
             .font(.systemFont(ofSize: FontValues.default.value))
             .cornerRadius(.default)
             .isSecureEntry(true)
-            .placeHolder("Пароль")
+            .placeHolder(.AppStrings.password)
             .returnKeyType(.continue)
             .paddinLeft(PaddingValues.default.value)
             .enableTogglingSecure()
             .build()
     }()
 
-    private(set) lazy var passwordFieldSecond: UITextField = {
+    private(set) lazy var passwordFieldHint: UILabel = {
+        LabelBuilder()
+            .font(CustomFonts.default(FontValues.small.value).font)
+            .textColor(.primaryRed)
+            .build()
+    }()
+
+    private(set) lazy var passwordFieldConfirmed: UITextField = {
         TextFieldBuilder()
             .font(.systemFont(ofSize: FontValues.default.value))
             .cornerRadius(.default)
             .isSecureEntry(true)
-            .placeHolder("Повторите пароль")
+            .placeHolder(.AppStrings.confirmPassword)
             .returnKeyType(.done)
             .paddinLeft(PaddingValues.default.value)
             .enableTogglingSecure()
+            .build()
+    }()
+
+    private(set) lazy var passwordFieldConfirmedHint: UILabel = {
+        LabelBuilder()
+            .font(CustomFonts.default(FontValues.small.value).font)
+            .textColor(.primaryRed)
             .build()
     }()
 
@@ -49,8 +70,9 @@ final class RegistrationView: UIView, RegistrationViewProtocol {
         ButtonBuilder()
             .tintColor(.buttonLabel)
             .backgroundColor(.primaryYellow)
-            .title("Зарегистрироваться")
+            .title(.AppStrings.registerAction)
             .cornerRadius(.default)
+            .font(CustomFonts.bold(FontValues.default.value).font)
             .build()
     }()
 
@@ -72,11 +94,14 @@ final class RegistrationView: UIView, RegistrationViewProtocol {
     private lazy var textFieldsStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [
             phoneNumberField,
+            phoneNumberFieldHint,
             passwordFieldFirst,
-            passwordFieldSecond
+            passwordFieldHint,
+            passwordFieldConfirmed,
+            passwordFieldConfirmedHint
         ])
         stack.axis = .vertical
-        stack.spacing = PaddingValues.default.value
+        stack.spacing = PaddingValues.small.value
         return stack
     }()
 
@@ -95,7 +120,7 @@ final class RegistrationView: UIView, RegistrationViewProtocol {
     }
 
     func getData() -> (name: String, password1: String, password2: String) {
-        (phoneNumberField.text ?? "", passwordFieldFirst.text ?? "", passwordFieldSecond.text ?? "")
+        (phoneNumberField.text ?? "", passwordFieldFirst.text ?? "", passwordFieldConfirmed.text ?? "")
     }
 
     func validateButton(isValid: Bool) {

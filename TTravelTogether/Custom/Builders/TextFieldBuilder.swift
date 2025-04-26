@@ -1,5 +1,6 @@
 import UIKit
 import SnapKit
+import SkeletonView
 
 final class TextFieldBuilder: TextFieldBuildable {
 
@@ -65,6 +66,11 @@ final class TextFieldBuilder: TextFieldBuildable {
 
     func tag(_ tag: Int) -> Self {
         textField.tag = tag
+        return self
+    }
+
+    func makeSkeletonable() -> Self {
+        textField.isSkeletonable = true
         return self
     }
 

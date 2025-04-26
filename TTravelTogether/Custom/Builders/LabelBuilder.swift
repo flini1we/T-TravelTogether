@@ -1,4 +1,5 @@
 import UIKit
+import SkeletonView
 
 final class LabelBuilder: LabelBuildable {
 
@@ -18,6 +19,23 @@ final class LabelBuilder: LabelBuildable {
 
     func font(_ font: UIFont) -> Self {
         label.font = font
+        return self
+    }
+
+    func makeSkeletonable() -> Self {
+        label.isSkeletonable = true
+        return self
+    }
+
+    func skeletonTextLineHeight(_ height: SkeletonTextLineHeight) -> Self {
+        guard label.isSkeletonable else { return self }
+        label.skeletonTextLineHeight = height
+        return self
+    }
+
+    func skeletonLinesCornerRadius(_ value: CGFloat) -> Self {
+        guard label.isSkeletonable else { return self }
+        label.linesCornerRadius = Int(value)
         return self
     }
 

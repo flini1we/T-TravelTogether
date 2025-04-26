@@ -2,7 +2,7 @@ import UIKit
 import Combine
 
 final class LoginController: UIViewController {
-    weak var coordinator: AuthFlowCoordinatorProtocol?
+    weak var coordinator: CoordinatorProtocol?
 
     private var loginView: LoginViewProtocol {
         view as! LoginViewProtocol
@@ -55,6 +55,7 @@ private extension LoginController {
     func handleLoginResult(_ result: Result<String, Error>) {
         switch result {
         case .success(let user):
+            coordinator?.showMainTabBar()
             loginView.errorMessageTitle.text = ""
         case .failure(let error):
             loginView.errorMessageTitle.text = (error as! LoginErrors).getError

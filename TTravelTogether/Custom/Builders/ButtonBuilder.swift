@@ -1,5 +1,6 @@
 import UIKit
 import SnapKit
+import SkeletonView
 
 final class ButtonBuilder: ButtonBuildable {
 
@@ -29,6 +30,22 @@ final class ButtonBuilder: ButtonBuildable {
 
     func tintColor(_ color: UIColor) -> Self {
         button.tintColor = color
+        return self
+    }
+
+    func makeSkeletonable() -> Self {
+        button.isSkeletonable = true
+        return self
+    }
+
+    func font(_ font: UIFont) -> Self {
+        button.titleLabel?.font = font
+        return self
+    }
+
+    func deactivate() -> Self {
+        button.alpha = 0.5
+        button.isEnabled = false
         return self
     }
 
