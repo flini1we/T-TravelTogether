@@ -1,13 +1,12 @@
 import UIKit
 
 final class TripsTableDelegate: NSObject, UITableViewDelegate {
-
+    var onTripDidSelect: ((UUID) -> Void)
     private var viewModel: MyTripsVMProtocol
-    private var coordinator: CoordinatorProtocol?
 
-    init(viewModel: MyTripsVMProtocol, coordinator: CoordinatorProtocol?) {
+    init(viewModel: MyTripsVMProtocol, completion: @escaping ((UUID) -> Void)) {
         self.viewModel = viewModel
-        self.coordinator = coordinator
+        self.onTripDidSelect = completion
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -35,7 +34,7 @@ final class TripsTableDelegate: NSObject, UITableViewDelegate {
                 )
             },
             completion: { _ in
-                self.coordinator?.showTripDetail(self.viewModel.tripsData[indexPath.row].id)
+                self.onTripDidSelect(self.viewModel.tripsData[indexPath.row].id)
             }
         )
     }

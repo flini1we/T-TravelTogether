@@ -2,7 +2,7 @@ import UIKit
 import Combine
 
 final class MyTripsController: UIViewController {
-    weak var coordinator: CoordinatorProtocol?
+    var onShowingTripDetail: ((UUID) -> Void)?
 
     private var myTripsView: MyTripsView {
         view as! MyTripsView
@@ -50,11 +50,9 @@ private extension MyTripsController {
     }
 
     func setupDelegate() {
-
-        tableViewDelegate = TripsTableDelegate(
-            viewModel: viewModel,
-            coordinator: coordinator
-        )
+        tableViewDelegate = TripsTableDelegate(viewModel: viewModel) { [weak self] tripId in
+            self?.onShowingTripDetail?(tripId)
+        }
         myTripsView.travellingsTableView.delegate = tableViewDelegate
     }
 }

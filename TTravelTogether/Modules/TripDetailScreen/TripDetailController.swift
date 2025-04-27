@@ -66,7 +66,7 @@ private extension TripDetailController {
     func setupNavigationItem() {
         let leaveButton = UIBarButtonItem(
             title: "",
-            image: SystemImages.leaveTrip.image.resized(to: UIElementsValues.tabBarItem.padding(2).getSize),
+            image: SystemImages.leaveTrip.image.resized(to: UIElementsValues.tabBarItem.padding(10).getSize),
             primaryAction: UIAction { _ in },
             menu: nil
         )

@@ -2,7 +2,8 @@ import UIKit
 import Combine
 
 final class LoginController: UIViewController {
-    weak var coordinator: CoordinatorProtocol?
+    var goToRegistration: (() -> Void)?
+    var onLoginSuccess: ((String) -> Void)?
 
     private var loginView: LoginViewProtocol {
         view as! LoginViewProtocol
@@ -11,7 +12,7 @@ final class LoginController: UIViewController {
 
     private lazy var goToRegistrationScreenAction: UIAction = {
         UIAction { [weak self] _ in
-            self?.coordinator?.showRegistration()
+            self?.goToRegistration?()
         }
     }()
     private lazy var loginAction: UIAction = {
@@ -55,7 +56,7 @@ private extension LoginController {
     func handleLoginResult(_ result: Result<String, Error>) {
         switch result {
         case .success(let user):
-            coordinator?.showMainTabBar()
+            onLoginSuccess?(user)
             loginView.errorMessageTitle.text = ""
         case .failure(let error):
             loginView.errorMessageTitle.text = (error as! LoginErrors).getError

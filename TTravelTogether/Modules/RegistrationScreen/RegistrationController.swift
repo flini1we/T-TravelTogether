@@ -2,7 +2,7 @@ import UIKit
 import Combine
 
 final class RegistrationController: UIViewController {
-    weak var coordinator: CoordinatorProtocol?
+    var registerButtonAction: ((String) -> Void)?
 
     private var registrationView: RegistrationViewProtocol {
         view as! RegistrationViewProtocol
@@ -14,7 +14,7 @@ final class RegistrationController: UIViewController {
             self?.viewModel.register(completion: { result in
                 switch result {
                 case .success(let user):
-                    self?.coordinator?.showLogin(user: user)
+                    self?.registerButtonAction?(user)
                 case .failure(let failure):
                     print(failure.localizedDescription)
                 }

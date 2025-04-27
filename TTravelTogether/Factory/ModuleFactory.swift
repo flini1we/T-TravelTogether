@@ -1,6 +1,7 @@
 import UIKit
 
-struct ModuleFactory: ModuleFactoryProtocol {
+final class ModuleFactory: ModuleFactoryProtocol {
+    var onTripDetailControllerShow: ((UUID) -> Void)?
 
     func makeLoginModule() -> UIViewController {
         getModule(.login)
@@ -10,11 +11,16 @@ struct ModuleFactory: ModuleFactoryProtocol {
         getModule(.register)
     }
 
-    func createMainTabBarController(coordinator: CoordinatorProtocol) -> UITabBarController {
+    func createMainTabBarController() -> UITabBarController {
         let tabBar = UITabBarController()
         tabBar.tabBar.setupTinkoffStyle()
-        let travellingsViewController = getModule(.travelling) as! MyTripsController
-        travellingsViewController.coordinator = coordinator
+        let travellingsViewController = getModule(.travelling)
+        if let travellingsViewController = travellingsViewController as? MyTripsController {
+            travellingsViewController.onShowingTripDetail = { [weak self] tripId in
+                guard let self else { return }
+                onTripDetailControllerShow?(tripId)
+            }
+        }
         tabBar.viewControllers = [travellingsViewController, getModule(.createTravel), getModule(.placeholder)]
         return tabBar
     }
