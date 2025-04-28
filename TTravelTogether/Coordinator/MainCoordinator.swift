@@ -30,14 +30,13 @@ private extension MainCoordinator {
             tabBarController
             .viewControllers?
             .compactMap({ $0 as? MyTripsController })
-            .first
-        {
-            myTripsController.onShowingTripDetail = { [weak self] tripId in
-                guard let self else { return }
-                let tripDetailController = dependencies.resolveTripDetailController(tripId: tripId)
-                navigationController.pushViewController(tripDetailController, animated: true)
+            .first {
+                myTripsController.onShowingTripDetail = { [weak self] tripId in
+                    guard let self else { return }
+                    let tripDetailController = dependencies.resolveTripDetailController(tripId: tripId)
+                    navigationController.pushViewController(tripDetailController, animated: true)
+                }
             }
-        }
         navigationController.setViewControllers([tabBarController], animated: true)
     }
 }
