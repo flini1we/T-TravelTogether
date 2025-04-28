@@ -4,15 +4,23 @@ final class AppFlowCoordinator: Coordinator {
 
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
+    var dependencies: DependencyContainerProtocol
 
     private var authCoordinator: AuthCoordinatorProtocol?
     private var mainCoordinator: MainCoordinatorProtocol?
 
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, dependencies: DependencyContainerProtocol) {
         self.navigationController = navigationController
+        self.dependencies = dependencies
 
-        authCoordinator = AuthCoordinator(navigationController: navigationController)
-        mainCoordinator = MainCoordinator(navigationController: navigationController)
+        authCoordinator = AuthCoordinator(
+            navigationController: navigationController,
+            dependencies: dependencies
+        )
+        mainCoordinator = MainCoordinator(
+            navigationController: navigationController,
+            dependencieProvider: dependencies
+        )
     }
 
     func start() {
@@ -25,7 +33,8 @@ final class AppFlowCoordinator: Coordinator {
 private extension AppFlowCoordinator {
     func showAuthFlow() {
         let coordinator = AuthCoordinator(
-            navigationController: navigationController
+            navigationController: navigationController,
+            dependencies: dependencies
         )
 
         coordinator.onLoginSuccess = { [weak self] _ in
@@ -39,7 +48,8 @@ private extension AppFlowCoordinator {
 
     func showMainFlow() {
         let coordinator = MainCoordinator(
-            navigationController: navigationController
+            navigationController: navigationController,
+            dependencieProvider: dependencies
         )
 
         mainCoordinator = coordinator

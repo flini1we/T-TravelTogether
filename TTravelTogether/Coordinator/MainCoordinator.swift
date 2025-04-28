@@ -4,9 +4,11 @@ final class MainCoordinator: MainCoordinatorProtocol {
 
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
+    var dependencies: DependencyContainerProtocol
 
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, dependencieProvider: DependencyContainerProtocol) {
         self.navigationController = navigationController
+        self.dependencies = dependencieProvider
     }
 
     func start() {
@@ -14,7 +16,7 @@ final class MainCoordinator: MainCoordinatorProtocol {
     }
 
     func showTripDetail(tripId: UUID) {
-        let detailVC = SwinjectContainer.shared.resolveTripDetailController(tripId: tripId)
+        let detailVC = dependencies.resolveTripDetailController(tripId: tripId)
         navigationController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(detailVC, animated: true)
     }
@@ -23,7 +25,7 @@ final class MainCoordinator: MainCoordinatorProtocol {
 private extension MainCoordinator {
 
     func showMainTabBar() {
-        let tabBarController = SwinjectContainer.shared.resolveMainTabBarController()
+        let tabBarController = dependencies.resolveMainTabBarController()
         if let myTripsController =
             tabBarController
             .viewControllers?
@@ -31,8 +33,9 @@ private extension MainCoordinator {
             .first
         {
             myTripsController.onShowingTripDetail = { [weak self] tripId in
-                let tripDetailController = SwinjectContainer.shared.resolveTripDetailController(tripId: tripId)
-                self?.navigationController.pushViewController(tripDetailController, animated: true)
+                guard let self else { return }
+                let tripDetailController = dependencies.resolveTripDetailController(tripId: tripId)
+                navigationController.pushViewController(tripDetailController, animated: true)
             }
         }
         navigationController.setViewControllers([tabBarController], animated: true)

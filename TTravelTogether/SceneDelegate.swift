@@ -12,7 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController = UINavigationController()
 
         appCoordinator = AppFlowCoordinator(
-            navigationController: navigationController
+            navigationController: navigationController, dependencies: SwinjectContainer.shared
         )
 
         window?.rootViewController = navigationController
