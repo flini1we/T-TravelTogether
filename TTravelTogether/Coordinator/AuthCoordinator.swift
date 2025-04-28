@@ -23,6 +23,9 @@ final class AuthCoordinator: AuthCoordinatorProtocol {
         }
         navigationController.setViewControllers([loginScreen], animated: false)
     }
+}
+
+private extension AuthCoordinator {
 
     func showRegistration() {
         let registrationScreen = dependencies.resolveRegistrationController()

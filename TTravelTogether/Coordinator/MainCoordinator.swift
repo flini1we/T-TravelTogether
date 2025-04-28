@@ -14,15 +14,15 @@ final class MainCoordinator: MainCoordinatorProtocol {
     func start() {
         showMainTabBar()
     }
+}
+
+private extension MainCoordinator {
 
     func showTripDetail(tripId: UUID) {
         let detailVC = dependencies.resolveTripDetailController(tripId: tripId)
         navigationController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(detailVC, animated: true)
     }
-}
-
-private extension MainCoordinator {
 
     func showMainTabBar() {
         let tabBarController = dependencies.resolveMainTabBarController()
@@ -32,9 +32,7 @@ private extension MainCoordinator {
             .compactMap({ $0 as? MyTripsController })
             .first {
                 myTripsController.onShowingTripDetail = { [weak self] tripId in
-                    guard let self else { return }
-                    let tripDetailController = dependencies.resolveTripDetailController(tripId: tripId)
-                    navigationController.pushViewController(tripDetailController, animated: true)
+                    self?.showTripDetail(tripId: tripId)
                 }
             }
         navigationController.setViewControllers([tabBarController], animated: true)
