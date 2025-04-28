@@ -10,6 +10,6 @@ protocol Loginable: AnyObject {
     func login(
         phoneNumber: String,
         password: String,
-        completion: @escaping ((Result<String, Error>) -> Void)
+        completion: @escaping ((Result<String, LoginErrors>) -> Void)
     )
 }

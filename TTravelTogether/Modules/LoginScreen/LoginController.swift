@@ -53,13 +53,13 @@ final class LoginController: UIViewController {
 
 private extension LoginController {
 
-    func handleLoginResult(_ result: Result<String, Error>) {
+    func handleLoginResult(_ result: Result<String, LoginErrors>) {
         switch result {
         case .success(let user):
             onLoginSuccess?(user)
             loginView.errorMessageTitle.text = ""
         case .failure(let error):
-            loginView.errorMessageTitle.text = (error as! LoginErrors).getError
+            loginView.errorMessageTitle.text = error.getError
         }
     }
 

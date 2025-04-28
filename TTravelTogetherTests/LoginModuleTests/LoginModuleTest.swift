@@ -44,7 +44,7 @@ final class LoginModuleTest: XCTestCase {
             case .success(let message):
                 XCTAssertEqual(message, "Красава")
             case .failure(let error):
-                XCTAssertEqual(error as! LoginErrors, LoginErrors.dataValidationError)
+                XCTAssertEqual(error, LoginErrors.dataValidationError)
             }
             expectation.fulfill()
         }
