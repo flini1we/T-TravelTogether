@@ -10,10 +10,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
 
         let navigationController = UINavigationController()
-        let moduleFactory: ModuleFactoryProtocol = ModuleFactory()
+
         appCoordinator = AppFlowCoordinator(
-            navigationController: navigationController,
-            factory: moduleFactory
+            navigationController: navigationController
         )
 
         window?.rootViewController = navigationController

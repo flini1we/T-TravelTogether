@@ -3,9 +3,13 @@ import Combine
 
 final class MyTripsViewModel: MyTripsVMProtocol {
 
-    var tripsData: [Trip]
+    var tripsData: [Trip] = []
 
-    init(tripsData: [Trip]) {
-        self.tripsData = tripsData
+    init() {
+        loadData()
+    }
+
+    func loadData() {
+        self.tripsData = Trip.obtainMock()
     }
 }

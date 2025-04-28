@@ -5,16 +5,14 @@ final class AppFlowCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
 
-    private var moduleFactory: ModuleFactoryProtocol
     private var authCoordinator: AuthCoordinatorProtocol?
     private var mainCoordinator: MainCoordinatorProtocol?
 
-    init(navigationController: UINavigationController, factory: ModuleFactoryProtocol) {
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.moduleFactory = factory
 
-        authCoordinator = AuthCoordinator(navigationController: navigationController, factory: moduleFactory)
-        mainCoordinator = MainCoordinator(navigationController: navigationController, factory: moduleFactory)
+        authCoordinator = AuthCoordinator(navigationController: navigationController)
+        mainCoordinator = MainCoordinator(navigationController: navigationController)
     }
 
     func start() {
@@ -27,8 +25,7 @@ final class AppFlowCoordinator: Coordinator {
 private extension AppFlowCoordinator {
     func showAuthFlow() {
         let coordinator = AuthCoordinator(
-            navigationController: navigationController,
-            factory: moduleFactory
+            navigationController: navigationController
         )
 
         coordinator.onLoginSuccess = { [weak self] _ in
@@ -42,8 +39,7 @@ private extension AppFlowCoordinator {
 
     func showMainFlow() {
         let coordinator = MainCoordinator(
-            navigationController: navigationController,
-            factory: moduleFactory
+            navigationController: navigationController
         )
 
         mainCoordinator = coordinator

@@ -5,33 +5,26 @@ final class AuthCoordinator: AuthCoordinatorProtocol {
 
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
-    var factory: ModuleFactoryProtocol
 
-    init(navigationController: UINavigationController, factory: ModuleFactoryProtocol) {
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.factory = factory
     }
 
     func start() {
-        let loginScreen = factory.makeLoginModule()
-        if let loginScreen = loginScreen as? LoginController {
-            loginScreen.goToRegistration = { [weak self] in
-                self?.showRegistration()
-            }
-
-            loginScreen.onLoginSuccess = { [weak self] user in
-                self?.onLoginSuccess?(user)
-            }
+        let loginScreen = SwinjectContainer.shared.resolveLoginController()
+        loginScreen.goToRegistration = { [weak self] in
+            self?.showRegistration()
+        }
+        loginScreen.onLoginSuccess = { [weak self] user in
+            self?.onLoginSuccess?(user)
         }
         navigationController.setViewControllers([loginScreen], animated: false)
     }
 
     func showRegistration() {
-        let registrationScreen = factory.makeRegistrationModule()
-        if let registrationScreen = registrationScreen as? RegistrationController {
-            registrationScreen.registerButtonAction = { [weak self] _ in
-                self?.navigationController.popViewController(animated: true)
-            }
+        let registrationScreen = SwinjectContainer.shared.resolveRegistrationController()
+        registrationScreen.registerButtonAction = { [weak self] _ in
+            self?.navigationController.popViewController(animated: true)
         }
         navigationController.pushViewController(registrationScreen, animated: true)
     }

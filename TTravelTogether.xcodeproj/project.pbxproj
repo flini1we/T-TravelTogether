@@ -22,7 +22,6 @@
 		CF3556A32DA8581D00290A81 /* TTravelTogetherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3556A02DA8581D00290A81 /* TTravelTogetherUITests.swift */; };
 		CF3556A42DA8581D00290A81 /* TTravelTogetherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3556A12DA8581D00290A81 /* TTravelTogetherUITestsLaunchTests.swift */; };
 		CF3B464E2DB1A9E3008C4CA0 /* RegistrationViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B464D2DB1A9E3008C4CA0 /* RegistrationViewProtocol.swift */; };
-		CF3B46512DB23D6B008C4CA0 /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B46502DB23D6B008C4CA0 /* ModuleFactory.swift */; };
 		CF3B46752DB24A81008C4CA0 /* Registratable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B46732DB24A81008C4CA0 /* Registratable.swift */; };
 		CF3B46762DB24A81008C4CA0 /* LabelBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B46702DB24A81008C4CA0 /* LabelBuildable.swift */; };
 		CF3B46772DB24A81008C4CA0 /* LoginViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B46722DB24A81008C4CA0 /* LoginViewProtocol.swift */; };
@@ -31,7 +30,6 @@
 		CF3B467A2DB24A81008C4CA0 /* TextFieldBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B46742DB24A81008C4CA0 /* TextFieldBuildable.swift */; };
 		CF3B467B2DB24A81008C4CA0 /* IndicatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B466F2DB24A81008C4CA0 /* IndicatorProtocol.swift */; };
 		CF3B46812DB24B04008C4CA0 /* ModuleTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B46802DB24B04008C4CA0 /* ModuleTypes.swift */; };
-		CF3B46862DB24C8C008C4CA0 /* ModuleFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B46852DB24C8C008C4CA0 /* ModuleFactoryProtocol.swift */; };
 		CF3B468C2DB2E0B0008C4CA0 /* RegistrationModuleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B468B2DB2E0B0008C4CA0 /* RegistrationModuleTest.swift */; };
 		CF3B469C2DB57DBB008C4CA0 /* TabBarScreenTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B469B2DB57DBB008C4CA0 /* TabBarScreenTags.swift */; };
 		CF3B469E2DB58013008C4CA0 /* UITabBar+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B469D2DB58013008C4CA0 /* UITabBar+extension.swift */; };
@@ -96,6 +94,8 @@
 		CFB11FFD2DB6891B00609CEF /* TripsTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB11FFB2DB6891B00609CEF /* TripsTableDataSource.swift */; };
 		CFB11FFE2DB6891B00609CEF /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB11FFC2DB6891B00609CEF /* TripTableViewCell.swift */; };
 		CFB11FFF2DB68B4400609CEF /* MyTripsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB11FF62DB688E900609CEF /* MyTripsController.swift */; };
+		CFCD372D2DBF4EAC0037A854 /* SwinjectContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD372C2DBF4EAC0037A854 /* SwinjectContainer.swift */; };
+		CFCD37302DBF5C960037A854 /* DependencyContainerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD372F2DBF5C960037A854 /* DependencyContainerProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,7 +135,6 @@
 		CF3556A02DA8581D00290A81 /* TTravelTogetherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTravelTogetherUITests.swift; sourceTree = "<group>"; };
 		CF3556A12DA8581D00290A81 /* TTravelTogetherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTravelTogetherUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CF3B464D2DB1A9E3008C4CA0 /* RegistrationViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewProtocol.swift; sourceTree = "<group>"; };
-		CF3B46502DB23D6B008C4CA0 /* ModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
 		CF3B466E2DB24A81008C4CA0 /* ButtonBuildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonBuildable.swift; sourceTree = "<group>"; };
 		CF3B466F2DB24A81008C4CA0 /* IndicatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorProtocol.swift; sourceTree = "<group>"; };
 		CF3B46702DB24A81008C4CA0 /* LabelBuildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelBuildable.swift; sourceTree = "<group>"; };
@@ -144,7 +143,6 @@
 		CF3B46732DB24A81008C4CA0 /* Registratable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registratable.swift; sourceTree = "<group>"; };
 		CF3B46742DB24A81008C4CA0 /* TextFieldBuildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldBuildable.swift; sourceTree = "<group>"; };
 		CF3B46802DB24B04008C4CA0 /* ModuleTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTypes.swift; sourceTree = "<group>"; };
-		CF3B46852DB24C8C008C4CA0 /* ModuleFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactoryProtocol.swift; sourceTree = "<group>"; };
 		CF3B468B2DB2E0B0008C4CA0 /* RegistrationModuleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModuleTest.swift; sourceTree = "<group>"; };
 		CF3B469B2DB57DBB008C4CA0 /* TabBarScreenTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarScreenTags.swift; sourceTree = "<group>"; };
 		CF3B469D2DB58013008C4CA0 /* UITabBar+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+extension.swift"; sourceTree = "<group>"; };
@@ -208,6 +206,8 @@
 		CFB11FF62DB688E900609CEF /* MyTripsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTripsController.swift; sourceTree = "<group>"; };
 		CFB11FFB2DB6891B00609CEF /* TripsTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsTableDataSource.swift; sourceTree = "<group>"; };
 		CFB11FFC2DB6891B00609CEF /* TripTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
+		CFCD372C2DBF4EAC0037A854 /* SwinjectContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectContainer.swift; sourceTree = "<group>"; };
+		CFCD372F2DBF5C960037A854 /* DependencyContainerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -312,7 +312,7 @@
 		CF3B464F2DB23D5C008C4CA0 /* Factory */ = {
 			isa = PBXGroup;
 			children = (
-				CF3B46502DB23D6B008C4CA0 /* ModuleFactory.swift */,
+				CFCD372C2DBF4EAC0037A854 /* SwinjectContainer.swift */,
 			);
 			path = Factory;
 			sourceTree = "<group>";
@@ -320,10 +320,10 @@
 		CF3B466C2DB23E35008C4CA0 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				CFCD372E2DBF5C850037A854 /* Container */,
 				CF3B467D2DB24AC4008C4CA0 /* Views */,
 				CF3B467E2DB24ACF008C4CA0 /* ViewModels */,
 				CF3B467F2DB24AD6008C4CA0 /* Coordinators */,
-				CF3B46842DB24C7C008C4CA0 /* Factorys */,
 				CFB11FEB2DB684D900609CEF /* Formatters */,
 			);
 			path = Protocols;
@@ -361,14 +361,6 @@
 				CF19AD462DBE9DD400FF45FE /* MainCoordinatorProtocol.swift */,
 			);
 			path = Coordinators;
-			sourceTree = "<group>";
-		};
-		CF3B46842DB24C7C008C4CA0 /* Factorys */ = {
-			isa = PBXGroup;
-			children = (
-				CF3B46852DB24C8C008C4CA0 /* ModuleFactoryProtocol.swift */,
-			);
-			path = Factorys;
 			sourceTree = "<group>";
 		};
 		CF3B46872DB2D3AA008C4CA0 /* LoginModuleTests */ = {
@@ -590,6 +582,14 @@
 			path = TableViewData;
 			sourceTree = "<group>";
 		};
+		CFCD372E2DBF5C850037A854 /* Container */ = {
+			isa = PBXGroup;
+			children = (
+				CFCD372F2DBF5C960037A854 /* DependencyContainerProtocol.swift */,
+			);
+			path = Container;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -789,7 +789,7 @@
 				CF3B469C2DB57DBB008C4CA0 /* TabBarScreenTags.swift in Sources */,
 				CFB11FE62DB637E500609CEF /* Sections.swift in Sources */,
 				CFAD6A682DABD381003930F3 /* RegistrationViewModel.swift in Sources */,
-				CF3B46512DB23D6B008C4CA0 /* ModuleFactory.swift in Sources */,
+				CFCD372D2DBF4EAC0037A854 /* SwinjectContainer.swift in Sources */,
 				CFAD6AB22DABDC16003930F3 /* LabelBuilder.swift in Sources */,
 				CF64B92E2DAD982900255003 /* RegularExpressions.swift in Sources */,
 				CFAD6A642DABD36F003930F3 /* RegistrationView.swift in Sources */,
@@ -807,7 +807,6 @@
 				CFAFC60C2DB91431002FA8EF /* Int+extension.swift in Sources */,
 				CF3B46752DB24A81008C4CA0 /* Registratable.swift in Sources */,
 				CF3B46762DB24A81008C4CA0 /* LabelBuildable.swift in Sources */,
-				CF3B46862DB24C8C008C4CA0 /* ModuleFactoryProtocol.swift in Sources */,
 				CF3B46772DB24A81008C4CA0 /* LoginViewProtocol.swift in Sources */,
 				CF3B46782DB24A81008C4CA0 /* ButtonBuildable.swift in Sources */,
 				CF3B46792DB24A81008C4CA0 /* Loginable.swift in Sources */,
@@ -822,6 +821,7 @@
 				CFAD6A612DAB02C5003930F3 /* UIElementsValues.swift in Sources */,
 				CFAD6AF12DAC5E4D003930F3 /* ActivityIndicatorView.swift in Sources */,
 				CF19AD3B2DBE8BF400FF45FE /* Coordinator.swift in Sources */,
+				CFCD37302DBF5C960037A854 /* DependencyContainerProtocol.swift in Sources */,
 				CF3B464E2DB1A9E3008C4CA0 /* RegistrationViewProtocol.swift in Sources */,
 				CFAFC6052DB82608002FA8EF /* User.swift in Sources */,
 				CFB11FED2DB684E700609CEF /* AppFormatterProtocol.swift in Sources */,

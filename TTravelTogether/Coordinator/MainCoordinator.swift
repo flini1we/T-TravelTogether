@@ -4,11 +4,9 @@ final class MainCoordinator: MainCoordinatorProtocol {
 
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
-    var factory: ModuleFactoryProtocol
 
-    init(navigationController: UINavigationController, factory: ModuleFactoryProtocol) {
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.factory = factory
     }
 
     func start() {
@@ -16,7 +14,7 @@ final class MainCoordinator: MainCoordinatorProtocol {
     }
 
     func showTripDetail(tripId: UUID) {
-        let detailVC = factory.createTripDetailController(tripId: tripId)
+        let detailVC = SwinjectContainer.shared.resolveTripDetailController(tripId: tripId)
         navigationController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(detailVC, animated: true)
     }
@@ -25,9 +23,17 @@ final class MainCoordinator: MainCoordinatorProtocol {
 private extension MainCoordinator {
 
     func showMainTabBar() {
-        let tabBarController = factory.createMainTabBarController()
-        factory.onTripDetailControllerShow = { [weak self] tripId in
-            self?.showTripDetail(tripId: tripId)
+        let tabBarController = SwinjectContainer.shared.resolveMainTabBarController()
+        if let myTripsController =
+            tabBarController
+            .viewControllers?
+            .compactMap({ $0 as? MyTripsController })
+            .first
+        {
+            myTripsController.onShowingTripDetail = { [weak self] tripId in
+                let tripDetailController = SwinjectContainer.shared.resolveTripDetailController(tripId: tripId)
+                self?.navigationController.pushViewController(tripDetailController, animated: true)
+            }
         }
         navigationController.setViewControllers([tabBarController], animated: true)
     }
