@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "newTravelTabImage.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
