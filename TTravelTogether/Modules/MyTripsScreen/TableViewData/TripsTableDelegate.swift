@@ -2,9 +2,9 @@ import UIKit
 
 final class TripsTableDelegate: NSObject, UITableViewDelegate {
     var onTripDidSelect: ((UUID) -> Void)
-    private var viewModel: MyTripsVMProtocol
+    private var viewModel: IMyTripsViewModel
 
-    init(viewModel: MyTripsVMProtocol, completion: @escaping ((UUID) -> Void)) {
+    init(viewModel: IMyTripsViewModel, completion: @escaping ((UUID) -> Void)) {
         self.viewModel = viewModel
         self.onTripDidSelect = completion
     }

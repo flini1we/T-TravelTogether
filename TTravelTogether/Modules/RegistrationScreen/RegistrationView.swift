@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-final class RegistrationView: UIView, RegistrationViewProtocol {
+final class RegistrationView: UIView, IRegistrationView {
     // MARK: UIElements
     private lazy var imageLabel: UIImageView = {
         let imageView = UIImageView(image: .registrationLogo)
@@ -76,7 +76,7 @@ final class RegistrationView: UIView, RegistrationViewProtocol {
             .build()
     }()
 
-    private(set) lazy var activityIndicator: ActivityIndicatorProtocol = {
+    private(set) lazy var activityIndicator: IActivityIndicator = {
         let indicator = ActivityIndicatorView()
         indicator.alpha = 0
         indicator.animate()

@@ -1,7 +1,7 @@
 import UIKit
 import SkeletonView
 
-final class LabelBuilder: LabelBuildable {
+final class LabelBuilder: ILabelBuilder {
 
     private lazy var label: UILabel = {
         UILabel()

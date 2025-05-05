@@ -1,6 +1,6 @@
 import Foundation
 
-protocol TripDetailVMProtocol: AnyObject {
+protocol ITripDetailViewModel: AnyObject {
 
     var tripId: UUID { get }
 

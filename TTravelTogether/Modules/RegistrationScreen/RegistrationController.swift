@@ -4,10 +4,10 @@ import Combine
 final class RegistrationController: UIViewController {
     var registerButtonAction: ((String) -> Void)?
 
-    private var registrationView: RegistrationViewProtocol {
-        view as! RegistrationViewProtocol
+    private var registrationView: IRegistrationView {
+        view as! IRegistrationView
     }
-    private var viewModel: Registratable
+    private var viewModel: IRegistrationViewModel
 
     private lazy var registerAction: UIAction = {
         UIAction { [weak self] _ in
@@ -25,7 +25,7 @@ final class RegistrationController: UIViewController {
     private var textFieldDelegate: UITextFieldDelegate!
     private var cancellables: Set<AnyCancellable> = []
 
-    init(viewModel: Registratable) {
+    init(viewModel: IRegistrationViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

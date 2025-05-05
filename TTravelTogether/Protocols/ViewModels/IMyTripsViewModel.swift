@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-protocol MyTripsVMProtocol: AnyObject {
+protocol IMyTripsViewModel: AnyObject {
 
     var tripsData: [Trip] { get set }
 

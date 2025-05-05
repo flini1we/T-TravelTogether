@@ -1,6 +1,6 @@
 import UIKit
 
-protocol ButtonBuildable {
+protocol IButtonBuilder {
 
     func title(_ title: String) -> Self
     func backgroundColor(_ color: UIColor) -> Self

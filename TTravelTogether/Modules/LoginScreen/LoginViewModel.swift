@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-final class LoginViewModel: ObservableObject, Loginable {
+final class LoginViewModel: ObservableObject, ILoginViewModel {
 
     @Published var isLoading: Bool = false
 

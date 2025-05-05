@@ -1,47 +1,32 @@
 import UIKit
 
-final class AppFlowCoordinator: Coordinator {
+final class AppFlowCoordinator: ICoordinator {
 
-    var childCoordinators: [Coordinator] = []
+    var childCoordinators: [ICoordinator] = []
     var navigationController: UINavigationController
     var dependencies: DependencyContainerProtocol
-
-    private var authCoordinator: AuthCoordinatorProtocol?
-    private var mainCoordinator: MainCoordinatorProtocol?
 
     init(navigationController: UINavigationController, dependencies: DependencyContainerProtocol) {
         self.navigationController = navigationController
         self.dependencies = dependencies
-
-        authCoordinator = AuthCoordinator(
-            navigationController: navigationController,
-            dependencies: dependencies
-        )
-        mainCoordinator = MainCoordinator(
-            navigationController: navigationController,
-            dependencieProvider: dependencies
-        )
     }
 
     func start() {
         let isLoggedIn = false
-
         isLoggedIn ? showMainFlow() : showAuthFlow()
     }
 }
 
 private extension AppFlowCoordinator {
+
     func showAuthFlow() {
         let coordinator = AuthCoordinator(
             navigationController: navigationController,
             dependencies: dependencies
         )
-
-        coordinator.onLoginSuccess = { [weak self] _ in
-            self?.handleAuthSuccess()
+        coordinator.onLoginSuccess = { [weak self] user in
+            self?.showMainFlow()
         }
-
-        authCoordinator = coordinator
         addChild(coordinator)
         coordinator.start()
     }
@@ -52,14 +37,12 @@ private extension AppFlowCoordinator {
             dependencieProvider: dependencies
         )
 
-        mainCoordinator = coordinator
         addChild(coordinator)
         coordinator.start()
     }
 
     func handleAuthSuccess() {
-        authCoordinator.map { removeChild($0) }
-        authCoordinator = nil
+        childCoordinators.removeAll { $0 is IAuthCoordinator }
         showMainFlow()
     }
 }

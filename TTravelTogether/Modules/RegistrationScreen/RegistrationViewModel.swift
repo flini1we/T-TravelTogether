@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-final class RegistrationViewModel: Registratable {
+final class RegistrationViewModel: IRegistrationViewModel {
 
     @Published var isFetchingRequest = false
 

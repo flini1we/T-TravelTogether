@@ -4,7 +4,7 @@ import Combine
 
 final class RegistrationModuleTest: XCTestCase {
     
-    private var registrationViewModel: Registratable!
+    private var registrationViewModel: IRegistrationViewModel!
     
     override func setUp() {
         super.setUp()

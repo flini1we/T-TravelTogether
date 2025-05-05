@@ -2,17 +2,17 @@ import UIKit
 import Combine
 
 final class MyTripsController: UIViewController {
-    var onShowingTripDetail: ((UUID) -> Void)?
+    weak var coordinator: IMainCoordinator?
 
     private var myTripsView: MyTripsView {
         view as! MyTripsView
     }
-    private let viewModel: MyTripsVMProtocol
+    private let viewModel: IMyTripsViewModel
     private var tableViewDataSource: TripsTableDataSource?
     private var tableViewDelegate: TripsTableDelegate?
     private var cancellables: Set<AnyCancellable> = []
 
-    init(viewModel: MyTripsVMProtocol) {
+    init(viewModel: IMyTripsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -51,7 +51,7 @@ private extension MyTripsController {
 
     func setupDelegate() {
         tableViewDelegate = TripsTableDelegate(viewModel: viewModel) { [weak self] tripId in
-            self?.onShowingTripDetail?(tripId)
+            self?.coordinator?.showTripDetail(tripId)
         }
         myTripsView.travellingsTableView.delegate = tableViewDelegate
     }

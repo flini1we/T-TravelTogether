@@ -3,10 +3,10 @@ import Swinject
 
 protocol DependencyContainerProtocol {
 
-    func resolveLoginViewModel() -> Loginable
-    func resolveRegistrationViewModel() -> Registratable
-    func resolveMyTripsViewModel() -> MyTripsVMProtocol
-    func resolveTripDetailViewModel(tripId: UUID) -> TripDetailVMProtocol
+    func resolveLoginViewModel() -> ILoginViewModel
+    func resolveRegistrationViewModel() -> IRegistrationViewModel
+    func resolveMyTripsViewModel() -> IMyTripsViewModel
+    func resolveTripDetailViewModel(tripId: UUID) -> ITripDetailViewModel
 
     func resolveLoginController() -> LoginController
     func resolveRegistrationController() -> RegistrationController

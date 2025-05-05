@@ -1,8 +1,8 @@
 import UIKit
 
-final class MainCoordinator: MainCoordinatorProtocol {
+final class MainCoordinator: IMainCoordinator {
 
-    var childCoordinators: [Coordinator] = []
+    var childCoordinators: [ICoordinator] = []
     var navigationController: UINavigationController
     var dependencies: DependencyContainerProtocol
 
@@ -14,15 +14,15 @@ final class MainCoordinator: MainCoordinatorProtocol {
     func start() {
         showMainTabBar()
     }
-}
 
-private extension MainCoordinator {
-
-    func showTripDetail(tripId: UUID) {
-        let detailVC = dependencies.resolveTripDetailController(tripId: tripId)
+    func showTripDetail(_ id: UUID) {
+        let detailVC = dependencies.resolveTripDetailController(tripId: id)
         navigationController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(detailVC, animated: true)
     }
+}
+
+private extension MainCoordinator {
 
     func showMainTabBar() {
         let tabBarController = dependencies.resolveMainTabBarController()
@@ -30,11 +30,7 @@ private extension MainCoordinator {
             tabBarController
             .viewControllers?
             .compactMap({ $0 as? MyTripsController })
-            .first {
-                myTripsController.onShowingTripDetail = { [weak self] tripId in
-                    self?.showTripDetail(tripId: tripId)
-                }
-            }
+            .first { myTripsController.coordinator = self }
         navigationController.setViewControllers([tabBarController], animated: true)
     }
 }

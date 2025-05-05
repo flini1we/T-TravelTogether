@@ -1,7 +1,7 @@
 import UIKit
 import Combine
 
-protocol Registratable: AnyObject {
+protocol IRegistrationViewModel: AnyObject {
 
     var isFetchingRequestPublisher: Published<Bool>.Publisher { get }
     var isPhoneValidPublisher: Published<Bool>.Publisher { get }

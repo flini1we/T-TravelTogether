@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-final class TripDetailViewModel: TripDetailVMProtocol {
+final class TripDetailViewModel: ITripDetailViewModel {
 
     var tripId: UUID
 

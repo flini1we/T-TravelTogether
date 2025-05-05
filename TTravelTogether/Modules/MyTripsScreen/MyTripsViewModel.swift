@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-final class MyTripsViewModel: MyTripsVMProtocol {
+final class MyTripsViewModel: IMyTripsViewModel {
 
     var tripsData: [Trip] = []
 

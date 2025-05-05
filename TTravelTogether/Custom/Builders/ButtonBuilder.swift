@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 import SkeletonView
 
-final class ButtonBuilder: ButtonBuildable {
+final class ButtonBuilder: IButtonBuilder {
 
     private var button: UIButton
 

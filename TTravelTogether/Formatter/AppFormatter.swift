@@ -1,8 +1,8 @@
 import UIKit
 
-final class AppFormatter: AppFormatterProtocol {
+final class AppFormatter: IAppFormatter {
 
-    static var shared: AppFormatterProtocol = AppFormatter()
+    static var shared: IAppFormatter = AppFormatter()
 
     private init() { }
 

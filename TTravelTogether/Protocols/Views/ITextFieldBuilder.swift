@@ -1,7 +1,7 @@
 import UIKit
 import SkeletonView
 
-protocol TextFieldBuildable {
+protocol ITextFieldBuilder {
 
     func placeHolder(_ text: String) -> Self
     func keyboardType(_ type: UIKeyboardType) -> Self

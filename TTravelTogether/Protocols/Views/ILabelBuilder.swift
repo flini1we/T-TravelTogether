@@ -1,7 +1,7 @@
 import UIKit
 import SkeletonView
 
-protocol LabelBuildable {
+protocol ILabelBuilder {
 
     func textColor(_ color: UIColor) -> Self
     func text(_ text: String) -> Self
