@@ -49,6 +49,14 @@ final class ButtonBuilder: IButtonBuilder {
         return self
     }
 
+    func disableContentEdgesInsets() -> Self {
+        if var config = button.configuration {
+            config.contentInsets = .zero
+            button.configuration = config
+        }
+        return self
+    }
+
     func build() -> UIButton {
         return button
     }

@@ -11,7 +11,6 @@ extension UITextField {
         )
         .compactMap { $0.object as? UITextField }
         .map { $0.text ?? "" }
-        .debounce(for: 0.5, scheduler: DispatchQueue.main)
         .eraseToAnyPublisher()
     }
 }

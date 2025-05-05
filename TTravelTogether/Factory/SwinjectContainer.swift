@@ -13,39 +13,47 @@ final class SwinjectContainer: DependencyContainerProtocol {
     }
 
     func resolveLoginViewModel() -> ILoginViewModel {
-        return container.resolve(ILoginViewModel.self)!
+        container.resolve(ILoginViewModel.self)!
     }
 
     func resolveRegistrationViewModel() -> IRegistrationViewModel {
-        return container.resolve(IRegistrationViewModel.self)!
+        container.resolve(IRegistrationViewModel.self)!
     }
 
     func resolveMyTripsViewModel() -> IMyTripsViewModel {
-        return container.resolve(IMyTripsViewModel.self)!
+        container.resolve(IMyTripsViewModel.self)!
     }
 
     func resolveTripDetailViewModel(tripId: UUID) -> ITripDetailViewModel {
-        return container.resolve(ITripDetailViewModel.self, argument: tripId)!
+        container.resolve(ITripDetailViewModel.self, argument: tripId)!
+    }
+
+    func createTripViewModel() -> ICreateTripViewModel {
+        container.resolve(ICreateTripViewModel.self)!
     }
 
     func resolveLoginController() -> LoginController {
-        return container.resolve(LoginController.self)!
+        container.resolve(LoginController.self)!
     }
 
     func resolveRegistrationController() -> RegistrationController {
-        return container.resolve(RegistrationController.self)!
+        container.resolve(RegistrationController.self)!
     }
 
     func resolveMyTripsController() -> MyTripsController {
-        return container.resolve(MyTripsController.self)!
+        container.resolve(MyTripsController.self)!
     }
 
     func resolveTripDetailController(tripId: UUID) -> TripDetailController {
-        return container.resolve(TripDetailController.self, argument: tripId)!
+        container.resolve(TripDetailController.self, argument: tripId)!
+    }
+
+    func resolveCreateTripController() -> CreateTripController {
+        container.resolve(CreateTripController.self)!
     }
 
     func resolveMainTabBarController() -> UITabBarController {
-        return container.resolve(UITabBarController.self)!
+        container.resolve(UITabBarController.self)!
     }
 }
 
@@ -69,6 +77,9 @@ private extension SwinjectContainer {
         }
         container.register(ITripDetailViewModel.self) { (_, tripId: UUID) in
             TripDetailViewModel(tripId: tripId)
+        }
+        container.register(ICreateTripViewModel.self) { _ in
+            CreateTripViewModel()
         }
     }
 
@@ -97,6 +108,16 @@ private extension SwinjectContainer {
             controller.hidesBottomBarWhenPushed = true
             return controller
         }
+        container.register(CreateTripController.self) { resolver in
+            let viewModel = resolver.resolve(ICreateTripViewModel.self)!
+            let createTripController = CreateTripController(viewModel: viewModel)
+            createTripController.tabBarItem = UITabBarItem(
+                title: nil,
+                image: SystemImages.createTravelTabBarItem.image,
+                tag: TabBarScreenTags.createTravel.rawValue
+            )
+            return createTripController
+        }
     }
 
     func registerTabBarController() {
@@ -105,10 +126,11 @@ private extension SwinjectContainer {
             tabBar.tabBar.setupTinkoffStyle()
 
             let travellingVC = resolver.resolve(MyTripsController.self)!
+            let createTripVC = resolver.resolve(CreateTripController.self)!
 
             tabBar.viewControllers = [
                 travellingVC,
-                UIViewController(),
+                createTripVC,
                 UIViewController()
             ]
 

@@ -9,5 +9,6 @@ protocol IButtonBuilder {
     func makeSkeletonable() -> Self
     func font(_ font: UIFont) -> Self
     func deactivate() -> Self
+    func disableContentEdgesInsets() -> Self
     func build() -> UIButton
 }

@@ -15,6 +15,7 @@ extension String {
         static let password = "Пароль"
         static let confirmPassword = "Повторите пароль"
         static let enter = "Войти"
+        static let create = "Создать"
         static let toRegistration = "Регистрация"
         static let registerAction = "Зарегистрироваться"
         static let myTravellingsTitle = "Мои путешествия"
@@ -23,5 +24,12 @@ extension String {
         static let tripDetailPrice = "200.000"
         static let tripMembers = "Участники"
         static let transactionsButton = "Транзакции"
+        static let createTripTitle = "Название путешествия"
+        static let createTripPrice = "Начальная стоимость"
+        static let tripDateTitle = "Даты"
+        static let tripMembersTitle = "Даты"
+        static let addMemberTitle = "Добавить контакты"
+        static let tripStartsAtTitle = "Начало:"
+        static let tripEndsAtTitle = "Конец:"
     }
 }

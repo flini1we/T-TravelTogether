@@ -30,10 +30,6 @@ final class RegistrationController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     override func loadView() {
         super.loadView()
 
@@ -47,12 +43,16 @@ final class RegistrationController: UIViewController {
         setupDelegate()
         setUpActions()
     }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
 private extension RegistrationController {
 
     func setupDelegate() {
-        textFieldDelegate = TextFieldDelegate(
+        textFieldDelegate = UserTextFieldDelegate(
             phoneNumberField: registrationView.phoneNumberField,
             passwordField: registrationView.passwordFieldFirst,
             confirmPasswordField: registrationView.passwordFieldConfirmed)

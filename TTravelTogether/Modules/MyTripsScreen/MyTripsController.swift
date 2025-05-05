@@ -17,10 +17,6 @@ final class MyTripsController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     override func loadView() {
         super.loadView()
 
@@ -31,6 +27,10 @@ final class MyTripsController: UIViewController {
         super.viewDidLoad()
 
         setup()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 

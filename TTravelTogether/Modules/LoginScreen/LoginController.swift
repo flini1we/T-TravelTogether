@@ -31,10 +31,6 @@ final class LoginController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     override func loadView() {
         super.loadView()
 
@@ -47,6 +43,10 @@ final class LoginController: UIViewController {
         setupBindings()
         setupDelegates()
         setupActions()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -73,7 +73,7 @@ private extension LoginController {
     }
 
     func setupDelegates() {
-        textFieldDelegate = TextFieldDelegate(
+        textFieldDelegate = UserTextFieldDelegate(
             phoneNumberField: loginView.phoneNumberField,
             passwordField: loginView.passwordField,
             confirmPasswordField: nil)

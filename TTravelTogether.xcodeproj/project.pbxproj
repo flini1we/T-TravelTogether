@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		CF0C2C4B2DC90F3B003995F3 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = CF0C2C4A2DC90F3B003995F3 /* Swinject */; };
+		CF0C2C4E2DC92461003995F3 /* CreateTripController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0C2C4D2DC92461003995F3 /* CreateTripController.swift */; };
+		CF0C2C502DC92466003995F3 /* CreateTripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0C2C4F2DC92466003995F3 /* CreateTripView.swift */; };
+		CF0C2C522DC9246A003995F3 /* CreateTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0C2C512DC9246A003995F3 /* CreateTripViewModel.swift */; };
+		CF0C2C542DC92473003995F3 /* ICreateTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0C2C532DC92473003995F3 /* ICreateTripViewModel.swift */; };
+		CF0C2C582DC94B86003995F3 /* TripTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0C2C572DC94B86003995F3 /* TripTextFieldDelegate.swift */; };
 		CF19AD3B2DBE8BF400FF45FE /* ICoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF19AD3A2DBE8BF400FF45FE /* ICoordinator.swift */; };
 		CF19AD3D2DBE8CD600FF45FE /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF19AD3C2DBE8CD600FF45FE /* AppFlowCoordinator.swift */; };
 		CF19AD3F2DBE8DC400FF45FE /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF19AD3E2DBE8DC400FF45FE /* AuthCoordinator.swift */; };
@@ -64,7 +69,7 @@
 		CFAD6AE32DAC0B30003930F3 /* UITextField+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6AE22DAC0B30003930F3 /* UITextField+extension.swift */; };
 		CFAD6AE52DAC1104003930F3 /* SystemImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6AE42DAC1104003930F3 /* SystemImages.swift */; };
 		CFAD6AE72DAC1B88003930F3 /* UITextFieldDelegateDefaultImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6AE62DAC1B88003930F3 /* UITextFieldDelegateDefaultImpl.swift */; };
-		CFAD6AEA2DAC1BE5003930F3 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6AE92DAC1BE5003930F3 /* TextFieldDelegate.swift */; };
+		CFAD6AEA2DAC1BE5003930F3 /* UserTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6AE92DAC1BE5003930F3 /* UserTextFieldDelegate.swift */; };
 		CFAD6AEC2DAC21D7003930F3 /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6AEB2DAC21D7003930F3 /* UIView+extension.swift */; };
 		CFAD6AF12DAC5E4D003930F3 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6AF02DAC5E4D003930F3 /* ActivityIndicatorView.swift */; };
 		CFAD6AF42DACF814003930F3 /* LoginErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6AF32DACF814003930F3 /* LoginErrors.swift */; };
@@ -117,6 +122,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CF0C2C4D2DC92461003995F3 /* CreateTripController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTripController.swift; sourceTree = "<group>"; };
+		CF0C2C4F2DC92466003995F3 /* CreateTripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTripView.swift; sourceTree = "<group>"; };
+		CF0C2C512DC9246A003995F3 /* CreateTripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTripViewModel.swift; sourceTree = "<group>"; };
+		CF0C2C532DC92473003995F3 /* ICreateTripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICreateTripViewModel.swift; sourceTree = "<group>"; };
+		CF0C2C572DC94B86003995F3 /* TripTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTextFieldDelegate.swift; sourceTree = "<group>"; };
 		CF19AD3A2DBE8BF400FF45FE /* ICoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICoordinator.swift; sourceTree = "<group>"; };
 		CF19AD3C2DBE8CD600FF45FE /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 		CF19AD3E2DBE8DC400FF45FE /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
@@ -177,7 +187,7 @@
 		CFAD6AE22DAC0B30003930F3 /* UITextField+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+extension.swift"; sourceTree = "<group>"; };
 		CFAD6AE42DAC1104003930F3 /* SystemImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemImages.swift; sourceTree = "<group>"; };
 		CFAD6AE62DAC1B88003930F3 /* UITextFieldDelegateDefaultImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldDelegateDefaultImpl.swift; sourceTree = "<group>"; };
-		CFAD6AE92DAC1BE5003930F3 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
+		CFAD6AE92DAC1BE5003930F3 /* UserTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTextFieldDelegate.swift; sourceTree = "<group>"; };
 		CFAD6AEB2DAC21D7003930F3 /* UIView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
 		CFAD6AF02DAC5E4D003930F3 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		CFAD6AF32DACF814003930F3 /* LoginErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginErrors.swift; sourceTree = "<group>"; };
@@ -239,6 +249,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF0C2C4C2DC920FD003995F3 /* CreateTrip */ = {
+			isa = PBXGroup;
+			children = (
+				CF0C2C4D2DC92461003995F3 /* CreateTripController.swift */,
+				CF0C2C4F2DC92466003995F3 /* CreateTripView.swift */,
+				CF0C2C512DC9246A003995F3 /* CreateTripViewModel.swift */,
+				CF0C2C592DC94BA2003995F3 /* Delegates */,
+			);
+			path = CreateTrip;
+			sourceTree = "<group>";
+		};
+		CF0C2C592DC94BA2003995F3 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				CF0C2C572DC94B86003995F3 /* TripTextFieldDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
 		CF3556492DA857DC00290A81 = {
 			isa = PBXGroup;
 			children = (
@@ -351,6 +380,7 @@
 				CF3B46732DB24A81008C4CA0 /* IRegistrationViewModel.swift */,
 				CFB11FDB2DB62D8300609CEF /* IMyTripsViewModel.swift */,
 				CFAFBEED2DB77ADC002FA8EF /* ITripDetailViewModel.swift */,
+				CF0C2C532DC92473003995F3 /* ICreateTripViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -388,7 +418,7 @@
 				CFAD6A4E2DAACDB8003930F3 /* LoginScreen */,
 				CFAD6A622DABD35E003930F3 /* RegistrationScreen */,
 				CFB11FF32DB688E300609CEF /* MyTripsScreen */,
-				CFAFBEE62DB6ECE2002FA8EF /* TripDetailScreen */,
+				CF0C2C4C2DC920FD003995F3 /* CreateTrip */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -494,7 +524,7 @@
 		CFAD6AE82DAC1BD6003930F3 /* ExternalDelegates */ = {
 			isa = PBXGroup;
 			children = (
-				CFAD6AE92DAC1BE5003930F3 /* TextFieldDelegate.swift */,
+				CFAD6AE92DAC1BE5003930F3 /* UserTextFieldDelegate.swift */,
 			);
 			path = ExternalDelegates;
 			sourceTree = "<group>";
@@ -570,6 +600,7 @@
 				CFB11FF62DB688E900609CEF /* MyTripsController.swift */,
 				CFB11FF52DB688E900609CEF /* MyTripsViewModel.swift */,
 				CFB11FF72DB688E900609CEF /* TableViewData */,
+				CFAFBEE62DB6ECE2002FA8EF /* TripDetailScreen */,
 			);
 			path = MyTripsScreen;
 			sourceTree = "<group>";
@@ -773,7 +804,9 @@
 			files = (
 				CF19AD452DBE9D7E00FF45FE /* IAuthCoordinator.swift in Sources */,
 				CF19AD3D2DBE8CD600FF45FE /* AppFlowCoordinator.swift in Sources */,
+				CF0C2C542DC92473003995F3 /* ICreateTripViewModel.swift in Sources */,
 				CFB11FFF2DB68B4400609CEF /* MyTripsController.swift in Sources */,
+				CF0C2C522DC9246A003995F3 /* CreateTripViewModel.swift in Sources */,
 				CFB11FF92DB688E900609CEF /* MyTripsView.swift in Sources */,
 				CFB11FFA2DB688E900609CEF /* MyTripsViewModel.swift in Sources */,
 				CF3556992DA8581700290A81 /* AppDelegate.swift in Sources */,
@@ -788,6 +821,7 @@
 				CFAD6AEC2DAC21D7003930F3 /* UIView+extension.swift in Sources */,
 				CFAD6A5B2DAAEEF5003930F3 /* FontValues.swift in Sources */,
 				CF19AD472DBE9DD400FF45FE /* IMainCoordinator.swift in Sources */,
+				CF0C2C502DC92466003995F3 /* CreateTripView.swift in Sources */,
 				CFAFBEEA2DB77AC5002FA8EF /* TripDetailController.swift in Sources */,
 				CFAFBEF22DB787BC002FA8EF /* NetworkErrors.swift in Sources */,
 				CF3B469C2DB57DBB008C4CA0 /* TabBarScreenTags.swift in Sources */,
@@ -811,6 +845,7 @@
 				CFAFC60C2DB91431002FA8EF /* Int+extension.swift in Sources */,
 				CF3B46752DB24A81008C4CA0 /* IRegistrationViewModel.swift in Sources */,
 				CF3B46762DB24A81008C4CA0 /* ILabelBuilder.swift in Sources */,
+				CF0C2C4E2DC92461003995F3 /* CreateTripController.swift in Sources */,
 				CF3B46772DB24A81008C4CA0 /* ILoginView.swift in Sources */,
 				CF3B46782DB24A81008C4CA0 /* IButtonBuilder.swift in Sources */,
 				CF3B46792DB24A81008C4CA0 /* ILoginViewModel.swift in Sources */,
@@ -834,8 +869,9 @@
 				CFAFBEE22DB6C1D3002FA8EF /* TripsTableDelegate.swift in Sources */,
 				CFB11FD12DB59D7300609CEF /* UIImage+extension.swift in Sources */,
 				CFB11FDF2DB62F5600609CEF /* Trip.swift in Sources */,
-				CFAD6AEA2DAC1BE5003930F3 /* TextFieldDelegate.swift in Sources */,
+				CFAD6AEA2DAC1BE5003930F3 /* UserTextFieldDelegate.swift in Sources */,
 				CF3B46812DB24B04008C4CA0 /* ModuleTypes.swift in Sources */,
+				CF0C2C582DC94B86003995F3 /* TripTextFieldDelegate.swift in Sources */,
 				CFB11FF02DB6855B00609CEF /* AppFormatter.swift in Sources */,
 				CFAD6A662DABD378003930F3 /* RegistrationController.swift in Sources */,
 				CFB11FFD2DB6891B00609CEF /* TripsTableDataSource.swift in Sources */,
