@@ -1,4 +1,6 @@
 import UIKit
+import Contacts
+import ContactsUI
 
 final class MainCoordinator: NSObject, IMainCoordinator {
 
@@ -20,6 +22,10 @@ final class MainCoordinator: NSObject, IMainCoordinator {
         navigationController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(detailVC, animated: true)
     }
+
+    func showContactList() {
+        print("contactы")
+    }
 }
 
 private extension MainCoordinator {
@@ -27,11 +33,12 @@ private extension MainCoordinator {
     func showMainTabBar() {
         let tabBarController = dependencies.resolveMainTabBarController()
         tabBarController.delegate = self
-        if let myTripsController =
-            tabBarController
-            .viewControllers?
-            .compactMap({ $0 as? MyTripsController })
-            .first { myTripsController.coordinator = self }
+
+        let myTripsController = dependencies.resolveMyTripsController()
+        let createTripController = dependencies.resolveCreateTripController()
+        myTripsController.coordinator = self
+        createTripController.coordinator = self
+
         navigationController.setViewControllers([tabBarController], animated: true)
     }
 }
@@ -39,7 +46,7 @@ private extension MainCoordinator {
 extension MainCoordinator: UITabBarControllerDelegate {
 
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        if viewController is CreateTripController {
+        if viewController is EmptyController {
             let createTripController = dependencies.resolveCreateTripController()
             if let sheetController = createTripController.sheetPresentationController {
                 if #available(iOS 16.0, *) {

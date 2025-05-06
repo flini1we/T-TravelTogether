@@ -101,7 +101,7 @@ private extension SwinjectContainer {
                 tag: TabBarScreenTags.travellings.rawValue
             )
             return myTipsController
-        }
+        }.inObjectScope(.container)
         container.register(TripDetailController.self) { (resolver, tripId: UUID) in
             let tripDetailVM = resolver.resolve(ITripDetailViewModel.self, argument: tripId)!
             let controller = TripDetailController(viewModel: tripDetailVM)
@@ -117,7 +117,7 @@ private extension SwinjectContainer {
                 tag: TabBarScreenTags.createTravel.rawValue
             )
             return createTripController
-        }
+        }.inObjectScope(.container)
     }
 
     func registerTabBarController() {
@@ -126,11 +126,16 @@ private extension SwinjectContainer {
             tabBar.tabBar.setupTinkoffStyle()
 
             let travellingVC = resolver.resolve(MyTripsController.self)!
-            let createTripVC = resolver.resolve(CreateTripController.self)!
+            let sampleVC = EmptyController()
+            sampleVC.tabBarItem = UITabBarItem(
+                title: nil,
+                image: SystemImages.createTravelTabBarItem.image,
+                tag: TabBarScreenTags.createTravel.rawValue
+            )
 
             tabBar.viewControllers = [
                 travellingVC,
-                createTripVC,
+                sampleVC,
                 UIViewController()
             ]
 

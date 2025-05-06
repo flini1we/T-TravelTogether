@@ -12,7 +12,8 @@
 		CF0C2C502DC92466003995F3 /* CreateTripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0C2C4F2DC92466003995F3 /* CreateTripView.swift */; };
 		CF0C2C522DC9246A003995F3 /* CreateTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0C2C512DC9246A003995F3 /* CreateTripViewModel.swift */; };
 		CF0C2C542DC92473003995F3 /* ICreateTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0C2C532DC92473003995F3 /* ICreateTripViewModel.swift */; };
-		CF0C2C582DC94B86003995F3 /* TripTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0C2C572DC94B86003995F3 /* TripTextFieldDelegate.swift */; };
+		CF0C2C5B2DC9F1BE003995F3 /* EmptyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0C2C5A2DC9F1BE003995F3 /* EmptyController.swift */; };
+		CF0C2C5D2DC9F37B003995F3 /* ICreateTripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0C2C5C2DC9F37B003995F3 /* ICreateTripView.swift */; };
 		CF19AD3B2DBE8BF400FF45FE /* ICoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF19AD3A2DBE8BF400FF45FE /* ICoordinator.swift */; };
 		CF19AD3D2DBE8CD600FF45FE /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF19AD3C2DBE8CD600FF45FE /* AppFlowCoordinator.swift */; };
 		CF19AD3F2DBE8DC400FF45FE /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF19AD3E2DBE8DC400FF45FE /* AuthCoordinator.swift */; };
@@ -126,7 +127,8 @@
 		CF0C2C4F2DC92466003995F3 /* CreateTripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTripView.swift; sourceTree = "<group>"; };
 		CF0C2C512DC9246A003995F3 /* CreateTripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTripViewModel.swift; sourceTree = "<group>"; };
 		CF0C2C532DC92473003995F3 /* ICreateTripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICreateTripViewModel.swift; sourceTree = "<group>"; };
-		CF0C2C572DC94B86003995F3 /* TripTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTextFieldDelegate.swift; sourceTree = "<group>"; };
+		CF0C2C5A2DC9F1BE003995F3 /* EmptyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyController.swift; sourceTree = "<group>"; };
+		CF0C2C5C2DC9F37B003995F3 /* ICreateTripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICreateTripView.swift; sourceTree = "<group>"; };
 		CF19AD3A2DBE8BF400FF45FE /* ICoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICoordinator.swift; sourceTree = "<group>"; };
 		CF19AD3C2DBE8CD600FF45FE /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 		CF19AD3E2DBE8DC400FF45FE /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
@@ -255,17 +257,9 @@
 				CF0C2C4D2DC92461003995F3 /* CreateTripController.swift */,
 				CF0C2C4F2DC92466003995F3 /* CreateTripView.swift */,
 				CF0C2C512DC9246A003995F3 /* CreateTripViewModel.swift */,
-				CF0C2C592DC94BA2003995F3 /* Delegates */,
+				CF0C2C5A2DC9F1BE003995F3 /* EmptyController.swift */,
 			);
 			path = CreateTrip;
-			sourceTree = "<group>";
-		};
-		CF0C2C592DC94BA2003995F3 /* Delegates */ = {
-			isa = PBXGroup;
-			children = (
-				CF0C2C572DC94B86003995F3 /* TripTextFieldDelegate.swift */,
-			);
-			path = Delegates;
 			sourceTree = "<group>";
 		};
 		CF3556492DA857DC00290A81 = {
@@ -369,6 +363,7 @@
 				CF3B46722DB24A81008C4CA0 /* ILoginView.swift */,
 				CF3B46742DB24A81008C4CA0 /* ITextFieldBuilder.swift */,
 				CF3B464D2DB1A9E3008C4CA0 /* IRegistrationView.swift */,
+				CF0C2C5C2DC9F37B003995F3 /* ICreateTripView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -808,6 +803,7 @@
 				CFB11FFF2DB68B4400609CEF /* MyTripsController.swift in Sources */,
 				CF0C2C522DC9246A003995F3 /* CreateTripViewModel.swift in Sources */,
 				CFB11FF92DB688E900609CEF /* MyTripsView.swift in Sources */,
+				CF0C2C5B2DC9F1BE003995F3 /* EmptyController.swift in Sources */,
 				CFB11FFA2DB688E900609CEF /* MyTripsViewModel.swift in Sources */,
 				CF3556992DA8581700290A81 /* AppDelegate.swift in Sources */,
 				CFAFC6082DB827F3002FA8EF /* MemberCollectionViewCell.swift in Sources */,
@@ -824,6 +820,7 @@
 				CF0C2C502DC92466003995F3 /* CreateTripView.swift in Sources */,
 				CFAFBEEA2DB77AC5002FA8EF /* TripDetailController.swift in Sources */,
 				CFAFBEF22DB787BC002FA8EF /* NetworkErrors.swift in Sources */,
+				CF0C2C5D2DC9F37B003995F3 /* ICreateTripView.swift in Sources */,
 				CF3B469C2DB57DBB008C4CA0 /* TabBarScreenTags.swift in Sources */,
 				CFB11FE62DB637E500609CEF /* Sections.swift in Sources */,
 				CFAD6A682DABD381003930F3 /* RegistrationViewModel.swift in Sources */,
@@ -871,7 +868,6 @@
 				CFB11FDF2DB62F5600609CEF /* Trip.swift in Sources */,
 				CFAD6AEA2DAC1BE5003930F3 /* UserTextFieldDelegate.swift in Sources */,
 				CF3B46812DB24B04008C4CA0 /* ModuleTypes.swift in Sources */,
-				CF0C2C582DC94B86003995F3 /* TripTextFieldDelegate.swift in Sources */,
 				CFB11FF02DB6855B00609CEF /* AppFormatter.swift in Sources */,
 				CFAD6A662DABD378003930F3 /* RegistrationController.swift in Sources */,
 				CFB11FFD2DB6891B00609CEF /* TripsTableDataSource.swift in Sources */,
@@ -932,6 +928,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AJ5QNVYP6Y;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TTravelTogether/Info.plist;
@@ -960,6 +957,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AJ5QNVYP6Y;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TTravelTogether/Info.plist;

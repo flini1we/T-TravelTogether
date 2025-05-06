@@ -2,11 +2,12 @@ import UIKit
 import Combine
 
 final class CreateTripController: UIViewController {
+    weak var coordinator: IMainCoordinator?
 
     private var viewModel: ICreateTripViewModel
 
-    private var createTripView: CreateTripView {
-        view as! CreateTripView
+    private var createTripView: ICreateTripView {
+        view as! ICreateTripView
     }
     private var cancellables: Set<AnyCancellable> = []
 
@@ -34,7 +35,14 @@ final class CreateTripController: UIViewController {
 private extension CreateTripController {
 
     func setup() {
+        setupFields()
         setupBindings()
+    }
+
+    func setupFields() {
+        createTripView.onShowingContacts = { [weak self] in
+            self?.coordinator?.showContactList()
+        }
     }
 
     func setupBindings() {

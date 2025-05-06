@@ -7,9 +7,15 @@ final class CreateTripViewModel: ICreateTripViewModel {
     @Published var tripTitleText: String = ""
     @Published var tripDescriptionText: String = ""
 
-    var isCreateButtonEnablePublisher: Published<Bool>.Publisher { $isCreateButtonEnable }
-    var tripTitleTextPublisher: Published<String>.Publisher { $tripTitleText }
-    var tripDescriptionTextPublisher: Published<String>.Publisher { $tripDescriptionText }
+    var isCreateButtonEnablePublisher: Published<Bool>.Publisher {
+        $isCreateButtonEnable
+    }
+    var tripTitleTextPublisher: Published<String>.Publisher {
+        $tripTitleText
+    }
+    var tripDescriptionTextPublisher: Published<String>.Publisher {
+        $tripDescriptionText
+    }
 
     private var cancellables = Set<AnyCancellable>()
 

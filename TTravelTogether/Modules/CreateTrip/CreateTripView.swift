@@ -1,7 +1,8 @@
 import UIKit
 import SnapKit
 
-final class CreateTripView: UIView {
+final class CreateTripView: UIView, ICreateTripView {
+    var onShowingContacts: (() -> Void)?
 
     private(set) lazy var tripTitleField: UITextField = {
         TextFieldBuilder()
@@ -116,11 +117,15 @@ final class CreateTripView: UIView {
     }()
 
     private lazy var addMemberButton: UIButton = {
-        ButtonBuilder()
+        let button = ButtonBuilder()
             .tintColor(.primaryBlue)
             .title(.AppStrings.addMemberTitle)
             .disableContentEdgesInsets()
             .build()
+        button.addAction(UIAction { [weak self] _ in
+            self?.onShowingContacts?()
+        }, for: .touchUpInside)
+        return button
     }()
 
     private lazy var membersStackView: UIStackView = {
