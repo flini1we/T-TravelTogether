@@ -1,6 +1,7 @@
 import UIKit
 
 final class AppFlowCoordinator: ICoordinator {
+    var user: User?
 
     var childCoordinators: [ICoordinator] = []
     var navigationController: UINavigationController
@@ -25,6 +26,7 @@ private extension AppFlowCoordinator {
             dependencies: dependencies
         )
         coordinator.onLoginSuccess = { [weak self] user in
+            self?.user = user
             self?.showMainFlow()
         }
         addChild(coordinator)
@@ -36,7 +38,7 @@ private extension AppFlowCoordinator {
             navigationController: navigationController,
             dependencieProvider: dependencies
         )
-
+        coordinator.registratedUser = user
         addChild(coordinator)
         coordinator.start()
     }

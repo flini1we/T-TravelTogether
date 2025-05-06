@@ -14,6 +14,7 @@
 		CF0C2C542DC92473003995F3 /* ICreateTripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0C2C532DC92473003995F3 /* ICreateTripViewModel.swift */; };
 		CF0C2C5B2DC9F1BE003995F3 /* EmptyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0C2C5A2DC9F1BE003995F3 /* EmptyController.swift */; };
 		CF0C2C5D2DC9F37B003995F3 /* ICreateTripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0C2C5C2DC9F37B003995F3 /* ICreateTripView.swift */; };
+		CF0C2C602DCA4425003995F3 /* TripMembersCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0C2C5F2DCA4425003995F3 /* TripMembersCollectionViewDataSource.swift */; };
 		CF19AD3B2DBE8BF400FF45FE /* ICoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF19AD3A2DBE8BF400FF45FE /* ICoordinator.swift */; };
 		CF19AD3D2DBE8CD600FF45FE /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF19AD3C2DBE8CD600FF45FE /* AppFlowCoordinator.swift */; };
 		CF19AD3F2DBE8DC400FF45FE /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF19AD3E2DBE8DC400FF45FE /* AuthCoordinator.swift */; };
@@ -101,6 +102,7 @@
 		CFB11FFD2DB6891B00609CEF /* TripsTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB11FFB2DB6891B00609CEF /* TripsTableDataSource.swift */; };
 		CFB11FFE2DB6891B00609CEF /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB11FFC2DB6891B00609CEF /* TripTableViewCell.swift */; };
 		CFB11FFF2DB68B4400609CEF /* MyTripsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB11FF62DB688E900609CEF /* MyTripsController.swift */; };
+		CFCB85D92DCA5FF7006DFA60 /* AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCB85D82DCA5FF7006DFA60 /* AlertFactory.swift */; };
 		CFCD372D2DBF4EAC0037A854 /* SwinjectContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD372C2DBF4EAC0037A854 /* SwinjectContainer.swift */; };
 		CFCD37302DBF5C960037A854 /* DependencyContainerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD372F2DBF5C960037A854 /* DependencyContainerProtocol.swift */; };
 /* End PBXBuildFile section */
@@ -129,6 +131,7 @@
 		CF0C2C532DC92473003995F3 /* ICreateTripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICreateTripViewModel.swift; sourceTree = "<group>"; };
 		CF0C2C5A2DC9F1BE003995F3 /* EmptyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyController.swift; sourceTree = "<group>"; };
 		CF0C2C5C2DC9F37B003995F3 /* ICreateTripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICreateTripView.swift; sourceTree = "<group>"; };
+		CF0C2C5F2DCA4425003995F3 /* TripMembersCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripMembersCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		CF19AD3A2DBE8BF400FF45FE /* ICoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICoordinator.swift; sourceTree = "<group>"; };
 		CF19AD3C2DBE8CD600FF45FE /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 		CF19AD3E2DBE8DC400FF45FE /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
@@ -219,6 +222,7 @@
 		CFB11FF62DB688E900609CEF /* MyTripsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTripsController.swift; sourceTree = "<group>"; };
 		CFB11FFB2DB6891B00609CEF /* TripsTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsTableDataSource.swift; sourceTree = "<group>"; };
 		CFB11FFC2DB6891B00609CEF /* TripTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
+		CFCB85D82DCA5FF7006DFA60 /* AlertFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFactory.swift; sourceTree = "<group>"; };
 		CFCD372C2DBF4EAC0037A854 /* SwinjectContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectContainer.swift; sourceTree = "<group>"; };
 		CFCD372F2DBF5C960037A854 /* DependencyContainerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -257,9 +261,18 @@
 				CF0C2C4D2DC92461003995F3 /* CreateTripController.swift */,
 				CF0C2C4F2DC92466003995F3 /* CreateTripView.swift */,
 				CF0C2C512DC9246A003995F3 /* CreateTripViewModel.swift */,
+				CF0C2C5E2DCA4418003995F3 /* CollectionViewData */,
 				CF0C2C5A2DC9F1BE003995F3 /* EmptyController.swift */,
 			);
 			path = CreateTrip;
+			sourceTree = "<group>";
+		};
+		CF0C2C5E2DCA4418003995F3 /* CollectionViewData */ = {
+			isa = PBXGroup;
+			children = (
+				CF0C2C5F2DCA4425003995F3 /* TripMembersCollectionViewDataSource.swift */,
+			);
+			path = CollectionViewData;
 			sourceTree = "<group>";
 		};
 		CF3556492DA857DC00290A81 = {
@@ -338,6 +351,7 @@
 			isa = PBXGroup;
 			children = (
 				CFCD372C2DBF4EAC0037A854 /* SwinjectContainer.swift */,
+				CFCB85D82DCA5FF7006DFA60 /* AlertFactory.swift */,
 			);
 			path = Factory;
 			sourceTree = "<group>";
@@ -805,6 +819,7 @@
 				CFB11FF92DB688E900609CEF /* MyTripsView.swift in Sources */,
 				CF0C2C5B2DC9F1BE003995F3 /* EmptyController.swift in Sources */,
 				CFB11FFA2DB688E900609CEF /* MyTripsViewModel.swift in Sources */,
+				CF0C2C602DCA4425003995F3 /* TripMembersCollectionViewDataSource.swift in Sources */,
 				CF3556992DA8581700290A81 /* AppDelegate.swift in Sources */,
 				CFAFC6082DB827F3002FA8EF /* MemberCollectionViewCell.swift in Sources */,
 				CF3B469E2DB58013008C4CA0 /* UITabBar+extension.swift in Sources */,
@@ -870,6 +885,7 @@
 				CF3B46812DB24B04008C4CA0 /* ModuleTypes.swift in Sources */,
 				CFB11FF02DB6855B00609CEF /* AppFormatter.swift in Sources */,
 				CFAD6A662DABD378003930F3 /* RegistrationController.swift in Sources */,
+				CFCB85D92DCA5FF7006DFA60 /* AlertFactory.swift in Sources */,
 				CFB11FFD2DB6891B00609CEF /* TripsTableDataSource.swift in Sources */,
 				CFB11FFE2DB6891B00609CEF /* TripTableViewCell.swift in Sources */,
 			);

@@ -1,5 +1,7 @@
 import UIKit
 import Swinject
+import Contacts
+import ContactsUI
 
 protocol DependencyContainerProtocol {
 
@@ -13,7 +15,9 @@ protocol DependencyContainerProtocol {
     func resolveRegistrationController() -> RegistrationController
     func resolveMyTripsController() -> MyTripsController
     func resolveTripDetailController(tripId: UUID) -> TripDetailController
-    func resolveCreateTripController() -> CreateTripController
+    func resolveCreateTripController(user: User) -> CreateTripController
+
+    func resolveContactsViewController() -> CNContactPickerViewController
 
     func resolveMainTabBarController() -> UITabBarController
 }

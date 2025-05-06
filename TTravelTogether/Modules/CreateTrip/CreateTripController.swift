@@ -1,5 +1,7 @@
 import UIKit
 import Combine
+import Contacts
+import ContactsUI
 
 final class CreateTripController: UIViewController {
     weak var coordinator: IMainCoordinator?
@@ -9,6 +11,7 @@ final class CreateTripController: UIViewController {
     private var createTripView: ICreateTripView {
         view as! ICreateTripView
     }
+    private var tripMembersCollectionViewDataSource: TripMembersCollectionViewDataSource?
     private var cancellables: Set<AnyCancellable> = []
 
     init(viewModel: ICreateTripViewModel) {
@@ -27,6 +30,11 @@ final class CreateTripController: UIViewController {
         setup()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.clearData()
+    }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -35,13 +43,27 @@ final class CreateTripController: UIViewController {
 private extension CreateTripController {
 
     func setup() {
+        setupContactsController()
         setupFields()
         setupBindings()
     }
 
+    func setupContactsController() {
+
+        let contactsController = SwinjectContainer.shared.resolveContactsViewController()
+        contactsController.delegate = viewModel
+        contactsController.predicateForSelectionOfContact = NSPredicate(value: true)
+    }
+
     func setupFields() {
         createTripView.onShowingContacts = { [weak self] in
-            self?.coordinator?.showContactList()
+            self?.requestContactsAccess()
+        }
+        tripMembersCollectionViewDataSource = TripMembersCollectionViewDataSource(viewModel: viewModel)
+        createTripView.tripMemebersCollectionView.dataSource = tripMembersCollectionViewDataSource
+        viewModel.onClearingController = { [weak self] in
+            self?.createTripView.tripTitleField.text = ""
+            self?.createTripView.tripPriceField.text = ""
         }
     }
 
@@ -61,6 +83,13 @@ private extension CreateTripController {
                 self?.createTripView.createButton.alpha = isValid ? 1 : 0.5
             }
             .store(in: &cancellables)
+
+        viewModel.tripMembersPublisher
+            .dropFirst()
+            .sink { [weak self] _ in
+                self?.createTripView.tripMemebersCollectionView.reloadData()
+            }
+            .store(in: &cancellables)
     }
 
     func setupViewBindings() {
@@ -70,7 +99,25 @@ private extension CreateTripController {
             .store(in: &cancellables)
 
         createTripView.tripPriceField.textPublisher
-            .assign(to: \.tripDescriptionText, on: viewModel)
+            .assign(to: \.tripPriceText, on: viewModel)
             .store(in: &cancellables)
+    }
+
+    func requestContactsAccess() {
+        let store = CNContactStore()
+        store.requestAccess(for: .contacts) { [weak self] granted, _ in
+            DispatchQueue.main.async {
+                if granted {
+                    self?.coordinator?.showContactList()
+                } else {
+                    let contactAccessAlert = AlertFactory.createContactsAccessAlert {
+                        if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+                            UIApplication.shared.open(settingsURL)
+                        }
+                    } onCancel: { }
+                    self?.present(contactAccessAlert, animated: true)
+                }
+            }
+        }
     }
 }

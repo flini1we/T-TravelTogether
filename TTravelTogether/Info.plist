@@ -34,5 +34,7 @@
 			</array>
 		</dict>
 	</dict>
+    <key>NSContactsUsageDescription</key>
+    <string>We need access to your contacts to add members to your trip</string>
 </dict>
 </plist>

@@ -128,6 +128,25 @@ final class CreateTripView: UIView, ICreateTripView {
         return button
     }()
 
+    private(set) lazy var tripMemebersCollectionView: UICollectionView = {
+        let collectionViewLayout = UICollectionViewFlowLayout()
+        collectionViewLayout.scrollDirection = .horizontal
+        collectionViewLayout.itemSize = UIElementsValues.memberCollectionViewCell.size
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: collectionViewLayout
+        )
+        collectionView.backgroundColor = .clear
+        collectionView.isPagingEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.register(
+            MemberCollectionViewCell.self,
+            forCellWithReuseIdentifier: MemberCollectionViewCell.identifier
+        )
+        collectionView.makeSkeletonable()
+        return collectionView
+    }()
+
     private lazy var membersStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [
             membersLabel,
@@ -187,6 +206,7 @@ private extension CreateTripView {
         addSubview(dateStackView)
         addSubview(membersStackView)
         addSubview(createButton)
+        addSubview(tripMemebersCollectionView)
     }
 
     func setupConstraints() {
@@ -202,6 +222,12 @@ private extension CreateTripView {
         membersStackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(PaddingValues.medium.value)
             make.top.equalTo(dateStackView.snp.bottom).offset(PaddingValues.medium.value)
+        }
+
+        tripMemebersCollectionView.snp.makeConstraints { make in
+            make.height.equalTo(UIElementsValues.memberCollectionViewCell.size.height)
+            make.leading.trailing.equalToSuperview().inset(PaddingValues.medium.value)
+            make.top.equalTo(membersStackView.snp.bottom).offset(PaddingValues.default.value)
         }
 
         createButton.snp.makeConstraints { make in

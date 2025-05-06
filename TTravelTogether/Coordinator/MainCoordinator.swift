@@ -3,6 +3,7 @@ import Contacts
 import ContactsUI
 
 final class MainCoordinator: NSObject, IMainCoordinator {
+    var registratedUser: User!
 
     var childCoordinators: [ICoordinator] = []
     var navigationController: UINavigationController
@@ -24,7 +25,9 @@ final class MainCoordinator: NSObject, IMainCoordinator {
     }
 
     func showContactList() {
-        print("contactы")
+        let createTripController = dependencies.resolveCreateTripController(user: registratedUser)
+        let myContactsVC = dependencies.resolveContactsViewController()
+        createTripController.present(myContactsVC, animated: true)
     }
 }
 
@@ -35,7 +38,7 @@ private extension MainCoordinator {
         tabBarController.delegate = self
 
         let myTripsController = dependencies.resolveMyTripsController()
-        let createTripController = dependencies.resolveCreateTripController()
+        let createTripController = dependencies.resolveCreateTripController(user: registratedUser)
         myTripsController.coordinator = self
         createTripController.coordinator = self
 
@@ -47,7 +50,7 @@ extension MainCoordinator: UITabBarControllerDelegate {
 
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController is EmptyController {
-            let createTripController = dependencies.resolveCreateTripController()
+            let createTripController = dependencies.resolveCreateTripController(user: registratedUser)
             if let sheetController = createTripController.sheetPresentationController {
                 if #available(iOS 16.0, *) {
                     let customDetent = UISheetPresentationController.Detent.custom { context in
