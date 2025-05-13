@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-final class LoginViewModel: ObservableObject, Loginable {
+final class LoginViewModel: ObservableObject, ILoginViewModel {
 
     @Published var isLoading: Bool = false
 
@@ -13,7 +13,7 @@ final class LoginViewModel: ObservableObject, Loginable {
         guard !phoneNumber.isEmpty, !password.isEmpty else { return }
         isLoading = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            completion(.success("Красава"))
+            completion(.success("8(917)398-11-89"))
             self.isLoading = false
         }
     }

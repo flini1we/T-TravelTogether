@@ -6,11 +6,11 @@ final class TripDetailController: UIViewController {
     private var tripDetailView: TripDetailView {
         view as! TripDetailView
     }
-    private var viewModel: TripDetailVMProtocol
+    private var viewModel: ITripDetailViewModel
     private var membersCollectionViewDataSource: MembersCollectionDataSource?
     private var cancellables: Set<AnyCancellable> = []
 
-    init(viewModel: TripDetailVMProtocol) {
+    init(viewModel: ITripDetailViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

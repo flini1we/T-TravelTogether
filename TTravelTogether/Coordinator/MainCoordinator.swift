@@ -1,8 +1,11 @@
 import UIKit
+import Contacts
+import ContactsUI
 
-final class MainCoordinator: MainCoordinatorProtocol {
+final class MainCoordinator: NSObject, IMainCoordinator {
+    var registratedUser: User!
 
-    var childCoordinators: [Coordinator] = []
+    var childCoordinators: [ICoordinator] = []
     var navigationController: UINavigationController
     var dependencies: DependencyContainerProtocol
 
@@ -14,27 +17,53 @@ final class MainCoordinator: MainCoordinatorProtocol {
     func start() {
         showMainTabBar()
     }
-}
 
-private extension MainCoordinator {
-
-    func showTripDetail(tripId: UUID) {
-        let detailVC = dependencies.resolveTripDetailController(tripId: tripId)
+    func showTripDetail(for id: UUID) {
+        let detailVC = dependencies.resolveTripDetailController(tripId: id)
         navigationController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(detailVC, animated: true)
     }
 
+    func showContactList() {
+        let createTripController = dependencies.resolveCreateTripController(user: registratedUser)
+        let myContactsVC = dependencies.resolveContactsViewController()
+        createTripController.present(myContactsVC, animated: true)
+    }
+}
+
+private extension MainCoordinator {
+
     func showMainTabBar() {
         let tabBarController = dependencies.resolveMainTabBarController()
-        if let myTripsController =
-            tabBarController
-            .viewControllers?
-            .compactMap({ $0 as? MyTripsController })
-            .first {
-                myTripsController.onShowingTripDetail = { [weak self] tripId in
-                    self?.showTripDetail(tripId: tripId)
+        tabBarController.delegate = self
+
+        let myTripsController = dependencies.resolveMyTripsController()
+        let createTripController = dependencies.resolveCreateTripController(user: registratedUser)
+        myTripsController.coordinator = self
+        createTripController.coordinator = self
+
+        navigationController.setViewControllers([tabBarController], animated: true)
+    }
+}
+
+extension MainCoordinator: UITabBarControllerDelegate {
+
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if viewController is EmptyController {
+            let createTripController = dependencies.resolveCreateTripController(user: registratedUser)
+            if let sheetController = createTripController.sheetPresentationController {
+                if #available(iOS 16.0, *) {
+                    let customDetent = UISheetPresentationController.Detent.custom { context in
+                        return context.maximumDetentValue * 0.75
+                    }
+                    sheetController.detents = [customDetent]
+                } else {
+                    sheetController.detents = [.large()]
                 }
             }
-        navigationController.setViewControllers([tabBarController], animated: true)
+            tabBarController.present(createTripController, animated: true)
+            return false
+        }
+        return true
     }
 }

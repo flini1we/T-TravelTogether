@@ -2,10 +2,10 @@ import UIKit
 
 final class TripsTableDataSource: NSObject {
 
-    private var viewModel: MyTripsVMProtocol
+    private var viewModel: IMyTripsViewModel
     var dataSource: UITableViewDiffableDataSource<Sections, Trip>?
 
-    init(viewModel: MyTripsVMProtocol) {
+    init(viewModel: IMyTripsViewModel) {
         self.viewModel = viewModel
     }
 

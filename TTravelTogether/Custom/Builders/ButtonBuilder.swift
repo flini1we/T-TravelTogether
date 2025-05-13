@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 import SkeletonView
 
-final class ButtonBuilder: ButtonBuildable {
+final class ButtonBuilder: IButtonBuilder {
 
     private var button: UIButton
 
@@ -46,6 +46,14 @@ final class ButtonBuilder: ButtonBuildable {
     func deactivate() -> Self {
         button.alpha = 0.5
         button.isEnabled = false
+        return self
+    }
+
+    func disableContentEdgesInsets() -> Self {
+        if var config = button.configuration {
+            config.contentInsets = .zero
+            button.configuration = config
+        }
         return self
     }
 

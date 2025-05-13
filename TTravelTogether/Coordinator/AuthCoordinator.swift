@@ -1,11 +1,11 @@
 import UIKit
 
-final class AuthCoordinator: AuthCoordinatorProtocol {
+final class AuthCoordinator: IAuthCoordinator {
+
+    var onLoginSuccess: ((User) -> Void)?
 
     var dependencies: DependencyContainerProtocol
-    var onLoginSuccess: ((String) -> Void)?
-
-    var childCoordinators: [Coordinator] = []
+    var childCoordinators: [ICoordinator] = []
     var navigationController: UINavigationController
 
     init(navigationController: UINavigationController, dependencies: DependencyContainerProtocol) {
@@ -15,13 +15,16 @@ final class AuthCoordinator: AuthCoordinatorProtocol {
 
     func start() {
         let loginScreen = dependencies.resolveLoginController()
-        loginScreen.goToRegistration = { [weak self] in
-            self?.showRegistration()
-        }
-        loginScreen.onLoginSuccess = { [weak self] user in
-            self?.onLoginSuccess?(user)
-        }
+        loginScreen.coordinator = self
         navigationController.setViewControllers([loginScreen], animated: false)
+    }
+
+    func onLoginSuccess(_ user: String) {
+        onLoginSuccess?(User(phoneNumber: user))
+    }
+
+    func goToRegistration() {
+        showRegistration()
     }
 }
 

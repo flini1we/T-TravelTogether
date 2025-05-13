@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-final class LoginView: UIView, LoginViewProtocol {
+final class LoginView: UIView, ILoginView {
     // MARK: UIElements
     private lazy var primaryImageLabel: UIImageView = {
         let imageView = UIImageView(image: .primaryLogo)
@@ -71,7 +71,7 @@ final class LoginView: UIView, LoginViewProtocol {
             .build()
     }()
 
-    private(set) lazy var activityIndicator: ActivityIndicatorProtocol = {
+    private(set) lazy var activityIndicator: IActivityIndicator = {
         let indicator = ActivityIndicatorView()
         indicator.alpha = 0
         indicator.animate()

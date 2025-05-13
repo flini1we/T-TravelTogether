@@ -1,11 +1,11 @@
 import UIKit
 
-protocol LoginViewProtocol: AnyObject {
+protocol ILoginView: AnyObject {
 
     var phoneNumberField: UITextField { get }
     var passwordField: UITextField { get }
     var errorMessageTitle: UILabel { get }
-    var activityIndicator: ActivityIndicatorProtocol { get }
+    var activityIndicator: IActivityIndicator { get }
     var transparentBG: UIView { get }
 
     func setupGoToRegistrationPageAction(_ action: UIAction)

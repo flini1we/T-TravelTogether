@@ -1,6 +1,6 @@
 import UIKit
 
-protocol ActivityIndicatorProtocol: UIView {
+protocol IActivityIndicator: UIView {
 
     var spinningCircle: CAShapeLayer { get }
 

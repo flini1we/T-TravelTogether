@@ -1,6 +1,6 @@
 import UIKit
 
-protocol ButtonBuildable {
+protocol IButtonBuilder {
 
     func title(_ title: String) -> Self
     func backgroundColor(_ color: UIColor) -> Self
@@ -9,5 +9,6 @@ protocol ButtonBuildable {
     func makeSkeletonable() -> Self
     func font(_ font: UIFont) -> Self
     func deactivate() -> Self
+    func disableContentEdgesInsets() -> Self
     func build() -> UIButton
 }

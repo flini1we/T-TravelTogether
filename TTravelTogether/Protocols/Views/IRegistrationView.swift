@@ -1,6 +1,6 @@
 import UIKit
 
-protocol RegistrationViewProtocol: AnyObject {
+protocol IRegistrationView: AnyObject {
 
     var phoneNumberField: UITextField { get }
     var phoneNumberFieldHint: UILabel { get }
@@ -8,7 +8,7 @@ protocol RegistrationViewProtocol: AnyObject {
     var passwordFieldHint: UILabel { get }
     var passwordFieldConfirmed: UITextField { get }
     var passwordFieldConfirmedHint: UILabel { get }
-    var activityIndicator: ActivityIndicatorProtocol { get }
+    var activityIndicator: IActivityIndicator { get }
     var transparentBG: UIView { get }
 
     func addRegisterAction(_ action: UIAction)

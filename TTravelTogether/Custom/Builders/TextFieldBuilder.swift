@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 import SkeletonView
 
-final class TextFieldBuilder: TextFieldBuildable {
+final class TextFieldBuilder: ITextFieldBuilder {
 
     private var textField: UITextField
 
