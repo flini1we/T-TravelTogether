@@ -42,6 +42,11 @@
 		CF74059E2DD3A42D00B71E2B /* ICloudNavTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF74059D2DD3A42D00B71E2B /* ICloudNavTitle.swift */; };
 		CF7405A22DD3A48D00B71E2B /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = CF7405A12DD3A48D00B71E2B /* Swinject */; };
 		CF7405A42DD3AE0200B71E2B /* UITableView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7405A32DD3AE0200B71E2B /* UITableView+extension.swift */; };
+		CF7405B42DD3B60F00B71E2B /* MemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7405AD2DD3B60000B71E2B /* MemberCollectionViewCell.swift */; };
+		CF7405B52DD3B60F00B71E2B /* MembersCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7405AE2DD3B60000B71E2B /* MembersCollectionDataSource.swift */; };
+		CF7405B62DD3B60F00B71E2B /* TripDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7405B02DD3B60000B71E2B /* TripDetailController.swift */; };
+		CF7405B72DD3B60F00B71E2B /* TripDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7405B12DD3B60000B71E2B /* TripDetailView.swift */; };
+		CF7405B82DD3B60F00B71E2B /* TripDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7405B22DD3B60000B71E2B /* TripDetailViewModel.swift */; };
 		CF8735762DD3A1EB00A45779 /* IAppFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8735642DD3A1EB00A45779 /* IAppFormatter.swift */; };
 		CF8735772DD3A1EB00A45779 /* ICoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8735612DD3A1EB00A45779 /* ICoordinator.swift */; };
 		CF8735782DD3A1EB00A45779 /* IContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8735662DD3A1EB00A45779 /* IContactsViewModel.swift */; };
@@ -93,15 +98,10 @@
 		CFAD6AF42DACF814003930F3 /* LoginErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD6AF32DACF814003930F3 /* LoginErrors.swift */; };
 		CFAFBEE22DB6C1D3002FA8EF /* TripsTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAFBEE12DB6C1D3002FA8EF /* TripsTableDelegate.swift */; };
 		CFAFBEE52DB6EB74002FA8EF /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = CFAFBEE42DB6EB74002FA8EF /* SkeletonView */; };
-		CFAFBEE82DB77ABF002FA8EF /* TripDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAFBEE72DB77ABF002FA8EF /* TripDetailView.swift */; };
-		CFAFBEEA2DB77AC5002FA8EF /* TripDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAFBEE92DB77AC5002FA8EF /* TripDetailController.swift */; };
-		CFAFBEEC2DB77ACC002FA8EF /* TripDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAFBEEB2DB77ACC002FA8EF /* TripDetailViewModel.swift */; };
 		CFAFBEF02DB78631002FA8EF /* TripDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAFBEEF2DB78631002FA8EF /* TripDetail.swift */; };
 		CFAFBEF22DB787BC002FA8EF /* NetworkErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAFBEF12DB787BC002FA8EF /* NetworkErrors.swift */; };
 		CFAFC6032DB7F497002FA8EF /* TripDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAFC6022DB7F497002FA8EF /* TripDateView.swift */; };
 		CFAFC6052DB82608002FA8EF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAFC6042DB82608002FA8EF /* User.swift */; };
-		CFAFC6082DB827F3002FA8EF /* MemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAFC6072DB827F3002FA8EF /* MemberCollectionViewCell.swift */; };
-		CFAFC60A2DB828E6002FA8EF /* MembersCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAFC6092DB828E6002FA8EF /* MembersCollectionDataSource.swift */; };
 		CFAFC60C2DB91431002FA8EF /* Int+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAFC60B2DB91431002FA8EF /* Int+extension.swift */; };
 		CFAFC60E2DB91BB3002FA8EF /* CGFLoat+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAFC60D2DB91BB3002FA8EF /* CGFLoat+extension.swift */; };
 		CFB11FD12DB59D7300609CEF /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB11FD02DB59D7300609CEF /* UIImage+extension.swift */; };
@@ -173,6 +173,11 @@
 		CF74059B2DD3A3FB00B71E2B /* AlertFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFactory.swift; sourceTree = "<group>"; };
 		CF74059D2DD3A42D00B71E2B /* ICloudNavTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICloudNavTitle.swift; sourceTree = "<group>"; };
 		CF7405A32DD3AE0200B71E2B /* UITableView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+extension.swift"; sourceTree = "<group>"; };
+		CF7405AD2DD3B60000B71E2B /* MemberCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCollectionViewCell.swift; sourceTree = "<group>"; };
+		CF7405AE2DD3B60000B71E2B /* MembersCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersCollectionDataSource.swift; sourceTree = "<group>"; };
+		CF7405B02DD3B60000B71E2B /* TripDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetailController.swift; sourceTree = "<group>"; };
+		CF7405B12DD3B60000B71E2B /* TripDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetailView.swift; sourceTree = "<group>"; };
+		CF7405B22DD3B60000B71E2B /* TripDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetailViewModel.swift; sourceTree = "<group>"; };
 		CF87355E2DD3A1EB00A45779 /* IDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDependencyContainer.swift; sourceTree = "<group>"; };
 		CF8735602DD3A1EB00A45779 /* IAuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAuthCoordinator.swift; sourceTree = "<group>"; };
 		CF8735612DD3A1EB00A45779 /* ICoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICoordinator.swift; sourceTree = "<group>"; };
@@ -224,15 +229,10 @@
 		CFAD6AF02DAC5E4D003930F3 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		CFAD6AF32DACF814003930F3 /* LoginErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginErrors.swift; sourceTree = "<group>"; };
 		CFAFBEE12DB6C1D3002FA8EF /* TripsTableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsTableDelegate.swift; sourceTree = "<group>"; };
-		CFAFBEE72DB77ABF002FA8EF /* TripDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetailView.swift; sourceTree = "<group>"; };
-		CFAFBEE92DB77AC5002FA8EF /* TripDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetailController.swift; sourceTree = "<group>"; };
-		CFAFBEEB2DB77ACC002FA8EF /* TripDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetailViewModel.swift; sourceTree = "<group>"; };
 		CFAFBEEF2DB78631002FA8EF /* TripDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetail.swift; sourceTree = "<group>"; };
 		CFAFBEF12DB787BC002FA8EF /* NetworkErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrors.swift; sourceTree = "<group>"; };
 		CFAFC6022DB7F497002FA8EF /* TripDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDateView.swift; sourceTree = "<group>"; };
 		CFAFC6042DB82608002FA8EF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		CFAFC6072DB827F3002FA8EF /* MemberCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCollectionViewCell.swift; sourceTree = "<group>"; };
-		CFAFC6092DB828E6002FA8EF /* MembersCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersCollectionDataSource.swift; sourceTree = "<group>"; };
 		CFAFC60B2DB91431002FA8EF /* Int+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+extension.swift"; sourceTree = "<group>"; };
 		CFAFC60D2DB91BB3002FA8EF /* CGFLoat+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFLoat+extension.swift"; sourceTree = "<group>"; };
 		CFB11FD02DB59D7300609CEF /* UIImage+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
@@ -432,6 +432,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CF7405AF2DD3B60000B71E2B /* CollectionViewData */ = {
+			isa = PBXGroup;
+			children = (
+				CF7405AD2DD3B60000B71E2B /* MemberCollectionViewCell.swift */,
+				CF7405AE2DD3B60000B71E2B /* MembersCollectionDataSource.swift */,
+			);
+			path = CollectionViewData;
+			sourceTree = "<group>";
+		};
+		CF7405B32DD3B60000B71E2B /* TripDetailScreen */ = {
+			isa = PBXGroup;
+			children = (
+				CF7405AF2DD3B60000B71E2B /* CollectionViewData */,
+				CF7405B02DD3B60000B71E2B /* TripDetailController.swift */,
+				CF7405B12DD3B60000B71E2B /* TripDetailView.swift */,
+				CF7405B22DD3B60000B71E2B /* TripDetailViewModel.swift */,
+			);
+			path = TripDetailScreen;
+			sourceTree = "<group>";
+		};
 		CF87355F2DD3A1EB00A45779 /* Container */ = {
 			isa = PBXGroup;
 			children = (
@@ -504,9 +524,9 @@
 				CFAD6A4E2DAACDB8003930F3 /* LoginScreen */,
 				CFAD6A622DABD35E003930F3 /* RegistrationScreen */,
 				CFB11FF32DB688E300609CEF /* MyTripsScreen */,
-				CFAFBEE62DB6ECE2002FA8EF /* TripDetailScreen */,
 				CF7405822DD3A32500B71E2B /* CreateTrip */,
 				CF7405942DD3A3D100B71E2B /* ContactsModule */,
+				CF7405B32DD3B60000B71E2B /* TripDetailScreen */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -635,26 +655,6 @@
 				CFAFBEF12DB787BC002FA8EF /* NetworkErrors.swift */,
 			);
 			path = Errors;
-			sourceTree = "<group>";
-		};
-		CFAFBEE62DB6ECE2002FA8EF /* TripDetailScreen */ = {
-			isa = PBXGroup;
-			children = (
-				CFAFBEE72DB77ABF002FA8EF /* TripDetailView.swift */,
-				CFAFBEE92DB77AC5002FA8EF /* TripDetailController.swift */,
-				CFAFBEEB2DB77ACC002FA8EF /* TripDetailViewModel.swift */,
-				CFAFC6062DB8266A002FA8EF /* CollectionViewData */,
-			);
-			path = TripDetailScreen;
-			sourceTree = "<group>";
-		};
-		CFAFC6062DB8266A002FA8EF /* CollectionViewData */ = {
-			isa = PBXGroup;
-			children = (
-				CFAFC6072DB827F3002FA8EF /* MemberCollectionViewCell.swift */,
-				CFAFC6092DB828E6002FA8EF /* MembersCollectionDataSource.swift */,
-			);
-			path = CollectionViewData;
 			sourceTree = "<group>";
 		};
 		CFB11FDD2DB62F3400609CEF /* Model */ = {
@@ -876,6 +876,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF7405B42DD3B60F00B71E2B /* MemberCollectionViewCell.swift in Sources */,
+				CF7405B52DD3B60F00B71E2B /* MembersCollectionDataSource.swift in Sources */,
+				CF7405B62DD3B60F00B71E2B /* TripDetailController.swift in Sources */,
+				CF7405B72DD3B60F00B71E2B /* TripDetailView.swift in Sources */,
+				CF7405B82DD3B60F00B71E2B /* TripDetailViewModel.swift in Sources */,
 				CF7405A42DD3AE0200B71E2B /* UITableView+extension.swift in Sources */,
 				CF74059E2DD3A42D00B71E2B /* ICloudNavTitle.swift in Sources */,
 				CF74059C2DD3A3FB00B71E2B /* AlertFactory.swift in Sources */,
@@ -898,16 +903,13 @@
 				CFB11FF92DB688E900609CEF /* MyTripsView.swift in Sources */,
 				CFB11FFA2DB688E900609CEF /* MyTripsViewModel.swift in Sources */,
 				CF3556992DA8581700290A81 /* AppDelegate.swift in Sources */,
-				CFAFC6082DB827F3002FA8EF /* MemberCollectionViewCell.swift in Sources */,
 				CF3B469E2DB58013008C4CA0 /* UITabBar+extension.swift in Sources */,
 				CFAD6A572DAACFB5003930F3 /* TextFieldBuilder.swift in Sources */,
-				CFAFC60A2DB828E6002FA8EF /* MembersCollectionDataSource.swift in Sources */,
 				CFAD6AF42DACF814003930F3 /* LoginErrors.swift in Sources */,
 				CFB11FE82DB6511500609CEF /* Currency.swift in Sources */,
 				CFAD6AE72DAC1B88003930F3 /* UITextFieldDelegateDefaultImpl.swift in Sources */,
 				CFAD6AEC2DAC21D7003930F3 /* UIView+extension.swift in Sources */,
 				CFAD6A5B2DAAEEF5003930F3 /* FontValues.swift in Sources */,
-				CFAFBEEA2DB77AC5002FA8EF /* TripDetailController.swift in Sources */,
 				CFAFBEF22DB787BC002FA8EF /* NetworkErrors.swift in Sources */,
 				CF3B469C2DB57DBB008C4CA0 /* TabBarScreenTags.swift in Sources */,
 				CFB11FE62DB637E500609CEF /* Sections.swift in Sources */,
@@ -936,7 +938,6 @@
 				CF8735872DD3A1EB00A45779 /* ITripDetailViewModel.swift in Sources */,
 				CFAD6A542DAACE03003930F3 /* LoginController.swift in Sources */,
 				CF35569A2DA8581700290A81 /* SceneDelegate.swift in Sources */,
-				CFAFBEE82DB77ABF002FA8EF /* TripDetailView.swift in Sources */,
 				CFAFBEF02DB78631002FA8EF /* TripDetail.swift in Sources */,
 				CF19AD3F2DBE8DC400FF45FE /* AuthCoordinator.swift in Sources */,
 				CFAD6A502DAACDEF003930F3 /* LoginView.swift in Sources */,
@@ -946,7 +947,6 @@
 				CFAFC6032DB7F497002FA8EF /* TripDateView.swift in Sources */,
 				CFAD6A522DAACDFC003930F3 /* LoginViewModel.swift in Sources */,
 				CFAFC60C2DB91431002FA8EF /* Int+extension.swift in Sources */,
-				CFAFBEEC2DB77ACC002FA8EF /* TripDetailViewModel.swift in Sources */,
 				CFAFC60E2DB91BB3002FA8EF /* CGFLoat+extension.swift in Sources */,
 				CF19AD412DBE946600FF45FE /* MainCoordinator.swift in Sources */,
 				CFAD6AE52DAC1104003930F3 /* SystemImages.swift in Sources */,
