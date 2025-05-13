@@ -3,9 +3,9 @@ import SkeletonView
 
 final class MembersCollectionDataSource: NSObject, UICollectionViewDataSource, SkeletonCollectionViewDataSource {
 
-    var viewModel: TripDetailVMProtocol
+    var viewModel: ITripDetailViewModel
 
-    init(viewModel: TripDetailVMProtocol) {
+    init(viewModel: ITripDetailViewModel) {
         self.viewModel = viewModel
     }
 

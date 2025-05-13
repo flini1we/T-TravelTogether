@@ -1,8 +1,8 @@
 import UIKit
 
-protocol AppFormatterProtocol {
+protocol IAppFormatter {
 
-    static var shared: AppFormatterProtocol { get }
+    static var shared: IAppFormatter { get }
     var dateFormatter: DateFormatter { get set }
     var numberFormatter: NumberFormatter { get set }
 

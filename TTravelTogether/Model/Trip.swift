@@ -18,7 +18,48 @@ struct Trip: Identifiable, Hashable, Codable {
 }
 
 extension Trip {
-    static func obtainMock() -> [Self] {
+    static func fake() -> [Self] {
+        [
+            .init(
+                title: .AppStrings.AppTitles.tripDetailTitle,
+                startsAt: .now,
+                finishAt: .now,
+                price: .AppIntegers.tripPricePlaceholder
+            ),
+            .init(
+                title: .AppStrings.AppTitles.tripDetailTitle,
+                startsAt: .now,
+                finishAt: .now,
+                price: .AppIntegers.tripPricePlaceholder
+            ),
+            .init(
+                title: .AppStrings.AppTitles.tripDetailTitle,
+                startsAt: .now,
+                finishAt: .now,
+                price: .AppIntegers.tripPricePlaceholder
+            ),
+            .init(
+                title: .AppStrings.AppTitles.tripDetailTitle,
+                startsAt: .now,
+                finishAt: .now,
+                price: .AppIntegers.tripPricePlaceholder
+            ),
+            .init(
+                title: .AppStrings.AppTitles.tripDetailTitle,
+                startsAt: .now,
+                finishAt: .now,
+                price: .AppIntegers.tripPricePlaceholder
+            ),
+            .init(
+                title: .AppStrings.AppTitles.tripDetailTitle,
+                startsAt: .now,
+                finishAt: .now,
+                price: .AppIntegers.tripPricePlaceholder
+            )
+        ]
+    }
+
+    static func obtainData() -> [Self] {
         [
             .init(title: "Сочи", startsAt: .now, finishAt: .now, price: 1000000),
             .init(title: "London", startsAt: .now, finishAt: .now, price: 969830),

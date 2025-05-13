@@ -8,7 +8,7 @@ enum RegularExpressions {
         case .russianPhoneNumber:
             return #"^(\+79\d{9}|89\d{9})$"#
         case .password:
-            return "^(?=.*[A-Z])(?=.*\\d).{6,}$"
+            return "^(?=.*[A-Z])(?=.*\\d).{6,15}$"
         }
     }
 }

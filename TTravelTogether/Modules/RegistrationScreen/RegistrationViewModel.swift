@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-final class RegistrationViewModel: Registratable {
+final class RegistrationViewModel: IRegistrationViewModel {
 
     @Published var isFetchingRequest = false
 
@@ -51,12 +51,12 @@ final class RegistrationViewModel: Registratable {
     func getPhoneErrorMessage(_ phone: String) -> String {
         guard !isPhoneValid else { return "" }
 
-        if phone.starts(with: String.AppStrings.phonePrefix89) && phone.count > 11 {
-            return .AppStrings.invalidPhoneLenght
-        } else if phone.starts(with: String.AppStrings.phonePrefixPlus79) && phone.count > 12 {
-            return .AppStrings.invalidPhoneLenght
-        } else if !phone.starts(with: String.AppStrings.phonePrefix89) || !phone.starts(with: String.AppStrings.phonePrefixPlus79) {
-            return .AppStrings.invalidPhoneStartsWith
+        if phone.starts(with: String.AppStrings.Auth.phonePrefix89) && phone.count > 11 {
+            return .AppStrings.Auth.invalidPhoneLenght
+        } else if phone.starts(with: String.AppStrings.Auth.phonePrefixPlus79) && phone.count > 12 {
+            return .AppStrings.Auth.invalidPhoneLenght
+        } else if !phone.starts(with: String.AppStrings.Auth.phonePrefix89) || !phone.starts(with: String.AppStrings.Auth.phonePrefixPlus79) {
+            return .AppStrings.Auth.invalidPhoneStartsWith
         }
         return ""
     }
@@ -74,12 +74,12 @@ final class RegistrationViewModel: Registratable {
         guard !isPasswordValid else { return "" }
 
         if password.count < .AppIntegers.passwordMinLength {
-            return .AppStrings.invalidPasswordLengthMin
+            return .AppStrings.Auth.invalidPasswordLengthMin
         } else if password.count > .AppIntegers.passwordMaxLength {
-            return .AppStrings.invalidPasswordLengthMax
+            return .AppStrings.Auth.invalidPasswordLengthMax
         } else if !password.contains(where: { $0.isUppercase }) ||
                   !password.contains(where: { $0.isNumber }) {
-            return .AppStrings.invalidPasswordData
+            return .AppStrings.Auth.invalidPasswordData
         }
         return ""
     }
@@ -91,6 +91,6 @@ final class RegistrationViewModel: Registratable {
     }
 
     func getConfirmedPasswordErrorMessage() -> String {
-        return !isPasswordConfirmed ? .AppStrings.invalidPasswordConfirmed : ""
+        return !isPasswordConfirmed ? .AppStrings.Auth.invalidPasswordConfirmed : ""
     }
 }

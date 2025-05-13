@@ -12,11 +12,12 @@ enum UIElementsValues {
          tripCellHeight,
          calendarIcon,
          memberCollectionViewCell,
-         anyNavigationBarItem
+         anyNavigationBarItem,
+         searchBar
 
     var value: CGFloat {
         switch self {
-        case .textFieldHeight, .buttonHeight:
+        case .textFieldHeight, .buttonHeight, .searchBar:
             55
         case .systemButtonHeight, .locationMark:
             30
@@ -42,8 +43,8 @@ enum UIElementsValues {
     var size: CGSize {
         switch self {
         case .memberCollectionViewCell:
-            let width = UIScreen.main.bounds.width / 3
-            return CGSize(width: width, height: width / 1.75)
+            let width = UIScreen.main.bounds.width / 2.5
+            return CGSize(width: width, height: width / 2)
         default:
             return 0.getSize
         }

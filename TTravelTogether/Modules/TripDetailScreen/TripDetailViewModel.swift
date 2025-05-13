@@ -1,11 +1,11 @@
 import Foundation
 import Combine
 
-final class TripDetailViewModel: TripDetailVMProtocol {
+final class TripDetailViewModel: ITripDetailViewModel {
 
     var tripId: UUID
 
-    @Published var tripDetail: TripDetail = .getPlaceholder()
+    @Published var tripDetail: TripDetail = .fake()
 
     var tripDetailPublisher: Published<TripDetail>.Publisher {
         $tripDetail
@@ -17,6 +17,10 @@ final class TripDetailViewModel: TripDetailVMProtocol {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.tripDetail = TripDetail(
                 id: tripId,
+                title: .AppStrings.AppTitles.tripDetailTitle,
+                price: .AppIntegers.tripPricePlaceholder,
+                startsAt: .now,
+                finishAt: .now,
                 admin: User(phoneNumber: "+79173981189"),
                 members: [
                     User(phoneNumber: "+79173981190"),

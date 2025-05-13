@@ -1,6 +1,6 @@
 import UIKit
 
-final class TextFieldDelegate: NSObject, UITextFieldDelegate {
+final class UserTextFieldDelegate: NSObject, UITextFieldDelegate {
 
     private let phoneNumberField: UITextField
     private let passwordField: UITextField

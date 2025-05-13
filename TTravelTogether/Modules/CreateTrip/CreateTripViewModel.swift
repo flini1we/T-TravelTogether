@@ -1,0 +1,111 @@
+import Foundation
+import Combine
+import Contacts
+import ContactsUI
+
+final class CreateTripViewModel: NSObject, ICreateTripViewModel {
+    var onClearingController: (() -> Void)?
+
+    @Published var tripMembers: [User] = []
+    @Published private(set) var isCreateButtonEnable: Bool = false
+    @Published var tripTitleText: String = ""
+    @Published var tripPriceText: String = ""
+    @Published var createdTrip: Trip?
+
+    var isCreateButtonEnablePublisher: Published<Bool>.Publisher {
+        $isCreateButtonEnable
+    }
+    var tripTitleTextPublisher: Published<String>.Publisher {
+        $tripTitleText
+    }
+    var tripPricePublisher: Published<String>.Publisher {
+        $tripPriceText
+    }
+    var tripMembersPublisher: Published<[User]>.Publisher {
+        $tripMembers
+    }
+    var createdTripPublisher: Published<Trip?>.Publisher {
+        $createdTrip
+    }
+
+    private var cancellables = Set<AnyCancellable>()
+    private var selectedUsers = Set<String>()
+    private let currentUser = UserService.shared.currentUser!
+
+    init(_ user: User) {
+        super.init()
+        tripMembers.append(currentUser)
+        setupBindings()
+    }
+
+    func addMembers(phoneNumbers: [String]) {
+        let users = phoneNumbers.map { User(phoneNumber: $0) }
+        tripMembers.append(contentsOf: users)
+    }
+
+    func clearData() {
+        tripMembers = [tripMembers[0]]
+        tripTitleText = ""
+        tripPriceText = ""
+        onClearingController?()
+        selectedUsers = []
+    }
+
+    func updateMembers(users: [User]) {
+        let users = users.filter {
+            $0.phoneNumber != currentUser.phoneNumber
+        }
+        tripMembers = [currentUser] + users
+    }
+
+    func obtainContacts() -> [Contact] {
+        tripMembers.map {
+            Contact(phoneNumber: $0.phoneNumber, firstName: "", secondName: "")
+        }
+    }
+
+    func createTrip(dates: (start: Date, finish: Date)) {
+        let trip = Trip(
+            title: tripTitleText,
+            startsAt: dates.start,
+            finishAt: dates.finish,
+            price: Int(tripPriceText) ?? 0
+        )
+        let tripDetail = TripDetail(
+            id: trip.id,
+            title: trip.title,
+            price: trip.price,
+            startsAt: trip.startsAt,
+            finishAt: trip.finishAt,
+            admin: tripMembers[0],
+            members: Array(tripMembers[1...])
+        )
+        // TODO: send to backend
+        createdTrip = trip
+    }
+}
+
+extension CreateTripViewModel: CNContactPickerDelegate {
+
+    func contactPicker(_ picker: CNContactPickerViewController, didSelect contacts: [CNContact]) {
+        var selectedPhoneNumbers: [String] = []
+
+        for contact in contacts {
+            if let phoneNumber = contact.phoneNumbers.first?.value.stringValue,
+               selectedUsers.insert(phoneNumber).inserted {
+                selectedPhoneNumbers.append(phoneNumber)
+            }
+        }
+        addMembers(phoneNumbers: selectedPhoneNumbers)
+    }
+}
+
+private extension CreateTripViewModel {
+
+    func setupBindings() {
+        Publishers.CombineLatest($tripTitleText, $tripPriceText)
+            .map { !$0.isEmpty && !$1.isEmpty }
+            .assign(to: \.isCreateButtonEnable, on: self)
+            .store(in: &cancellables)
+    }
+}

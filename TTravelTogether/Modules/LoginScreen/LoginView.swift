@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-final class LoginView: UIView, LoginViewProtocol {
+final class LoginView: UIView, ILoginView {
     // MARK: UIElements
     private lazy var primaryImageLabel: UIImageView = {
         let imageView = UIImageView(image: .primaryLogo)
@@ -26,7 +26,7 @@ final class LoginView: UIView, LoginViewProtocol {
             .font(.systemFont(ofSize: FontValues.default.value))
             .cornerRadius(.default)
             .isSecureEntry(false)
-            .placeHolder(.AppStrings.phoneNumber)
+            .placeHolder(.AppStrings.Auth.phoneNumber)
             .returnKeyType(.continue)
             .keyboardType(.default)
             .paddinLeft(PaddingValues.default.value)
@@ -39,7 +39,7 @@ final class LoginView: UIView, LoginViewProtocol {
             .font(.systemFont(ofSize: FontValues.default.value))
             .cornerRadius(.default)
             .isSecureEntry(true)
-            .placeHolder(.AppStrings.password)
+            .placeHolder(.AppStrings.Auth.password)
             .returnKeyType(.done)
             .paddinLeft(PaddingValues.default.value)
             .enableTogglingSecure()
@@ -59,7 +59,7 @@ final class LoginView: UIView, LoginViewProtocol {
             .tintColor(.buttonLabel)
             .font(CustomFonts.bold(FontValues.default.value).font)
             .backgroundColor(.primaryYellow)
-            .title(.AppStrings.enter)
+            .title(.AppStrings.Auth.enter)
             .cornerRadius(.default)
             .build()
     }()
@@ -67,11 +67,11 @@ final class LoginView: UIView, LoginViewProtocol {
     private lazy var goToRegistrationButton: UIButton = {
         ButtonBuilder()
             .tintColor(.primaryBlue)
-            .title(.AppStrings.toRegistration)
+            .title(.AppStrings.Auth.toRegistration)
             .build()
     }()
 
-    private(set) lazy var activityIndicator: ActivityIndicatorProtocol = {
+    private(set) lazy var activityIndicator: IActivityIndicator = {
         let indicator = ActivityIndicatorView()
         indicator.alpha = 0
         indicator.animate()
@@ -134,12 +134,8 @@ final class LoginView: UIView, LoginViewProtocol {
         }
     }
 
-    func activateIndicator() {
-        activityIndicator.alpha = 1
-    }
-
-    func deactivateIndicator() {
-        activityIndicator.alpha = 0
+    func showLoadingIndicator(_ isLoading: Bool) {
+        activityIndicator.alpha = isLoading ? 1 : 0
     }
 }
 

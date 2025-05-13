@@ -1,7 +1,7 @@
 import UIKit
 import Combine
 
-protocol Loginable: AnyObject {
+protocol ILoginViewModel: AnyObject {
 
     var isLoading: Bool { get set }
 

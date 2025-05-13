@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-final class RegistrationView: UIView, RegistrationViewProtocol {
+final class RegistrationView: UIView, IRegistrationView {
     // MARK: UIElements
     private lazy var imageLabel: UIImageView = {
         let imageView = UIImageView(image: .registrationLogo)
@@ -15,7 +15,7 @@ final class RegistrationView: UIView, RegistrationViewProtocol {
             .cornerRadius(.default)
             .isSecureEntry(false)
             .keyboardType(.default)
-            .placeHolder(.AppStrings.phoneNumber)
+            .placeHolder(.AppStrings.Auth.phoneNumber)
             .returnKeyType(.continue)
             .paddinLeft(PaddingValues.default.value)
             .build()
@@ -33,7 +33,7 @@ final class RegistrationView: UIView, RegistrationViewProtocol {
             .font(.systemFont(ofSize: FontValues.default.value))
             .cornerRadius(.default)
             .isSecureEntry(true)
-            .placeHolder(.AppStrings.password)
+            .placeHolder(.AppStrings.Auth.password)
             .returnKeyType(.continue)
             .paddinLeft(PaddingValues.default.value)
             .enableTogglingSecure()
@@ -52,7 +52,7 @@ final class RegistrationView: UIView, RegistrationViewProtocol {
             .font(.systemFont(ofSize: FontValues.default.value))
             .cornerRadius(.default)
             .isSecureEntry(true)
-            .placeHolder(.AppStrings.confirmPassword)
+            .placeHolder(.AppStrings.Auth.confirmPassword)
             .returnKeyType(.done)
             .paddinLeft(PaddingValues.default.value)
             .enableTogglingSecure()
@@ -70,13 +70,13 @@ final class RegistrationView: UIView, RegistrationViewProtocol {
         ButtonBuilder()
             .tintColor(.buttonLabel)
             .backgroundColor(.primaryYellow)
-            .title(.AppStrings.registerAction)
+            .title(.AppStrings.Auth.registerAction)
             .cornerRadius(.default)
             .font(CustomFonts.bold(FontValues.default.value).font)
             .build()
     }()
 
-    private(set) lazy var activityIndicator: ActivityIndicatorProtocol = {
+    private(set) lazy var activityIndicator: IActivityIndicator = {
         let indicator = ActivityIndicatorView()
         indicator.alpha = 0
         indicator.animate()

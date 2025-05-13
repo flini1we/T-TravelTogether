@@ -3,7 +3,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    private var appCoordinator: Coordinator?
+    private var appCoordinator: ICoordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -12,7 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController = UINavigationController()
 
         appCoordinator = AppFlowCoordinator(
-            navigationController: navigationController, dependencies: SwinjectContainer.shared
+            navigationController: navigationController, dependencies: SwinjectContainer()
         )
 
         window?.rootViewController = navigationController

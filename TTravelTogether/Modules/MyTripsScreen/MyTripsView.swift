@@ -5,7 +5,7 @@ final class MyTripsView: UIView {
 
     private lazy var title: UILabel = {
         LabelBuilder()
-            .text(.AppStrings.myTravellingsTitle)
+            .text(.AppStrings.AppTitles.myTravellingsTitle)
             .textColor(.label)
             .font(CustomFonts.bold(FontValues.big.value).font)
             .build()
@@ -13,7 +13,7 @@ final class MyTripsView: UIView {
 
     private(set) lazy var searchBar: UISearchBar = {
         let search = UISearchBar()
-        search.placeholder = .AppStrings.searchBar
+        search.placeholder = .AppStrings.AppTitles.searchBar
         search.searchBarStyle = .minimal
         search.backgroundColor = .clear
         search.searchTextField.backgroundColor = .secondaryBG.withAlphaComponent(0.75)
@@ -30,6 +30,7 @@ final class MyTripsView: UIView {
         table.register(TripTableViewCell.self, forCellReuseIdentifier: TripTableViewCell.identifier)
         table.contentInset = UIEdgeInsets(top: PaddingValues.small.value, left: 0, bottom: 0, right: 0)
         table.rowHeight = UIElementsValues.tripCellHeight.value
+        table.makeSkeletonable()
         return table
     }()
 
@@ -55,6 +56,7 @@ private extension MyTripsView {
 
     func setup() {
         backgroundColor = .systemBackground
+        makeSkeletonable()
         setupSubviews()
         setupConstraints()
     }

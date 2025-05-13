@@ -2,17 +2,16 @@ import UIKit
 import Combine
 
 final class LoginController: UIViewController {
-    var goToRegistration: (() -> Void)?
-    var onLoginSuccess: ((String) -> Void)?
+    weak var coordinator: IAuthCoordinator?
 
-    private var loginView: LoginViewProtocol {
-        view as! LoginViewProtocol
+    private var loginView: ILoginView {
+        view as! ILoginView
     }
-    private var viewModel: Loginable
+    private var viewModel: ILoginViewModel
 
     private lazy var goToRegistrationScreenAction: UIAction = {
         UIAction { [weak self] _ in
-            self?.goToRegistration?()
+            self?.coordinator?.goToRegistration()
         }
     }()
     private lazy var loginAction: UIAction = {
@@ -27,13 +26,9 @@ final class LoginController: UIViewController {
     private var textFieldDelegate: UITextFieldDelegate?
     private var cancellables: Set<AnyCancellable> = []
 
-    init(viewModel: Loginable) {
+    init(viewModel: ILoginViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
     override func loadView() {
@@ -49,6 +44,10 @@ final class LoginController: UIViewController {
         setupDelegates()
         setupActions()
     }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
 private extension LoginController {
@@ -56,7 +55,7 @@ private extension LoginController {
     func handleLoginResult(_ result: Result<String, LoginErrors>) {
         switch result {
         case .success(let user):
-            onLoginSuccess?(user)
+            coordinator?.onLoginSuccess(user)
             loginView.errorMessageTitle.text = ""
         case .failure(let error):
             loginView.errorMessageTitle.text = error.getError
@@ -68,13 +67,13 @@ private extension LoginController {
             .dropFirst()
             .sink { [weak self] isLoading in
                 guard let self else { return }
-                isLoading ? loginView.activateIndicator() : loginView.deactivateIndicator()
+                loginView.showLoadingIndicator(isLoading)
                 loginView.toggleTransparentBGVisibility()
             }.store(in: &cancellables)
     }
 
     func setupDelegates() {
-        textFieldDelegate = TextFieldDelegate(
+        textFieldDelegate = UserTextFieldDelegate(
             phoneNumberField: loginView.phoneNumberField,
             passwordField: loginView.passwordField,
             confirmPasswordField: nil)
