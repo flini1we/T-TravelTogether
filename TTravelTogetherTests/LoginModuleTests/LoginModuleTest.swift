@@ -3,7 +3,7 @@ import XCTest
 
 final class LoginModuleTest: XCTestCase {
     
-    private var loginViewModel: Loginable!
+    private var loginViewModel: ILoginViewModel!
     
     override func setUp() {
         super.setUp()
