@@ -15,6 +15,6 @@ protocol IDependencyContainer {
     func resolveTripDetailController(tripId: UUID) -> TripDetailController
     func resolveCreateTripController(user: User) -> CreateTripController
     func resolveContactsController(selectedContacts: [Contact]) -> ContactsController
-
+ 
     func resolveMainTabBarController() -> UITabBarController
 }
