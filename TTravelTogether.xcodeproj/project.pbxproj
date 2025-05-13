@@ -301,13 +301,13 @@
 		CF3556932DA8581700290A81 /* TTravelTogether */ = {
 			isa = PBXGroup;
 			children = (
-				CF8735752DD3A1EB00A45779 /* Protocols */,
 				CF3556912DA8581700290A81 /* TTravelTogether.xcdatamodeld */,
 				CF35568A2DA8581700290A81 /* Assets.xcassets */,
 				CF35568B2DA8581700290A81 /* Info.plist */,
 				CF35568D2DA8581700290A81 /* LaunchScreen.storyboard */,
 				CF3556892DA8581700290A81 /* AppDelegate.swift */,
 				CF3556902DA8581700290A81 /* SceneDelegate.swift */,
+				CF8735752DD3A1EB00A45779 /* Protocols */,
 				CFB11FEE2DB6855400609CEF /* Formatter */,
 				CFB11FDD2DB62F3400609CEF /* Model */,
 				CFAD6AF22DACF80B003930F3 /* Errors */,
