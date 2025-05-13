@@ -18,7 +18,7 @@ final class MainCoordinator: NSObject, IMainCoordinator {
         showMainTabBar()
     }
 
-    func showTripDetail(_ id: UUID) {
+    func showTripDetail(for id: UUID) {
         let detailVC = dependencies.resolveTripDetailController(tripId: id)
         navigationController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(detailVC, animated: true)

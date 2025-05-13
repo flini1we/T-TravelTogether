@@ -51,7 +51,7 @@ private extension MyTripsController {
 
     func setupDelegate() {
         tableViewDelegate = TripsTableDelegate(viewModel: viewModel) { [weak self] tripId in
-            self?.coordinator?.showTripDetail(tripId)
+            self?.coordinator?.showTripDetail(for: tripId)
         }
         myTripsView.travellingsTableView.delegate = tableViewDelegate
     }

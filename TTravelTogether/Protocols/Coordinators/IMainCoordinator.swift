@@ -5,6 +5,6 @@ protocol IMainCoordinator: ICoordinator {
     var dependencies: DependencyContainerProtocol { get }
     var registratedUser: User! { get }
 
-    func showTripDetail(_ id: UUID)
+    func showTripDetail(for id: UUID)
     func showContactList()
 }
