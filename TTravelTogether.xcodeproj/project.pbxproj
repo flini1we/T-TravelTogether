@@ -41,6 +41,7 @@
 		CF74059C2DD3A3FB00B71E2B /* AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF74059B2DD3A3FB00B71E2B /* AlertFactory.swift */; };
 		CF74059E2DD3A42D00B71E2B /* ICloudNavTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF74059D2DD3A42D00B71E2B /* ICloudNavTitle.swift */; };
 		CF7405A22DD3A48D00B71E2B /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = CF7405A12DD3A48D00B71E2B /* Swinject */; };
+		CF7405A42DD3AE0200B71E2B /* UITableView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7405A32DD3AE0200B71E2B /* UITableView+extension.swift */; };
 		CF8735762DD3A1EB00A45779 /* IAppFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8735642DD3A1EB00A45779 /* IAppFormatter.swift */; };
 		CF8735772DD3A1EB00A45779 /* ICoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8735612DD3A1EB00A45779 /* ICoordinator.swift */; };
 		CF8735782DD3A1EB00A45779 /* IContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8735662DD3A1EB00A45779 /* IContactsViewModel.swift */; };
@@ -171,6 +172,7 @@
 		CF7405932DD3A3D100B71E2B /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
 		CF74059B2DD3A3FB00B71E2B /* AlertFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFactory.swift; sourceTree = "<group>"; };
 		CF74059D2DD3A42D00B71E2B /* ICloudNavTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICloudNavTitle.swift; sourceTree = "<group>"; };
+		CF7405A32DD3AE0200B71E2B /* UITableView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+extension.swift"; sourceTree = "<group>"; };
 		CF87355E2DD3A1EB00A45779 /* IDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDependencyContainer.swift; sourceTree = "<group>"; };
 		CF8735602DD3A1EB00A45779 /* IAuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAuthCoordinator.swift; sourceTree = "<group>"; };
 		CF8735612DD3A1EB00A45779 /* ICoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICoordinator.swift; sourceTree = "<group>"; };
@@ -603,6 +605,7 @@
 				CFB11FD92DB62A7C00609CEF /* String+extension.swift */,
 				CFAFC60B2DB91431002FA8EF /* Int+extension.swift */,
 				CFAFC60D2DB91BB3002FA8EF /* CGFLoat+extension.swift */,
+				CF7405A32DD3AE0200B71E2B /* UITableView+extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -873,6 +876,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF7405A42DD3AE0200B71E2B /* UITableView+extension.swift in Sources */,
 				CF74059E2DD3A42D00B71E2B /* ICloudNavTitle.swift in Sources */,
 				CF74059C2DD3A3FB00B71E2B /* AlertFactory.swift in Sources */,
 				CF7405952DD3A3DF00B71E2B /* ContactsTableViewCell.swift in Sources */,
