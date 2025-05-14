@@ -2,6 +2,7 @@ import UIKit
 
 protocol ILoginView: AnyObject {
 
+    var loginViewTitle: UILabel { get }
     var phoneNumberField: UITextField { get }
     var passwordField: UITextField { get }
     var errorMessageTitle: UILabel { get }

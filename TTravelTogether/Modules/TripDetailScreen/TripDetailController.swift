@@ -59,6 +59,9 @@ private extension TripDetailController {
                 self?.tripDetailView.tripMemebersCollectionView.reloadData()
                 self?.tripDetailView.tripMemebersCollectionView.hideSkeleton()
                 self?.tripDetailView.activateTransactionButton()
+                self?.navigationItem.rightBarButtonItems?.forEach {
+                    $0.setEnabled(true, enableColor: $0.tag == 1 ? .primaryRed : nil)
+                }
             }
             .store(in: &cancellables)
     }
@@ -66,18 +69,37 @@ private extension TripDetailController {
     func setupNavigationItem() {
         let leaveButton = UIBarButtonItem(
             title: "",
-            image: SystemImages.leaveTrip.image.resized(to: UIElementsValues.tabBarItem.padding(10).getSize),
-            primaryAction: UIAction { _ in },
+            image: SystemImages.leaveTrip.image.resized(to: UIElementsValues.tabBarItem.padding(PaddingValues.semiSmall.value).getSize),
+            primaryAction: UIAction { [weak self] _ in
+                guard let self else { return }
+                let alert = AlertFactory.createLeaveTripAlert(
+                    isAdmin: viewModel.isAdmin(),
+                    onConfirm: {
+                        // TODO: leave trip logic
+                    }
+                )
+                navigationController?.present(alert, animated: true)
+            },
             menu: nil
         )
-        leaveButton.tintColor = .primaryRed
+        leaveButton.setEnabled(false)
+        leaveButton.tag = 1
 
         let editButton = UIBarButtonItem(
             title: "",
             image: SystemImages.editTrip.image,
-            primaryAction: UIAction { _ in },
+            primaryAction: UIAction { [weak self] _ in
+                guard let self else { return }
+                if !viewModel.isAdmin() {
+                    navigationController?.present(AlertFactory.createEditTripAlert(), animated: true)
+                } else {
+                    // TODO: edit action
+                }
+            },
             menu: nil
         )
+        editButton.setEnabled(false)
+        editButton.tag = 0
 
         navigationItem.rightBarButtonItems = [leaveButton, editButton]
     }

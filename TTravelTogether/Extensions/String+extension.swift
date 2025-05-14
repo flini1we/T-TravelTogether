@@ -20,14 +20,22 @@ extension String {
             static let enter = "Войти"
             static let toRegistration = "Регистрация"
             static let registerAction = "Зарегистрироваться"
+            static let loginTitle = "Авторизация"
+            static let registerTitle = "Регистрация"
         }
 
         enum Alert {
+
             static let ok = "Ок"
+            static let confirm = "Подтвердить"
             static let settings = "Настройки"
             static let cancel = "Отмена"
             static let accessToContactsTitle = "Доступ к списку контактов"
             static let accessToContactsMessage = "Пожалуйста предоставьте доступ к контактам для добавления в поездку"
+            static let leaveTripTitle = "Покинуть поездку"
+            static let leaveTripAdminTitle = "Админ не может покинуть поездку."
+            static let leaveTripMessage = "Вы уверены что хотете покинуть данное путешествие?"
+            static let editTripTitle = "Только админ может редактировать поездку"
         }
 
         enum AppTitles {

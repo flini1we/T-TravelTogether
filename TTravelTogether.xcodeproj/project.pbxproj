@@ -47,6 +47,8 @@
 		CF7405B62DD3B60F00B71E2B /* TripDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7405B02DD3B60000B71E2B /* TripDetailController.swift */; };
 		CF7405B72DD3B60F00B71E2B /* TripDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7405B12DD3B60000B71E2B /* TripDetailView.swift */; };
 		CF7405B82DD3B60F00B71E2B /* TripDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7405B22DD3B60000B71E2B /* TripDetailViewModel.swift */; };
+		CF7405BA2DD3E52900B71E2B /* RussianValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7405B92DD3E52900B71E2B /* RussianValidationService.swift */; };
+		CF7405BE2DD4B1DA00B71E2B /* UIBarButtonItem+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7405BD2DD4B1DA00B71E2B /* UIBarButtonItem+extension.swift */; };
 		CF8735762DD3A1EB00A45779 /* IAppFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8735642DD3A1EB00A45779 /* IAppFormatter.swift */; };
 		CF8735772DD3A1EB00A45779 /* ICoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8735612DD3A1EB00A45779 /* ICoordinator.swift */; };
 		CF8735782DD3A1EB00A45779 /* IContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8735662DD3A1EB00A45779 /* IContactsViewModel.swift */; };
@@ -178,6 +180,8 @@
 		CF7405B02DD3B60000B71E2B /* TripDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetailController.swift; sourceTree = "<group>"; };
 		CF7405B12DD3B60000B71E2B /* TripDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetailView.swift; sourceTree = "<group>"; };
 		CF7405B22DD3B60000B71E2B /* TripDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetailViewModel.swift; sourceTree = "<group>"; };
+		CF7405B92DD3E52900B71E2B /* RussianValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RussianValidationService.swift; sourceTree = "<group>"; };
+		CF7405BD2DD4B1DA00B71E2B /* UIBarButtonItem+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+extension.swift"; sourceTree = "<group>"; };
 		CF87355E2DD3A1EB00A45779 /* IDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDependencyContainer.swift; sourceTree = "<group>"; };
 		CF8735602DD3A1EB00A45779 /* IAuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAuthCoordinator.swift; sourceTree = "<group>"; };
 		CF8735612DD3A1EB00A45779 /* ICoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICoordinator.swift; sourceTree = "<group>"; };
@@ -400,6 +404,7 @@
 			isa = PBXGroup;
 			children = (
 				CF7405882DD3A37500B71E2B /* UserService.swift */,
+				CF7405B92DD3E52900B71E2B /* RussianValidationService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -626,6 +631,7 @@
 				CFAFC60B2DB91431002FA8EF /* Int+extension.swift */,
 				CFAFC60D2DB91BB3002FA8EF /* CGFLoat+extension.swift */,
 				CF7405A32DD3AE0200B71E2B /* UITableView+extension.swift */,
+				CF7405BD2DD4B1DA00B71E2B /* UIBarButtonItem+extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -922,6 +928,7 @@
 				CF8735772DD3A1EB00A45779 /* ICoordinator.swift in Sources */,
 				CF8735782DD3A1EB00A45779 /* IContactsViewModel.swift in Sources */,
 				CF8735792DD3A1EB00A45779 /* IAuthCoordinator.swift in Sources */,
+				CF7405BA2DD3E52900B71E2B /* RussianValidationService.swift in Sources */,
 				CF87357A2DD3A1EB00A45779 /* IRegistrationView.swift in Sources */,
 				CF87357B2DD3A1EB00A45779 /* ICreateTripViewModel.swift in Sources */,
 				CF87357C2DD3A1EB00A45779 /* ILoginView.swift in Sources */,
@@ -945,6 +952,7 @@
 				CFAD6A5D2DAAEF0A003930F3 /* PaddingValues.swift in Sources */,
 				CFAD6A5F2DAAF00D003930F3 /* ButtonBuilder.swift in Sources */,
 				CFAFC6032DB7F497002FA8EF /* TripDateView.swift in Sources */,
+				CF7405BE2DD4B1DA00B71E2B /* UIBarButtonItem+extension.swift in Sources */,
 				CFAD6A522DAACDFC003930F3 /* LoginViewModel.swift in Sources */,
 				CFAFC60C2DB91431002FA8EF /* Int+extension.swift in Sources */,
 				CFAFC60E2DB91BB3002FA8EF /* CGFLoat+extension.swift in Sources */,
@@ -1020,6 +1028,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AJ5QNVYP6Y;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TTravelTogether/Info.plist;
@@ -1048,6 +1057,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AJ5QNVYP6Y;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TTravelTogether/Info.plist;

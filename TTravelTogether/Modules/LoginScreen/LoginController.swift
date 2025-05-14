@@ -40,9 +40,7 @@ final class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupBindings()
-        setupDelegates()
-        setupActions()
+        setup()
     }
 
     required init?(coder: NSCoder) {
@@ -60,6 +58,13 @@ private extension LoginController {
         case .failure(let error):
             loginView.errorMessageTitle.text = error.getError
         }
+    }
+
+    func setup() {
+        setupBindings()
+        setupDelegates()
+        setupActions()
+        setupNavigationTitle()
     }
 
     func setupBindings() {
@@ -84,5 +89,9 @@ private extension LoginController {
     func setupActions() {
         loginView.setupGoToRegistrationPageAction(goToRegistrationScreenAction)
         loginView.setupLoginAction(loginAction)
+    }
+
+    func setupNavigationTitle() {
+        navigationItem.titleView = loginView.loginViewTitle
     }
 }

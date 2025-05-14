@@ -30,4 +30,8 @@ final class TripDetailViewModel: ITripDetailViewModel {
             )
         }
     }
+
+    func isAdmin() -> Bool {
+        UserService.shared.currentUser! == tripDetail.admin
+    }
 }

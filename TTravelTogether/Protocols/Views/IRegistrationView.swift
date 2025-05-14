@@ -2,6 +2,7 @@ import UIKit
 
 protocol IRegistrationView: AnyObject {
 
+    var registerViewTitle: UILabel { get }
     var phoneNumberField: UITextField { get }
     var phoneNumberFieldHint: UILabel { get }
     var passwordFieldFirst: UITextField { get }

@@ -7,4 +7,6 @@ protocol ITripDetailViewModel: AnyObject {
     var tripDetail: TripDetail { get }
 
     var tripDetailPublisher: Published<TripDetail>.Publisher { get }
+
+    func isAdmin() -> Bool
 }

@@ -9,12 +9,20 @@ final class RegistrationView: UIView, IRegistrationView {
         return imageView
     }()
 
+    private(set) lazy var registerViewTitle: UILabel = {
+        LabelBuilder()
+            .font(CustomFonts.bold(FontValues.medium.value).font)
+            .textColor(.label)
+            .text(.AppStrings.Auth.registerTitle)
+            .build()
+    }()
+
     private(set) lazy var phoneNumberField: UITextField = {
         TextFieldBuilder()
             .font(.systemFont(ofSize: FontValues.default.value))
             .cornerRadius(.default)
             .isSecureEntry(false)
-            .keyboardType(.default)
+            .keyboardType(.phonePad)
             .placeHolder(.AppStrings.Auth.phoneNumber)
             .returnKeyType(.continue)
             .paddinLeft(PaddingValues.default.value)

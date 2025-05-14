@@ -21,6 +21,14 @@ final class LoginView: UIView, ILoginView {
         return imageView
     }()
 
+    private(set) lazy var loginViewTitle: UILabel = {
+        LabelBuilder()
+            .font(CustomFonts.bold(FontValues.medium.value).font)
+            .textColor(.label)
+            .text(.AppStrings.Auth.loginTitle)
+            .build()
+    }()
+
     private(set) lazy var phoneNumberField: UITextField = {
         TextFieldBuilder()
             .font(.systemFont(ofSize: FontValues.default.value))
@@ -28,7 +36,7 @@ final class LoginView: UIView, ILoginView {
             .isSecureEntry(false)
             .placeHolder(.AppStrings.Auth.phoneNumber)
             .returnKeyType(.continue)
-            .keyboardType(.default)
+            .keyboardType(.phonePad)
             .paddinLeft(PaddingValues.default.value)
             .tag(0)
             .build()
@@ -161,12 +169,12 @@ private extension LoginView {
     func setupConstraints() {
         secondaryImageLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(safeAreaLayoutGuide.snp.top)
+            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(PaddingValues.big.value)
         }
 
         primaryImageLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(safeAreaLayoutGuide.snp.top).inset(PaddingValues.big.value)
+            make.top.equalTo(secondaryImageLabel.snp.bottom).inset(PaddingValues.default.value)
         }
 
         fieldsStackView.snp.makeConstraints { make in

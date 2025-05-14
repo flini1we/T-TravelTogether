@@ -39,7 +39,7 @@ final class MemberCollectionViewCell: UICollectionViewCell {
     }
 
     func setupWithUser(_ user: User, at indexPath: IndexPath) {
-        phoneNumberTitle.text = user.phoneNumber
+        phoneNumberTitle.text = RussianValidationService.shared.validate(phone: user.phoneNumber)
         bgView.layer.borderWidth = (indexPath.row == 0) ? 1 : 0
     }
 }

@@ -14,6 +14,7 @@ final class RegistrationController: UIViewController {
             self?.viewModel.register(completion: { result in
                 switch result {
                 case .success(let user):
+                    /// отправка на бек user с форматированныем номером
                     self?.registerButtonAction?(user)
                 case .failure(let failure):
                     print(failure.localizedDescription)
@@ -39,9 +40,7 @@ final class RegistrationController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupBindings()
-        setupDelegate()
-        setUpActions()
+        setup()
     }
 
     required init?(coder: NSCoder) {
@@ -50,6 +49,13 @@ final class RegistrationController: UIViewController {
 }
 
 private extension RegistrationController {
+
+    func setup() {
+        setupBindings()
+        setupDelegate()
+        setUpActions()
+        setupNavigationItem()
+    }
 
     func setupDelegate() {
         textFieldDelegate = UserTextFieldDelegate(
@@ -147,5 +153,9 @@ private extension RegistrationController {
 
     func setUpActions() {
         registrationView.addRegisterAction(registerAction)
+    }
+
+    func setupNavigationItem() {
+        navigationItem.titleView = registrationView.registerViewTitle
     }
 }
