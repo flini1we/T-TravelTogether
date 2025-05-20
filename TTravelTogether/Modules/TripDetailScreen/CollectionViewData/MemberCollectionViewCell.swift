@@ -12,9 +12,9 @@ final class MemberCollectionViewCell: UICollectionViewCell {
         let view = UIView()
         view.backgroundColor = .systemBackground
         view.layer.cornerRadius = PaddingValues.medium.value
-        view.layer.shadowOpacity = 0.25
+        view.layer.shadowOpacity = .AppFloats.Opacity.subtle
         view.layer.shadowOffset = CGSize(width: 0, height: 1.5)
-        view.layer.shadowRadius = 3
+        view.layer.shadowRadius = PaddingValues.tiny.value
         view.layer.shadowColor = UIColor.label.cgColor
         view.layer.borderColor = UIColor.primaryBlue.cgColor
         makeSkeletonable()

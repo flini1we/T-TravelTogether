@@ -28,7 +28,7 @@ private extension ContactsViewModel {
 
     func requestContactsAccess() {
         store.requestAccess(for: .contacts) { [weak self] granted, _ in
-            guard let self = self else { return }
+            guard let self else { return }
             if granted {
                 fetchContacts()
             } else {
@@ -57,17 +57,23 @@ private extension ContactsViewModel {
 
         // TODO: Error handling
         var fetchedContacts: [Contact] = []
-        try? self.store.enumerateContacts(with: request) { contact, _ in
-            if let phoneNumber = contact.phoneNumbers.first?.value.stringValue {
-                fetchedContacts.append(
-                    Contact(
-                        phoneNumber: phoneNumber,
-                        firstName: contact.givenName,
-                        secondName: contact.familyName
+        do {
+            try self.store.enumerateContacts(with: request) { contact, _ in
+                if let phoneNumber = contact.phoneNumbers.first?.value.stringValue {
+                    fetchedContacts.append(
+                        Contact(
+                            phoneNumber: phoneNumber,
+                            firstName: contact.givenName,
+                            secondName: contact.familyName
+                        )
                     )
-                )
+                }
             }
+            contacts.send(fetchedContacts)
+        } catch {
+            // TODO: Handle Error
+            print(error.localizedDescription)
+            contacts.send([])
         }
-        contacts.send(fetchedContacts)
     }
 }

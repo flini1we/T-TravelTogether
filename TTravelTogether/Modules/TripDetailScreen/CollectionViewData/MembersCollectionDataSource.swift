@@ -14,9 +14,9 @@ final class MembersCollectionDataSource: NSObject, UICollectionViewDataSource, S
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(
+        guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: MemberCollectionViewCell.identifier,
-            for: indexPath) as! MemberCollectionViewCell
+            for: indexPath) as? MemberCollectionViewCell else { return UICollectionViewCell() }
         cell.setupWithUser(
             viewModel.tripDetail.getMembersSequence()[indexPath.row], at: indexPath
         )

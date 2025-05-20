@@ -3,6 +3,7 @@ import Foundation
 protocol ITripDetailViewModel: AnyObject {
 
     var tripId: UUID { get }
+    var currentUser: User { get }
 
     var tripDetail: TripDetail { get }
 

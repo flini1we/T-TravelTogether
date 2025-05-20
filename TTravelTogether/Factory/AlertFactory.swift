@@ -2,6 +2,26 @@ import UIKit
 
 final class AlertFactory {
 
+    static func showUserError() -> UIAlertController {
+        let alert = UIAlertController(
+            title: .AppStrings.Alert.noSuchUser,
+            message: .AppStrings.Alert.noSuchUserDescription,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: .AppStrings.Alert.ok, style: .default))
+        return alert
+    }
+
+    static func showIncorrectTripPriceAlert() -> UIAlertController {
+        let alert = UIAlertController(
+            title: .AppStrings.Alert.incorrectTripPriceTitle,
+            message: .AppStrings.Alert.incorrectTripPriceMessage,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: .AppStrings.Alert.ok, style: .default))
+        return alert
+    }
+
     static func createContactsAccessAlert(
         onSettings: @escaping () -> Void,
         onCancel: @escaping () -> Void

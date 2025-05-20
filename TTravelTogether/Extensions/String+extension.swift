@@ -36,6 +36,10 @@ extension String {
             static let leaveTripAdminTitle = "Админ не может покинуть поездку."
             static let leaveTripMessage = "Вы уверены что хотете покинуть данное путешествие?"
             static let editTripTitle = "Только админ может редактировать поездку"
+            static let noSuchUser = "Пользователь не найден"
+            static let noSuchUserDescription = "Повторите попытку снова"
+            static let incorrectTripPriceTitle = "Некорректная стоимость поездки"
+            static let incorrectTripPriceMessage = "Стоимость поездки должна быть целым числом."
         }
 
         enum AppTitles {

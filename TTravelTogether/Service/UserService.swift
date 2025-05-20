@@ -2,9 +2,6 @@ import UIKit
 
 final class UserService {
 
-    static let shared = UserService()
-    private init() { }
-
     private let userDefaults = UserDefaults.standard
     private let userKey: String = .AppStrings.UserDefaults.originUserKey
     private lazy var jsonDecoder: JSONDecoder = { JSONDecoder() }()

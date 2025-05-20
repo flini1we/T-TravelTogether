@@ -24,8 +24,8 @@ final class SwinjectContainer: IDependencyContainer {
         container.resolve(IMyTripsViewModel.self)!
     }
 
-    func resolveTripDetailViewModel(tripId: UUID) -> ITripDetailViewModel {
-        container.resolve(ITripDetailViewModel.self, argument: tripId)!
+    func resolveTripDetailViewModel(tripId: UUID, user: User) -> ITripDetailViewModel {
+        container.resolve(ITripDetailViewModel.self, arguments: tripId, user)!
     }
 
     func resolveTripViewModel() -> ICreateTripViewModel {
@@ -44,8 +44,8 @@ final class SwinjectContainer: IDependencyContainer {
         container.resolve(MyTripsController.self)!
     }
 
-    func resolveTripDetailController(tripId: UUID) -> TripDetailController {
-        container.resolve(TripDetailController.self, argument: tripId)!
+    func resolveTripDetailController(tripId: UUID, user: User) -> TripDetailController {
+        container.resolve(TripDetailController.self, arguments: tripId, user)!
     }
 
     func resolveCreateTripController(user: User) -> CreateTripController {
@@ -83,8 +83,8 @@ private extension SwinjectContainer {
             MyTripsViewModel()
         }
 
-        container.register(ITripDetailViewModel.self) { (_, tripId: UUID) in
-            TripDetailViewModel(tripId: tripId)
+        container.register(ITripDetailViewModel.self) { (_, tripId: UUID, user: User) in
+            TripDetailViewModel(tripId: tripId, user: user)
         }
 
         container.register(ICreateTripViewModel.self) { (_, user: User) in
@@ -119,8 +119,8 @@ private extension SwinjectContainer {
             return myTipsController
         }.inObjectScope(.container)
 
-        container.register(TripDetailController.self) { (resolver, tripId: UUID) in
-            let tripDetailVM = resolver.resolve(ITripDetailViewModel.self, argument: tripId)!
+        container.register(TripDetailController.self) { (resolver, tripId: UUID, user: User) in
+            let tripDetailVM = resolver.resolve(ITripDetailViewModel.self, arguments: tripId, user)!
             let controller = TripDetailController(viewModel: tripDetailVM)
             controller.hidesBottomBarWhenPushed = true
             return controller

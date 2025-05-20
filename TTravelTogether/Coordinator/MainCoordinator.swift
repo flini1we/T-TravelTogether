@@ -3,15 +3,16 @@ import Contacts
 import ContactsUI
 
 final class MainCoordinator: NSObject, IMainCoordinator {
-    private var registratedUser = UserService.shared.currentUser!
+    private var registratedUser: User
 
     var childCoordinators: [ICoordinator] = []
     var navigationController: UINavigationController
     var dependencies: IDependencyContainer
 
-    init(navigationController: UINavigationController, dependencieProvider: IDependencyContainer) {
+    init(navigationController: UINavigationController, dependencieProvider: IDependencyContainer, user: User) {
         self.navigationController = navigationController
         self.dependencies = dependencieProvider
+        self.registratedUser = user
     }
 
     func start() {
@@ -19,7 +20,7 @@ final class MainCoordinator: NSObject, IMainCoordinator {
     }
 
     func showTripDetail(_ id: UUID) {
-        let detailVC = dependencies.resolveTripDetailController(tripId: id)
+        let detailVC = dependencies.resolveTripDetailController(tripId: id, user: registratedUser)
         navigationController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(detailVC, animated: true)
     }
@@ -72,6 +73,9 @@ extension MainCoordinator: UITabBarControllerDelegate {
                 } else {
                     sheetController.detents = [.large()]
                 }
+            }
+            createTripController.onIncorrectPriceAlertDidSet = { incorrectPriceAlert in
+                createTripController.present(incorrectPriceAlert, animated: true)
             }
             tabBarController.present(createTripController, animated: true)
             return false

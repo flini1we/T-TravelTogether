@@ -4,6 +4,7 @@ import ContactsUI
 
 protocol ICreateTripViewModel: AnyObject, CNContactPickerDelegate {
     var onClearingController: (() -> Void)? { get set }
+    var onShowingIncorrectPriceAlert: ((UIAlertController) -> Void)? { get set }
 
     var tripMembers: [User] { get set }
     var tripMembersPublisher: Published<[User]>.Publisher { get }

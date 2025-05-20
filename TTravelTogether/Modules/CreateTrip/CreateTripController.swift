@@ -7,6 +7,7 @@ final class CreateTripController: UIViewController {
     weak var coordinator: IMainCoordinator?
     var onDisappear: (() -> Void)?
     var onTripCreating: (() -> Void)?
+    var onIncorrectPriceAlertDidSet: ((UIAlertController) -> Void)?
 
     private(set) var viewModel: ICreateTripViewModel
 
@@ -102,6 +103,10 @@ private extension CreateTripController {
                 onTripCreating?()
             }
             .store(in: &cancellables)
+
+        viewModel.onShowingIncorrectPriceAlert = { [weak self] alert in
+            self?.onIncorrectPriceAlertDidSet?(alert)
+        }
     }
 
     func setupViewBindings() {

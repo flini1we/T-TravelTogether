@@ -49,15 +49,21 @@ final class RegistrationViewModel: IRegistrationViewModel {
     }
 
     func getPhoneErrorMessage(_ phone: String) -> String {
-        guard !isPhoneValid else { return "" }
+        if phone.starts(with: String.AppStrings.Auth.phonePrefix89) &&
+           phone.count > 11 {
+            return .AppStrings.Auth.invalidPhoneLenght
+        }
 
-        if phone.starts(with: String.AppStrings.Auth.phonePrefix89) && phone.count > 11 {
+        if phone.starts(with: String.AppStrings.Auth.phonePrefixPlus79) &&
+           phone.count > 12 {
             return .AppStrings.Auth.invalidPhoneLenght
-        } else if phone.starts(with: String.AppStrings.Auth.phonePrefixPlus79) && phone.count > 12 {
-            return .AppStrings.Auth.invalidPhoneLenght
-        } else if !phone.starts(with: String.AppStrings.Auth.phonePrefix89) || !phone.starts(with: String.AppStrings.Auth.phonePrefixPlus79) {
+        }
+
+        if !phone.starts(with: String.AppStrings.Auth.phonePrefix89) &&
+           !phone.starts(with: String.AppStrings.Auth.phonePrefixPlus79) {
             return .AppStrings.Auth.invalidPhoneStartsWith
         }
+
         return ""
     }
 

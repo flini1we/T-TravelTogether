@@ -5,6 +5,7 @@ import ContactsUI
 
 final class CreateTripViewModel: NSObject, ICreateTripViewModel {
     var onClearingController: (() -> Void)?
+    var onShowingIncorrectPriceAlert: ((UIAlertController) -> Void)?
 
     @Published var tripMembers: [User] = []
     @Published private(set) var isCreateButtonEnable: Bool = false
@@ -30,9 +31,10 @@ final class CreateTripViewModel: NSObject, ICreateTripViewModel {
 
     private var cancellables = Set<AnyCancellable>()
     private var selectedUsers = Set<String>()
-    private let currentUser = UserService.shared.currentUser!
+    private let currentUser: User
 
     init(_ user: User) {
+        self.currentUser = user
         super.init()
         tripMembers.append(currentUser)
         setupBindings()
@@ -65,11 +67,16 @@ final class CreateTripViewModel: NSObject, ICreateTripViewModel {
     }
 
     func createTrip(dates: (start: Date, finish: Date)) {
+        guard let price = Int(tripPriceText) else {
+            onShowingIncorrectPriceAlert?(AlertFactory.showIncorrectTripPriceAlert())
+            return
+        }
+        
         let trip = Trip(
             title: tripTitleText,
             startsAt: dates.start,
             finishAt: dates.finish,
-            price: Int(tripPriceText) ?? 0
+            price: price
         )
         let tripDetail = TripDetail(
             id: trip.id,

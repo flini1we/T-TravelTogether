@@ -118,6 +118,7 @@
 		CFB11FFE2DB6891B00609CEF /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB11FFC2DB6891B00609CEF /* TripTableViewCell.swift */; };
 		CFB11FFF2DB68B4400609CEF /* MyTripsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB11FF62DB688E900609CEF /* MyTripsController.swift */; };
 		CFCD372D2DBF4EAC0037A854 /* SwinjectContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD372C2DBF4EAC0037A854 /* SwinjectContainer.swift */; };
+		CFF713032DDD23A70005C5AE /* Float+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF713022DDD23A70005C5AE /* Float+extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -251,6 +252,7 @@
 		CFB11FFB2DB6891B00609CEF /* TripsTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsTableDataSource.swift; sourceTree = "<group>"; };
 		CFB11FFC2DB6891B00609CEF /* TripTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
 		CFCD372C2DBF4EAC0037A854 /* SwinjectContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectContainer.swift; sourceTree = "<group>"; };
+		CFF713022DDD23A70005C5AE /* Float+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -632,6 +634,7 @@
 				CFAFC60D2DB91BB3002FA8EF /* CGFLoat+extension.swift */,
 				CF7405A32DD3AE0200B71E2B /* UITableView+extension.swift */,
 				CF7405BD2DD4B1DA00B71E2B /* UIBarButtonItem+extension.swift */,
+				CFF713022DDD23A70005C5AE /* Float+extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -916,6 +919,7 @@
 				CFAD6AE72DAC1B88003930F3 /* UITextFieldDelegateDefaultImpl.swift in Sources */,
 				CFAD6AEC2DAC21D7003930F3 /* UIView+extension.swift in Sources */,
 				CFAD6A5B2DAAEEF5003930F3 /* FontValues.swift in Sources */,
+				CFF713032DDD23A70005C5AE /* Float+extension.swift in Sources */,
 				CFAFBEF22DB787BC002FA8EF /* NetworkErrors.swift in Sources */,
 				CF3B469C2DB57DBB008C4CA0 /* TabBarScreenTags.swift in Sources */,
 				CFB11FE62DB637E500609CEF /* Sections.swift in Sources */,

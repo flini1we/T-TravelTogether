@@ -25,7 +25,7 @@ final class TripsTableDataSource: NSObject, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TripTableViewCell.identifier, for: indexPath) as! TripTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TripTableViewCell.identifier, for: indexPath) as? TripTableViewCell else { return UITableViewCell() }
         let travel = trips[indexPath.row]
         _ = tableView.isSkeletonable ? cell.bgView.showAnimatedGradientSkeleton()
                                      : cell.setupWithTravel(travel)
@@ -53,37 +53,3 @@ private extension TripsTableDataSource {
             completion: nil)
     }
 }
-/*
- final class TripsTableDataSource: NSObject {
- 
- private var viewModel: IMyTripsViewModel
- var dataSource: UITableViewDiffableDataSource<Sections, Trip>?
- 
- init(viewModel: IMyTripsViewModel) {
- self.viewModel = viewModel
- }
- 
- func setupDataSource(with tableView: UITableView) {
- dataSource = UITableViewDiffableDataSource(
- tableView: tableView,
- cellProvider: { [weak self] tableView, indexPath, travel in
- guard let self else { return UITableViewCell() }
- let cell = tableView.dequeueReusableCell(withIdentifier: TripTableViewCell.identifier, for: indexPath) as! TripTableViewCell
- let travel = viewModel.tripsData.value[indexPath.row]
- cell.setupWithTravel(travel)
- return cell
- }
- )
- applyFreshSnapshot(data: viewModel.tripsData.value)
- }
- 
- func applyFreshSnapshot(data: [Trip]) {
- var snaphot = NSDiffableDataSourceSnapshot<Sections, Trip>()
- 
- snaphot.appendSections([.main])
- snaphot.appendItems(data)
- 
- dataSource?.apply(snaphot, animatingDifferences: true)
- }
- }
- */

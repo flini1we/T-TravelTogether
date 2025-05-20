@@ -29,10 +29,10 @@ final class ContactsTableViewDataSource: NSObject {
             tableView: tableView,
             cellProvider: { [weak self] tableView, indexPath, contact in
                 guard let self else { return UITableViewCell() }
-                let cell = tableView.dequeueReusableCell(
+                guard let cell = tableView.dequeueReusableCell(
                     withIdentifier: ContactsTableViewCell.identifier,
                     for: indexPath
-                ) as! ContactsTableViewCell
+                ) as? ContactsTableViewCell else { return UITableViewCell() }
                 cell.setupWithUser(contact, alreadySelected: viewModel.selectedContacts.contains(contact))
                 return cell
             }
