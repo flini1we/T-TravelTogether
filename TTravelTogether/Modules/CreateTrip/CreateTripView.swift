@@ -3,12 +3,13 @@ import SnapKit
 
 final class CreateTripView: UIView, ICreateTripView {
     var onShowingContacts: (() -> Void)?
+    var onCreatingTrip: (() -> Void)?
 
     private(set) lazy var tripTitleField: UITextField = {
         TextFieldBuilder()
             .font(.systemFont(ofSize: FontValues.default.value))
             .cornerRadius(.default)
-            .placeHolder(.AppStrings.createTripTitle)
+            .placeHolder(.AppStrings.CreateTrip.createTripTitle)
             .returnKeyType(.continue)
             .keyboardType(.default)
             .paddinLeft(PaddingValues.default.value)
@@ -20,9 +21,9 @@ final class CreateTripView: UIView, ICreateTripView {
         TextFieldBuilder()
             .font(.systemFont(ofSize: FontValues.default.value))
             .cornerRadius(.default)
-            .placeHolder(.AppStrings.createTripPrice)
+            .placeHolder(.AppStrings.CreateTrip.createTripPrice)
             .returnKeyType(.done)
-            .keyboardType(.default)
+            .keyboardType(.numberPad)
             .paddinLeft(PaddingValues.default.value)
             .delegete(self)
             .build()
@@ -41,7 +42,7 @@ final class CreateTripView: UIView, ICreateTripView {
     private lazy var tripDateLabel: UILabel = {
         LabelBuilder()
             .font(CustomFonts.bold(FontValues.medium.value).font)
-            .text(.AppStrings.tripDateTitle)
+            .text(.AppStrings.CreateTrip.tripDateTitle)
             .textColor(.label)
             .build()
     }()
@@ -50,7 +51,7 @@ final class CreateTripView: UIView, ICreateTripView {
         LabelBuilder()
             .font(CustomFonts.default(FontValues.default.value).font)
             .textColor(.label)
-            .text(.AppStrings.tripStartsAtTitle)
+            .text(.AppStrings.CreateTrip.tripStartsAtTitle)
             .build()
     }()
 
@@ -77,7 +78,7 @@ final class CreateTripView: UIView, ICreateTripView {
         LabelBuilder()
             .font(CustomFonts.default(FontValues.default.value).font)
             .textColor(.label)
-            .text(.AppStrings.tripEndsAtTitle)
+            .text(.AppStrings.CreateTrip.tripEndsAtTitle)
             .build()
     }()
 
@@ -111,7 +112,7 @@ final class CreateTripView: UIView, ICreateTripView {
     private lazy var membersLabel: UILabel = {
         LabelBuilder()
             .font(CustomFonts.bold(FontValues.medium.value).font)
-            .text(.AppStrings.tripMembers)
+            .text(.AppStrings.CreateTrip.tripMembers)
             .textColor(.label)
             .build()
     }()
@@ -119,7 +120,7 @@ final class CreateTripView: UIView, ICreateTripView {
     private lazy var addMemberButton: UIButton = {
         let button = ButtonBuilder()
             .tintColor(.primaryBlue)
-            .title(.AppStrings.addMemberTitle)
+            .title(.AppStrings.CreateTrip.addMemberTitle)
             .disableContentEdgesInsets()
             .build()
         button.addAction(UIAction { [weak self] _ in
@@ -158,13 +159,17 @@ final class CreateTripView: UIView, ICreateTripView {
     }()
 
     private(set) lazy var createButton: UIButton = {
-        ButtonBuilder()
+        let button = ButtonBuilder()
             .tintColor(.buttonLabel)
             .font(CustomFonts.bold(FontValues.default.value).font)
             .backgroundColor(.primaryYellow)
-            .title(.AppStrings.create)
+            .title(.AppStrings.CreateTrip.create)
             .cornerRadius(.default)
             .build()
+        button.addAction(UIAction { [weak self] _ in
+            self?.onCreatingTrip?()
+        }, for: .touchUpInside)
+        return button
     }()
 
     override init(frame: CGRect) {
@@ -174,6 +179,10 @@ final class CreateTripView: UIView, ICreateTripView {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    func getTripDates() -> (start: Date, finish: Date) {
+        (startsAtCalendar.date, endsAtCalendar.date)
     }
 }
 

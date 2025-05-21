@@ -5,11 +5,13 @@ import ContactsUI
 
 final class CreateTripViewModel: NSObject, ICreateTripViewModel {
     var onClearingController: (() -> Void)?
+    var onShowingIncorrectPriceAlert: ((UIAlertController) -> Void)?
 
     @Published var tripMembers: [User] = []
     @Published private(set) var isCreateButtonEnable: Bool = false
     @Published var tripTitleText: String = ""
     @Published var tripPriceText: String = ""
+    @Published var createdTrip: Trip?
 
     var isCreateButtonEnablePublisher: Published<Bool>.Publisher {
         $isCreateButtonEnable
@@ -23,12 +25,18 @@ final class CreateTripViewModel: NSObject, ICreateTripViewModel {
     var tripMembersPublisher: Published<[User]>.Publisher {
         $tripMembers
     }
+    var createdTripPublisher: Published<Trip?>.Publisher {
+        $createdTrip
+    }
 
     private var cancellables = Set<AnyCancellable>()
+    private var selectedUsers = Set<String>()
+    private let currentUser: User
 
     init(_ user: User) {
+        self.currentUser = user
         super.init()
-        tripMembers.append(user)
+        tripMembers.append(currentUser)
         setupBindings()
     }
 
@@ -38,11 +46,49 @@ final class CreateTripViewModel: NSObject, ICreateTripViewModel {
     }
 
     func clearData() {
-        /// чищу руками потому что в factory scope стоит .container чтоб coordinator не сбивался при пересозданиях
         tripMembers = [tripMembers[0]]
         tripTitleText = ""
         tripPriceText = ""
         onClearingController?()
+        selectedUsers = []
+    }
+
+    func updateMembers(users: [User]) {
+        let users = users.filter {
+            $0.phoneNumber != currentUser.phoneNumber
+        }
+        tripMembers = [currentUser] + users
+    }
+
+    func obtainContacts() -> [Contact] {
+        tripMembers.map {
+            Contact(phoneNumber: $0.phoneNumber, firstName: "", secondName: "")
+        }
+    }
+
+    func createTrip(dates: (start: Date, finish: Date)) {
+        guard let price = Int(tripPriceText) else {
+            onShowingIncorrectPriceAlert?(AlertFactory.showIncorrectTripPriceAlert())
+            return
+        }
+        
+        let trip = Trip(
+            title: tripTitleText,
+            startsAt: dates.start,
+            finishAt: dates.finish,
+            price: price
+        )
+        let tripDetail = TripDetail(
+            id: trip.id,
+            title: trip.title,
+            price: trip.price,
+            startsAt: trip.startsAt,
+            finishAt: trip.finishAt,
+            admin: tripMembers[0],
+            members: Array(tripMembers[1...])
+        )
+        // TODO: send to backend
+        createdTrip = trip
     }
 }
 
@@ -52,7 +98,8 @@ extension CreateTripViewModel: CNContactPickerDelegate {
         var selectedPhoneNumbers: [String] = []
 
         for contact in contacts {
-            if let phoneNumber = contact.phoneNumbers.first?.value.stringValue {
+            if let phoneNumber = contact.phoneNumbers.first?.value.stringValue,
+               selectedUsers.insert(phoneNumber).inserted {
                 selectedPhoneNumbers.append(phoneNumber)
             }
         }

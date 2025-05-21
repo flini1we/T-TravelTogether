@@ -12,11 +12,12 @@ enum UIElementsValues {
          tripCellHeight,
          calendarIcon,
          memberCollectionViewCell,
-         anyNavigationBarItem
+         anyNavigationBarItem,
+         searchBar
 
     var value: CGFloat {
         switch self {
-        case .textFieldHeight, .buttonHeight:
+        case .textFieldHeight, .buttonHeight, .searchBar:
             55
         case .systemButtonHeight, .locationMark:
             30

@@ -1,0 +1,106 @@
+import UIKit
+import Combine
+
+final class TripDetailController: UIViewController {
+
+    private var tripDetailView: TripDetailView {
+        view as! TripDetailView
+    }
+    private var viewModel: ITripDetailViewModel
+    private var membersCollectionViewDataSource: MembersCollectionDataSource?
+    private var cancellables: Set<AnyCancellable> = []
+
+    init(viewModel: ITripDetailViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func loadView() {
+        super.loadView()
+
+        view = TripDetailView()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        setup()
+        tripDetailView.tripMemebersCollectionView.showAnimatedGradientSkeleton()
+    }
+}
+
+private extension TripDetailController {
+
+    func setup() {
+        setupSkeletonable()
+        setupDataSource()
+        setupBindings()
+        setupNavigationItem()
+    }
+
+    func setupSkeletonable() {
+        tripDetailView.tripTitle.showAnimatedGradientSkeleton()
+    }
+
+    func setupDataSource() {
+        membersCollectionViewDataSource = MembersCollectionDataSource(viewModel: viewModel)
+        tripDetailView.tripMemebersCollectionView.dataSource = membersCollectionViewDataSource
+    }
+
+    func setupBindings() {
+        viewModel.tripDetailPublisher
+            .dropFirst()
+            .sink { [weak self] tripDetail in
+                self?.tripDetailView.setupWithTrip(tripDetail)
+                self?.tripDetailView.tripMemebersCollectionView.reloadData()
+                self?.tripDetailView.tripMemebersCollectionView.hideSkeleton()
+                self?.tripDetailView.activateTransactionButton()
+                self?.navigationItem.rightBarButtonItems?.forEach {
+                    $0.setEnabled(true, enableColor: $0.tag == 1 ? .primaryRed : nil)
+                }
+            }
+            .store(in: &cancellables)
+    }
+
+    func setupNavigationItem() {
+        let leaveButton = UIBarButtonItem(
+            title: "",
+            image: SystemImages.leaveTrip.image.resized(to: UIElementsValues.tabBarItem.padding(PaddingValues.semiSmall.value).getSize),
+            primaryAction: UIAction { [weak self] _ in
+                guard let self else { return }
+                let alert = AlertFactory.createLeaveTripAlert(
+                    isAdmin: viewModel.isAdmin(),
+                    onConfirm: {
+                        // TODO: leave trip logic
+                    }
+                )
+                navigationController?.present(alert, animated: true)
+            },
+            menu: nil
+        )
+        leaveButton.setEnabled(false)
+        leaveButton.tag = 1
+
+        let editButton = UIBarButtonItem(
+            title: "",
+            image: SystemImages.editTrip.image,
+            primaryAction: UIAction { [weak self] _ in
+                guard let self else { return }
+                if !viewModel.isAdmin() {
+                    navigationController?.present(AlertFactory.createEditTripAlert(), animated: true)
+                } else {
+                    // TODO: edit action
+                }
+            },
+            menu: nil
+        )
+        editButton.setEnabled(false)
+        editButton.tag = 0
+
+        navigationItem.rightBarButtonItems = [leaveButton, editButton]
+    }
+}

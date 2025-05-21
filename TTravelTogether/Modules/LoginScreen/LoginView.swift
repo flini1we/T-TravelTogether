@@ -21,14 +21,22 @@ final class LoginView: UIView, ILoginView {
         return imageView
     }()
 
+    private(set) lazy var loginViewTitle: UILabel = {
+        LabelBuilder()
+            .font(CustomFonts.bold(FontValues.medium.value).font)
+            .textColor(.label)
+            .text(.AppStrings.Auth.loginTitle)
+            .build()
+    }()
+
     private(set) lazy var phoneNumberField: UITextField = {
         TextFieldBuilder()
             .font(.systemFont(ofSize: FontValues.default.value))
             .cornerRadius(.default)
             .isSecureEntry(false)
-            .placeHolder(.AppStrings.phoneNumber)
+            .placeHolder(.AppStrings.Auth.phoneNumber)
             .returnKeyType(.continue)
-            .keyboardType(.default)
+            .keyboardType(.phonePad)
             .paddinLeft(PaddingValues.default.value)
             .tag(0)
             .build()
@@ -39,7 +47,7 @@ final class LoginView: UIView, ILoginView {
             .font(.systemFont(ofSize: FontValues.default.value))
             .cornerRadius(.default)
             .isSecureEntry(true)
-            .placeHolder(.AppStrings.password)
+            .placeHolder(.AppStrings.Auth.password)
             .returnKeyType(.done)
             .paddinLeft(PaddingValues.default.value)
             .enableTogglingSecure()
@@ -59,7 +67,7 @@ final class LoginView: UIView, ILoginView {
             .tintColor(.buttonLabel)
             .font(CustomFonts.bold(FontValues.default.value).font)
             .backgroundColor(.primaryYellow)
-            .title(.AppStrings.enter)
+            .title(.AppStrings.Auth.enter)
             .cornerRadius(.default)
             .build()
     }()
@@ -67,7 +75,7 @@ final class LoginView: UIView, ILoginView {
     private lazy var goToRegistrationButton: UIButton = {
         ButtonBuilder()
             .tintColor(.primaryBlue)
-            .title(.AppStrings.toRegistration)
+            .title(.AppStrings.Auth.toRegistration)
             .build()
     }()
 
@@ -134,12 +142,8 @@ final class LoginView: UIView, ILoginView {
         }
     }
 
-    func activateIndicator() {
-        activityIndicator.alpha = 1
-    }
-
-    func deactivateIndicator() {
-        activityIndicator.alpha = 0
+    func showLoadingIndicator(_ isLoading: Bool) {
+        activityIndicator.alpha = isLoading ? 1 : 0
     }
 }
 
@@ -165,12 +169,12 @@ private extension LoginView {
     func setupConstraints() {
         secondaryImageLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(safeAreaLayoutGuide.snp.top)
+            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(PaddingValues.big.value)
         }
 
         primaryImageLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(safeAreaLayoutGuide.snp.top).inset(PaddingValues.big.value)
+            make.top.equalTo(secondaryImageLabel.snp.bottom).inset(PaddingValues.default.value)
         }
 
         fieldsStackView.snp.makeConstraints { make in

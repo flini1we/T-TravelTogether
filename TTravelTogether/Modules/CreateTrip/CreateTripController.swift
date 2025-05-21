@@ -5,8 +5,11 @@ import ContactsUI
 
 final class CreateTripController: UIViewController {
     weak var coordinator: IMainCoordinator?
+    var onDisappear: (() -> Void)?
+    var onTripCreating: (() -> Void)?
+    var onIncorrectPriceAlertDidSet: ((UIAlertController) -> Void)?
 
-    private var viewModel: ICreateTripViewModel
+    private(set) var viewModel: ICreateTripViewModel
 
     private var createTripView: ICreateTripView {
         view as! ICreateTripView
@@ -33,6 +36,15 @@ final class CreateTripController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         viewModel.clearData()
+        onDisappear?()
+    }
+
+    func obtainContacts() -> [Contact] {
+        viewModel.obtainContacts()
+    }
+
+    func updateMembersAfterSelection(_ selectedMembers: [User]) {
+        viewModel.updateMembers(users: selectedMembers)
     }
 
     required init?(coder: NSCoder) {
@@ -43,16 +55,8 @@ final class CreateTripController: UIViewController {
 private extension CreateTripController {
 
     func setup() {
-        setupContactsController()
         setupFields()
         setupBindings()
-    }
-
-    func setupContactsController() {
-
-        let contactsController = SwinjectContainer.shared.resolveContactsViewController()
-        contactsController.delegate = viewModel
-        contactsController.predicateForSelectionOfContact = NSPredicate(value: true)
     }
 
     func setupFields() {
@@ -90,6 +94,19 @@ private extension CreateTripController {
                 self?.createTripView.tripMemebersCollectionView.reloadData()
             }
             .store(in: &cancellables)
+
+        viewModel.createdTripPublisher
+            .dropFirst()
+            .sink { [weak self] _ in
+                guard let self else { return }
+                dismiss(animated: true)
+                onTripCreating?()
+            }
+            .store(in: &cancellables)
+
+        viewModel.onShowingIncorrectPriceAlert = { [weak self] alert in
+            self?.onIncorrectPriceAlertDidSet?(alert)
+        }
     }
 
     func setupViewBindings() {
@@ -101,6 +118,11 @@ private extension CreateTripController {
         createTripView.tripPriceField.textPublisher
             .assign(to: \.tripPriceText, on: viewModel)
             .store(in: &cancellables)
+
+        createTripView.onCreatingTrip = { [weak self] in
+            guard let self else { return }
+            viewModel.createTrip(dates: createTripView.getTripDates())
+        }
     }
 
     func requestContactsAccess() {

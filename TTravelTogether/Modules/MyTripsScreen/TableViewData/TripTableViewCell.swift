@@ -6,7 +6,7 @@ final class TripTableViewCell: UITableViewCell {
         "\(self)"
     }
 
-    private lazy var bgView: UIView = {
+    private(set) lazy var bgView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBackground
         view.layer.cornerRadius = PaddingValues.medium.value
@@ -14,6 +14,9 @@ final class TripTableViewCell: UITableViewCell {
         view.layer.shadowOpacity = 0.25
         view.layer.shadowOffset = CGSize(width: 0, height: 1.5)
         view.layer.shadowRadius = 3
+        makeSkeletonable()
+        view.makeSkeletonable()
+        view.skeletonCornerRadius = Float(PaddingValues.default.value)
         return view
     }()
 
@@ -95,7 +98,7 @@ private extension TripTableViewCell {
     }
 
     func setupSubviews() {
-        addSubview(bgView)
+        contentView.addSubview(bgView)
         bgView.addSubview(cellDataStackView)
     }
 

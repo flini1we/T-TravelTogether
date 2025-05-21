@@ -1,20 +1,21 @@
 import UIKit
 
 final class AppFlowCoordinator: ICoordinator {
-    var user: User?
 
     var childCoordinators: [ICoordinator] = []
     var navigationController: UINavigationController
-    var dependencies: DependencyContainerProtocol
+    var dependencies: IDependencyContainer
+    var userService: UserService
 
-    init(navigationController: UINavigationController, dependencies: DependencyContainerProtocol) {
+    init(navigationController: UINavigationController, dependencies: IDependencyContainer, userService: UserService) {
         self.navigationController = navigationController
         self.dependencies = dependencies
+        self.userService = userService
     }
 
     func start() {
-        let isLoggedIn = false
-        isLoggedIn ? showMainFlow() : showAuthFlow()
+        let isLoggedIn = userService.isAuthenticated
+        _ = isLoggedIn ? showMainFlow() : showAuthFlow()
     }
 }
 
@@ -26,19 +27,26 @@ private extension AppFlowCoordinator {
             dependencies: dependencies
         )
         coordinator.onLoginSuccess = { [weak self] user in
-            self?.user = user
-            self?.showMainFlow()
+            guard let self else { return }
+            userService.login(user)
+            showMainFlow()
         }
         addChild(coordinator)
         coordinator.start()
     }
 
     func showMainFlow() {
+        guard let user = userService.currentUser else {
+            navigationController.present(AlertFactory.showUserError(), animated: true)
+            // TODO: когда будет выход из аккаунта тут тоже прокину сразу чтоб на решу кидало
+            return
+        }
+
         let coordinator = MainCoordinator(
             navigationController: navigationController,
-            dependencieProvider: dependencies
+            dependencieProvider: dependencies,
+            user: user
         )
-        coordinator.registratedUser = user
         addChild(coordinator)
         coordinator.start()
     }

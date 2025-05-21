@@ -1,34 +1,55 @@
 import UIKit
+import SkeletonView
+import Combine
 
-final class TripsTableDataSource: NSObject {
+final class TripsTableDataSource: NSObject, UITableViewDataSource {
 
-    private var viewModel: IMyTripsViewModel
-    var dataSource: UITableViewDiffableDataSource<Sections, Trip>?
+    private var trips: [Trip]
+    private weak var tableView: UITableView?
 
-    init(viewModel: IMyTripsViewModel) {
-        self.viewModel = viewModel
+    init(trips: [Trip], tableView: UITableView) {
+        self.trips = trips
+        self.tableView = tableView
+        super.init()
     }
 
-    func setupDataSource(with tableView: UITableView) {
-        dataSource = UITableViewDiffableDataSource(
-            tableView: tableView,
-            cellProvider: { [weak self] tableView, indexPath, travel in
-                guard let self else { return UITableViewCell() }
-                let cell = tableView.dequeueReusableCell(withIdentifier: TripTableViewCell.identifier, for: indexPath) as! TripTableViewCell
-                let travel = viewModel.tripsData[indexPath.row]
-                cell.setupWithTravel(travel)
-                return cell
-            }
-        )
-        applyFreshSnapshot(data: viewModel.tripsData)
+    func update(_ trips: [Trip]) {
+        self.trips = trips
+        withAnimation {
+            self.tableView?.reloadData()
+        }
     }
 
-    func applyFreshSnapshot(data: [Trip]) {
-        var snaphot = NSDiffableDataSourceSnapshot<Sections, Trip>()
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        trips.count
+    }
 
-        snaphot.appendSections([.main])
-        snaphot.appendItems(data)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TripTableViewCell.identifier, for: indexPath) as? TripTableViewCell else { return UITableViewCell() }
+        let travel = trips[indexPath.row]
+        _ = tableView.isSkeletonable ? cell.bgView.showAnimatedGradientSkeleton()
+                                     : cell.setupWithTravel(travel)
+        return cell
+    }
+}
 
-        dataSource?.apply(snaphot, animatingDifferences: false)
+extension TripsTableDataSource: SkeletonTableViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        TripTableViewCell.identifier
+    }
+}
+
+private extension TripsTableDataSource {
+
+    func withAnimation(_ completion: @escaping (() -> Void)) {
+        guard let tableView else { return }
+        UIView.transition(
+            with: tableView,
+            duration: 0.3,
+            options: .transitionCrossDissolve,
+            animations: {
+                completion()
+            },
+            completion: nil)
     }
 }

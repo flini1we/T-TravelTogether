@@ -4,7 +4,7 @@ protocol ICoordinator: AnyObject {
 
     var childCoordinators: [ICoordinator] { get set }
     var navigationController: UINavigationController { get set }
-    var dependencies: DependencyContainerProtocol { get }
+    var dependencies: IDependencyContainer { get }
 
     func start()
 }

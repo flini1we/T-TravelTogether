@@ -2,6 +2,7 @@ import UIKit
 
 protocol ILoginView: AnyObject {
 
+    var loginViewTitle: UILabel { get }
     var phoneNumberField: UITextField { get }
     var passwordField: UITextField { get }
     var errorMessageTitle: UILabel { get }
@@ -12,6 +13,5 @@ protocol ILoginView: AnyObject {
     func setupLoginAction(_ action: UIAction)
     func getData() -> (phone: String, password: String)
     func toggleTransparentBGVisibility()
-    func activateIndicator()
-    func deactivateIndicator()
+    func showLoadingIndicator(_ isLoading: Bool)
 }

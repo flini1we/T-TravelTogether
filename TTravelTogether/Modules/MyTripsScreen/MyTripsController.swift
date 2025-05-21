@@ -29,6 +29,11 @@ final class MyTripsController: UIViewController {
         setup()
     }
 
+    func updateTrips() {
+        myTripsView.travellingsTableView.isSkeletonable = true
+        viewModel.loadData()
+    }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -37,22 +42,39 @@ final class MyTripsController: UIViewController {
 private extension MyTripsController {
 
     func setup() {
+        myTripsView.travellingsTableView.isSkeletonable = true
         setupDataSource()
         setupDelegate()
+        setupBindings()
     }
 
     func setupDataSource() {
-
-        tableViewDataSource = TripsTableDataSource(viewModel: viewModel)
-        tableViewDataSource?.setupDataSource(
-            with: myTripsView.travellingsTableView
+        tableViewDataSource = TripsTableDataSource(
+            trips: viewModel.tripsData,
+            tableView: myTripsView.travellingsTableView
         )
+        myTripsView.travellingsTableView.dataSource = tableViewDataSource
     }
 
     func setupDelegate() {
         tableViewDelegate = TripsTableDelegate(viewModel: viewModel) { [weak self] tripId in
-            self?.coordinator?.showTripDetail(for: tripId)
+            self?.coordinator?.showTripDetail(tripId)
         }
         myTripsView.travellingsTableView.delegate = tableViewDelegate
+    }
+
+    func setupBindings() {
+        viewModel.onTripsUpdate = { [weak self] trips in
+            self?.tableViewDataSource?.update(trips)
+        }
+
+        viewModel
+            .isLoadingDataPublisher
+            .sink { [weak self] isLoading in
+                guard let self else { return }
+                _ = isLoading ? myTripsView.travellingsTableView.showSkeleton()
+                              : myTripsView.travellingsTableView.hideSkeleton()
+            }
+            .store(in: &cancellables)
     }
 }

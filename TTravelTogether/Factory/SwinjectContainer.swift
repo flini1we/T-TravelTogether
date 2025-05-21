@@ -3,13 +3,11 @@ import Swinject
 import Contacts
 import ContactsUI
 
-final class SwinjectContainer: DependencyContainerProtocol {
-
-    static let shared: SwinjectContainer = SwinjectContainer()
+final class SwinjectContainer: IDependencyContainer {
 
     private let container: Container
 
-    private init() {
+    init() {
         container = Container()
         setupDependencies()
     }
@@ -26,11 +24,11 @@ final class SwinjectContainer: DependencyContainerProtocol {
         container.resolve(IMyTripsViewModel.self)!
     }
 
-    func resolveTripDetailViewModel(tripId: UUID) -> ITripDetailViewModel {
-        container.resolve(ITripDetailViewModel.self, argument: tripId)!
+    func resolveTripDetailViewModel(tripId: UUID, user: User) -> ITripDetailViewModel {
+        container.resolve(ITripDetailViewModel.self, arguments: tripId, user)!
     }
 
-    func createTripViewModel() -> ICreateTripViewModel {
+    func resolveTripViewModel() -> ICreateTripViewModel {
         container.resolve(ICreateTripViewModel.self)!
     }
 
@@ -46,16 +44,16 @@ final class SwinjectContainer: DependencyContainerProtocol {
         container.resolve(MyTripsController.self)!
     }
 
-    func resolveTripDetailController(tripId: UUID) -> TripDetailController {
-        container.resolve(TripDetailController.self, argument: tripId)!
+    func resolveTripDetailController(tripId: UUID, user: User) -> TripDetailController {
+        container.resolve(TripDetailController.self, arguments: tripId, user)!
     }
 
     func resolveCreateTripController(user: User) -> CreateTripController {
         container.resolve(CreateTripController.self, argument: user)!
     }
 
-    func resolveContactsViewController() -> CNContactPickerViewController {
-        container.resolve(CNContactPickerViewController.self)!
+    func resolveContactsController(selectedContacts: [Contact]) -> ContactsController {
+        container.resolve(ContactsController.self, argument: selectedContacts)!
     }
 
     func resolveMainTabBarController() -> UITabBarController {
@@ -85,12 +83,16 @@ private extension SwinjectContainer {
             MyTripsViewModel()
         }
 
-        container.register(ITripDetailViewModel.self) { (_, tripId: UUID) in
-            TripDetailViewModel(tripId: tripId)
+        container.register(ITripDetailViewModel.self) { (_, tripId: UUID, user: User) in
+            TripDetailViewModel(tripId: tripId, user: user)
         }
 
         container.register(ICreateTripViewModel.self) { (_, user: User) in
             CreateTripViewModel(user)
+        }
+
+        container.register(IContactsViewModel.self) { (_, selectedContacts) in
+            ContactsViewModel(selectedContacts: selectedContacts)
         }
     }
 
@@ -117,8 +119,8 @@ private extension SwinjectContainer {
             return myTipsController
         }.inObjectScope(.container)
 
-        container.register(TripDetailController.self) { (resolver, tripId: UUID) in
-            let tripDetailVM = resolver.resolve(ITripDetailViewModel.self, argument: tripId)!
+        container.register(TripDetailController.self) { (resolver, tripId: UUID, user: User) in
+            let tripDetailVM = resolver.resolve(ITripDetailViewModel.self, arguments: tripId, user)!
             let controller = TripDetailController(viewModel: tripDetailVM)
             controller.hidesBottomBarWhenPushed = true
             return controller
@@ -135,8 +137,9 @@ private extension SwinjectContainer {
             return createTripController
         }.inObjectScope(.container)
 
-        container.register(CNContactPickerViewController.self) { _ in
-            CNContactPickerViewController()
+        container.register(ContactsController.self) { (resolver, selectedUsers: [Contact]) in
+            let viewModel = resolver.resolve(IContactsViewModel.self, argument: selectedUsers)!
+            return ContactsController(viewModel: viewModel)
         }.inObjectScope(.container)
     }
 

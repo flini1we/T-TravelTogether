@@ -4,6 +4,7 @@ import Combine
 final class TripDetailViewModel: ITripDetailViewModel {
 
     var tripId: UUID
+    var currentUser: User
 
     @Published var tripDetail: TripDetail = .fake()
 
@@ -11,8 +12,9 @@ final class TripDetailViewModel: ITripDetailViewModel {
         $tripDetail
     }
 
-    init(tripId: UUID) {
+    init(tripId: UUID, user: User) {
         self.tripId = tripId
+        self.currentUser = user
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.tripDetail = TripDetail(
@@ -29,5 +31,9 @@ final class TripDetailViewModel: ITripDetailViewModel {
                 ]
             )
         }
+    }
+
+    func isAdmin() -> Bool {
+        currentUser == tripDetail.admin
     }
 }

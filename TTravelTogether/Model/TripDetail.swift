@@ -3,6 +3,10 @@ import UIKit
 struct TripDetail: Hashable, Identifiable, Codable {
 
     let id: UUID
+    let title: String
+    let price: Int
+    let startsAt: Date
+    let finishAt: Date
     let admin: User
     let members: [User]
 
@@ -10,9 +14,13 @@ struct TripDetail: Hashable, Identifiable, Codable {
         [admin] + members
     }
 
-    static func getPlaceholder() -> Self {
+    static func fake() -> Self {
         TripDetail(
             id: UUID(),
+            title: .AppStrings.AppTitles.tripDetailTitle,
+            price: .AppIntegers.tripPricePlaceholder,
+            startsAt: .now,
+            finishAt: .now,
             admin: User(phoneNumber: "0"),
             members: [
                 User(phoneNumber: "1"),

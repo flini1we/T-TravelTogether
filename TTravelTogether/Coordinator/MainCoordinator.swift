@@ -3,31 +3,41 @@ import Contacts
 import ContactsUI
 
 final class MainCoordinator: NSObject, IMainCoordinator {
-    var registratedUser: User!
+    private var registratedUser: User
 
     var childCoordinators: [ICoordinator] = []
     var navigationController: UINavigationController
-    var dependencies: DependencyContainerProtocol
+    var dependencies: IDependencyContainer
 
-    init(navigationController: UINavigationController, dependencieProvider: DependencyContainerProtocol) {
+    init(navigationController: UINavigationController, dependencieProvider: IDependencyContainer, user: User) {
         self.navigationController = navigationController
         self.dependencies = dependencieProvider
+        self.registratedUser = user
     }
 
     func start() {
         showMainTabBar()
     }
 
-    func showTripDetail(for id: UUID) {
-        let detailVC = dependencies.resolveTripDetailController(tripId: id)
+    func showTripDetail(_ id: UUID) {
+        let detailVC = dependencies.resolveTripDetailController(tripId: id, user: registratedUser)
         navigationController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(detailVC, animated: true)
     }
 
     func showContactList() {
         let createTripController = dependencies.resolveCreateTripController(user: registratedUser)
-        let myContactsVC = dependencies.resolveContactsViewController()
-        createTripController.present(myContactsVC, animated: true)
+        let contactsController = dependencies.resolveContactsController(
+            selectedContacts: createTripController.obtainContacts()
+        )
+        contactsController.onMembersUpdate = { users in
+            createTripController.updateMembersAfterSelection(users)
+        }
+        createTripController.onDisappear = {
+            contactsController.onClearData()
+        }
+        let navController = UINavigationController(rootViewController: contactsController)
+        createTripController.present(navController, animated: true)
     }
 }
 
@@ -41,6 +51,9 @@ private extension MainCoordinator {
         let createTripController = dependencies.resolveCreateTripController(user: registratedUser)
         myTripsController.coordinator = self
         createTripController.coordinator = self
+        createTripController.onTripCreating = {
+            myTripsController.updateTrips()
+        }
 
         navigationController.setViewControllers([tabBarController], animated: true)
     }
@@ -60,6 +73,9 @@ extension MainCoordinator: UITabBarControllerDelegate {
                 } else {
                     sheetController.detents = [.large()]
                 }
+            }
+            createTripController.onIncorrectPriceAlertDidSet = { incorrectPriceAlert in
+                createTripController.present(incorrectPriceAlert, animated: true)
             }
             tabBarController.present(createTripController, animated: true)
             return false

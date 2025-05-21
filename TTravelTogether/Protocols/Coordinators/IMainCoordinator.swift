@@ -2,9 +2,8 @@ import UIKit
 
 protocol IMainCoordinator: ICoordinator {
 
-    var dependencies: DependencyContainerProtocol { get }
-    var registratedUser: User! { get }
+    var dependencies: IDependencyContainer { get }
 
-    func showTripDetail(for id: UUID)
+    func showTripDetail(_ id: UUID)
     func showContactList()
 }

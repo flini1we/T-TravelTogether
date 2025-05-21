@@ -4,11 +4,11 @@ final class AuthCoordinator: IAuthCoordinator {
 
     var onLoginSuccess: ((User) -> Void)?
 
-    var dependencies: DependencyContainerProtocol
+    var dependencies: IDependencyContainer
     var childCoordinators: [ICoordinator] = []
     var navigationController: UINavigationController
 
-    init(navigationController: UINavigationController, dependencies: DependencyContainerProtocol) {
+    init(navigationController: UINavigationController, dependencies: IDependencyContainer) {
         self.navigationController = navigationController
         self.dependencies = dependencies
     }

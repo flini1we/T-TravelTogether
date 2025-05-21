@@ -9,7 +9,10 @@ enum SystemImages {
          location,
          calendar,
          leaveTrip,
-         editTrip
+         editTrip,
+         remove,
+         handRaised,
+         circle(Bool)
 
     var image: UIImage {
         switch self {
@@ -50,6 +53,12 @@ enum SystemImages {
             return UIImage(systemName: "rectangle.portrait.and.arrow.right")!
         case .editTrip:
             return UIImage(systemName: "pencil.line")!
+        case .remove:
+            return UIImage(systemName: "minus.circle.fill")!
+        case .handRaised:
+            return UIImage(systemName: "hand.raised.square.fill")!
+        case .circle(let isSelected):
+            return UIImage(systemName: isSelected ? "checkmark.circle.fill" : "circle")!
         }
     }
 }

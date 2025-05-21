@@ -40,9 +40,7 @@ final class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupBindings()
-        setupDelegates()
-        setupActions()
+        setup()
     }
 
     required init?(coder: NSCoder) {
@@ -62,12 +60,19 @@ private extension LoginController {
         }
     }
 
+    func setup() {
+        setupBindings()
+        setupDelegates()
+        setupActions()
+        setupNavigationTitle()
+    }
+
     func setupBindings() {
         viewModel.isLoadingPublisher
             .dropFirst()
             .sink { [weak self] isLoading in
                 guard let self else { return }
-                isLoading ? loginView.activateIndicator() : loginView.deactivateIndicator()
+                loginView.showLoadingIndicator(isLoading)
                 loginView.toggleTransparentBGVisibility()
             }.store(in: &cancellables)
     }
@@ -84,5 +89,9 @@ private extension LoginController {
     func setupActions() {
         loginView.setupGoToRegistrationPageAction(goToRegistrationScreenAction)
         loginView.setupLoginAction(loginAction)
+    }
+
+    func setupNavigationTitle() {
+        navigationItem.titleView = loginView.loginViewTitle
     }
 }

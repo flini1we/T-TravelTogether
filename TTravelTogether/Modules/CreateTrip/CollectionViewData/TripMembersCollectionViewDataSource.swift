@@ -13,10 +13,13 @@ final class TripMembersCollectionViewDataSource: NSObject, UICollectionViewDataS
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(
+        guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: MemberCollectionViewCell.identifier,
-            for: indexPath) as! MemberCollectionViewCell
-        cell.setupWithUser(createTripViewModel.tripMembers[indexPath.row], at: indexPath)
+            for: indexPath) as? MemberCollectionViewCell else { return UICollectionViewCell() }
+        cell.setupWithUser(
+            createTripViewModel.tripMembers[indexPath.row],
+            at: indexPath
+        )
         return cell
     }
 }
