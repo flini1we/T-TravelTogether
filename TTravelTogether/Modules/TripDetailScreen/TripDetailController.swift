@@ -2,6 +2,7 @@ import UIKit
 import Combine
 
 final class TripDetailController: UIViewController {
+    weak var coordinator: IMainCoordinator?
 
     private var tripDetailView: TripDetailView {
         view as! TripDetailView
@@ -93,7 +94,7 @@ private extension TripDetailController {
                 if !viewModel.isAdmin() {
                     navigationController?.present(AlertFactory.createEditTripAlert(), animated: true)
                 } else {
-                    // TODO: edit action
+                    coordinator?.showEditTripScreen(for: viewModel.tripDetail)
                 }
             },
             menu: nil

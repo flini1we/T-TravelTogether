@@ -184,6 +184,13 @@ final class CreateTripView: UIView, ICreateTripView {
     func getTripDates() -> (start: Date, finish: Date) {
         (startsAtCalendar.date, endsAtCalendar.date)
     }
+
+    func setupWithEditedTrip(tripDetail: TripDetail) {
+        tripTitleField.text = tripDetail.title
+        tripPriceField.text = "\(tripDetail.price)"
+        startsAtCalendar.date = tripDetail.startsAt
+        endsAtCalendar.date = tripDetail.finishAt
+    }
 }
 
 extension CreateTripView: UITextFieldDelegate {

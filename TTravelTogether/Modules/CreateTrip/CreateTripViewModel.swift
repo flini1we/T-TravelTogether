@@ -12,6 +12,7 @@ final class CreateTripViewModel: NSObject, ICreateTripViewModel {
     @Published var tripTitleText: String = ""
     @Published var tripPriceText: String = ""
     @Published var createdTrip: Trip?
+    @Published var editedTrip: TripDetail?
 
     var isCreateButtonEnablePublisher: Published<Bool>.Publisher {
         $isCreateButtonEnable
@@ -28,6 +29,9 @@ final class CreateTripViewModel: NSObject, ICreateTripViewModel {
     var createdTripPublisher: Published<Trip?>.Publisher {
         $createdTrip
     }
+    var editedTripPublisher: Published<TripDetail?>.Publisher {
+        $editedTrip
+    }
 
     private var cancellables = Set<AnyCancellable>()
     private var selectedUsers = Set<String>()
@@ -36,7 +40,9 @@ final class CreateTripViewModel: NSObject, ICreateTripViewModel {
     init(_ user: User) {
         self.currentUser = user
         super.init()
-        tripMembers.append(currentUser)
+        if !isEditing() {
+            tripMembers.append(currentUser)
+        }
         setupBindings()
     }
 
@@ -47,21 +53,27 @@ final class CreateTripViewModel: NSObject, ICreateTripViewModel {
 
     func clearData() {
         tripMembers = [tripMembers[0]]
+
         tripTitleText = ""
         tripPriceText = ""
         onClearingController?()
         selectedUsers = []
+        editedTrip = nil
     }
 
     func updateMembers(users: [User]) {
-        let users = users.filter {
-            $0.phoneNumber != currentUser.phoneNumber
-        }
-        tripMembers = [currentUser] + users
+        let users =  users.filter { $0.phoneNumber != currentUser.phoneNumber }
+        tripMembers = isEditing()
+        ? editedTrip!.getMembersSequence() + users
+        : [currentUser] + users
     }
 
     func obtainContacts() -> [Contact] {
-        tripMembers.map {
+        isEditing()
+        ? editedTrip!.getMembersSequence().map {
+            Contact(phoneNumber: $0.phoneNumber, firstName: "", secondName: "")
+        }
+        : tripMembers.map {
             Contact(phoneNumber: $0.phoneNumber, firstName: "", secondName: "")
         }
     }

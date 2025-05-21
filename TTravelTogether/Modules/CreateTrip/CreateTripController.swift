@@ -4,13 +4,12 @@ import Contacts
 import ContactsUI
 
 final class CreateTripController: UIViewController {
-    weak var coordinator: IMainCoordinator?
+    var coordinator: IMainCoordinator?
     var onDisappear: (() -> Void)?
     var onTripCreating: (() -> Void)?
     var onIncorrectPriceAlertDidSet: ((UIAlertController) -> Void)?
 
     private(set) var viewModel: ICreateTripViewModel
-
     private var createTripView: ICreateTripView {
         view as! ICreateTripView
     }
@@ -24,7 +23,6 @@ final class CreateTripController: UIViewController {
 
     override func loadView() {
         super.loadView()
-
         view = CreateTripView()
     }
 
@@ -33,10 +31,9 @@ final class CreateTripController: UIViewController {
         setup()
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        viewModel.clearData()
-        onDisappear?()
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        clearData()
     }
 
     func obtainContacts() -> [Contact] {
@@ -45,6 +42,10 @@ final class CreateTripController: UIViewController {
 
     func updateMembersAfterSelection(_ selectedMembers: [User]) {
         viewModel.updateMembers(users: selectedMembers)
+    }
+
+    func setupEditedTrip(_ editedTrip: TripDetail) {
+        viewModel.editedTrip = editedTrip
     }
 
     required init?(coder: NSCoder) {
@@ -63,7 +64,7 @@ private extension CreateTripController {
         createTripView.onShowingContacts = { [weak self] in
             self?.requestContactsAccess()
         }
-        tripMembersCollectionViewDataSource = TripMembersCollectionViewDataSource(viewModel: viewModel)
+        tripMembersCollectionViewDataSource = TripMembersCollectionViewDataSource(data: viewModel.tripMembers, collectionView: createTripView.tripMemebersCollectionView)
         createTripView.tripMemebersCollectionView.dataSource = tripMembersCollectionViewDataSource
         viewModel.onClearingController = { [weak self] in
             self?.createTripView.tripTitleField.text = ""
@@ -89,9 +90,9 @@ private extension CreateTripController {
             .store(in: &cancellables)
 
         viewModel.tripMembersPublisher
-            .dropFirst()
-            .sink { [weak self] _ in
-                self?.createTripView.tripMemebersCollectionView.reloadData()
+            .sink { [weak self] members in
+                guard let self else { return }
+                updateDataSource(with: members)
             }
             .store(in: &cancellables)
 
@@ -104,6 +105,16 @@ private extension CreateTripController {
             }
             .store(in: &cancellables)
 
+        viewModel.editedTripPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] editedTrip in
+                guard let self, let editedTrip else { return }
+                createTripView.setupWithEditedTrip(tripDetail: editedTrip)
+                updateDataSource(with: editedTrip.getMembersSequence())
+                viewModel.tripTitleText = editedTrip.title
+                viewModel.tripPriceText = "\(editedTrip.price)"
+            }
+            .store(in: &cancellables)
         viewModel.onShowingIncorrectPriceAlert = { [weak self] alert in
             self?.onIncorrectPriceAlertDidSet?(alert)
         }
@@ -127,19 +138,30 @@ private extension CreateTripController {
 
     func requestContactsAccess() {
         let store = CNContactStore()
-        store.requestAccess(for: .contacts) { [weak self] granted, _ in
-            DispatchQueue.main.async {
+        store.requestAccess(for: .contacts) { granted, _ in
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
                 if granted {
-                    self?.coordinator?.showContactList()
+                    coordinator?.showContactList()
                 } else {
                     let contactAccessAlert = AlertFactory.createContactsAccessAlert {
                         if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
                             UIApplication.shared.open(settingsURL)
                         }
                     } onCancel: { }
-                    self?.present(contactAccessAlert, animated: true)
+                    present(contactAccessAlert, animated: true)
                 }
             }
         }
+    }
+
+    func updateDataSource(with data: [User]) {
+        tripMembersCollectionViewDataSource?.updateUsers(data: data)
+    }
+
+    func clearData() {
+        viewModel.clearData()
+        tripMembersCollectionViewDataSource?.updateUsers(data: viewModel.tripMembers)
+        onDisappear?()
     }
 }
