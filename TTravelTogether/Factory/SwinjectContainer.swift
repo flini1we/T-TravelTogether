@@ -48,8 +48,8 @@ final class SwinjectContainer: IDependencyContainer {
         container.resolve(TripDetailController.self, arguments: tripId, user)!
     }
 
-    func resolveCreateTripController() -> CreateTripController {
-        container.resolve(CreateTripController.self)!
+    func resolveCreateTripController(user: User) -> CreateTripController {
+        container.resolve(CreateTripController.self, argument: user)!
     }
 
     func resolveContactsController(selectedContacts: [Contact]) -> ContactsController {
@@ -87,8 +87,8 @@ private extension SwinjectContainer {
             TripDetailViewModel(tripId: tripId, user: user)
         }
 
-        container.register(ICreateTripViewModel.self) { _ in
-            CreateTripViewModel()
+        container.register(ICreateTripViewModel.self) { (_, user: User) in
+            CreateTripViewModel(user)
         }
 
         container.register(IContactsViewModel.self) { (_, selectedContacts) in
@@ -126,8 +126,8 @@ private extension SwinjectContainer {
             return controller
         }
 
-        container.register(CreateTripController.self) { resolver in
-            let viewModel = resolver.resolve(ICreateTripViewModel.self)!
+        container.register(CreateTripController.self) { (resolver, user: User) in
+            let viewModel = resolver.resolve(ICreateTripViewModel.self, argument: user)!
             let createTripController = CreateTripController(viewModel: viewModel)
             createTripController.tabBarItem = UITabBarItem(
                 title: nil,

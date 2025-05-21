@@ -23,7 +23,7 @@ final class TripDetailViewModel: ITripDetailViewModel {
                 price: .AppIntegers.tripPricePlaceholder,
                 startsAt: .now,
                 finishAt: .now,
-                admin: UserService.shared.currentUser!,
+                admin: self.currentUser,
                 members: [
                     User(phoneNumber: "+79173981190"),
                     User(phoneNumber: "+79173981129"),

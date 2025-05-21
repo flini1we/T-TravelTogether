@@ -32,9 +32,9 @@ final class CreateTripViewModel: NSObject, ICreateTripViewModel {
     var editedTripPublisher: Published<TripDetail?>.Publisher {
         $editedTrip
     }
+    var selectedUsers = Set<String>()
 
     private var cancellables = Set<AnyCancellable>()
-    private var selectedUsers = Set<String>()
     private let currentUser: User
 
     init(_ user: User) {
@@ -83,7 +83,7 @@ final class CreateTripViewModel: NSObject, ICreateTripViewModel {
             onShowingIncorrectPriceAlert?(AlertFactory.showIncorrectTripPriceAlert())
             return
         }
-        
+
         let trip = Trip(
             title: tripTitleText,
             startsAt: dates.start,
@@ -101,6 +101,10 @@ final class CreateTripViewModel: NSObject, ICreateTripViewModel {
         )
         // TODO: send to backend
         createdTrip = trip
+    }
+
+    func isEditing() -> Bool {
+        editedTrip != nil
     }
 }
 

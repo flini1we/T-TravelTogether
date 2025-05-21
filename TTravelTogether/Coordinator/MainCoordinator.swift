@@ -21,7 +21,7 @@ final class MainCoordinator: NSObject, IMainCoordinator {
     }
 
     func showTripDetail(_ id: UUID) {
-        let detailVC = dependencies.resolveTripDetailController(tripId: id)
+        let detailVC = dependencies.resolveTripDetailController(tripId: id, user: registratedUser)
         detailVC.coordinator = self
         navigationController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(detailVC, animated: true)
@@ -50,7 +50,7 @@ final class MainCoordinator: NSObject, IMainCoordinator {
 }
 
 extension MainCoordinator: UITabBarControllerDelegate {
-    
+
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController is EmptyController {
             let createTripController = dependencies.resolveCreateTripController(user: registratedUser)
@@ -78,7 +78,7 @@ private extension MainCoordinator {
 
     func showMainTabBar() {
         let tabBarController = dependencies.resolveMainTabBarController()
-        createTripController = dependencies.resolveCreateTripController()
+        createTripController = dependencies.resolveCreateTripController(user: registratedUser)
         let myTripsController = dependencies.resolveMyTripsController()
 
         tabBarController.delegate = self
