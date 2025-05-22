@@ -4,7 +4,6 @@ import ContactsUI
 
 final class MainCoordinator: NSObject, IMainCoordinator {
     private var registratedUser: User
-    private var createTripController: CreateTripController!
 
     var childCoordinators: [ICoordinator] = []
     var navigationController: UINavigationController
@@ -43,6 +42,7 @@ final class MainCoordinator: NSObject, IMainCoordinator {
     }
 
     func showEditTripScreen(for tripDetail: TripDetail) {
+        let createTripController = dependencies.resolveCreateTripController(user: registratedUser)
         createTripController.setupEditedTrip(tripDetail)
         createSheetViewController(from: createTripController)
         navigationController.present(createTripController, animated: true)
@@ -78,7 +78,7 @@ private extension MainCoordinator {
 
     func showMainTabBar() {
         let tabBarController = dependencies.resolveMainTabBarController()
-        createTripController = dependencies.resolveCreateTripController(user: registratedUser)
+        let createTripController = dependencies.resolveCreateTripController(user: registratedUser)
         let myTripsController = dependencies.resolveMyTripsController()
 
         tabBarController.delegate = self
