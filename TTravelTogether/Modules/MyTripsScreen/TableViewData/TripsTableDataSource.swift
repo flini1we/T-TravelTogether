@@ -27,8 +27,7 @@ final class TripsTableDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TripTableViewCell.identifier, for: indexPath) as? TripTableViewCell else { return UITableViewCell() }
         let travel = trips[indexPath.row]
-        _ = tableView.isSkeletonable ? cell.bgView.showAnimatedGradientSkeleton()
-                                     : cell.setupWithTravel(travel)
+        cell.setupWithTravel(travel)
         return cell
     }
 }

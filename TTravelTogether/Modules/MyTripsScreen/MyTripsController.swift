@@ -30,7 +30,6 @@ final class MyTripsController: UIViewController {
     }
 
     func updateTrips() {
-        myTripsView.travellingsTableView.isSkeletonable = true
         viewModel.loadData()
     }
 
@@ -42,7 +41,7 @@ final class MyTripsController: UIViewController {
 private extension MyTripsController {
 
     func setup() {
-        myTripsView.travellingsTableView.isSkeletonable = true
+        myTripsView.travellingsTableView.makeSkeletonable()
         setupDataSource()
         setupDelegate()
         setupBindings()
@@ -64,16 +63,23 @@ private extension MyTripsController {
     }
 
     func setupBindings() {
-        viewModel.onTripsUpdate = { [weak self] trips in
-            self?.tableViewDataSource?.update(trips)
-        }
-
         viewModel
             .isLoadingDataPublisher
             .sink { [weak self] isLoading in
                 guard let self else { return }
-                _ = isLoading ? myTripsView.travellingsTableView.showSkeleton()
-                              : myTripsView.travellingsTableView.hideSkeleton()
+                if isLoading {
+                    myTripsView.travellingsTableView.showSkeleton()
+                } else {
+                    myTripsView.travellingsTableView.hideSkeleton()
+                }
+            }
+            .store(in: &cancellables)
+
+        viewModel
+            .tripsDataPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] trips in
+                self?.tableViewDataSource?.update(trips)
             }
             .store(in: &cancellables)
     }

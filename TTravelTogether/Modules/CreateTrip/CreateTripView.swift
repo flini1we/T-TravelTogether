@@ -13,7 +13,7 @@ final class CreateTripView: UIView, ICreateTripView {
             .returnKeyType(.continue)
             .keyboardType(.default)
             .paddinLeft(PaddingValues.default.value)
-            .delegete(self)
+            .delegate(self)
             .build()
     }()
 
@@ -25,7 +25,7 @@ final class CreateTripView: UIView, ICreateTripView {
             .returnKeyType(.done)
             .keyboardType(.numberPad)
             .paddinLeft(PaddingValues.default.value)
-            .delegete(self)
+            .delegate(self)
             .build()
     }()
 

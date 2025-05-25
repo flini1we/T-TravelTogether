@@ -2,7 +2,15 @@ import UIKit
 import SnapKit
 
 final class RegistrationView: UIView, IRegistrationView {
-    // MARK: UIElements
+
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
+        return scrollView
+    }()
+
+    private lazy var contentView: UIView = { UIView() }()
+
     private lazy var imageLabel: UIImageView = {
         let imageView = UIImageView(image: .registrationLogo)
         imageView.contentMode = .scaleAspectFit
@@ -17,6 +25,44 @@ final class RegistrationView: UIView, IRegistrationView {
             .build()
     }()
 
+    private(set) lazy var userNameField: UITextField = {
+        TextFieldBuilder()
+            .font(.systemFont(ofSize: FontValues.default.value))
+            .cornerRadius(.default)
+            .isSecureEntry(false)
+            .placeHolder(.AppStrings.Auth.userNameFieldPlaceholder)
+            .returnKeyType(.continue)
+            .paddinLeft(PaddingValues.default.value)
+            .delegate(self)
+            .build()
+    }()
+
+    private(set) lazy var userNameHint: UILabel = {
+        LabelBuilder()
+            .font(CustomFonts.default(FontValues.small.value).font)
+            .textColor(.primaryRed)
+            .build()
+    }()
+
+    private(set) lazy var userLastNameField: UITextField = {
+        TextFieldBuilder()
+            .font(.systemFont(ofSize: FontValues.default.value))
+            .cornerRadius(.default)
+            .isSecureEntry(false)
+            .placeHolder(.AppStrings.Auth.userLastNameFieldPlaceholder)
+            .returnKeyType(.continue)
+            .paddinLeft(PaddingValues.default.value)
+            .delegate(self)
+            .build()
+    }()
+
+    private(set) lazy var userLastNameHint: UILabel = {
+        LabelBuilder()
+            .font(CustomFonts.default(FontValues.small.value).font)
+            .textColor(.primaryRed)
+            .build()
+    }()
+
     private(set) lazy var phoneNumberField: UITextField = {
         TextFieldBuilder()
             .font(.systemFont(ofSize: FontValues.default.value))
@@ -26,6 +72,7 @@ final class RegistrationView: UIView, IRegistrationView {
             .placeHolder(.AppStrings.Auth.phoneNumber)
             .returnKeyType(.continue)
             .paddinLeft(PaddingValues.default.value)
+            .delegate(self)
             .build()
     }()
 
@@ -45,6 +92,7 @@ final class RegistrationView: UIView, IRegistrationView {
             .returnKeyType(.continue)
             .paddinLeft(PaddingValues.default.value)
             .enableTogglingSecure()
+            .delegate(self)
             .build()
     }()
 
@@ -64,6 +112,7 @@ final class RegistrationView: UIView, IRegistrationView {
             .returnKeyType(.done)
             .paddinLeft(PaddingValues.default.value)
             .enableTogglingSecure()
+            .delegate(self)
             .build()
     }()
 
@@ -98,9 +147,12 @@ final class RegistrationView: UIView, IRegistrationView {
         return view
     }()
 
-    // MARK: StackView containers
     private lazy var textFieldsStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [
+            userNameField,
+            userNameHint,
+            userLastNameField,
+            userLastNameHint,
             phoneNumberField,
             phoneNumberFieldHint,
             passwordFieldFirst,
@@ -149,6 +201,22 @@ final class RegistrationView: UIView, IRegistrationView {
     func deactivateIndicator() {
         activityIndicator.alpha = 0
     }
+
+    func onKeyboardWillShow(frame: CGRect) {
+        let contentInset = UIEdgeInsets(top: 0, left: 0, bottom: frame.height, right: 0)
+        scrollView.contentInset = contentInset
+        scrollView.scrollIndicatorInsets = contentInset
+
+        if let activeField = findFirstResponder() as? UITextField {
+            let rect = activeField.convert(activeField.bounds, to: scrollView)
+            scrollView.scrollRectToVisible(rect, animated: true)
+        }
+    }
+
+    func onKeyboardWillHide() {
+        scrollView.contentInset = .zero
+        scrollView.scrollIndicatorInsets = .zero
+    }
 }
 
 private extension RegistrationView {
@@ -161,29 +229,41 @@ private extension RegistrationView {
     }
 
     func setupSubviews() {
-        addSubview(imageLabel)
-        addSubview(textFieldsStackView)
+        addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(imageLabel)
+        contentView.addSubview(textFieldsStackView)
         addSubview(registerButton)
         addSubview(transparentBG)
         addSubview(activityIndicator)
     }
 
     func setupConstraints() {
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+
+        contentView.snp.makeConstraints { make in
+            make.edges.equalTo(scrollView)
+            make.width.equalTo(scrollView)
+        }
+
         imageLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(safeAreaLayoutGuide.snp.top).inset(PaddingValues.medium.value)
-            make.height.equalTo(UIScreen.main.bounds.width / 2.5)
+            make.top.equalTo(contentView.snp.top).inset(PaddingValues.default.value)
+            make.height.equalTo(UIScreen.main.bounds.width / 2.75)
         }
 
         textFieldsStackView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.top.equalTo(imageLabel.snp.bottom).offset(PaddingValues.semiBig.value)
             make.leading.trailing.equalToSuperview().inset(PaddingValues.medium.value)
+            make.bottom.equalToSuperview()
         }
 
         registerButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).inset(PaddingValues.medium.value)
             make.leading.trailing.equalToSuperview().inset(PaddingValues.default.value)
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).inset(PaddingValues.medium.value)
         }
 
         activityIndicator.snp.makeConstraints { make in
@@ -194,5 +274,39 @@ private extension RegistrationView {
         transparentBG.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+
+    func findFirstResponder() -> UIView? {
+        for view in textFieldsStackView.arrangedSubviews where view.isFirstResponder { return view }
+        return nil
+    }
+}
+
+extension RegistrationView: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case userNameField:
+            userLastNameField.becomeFirstResponder()
+        case userLastNameField:
+            phoneNumberField.becomeFirstResponder()
+        case phoneNumberField:
+            passwordFieldFirst.becomeFirstResponder()
+        case passwordFieldFirst:
+            passwordFieldConfirmed.becomeFirstResponder()
+        case passwordFieldConfirmed:
+            passwordFieldConfirmed.resignFirstResponder()
+        default:
+            return true
+        }
+        return true
+    }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return textField == phoneNumberField
+        ? formatPhoneNumberForPhoneFields(textField: textField, range: range, replacementString: string)
+        : textField.isSecureTextEntry
+        ? secureFieldShouldChangeCharactersIn(textField: textField, range: range, replacementString: string)
+        : true
     }
 }

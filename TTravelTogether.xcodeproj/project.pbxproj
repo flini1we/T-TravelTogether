@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF0B92CC2DDFAC86001CBAF8 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0B92CB2DDFAC86001CBAF8 /* KeyboardObserver.swift */; };
+		CF0B92CF2DDFB109001CBAF8 /* KeyboardObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0B92CE2DDFB109001CBAF8 /* KeyboardObservable.swift */; };
+		CF0B92D12DDFC785001CBAF8 /* RegistrationTextFiedlDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0B92D02DDFC785001CBAF8 /* RegistrationTextFiedlDelegate.swift */; };
+		CF0B92D32DE129FB001CBAF8 /* UICollectionView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0B92D22DE129FB001CBAF8 /* UICollectionView+extension.swift */; };
 		CF19AD3D2DBE8CD600FF45FE /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF19AD3C2DBE8CD600FF45FE /* AppFlowCoordinator.swift */; };
 		CF19AD3F2DBE8DC400FF45FE /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF19AD3E2DBE8DC400FF45FE /* AuthCoordinator.swift */; };
 		CF19AD412DBE946600FF45FE /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF19AD402DBE946600FF45FE /* MainCoordinator.swift */; };
@@ -139,6 +143,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CF0B92CB2DDFAC86001CBAF8 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
+		CF0B92CE2DDFB109001CBAF8 /* KeyboardObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObservable.swift; sourceTree = "<group>"; };
+		CF0B92D02DDFC785001CBAF8 /* RegistrationTextFiedlDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationTextFiedlDelegate.swift; sourceTree = "<group>"; };
+		CF0B92D22DE129FB001CBAF8 /* UICollectionView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+extension.swift"; sourceTree = "<group>"; };
 		CF19AD3C2DBE8CD600FF45FE /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 		CF19AD3E2DBE8DC400FF45FE /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		CF19AD402DBE946600FF45FE /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
@@ -283,6 +291,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF0B92CA2DDFAC78001CBAF8 /* Observers */ = {
+			isa = PBXGroup;
+			children = (
+				CF0B92CB2DDFAC86001CBAF8 /* KeyboardObserver.swift */,
+			);
+			path = Observers;
+			sourceTree = "<group>";
+		};
+		CF0B92CD2DDFB102001CBAF8 /* Observers */ = {
+			isa = PBXGroup;
+			children = (
+				CF0B92CE2DDFB109001CBAF8 /* KeyboardObservable.swift */,
+			);
+			path = Observers;
+			sourceTree = "<group>";
+		};
 		CF3556492DA857DC00290A81 = {
 			isa = PBXGroup;
 			children = (
@@ -313,6 +337,7 @@
 				CF35568D2DA8581700290A81 /* LaunchScreen.storyboard */,
 				CF3556892DA8581700290A81 /* AppDelegate.swift */,
 				CF3556902DA8581700290A81 /* SceneDelegate.swift */,
+				CF0B92CA2DDFAC78001CBAF8 /* Observers */,
 				CF8735752DD3A1EB00A45779 /* Protocols */,
 				CFB11FEE2DB6855400609CEF /* Formatter */,
 				CFB11FDD2DB62F3400609CEF /* Model */,
@@ -515,6 +540,7 @@
 		CF8735752DD3A1EB00A45779 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				CF0B92CD2DDFB102001CBAF8 /* Observers */,
 				CF87355F2DD3A1EB00A45779 /* Container */,
 				CF8735632DD3A1EB00A45779 /* Coordinators */,
 				CF8735652DD3A1EB00A45779 /* Formatters */,
@@ -527,7 +553,6 @@
 		CFAD6A4D2DAACDAF003930F3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				CFAD6AE82DAC1BD6003930F3 /* ExternalDelegates */,
 				CFAD6A4E2DAACDB8003930F3 /* LoginScreen */,
 				CFAD6A622DABD35E003930F3 /* RegistrationScreen */,
 				CFB11FF32DB688E300609CEF /* MyTripsScreen */,
@@ -544,6 +569,7 @@
 				CFAD6A4F2DAACDEF003930F3 /* LoginView.swift */,
 				CFAD6A532DAACE03003930F3 /* LoginController.swift */,
 				CFAD6A512DAACDFC003930F3 /* LoginViewModel.swift */,
+				CF74057A2DD3A2D400B71E2B /* UserTextFieldDelegate.swift */,
 			);
 			path = LoginScreen;
 			sourceTree = "<group>";
@@ -590,6 +616,7 @@
 				CFAD6A632DABD36F003930F3 /* RegistrationView.swift */,
 				CFAD6A652DABD378003930F3 /* RegistrationController.swift */,
 				CFAD6A672DABD381003930F3 /* RegistrationViewModel.swift */,
+				CF0B92D02DDFC785001CBAF8 /* RegistrationTextFiedlDelegate.swift */,
 			);
 			path = RegistrationScreen;
 			sourceTree = "<group>";
@@ -633,18 +660,11 @@
 				CFAFC60B2DB91431002FA8EF /* Int+extension.swift */,
 				CFAFC60D2DB91BB3002FA8EF /* CGFLoat+extension.swift */,
 				CF7405A32DD3AE0200B71E2B /* UITableView+extension.swift */,
+				CF0B92D22DE129FB001CBAF8 /* UICollectionView+extension.swift */,
 				CF7405BD2DD4B1DA00B71E2B /* UIBarButtonItem+extension.swift */,
 				CFF713022DDD23A70005C5AE /* Float+extension.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		CFAD6AE82DAC1BD6003930F3 /* ExternalDelegates */ = {
-			isa = PBXGroup;
-			children = (
-				CF74057A2DD3A2D400B71E2B /* UserTextFieldDelegate.swift */,
-			);
-			path = ExternalDelegates;
 			sourceTree = "<group>";
 		};
 		CFAD6AEF2DAC5E30003930F3 /* Views */ = {
@@ -900,6 +920,7 @@
 				CF7405992DD3A3DF00B71E2B /* ContactsView.swift in Sources */,
 				CF74059A2DD3A3DF00B71E2B /* ContactsViewModel.swift in Sources */,
 				CF74058C2DD3A38D00B71E2B /* Contact.swift in Sources */,
+				CF0B92D32DE129FB001CBAF8 /* UICollectionView+extension.swift in Sources */,
 				CF74058A2DD3A37D00B71E2B /* UserService.swift in Sources */,
 				CF7405832DD3A35800B71E2B /* TripMembersCollectionViewDataSource.swift in Sources */,
 				CF7405842DD3A35800B71E2B /* CreateTripController.swift in Sources */,
@@ -912,6 +933,7 @@
 				CFB11FF92DB688E900609CEF /* MyTripsView.swift in Sources */,
 				CFB11FFA2DB688E900609CEF /* MyTripsViewModel.swift in Sources */,
 				CF3556992DA8581700290A81 /* AppDelegate.swift in Sources */,
+				CF0B92CF2DDFB109001CBAF8 /* KeyboardObservable.swift in Sources */,
 				CF3B469E2DB58013008C4CA0 /* UITabBar+extension.swift in Sources */,
 				CFAD6A572DAACFB5003930F3 /* TextFieldBuilder.swift in Sources */,
 				CFAD6AF42DACF814003930F3 /* LoginErrors.swift in Sources */,
@@ -923,6 +945,7 @@
 				CFAFBEF22DB787BC002FA8EF /* NetworkErrors.swift in Sources */,
 				CF3B469C2DB57DBB008C4CA0 /* TabBarScreenTags.swift in Sources */,
 				CFB11FE62DB637E500609CEF /* Sections.swift in Sources */,
+				CF0B92D12DDFC785001CBAF8 /* RegistrationTextFiedlDelegate.swift in Sources */,
 				CFAD6A682DABD381003930F3 /* RegistrationViewModel.swift in Sources */,
 				CFCD372D2DBF4EAC0037A854 /* SwinjectContainer.swift in Sources */,
 				CFAD6AB22DABDC16003930F3 /* LabelBuilder.swift in Sources */,
@@ -963,6 +986,7 @@
 				CF19AD412DBE946600FF45FE /* MainCoordinator.swift in Sources */,
 				CFAD6AE52DAC1104003930F3 /* SystemImages.swift in Sources */,
 				CFAD6AE32DAC0B30003930F3 /* UITextField+extension.swift in Sources */,
+				CF0B92CC2DDFAC86001CBAF8 /* KeyboardObserver.swift in Sources */,
 				CFAD6A612DAB02C5003930F3 /* UIElementsValues.swift in Sources */,
 				CFAD6AF12DAC5E4D003930F3 /* ActivityIndicatorView.swift in Sources */,
 				CFAFC6052DB82608002FA8EF /* User.swift in Sources */,

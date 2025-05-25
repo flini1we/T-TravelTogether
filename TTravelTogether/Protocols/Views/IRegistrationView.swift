@@ -3,6 +3,10 @@ import UIKit
 protocol IRegistrationView: AnyObject {
 
     var registerViewTitle: UILabel { get }
+    var userNameField: UITextField { get }
+    var userNameHint: UILabel { get }
+    var userLastNameField: UITextField { get }
+    var userLastNameHint: UILabel { get }
     var phoneNumberField: UITextField { get }
     var phoneNumberFieldHint: UILabel { get }
     var passwordFieldFirst: UITextField { get }
@@ -18,4 +22,6 @@ protocol IRegistrationView: AnyObject {
     func toggleTransparentBGVisibility()
     func activateIndicator()
     func deactivateIndicator()
+    func onKeyboardWillShow(frame: CGRect)
+    func onKeyboardWillHide()
 }

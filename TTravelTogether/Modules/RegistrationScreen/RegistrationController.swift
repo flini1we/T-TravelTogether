@@ -1,13 +1,15 @@
 import UIKit
 import Combine
 
-final class RegistrationController: UIViewController {
+final class RegistrationController: UIViewController, KeyboardObservable {
+
     var registerButtonAction: ((String) -> Void)?
 
     private var registrationView: IRegistrationView {
         view as! IRegistrationView
     }
     private var viewModel: IRegistrationViewModel
+    var keyboardObserver: KeyboardObserver?
 
     private lazy var registerAction: UIAction = {
         UIAction { [weak self] _ in
@@ -23,7 +25,6 @@ final class RegistrationController: UIViewController {
         }
     }()
 
-    private var textFieldDelegate: UITextFieldDelegate!
     private var cancellables: Set<AnyCancellable> = []
 
     init(viewModel: IRegistrationViewModel) {
@@ -43,6 +44,12 @@ final class RegistrationController: UIViewController {
         setup()
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        stopKeyboardObservering()
+    }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -51,29 +58,66 @@ final class RegistrationController: UIViewController {
 private extension RegistrationController {
 
     func setup() {
+        setupObservers()
         setupBindings()
-        setupDelegate()
         setUpActions()
         setupNavigationItem()
     }
 
-    func setupDelegate() {
-        textFieldDelegate = UserTextFieldDelegate(
-            phoneNumberField: registrationView.phoneNumberField,
-            passwordField: registrationView.passwordFieldFirst,
-            confirmPasswordField: registrationView.passwordFieldConfirmed)
-        registrationView.phoneNumberField.delegate = textFieldDelegate
-        registrationView.passwordFieldFirst.delegate = textFieldDelegate
-        registrationView.passwordFieldConfirmed.delegate = textFieldDelegate
+    func setupObservers() {
+
+        startKeyboardObservering { [weak self] keyboardFrame in
+            self?.registrationView.onKeyboardWillShow(frame: keyboardFrame)
+        } onHide: { [weak self] in
+            self?.registrationView.onKeyboardWillHide()
+        }
     }
 
     func setupBindings() {
 
+        setupUserDataFieldsBindings()
         setupPhoneFieldBinding()
         setupPasswordFieldBinding()
         setupPasswordConfirmationFieldBinding()
         setupDataValidationBinding()
         setupLoadingBindings()
+    }
+
+    func setupUserDataFieldsBindings() {
+
+        viewModel.isUserNameValidPublisher
+            .dropFirst()
+            .sink { [weak self] isValid in
+                self?.registrationView.userNameField.setValidationBorder(isValid)
+            }
+            .store(in: &cancellables)
+
+        viewModel.isUserLastNameValidPublisher
+            .dropFirst()
+            .sink { [weak self] isValid in
+                self?.registrationView.userLastNameField.setValidationBorder(isValid)
+            }
+            .store(in: &cancellables)
+
+        registrationView
+            .userNameField
+            .textPublisher
+            .sink { [weak self] userName in
+                guard let self else { return }
+                _ = viewModel.validateName(userName)
+                registrationView.userNameHint.text = viewModel.getUserNameErorrMessage(userName)
+            }
+            .store(in: &cancellables)
+
+        registrationView
+            .userLastNameField
+            .textPublisher
+            .sink { [weak self] userLastName in
+                guard let self else { return }
+                _ = viewModel.validateLastName(userLastName)
+                registrationView.userLastNameHint.text = viewModel.getUserLastNameErorrMessage(userLastName)
+            }
+            .store(in: &cancellables)
     }
 
     func setupPhoneFieldBinding() {

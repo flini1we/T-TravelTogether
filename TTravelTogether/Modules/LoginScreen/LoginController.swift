@@ -78,10 +78,9 @@ private extension LoginController {
     }
 
     func setupDelegates() {
-        textFieldDelegate = UserTextFieldDelegate(
+        textFieldDelegate = LoginTextFieldDelegate(
             phoneNumberField: loginView.phoneNumberField,
-            passwordField: loginView.passwordField,
-            confirmPasswordField: nil)
+            passwordField: loginView.passwordField)
         loginView.phoneNumberField.delegate = textFieldDelegate
         loginView.passwordField.delegate = textFieldDelegate
     }

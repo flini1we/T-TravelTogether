@@ -31,7 +31,7 @@ final class TextFieldBuilder: ITextFieldBuilder {
         return self
     }
 
-    func delegete(_ delegate: UITextFieldDelegate) -> Self {
+    func delegate(_ delegate: UITextFieldDelegate) -> Self {
         textField.delegate = delegate
         return self
     }

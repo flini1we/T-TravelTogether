@@ -5,10 +5,18 @@ final class RegistrationViewModel: IRegistrationViewModel {
 
     @Published var isFetchingRequest = false
 
+    @Published var isNameValid = false
+    @Published var isLastNameValid: Bool = false
     @Published var isPhoneValid = false
     @Published var isPasswordValid = false
     @Published var isPasswordConfirmed = false
 
+    var isUserNameValidPublisher: Published<Bool>.Publisher {
+        $isNameValid
+    }
+    var isUserLastNameValidPublisher: Published<Bool>.Publisher {
+        $isLastNameValid
+    }
     var isFetchingRequestPublisher: Published<Bool>.Publisher {
         $isFetchingRequest
     }
@@ -22,12 +30,15 @@ final class RegistrationViewModel: IRegistrationViewModel {
         $isPasswordConfirmed
     }
     var isDataValid: AnyPublisher<Bool, Never> {
-        Publishers.CombineLatest3(
-            $isPhoneValid,
-            $isPasswordValid,
-            $isPasswordConfirmed
+        Publishers.CombineLatest(
+            Publishers.CombineLatest3($isNameValid, $isLastNameValid, $isPhoneValid),
+            Publishers.CombineLatest($isPasswordValid, $isPasswordConfirmed)
         )
-        .map { $0 && $1 && $2 }
+        .map { firstGroup, secondGroup in
+            let (nameValid, lastNameValid, phoneValid) = firstGroup
+            let (passwordValid, passwordConfirmed) = secondGroup
+            return nameValid && lastNameValid && phoneValid && passwordValid && passwordConfirmed
+        }
         .eraseToAnyPublisher()
     }
 
@@ -39,6 +50,24 @@ final class RegistrationViewModel: IRegistrationViewModel {
         }
     }
 
+    func validateName(_ name: String) -> Bool {
+        let isValid = name.range(
+            of: RegularExpressions.userData.expression,
+            options: .regularExpression
+        ) != nil
+        isNameValid = isValid
+        return isValid
+    }
+
+    func validateLastName(_ lastName: String) -> Bool {
+        let isValid = lastName.range(
+            of: RegularExpressions.userData.expression,
+            options: .regularExpression
+        ) != nil
+        isLastNameValid = isValid
+        return isValid
+    }
+
     func validatePhone(_ phone: String) -> Bool {
         let isValid = phone.range(
             of: RegularExpressions.russianPhoneNumber.expression,
@@ -48,7 +77,22 @@ final class RegistrationViewModel: IRegistrationViewModel {
         return isValid
     }
 
+    func getUserNameErorrMessage(_ name: String) -> String {
+        guard !name.isEmpty else { return .AppStrings.Auth.invalidUserName }
+        if !name.first!.isUppercase { return .AppStrings.Auth.invalidStartUserName }
+        if !isNameValid { return .AppStrings.Auth.invalidUserNameSymbols }
+        return ""
+    }
+
+    func getUserLastNameErorrMessage(_ lastName: String) -> String {
+        guard !lastName.isEmpty else { return .AppStrings.Auth.invalidUserLastName }
+        if !lastName.first!.isUppercase { return .AppStrings.Auth.invalidStartUserLastName }
+        if !isLastNameValid { return .AppStrings.Auth.invalidUserLastNameSymbols  }
+        return ""
+    }
+
     func getPhoneErrorMessage(_ phone: String) -> String {
+        let phone = phone.filter { $0.isNumber }
         if phone.starts(with: String.AppStrings.Auth.phonePrefix89) &&
            phone.count > 11 {
             return .AppStrings.Auth.invalidPhoneLenght
