@@ -8,8 +8,7 @@ protocol ILoginViewModel: AnyObject {
     var isLoadingPublisher: Published<Bool>.Publisher { get }
 
     func login(
-        phoneNumber: String,
-        password: String,
-        completion: @escaping ((Result<String, LoginErrors>) -> Void)
+        userData: LoginUserDataType,
+        completion: @escaping ((Result<LoginUserDataType, CustomError>) -> Void)
     )
 }

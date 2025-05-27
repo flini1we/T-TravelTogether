@@ -2,6 +2,7 @@ import Foundation
 import Combine
 
 final class RegistrationViewModel: IRegistrationViewModel {
+    private var networkService: INetworkService
 
     @Published var isFetchingRequest = false
 
@@ -42,11 +43,19 @@ final class RegistrationViewModel: IRegistrationViewModel {
         .eraseToAnyPublisher()
     }
 
-    func register(completion: @escaping ((Result<String, Error>) -> Void)) {
-        self.isFetchingRequest = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            completion(.success("Valid"))
-            self.isFetchingRequest = false
+    init(networkService: INetworkService) {
+        self.networkService = networkService
+    }
+
+    func register(user: UserDTO, completion: @escaping ((Result<String, CustomError>) -> Void)) {
+        isFetchingRequest = true
+        networkService.register(user: user) { result in
+            switch result {
+            case .success(let message):
+                completion(.success(message))
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
 

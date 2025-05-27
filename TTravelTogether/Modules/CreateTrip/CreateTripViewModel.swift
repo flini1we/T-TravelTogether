@@ -47,7 +47,9 @@ final class CreateTripViewModel: NSObject, ICreateTripViewModel {
     }
 
     func addMembers(phoneNumbers: [String]) {
-        let users = phoneNumbers.map { User(phoneNumber: $0) }
+        let users = phoneNumbers.map {
+            User(phoneNumber: $0)
+        }
         tripMembers.append(contentsOf: users)
     }
 

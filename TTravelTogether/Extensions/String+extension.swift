@@ -81,5 +81,19 @@ extension String {
 
             static let originUserKey = "current_user"
         }
+
+        enum Errors {
+
+            static let hiddenMessage = "Неизвестная ошибка"
+            static let registerError = "Ошибка регистрации"
+            static let tokensDecoderError = "Ошибка при раскодировании токенов"
+        }
+
+        enum KeyChain {
+
+            static let storage = "keychain.TokenStorage"
+            static let accessId = ".access"
+            static let refreshId = ".refresh"
+        }
     }
 }

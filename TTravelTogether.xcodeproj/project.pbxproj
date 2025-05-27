@@ -28,6 +28,13 @@
 		CF3B469E2DB58013008C4CA0 /* UITabBar+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B469D2DB58013008C4CA0 /* UITabBar+extension.swift */; };
 		CF601D322DA93D7700E98B21 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CF601D312DA93D7700E98B21 /* SnapKit */; };
 		CF64B92E2DAD982900255003 /* RegularExpressions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF64B92D2DAD982800255003 /* RegularExpressions.swift */; };
+		CF6CFAA12DE3B35D00283F9C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CF6CFAA02DE3B35D00283F9C /* Alamofire */; };
+		CF6CFAA32DE4D56700283F9C /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6CFAA22DE4D56600283F9C /* Network.swift */; };
+		CF6CFAA52DE4D81200283F9C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6CFAA42DE4D81200283F9C /* NetworkService.swift */; };
+		CF6CFAA92DE4DDDB00283F9C /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6CFAA82DE4DDDB00283F9C /* CustomError.swift */; };
+		CF6CFAAF2DE5988500283F9C /* UserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6CFAAE2DE5988500283F9C /* UserDTO.swift */; };
+		CF6CFAB12DE59AB700283F9C /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6CFAB02DE59AB700283F9C /* TypeAlias.swift */; };
+		CF6CFAB52DE5A54500283F9C /* UserTempData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6CFAB42DE5A54500283F9C /* UserTempData.swift */; };
 		CF74057B2DD3A2D400B71E2B /* UserTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF74057A2DD3A2D400B71E2B /* UserTextFieldDelegate.swift */; };
 		CF7405832DD3A35800B71E2B /* TripMembersCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF74057C2DD3A32500B71E2B /* TripMembersCollectionViewDataSource.swift */; };
 		CF7405842DD3A35800B71E2B /* CreateTripController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF74057E2DD3A32500B71E2B /* CreateTripController.swift */; };
@@ -122,6 +129,12 @@
 		CFB11FFE2DB6891B00609CEF /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB11FFC2DB6891B00609CEF /* TripTableViewCell.swift */; };
 		CFB11FFF2DB68B4400609CEF /* MyTripsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB11FF62DB688E900609CEF /* MyTripsController.swift */; };
 		CFCD372D2DBF4EAC0037A854 /* SwinjectContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD372C2DBF4EAC0037A854 /* SwinjectContainer.swift */; };
+		CFDA93182DE5B18300477BCC /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA93172DE5B18300477BCC /* TokenManager.swift */; };
+		CFDA931A2DE5B49200477BCC /* KeyChainErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA93192DE5B49200477BCC /* KeyChainErrors.swift */; };
+		CFDA931C2DE5B6BD00477BCC /* TokenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA931B2DE5B6BD00477BCC /* TokenType.swift */; };
+		CFDA931F2DE5D96500477BCC /* INetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA931E2DE5D96500477BCC /* INetworkService.swift */; };
+		CFDA93212DE5DF0900477BCC /* ITokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA93202DE5DF0900477BCC /* ITokenManager.swift */; };
+		CFDA93232DE5DF9E00477BCC /* TokenResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA93222DE5DF9E00477BCC /* TokenResponseData.swift */; };
 		CFF713032DDD23A70005C5AE /* Float+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF713022DDD23A70005C5AE /* Float+extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -167,6 +180,12 @@
 		CF3B469B2DB57DBB008C4CA0 /* TabBarScreenTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarScreenTags.swift; sourceTree = "<group>"; };
 		CF3B469D2DB58013008C4CA0 /* UITabBar+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+extension.swift"; sourceTree = "<group>"; };
 		CF64B92D2DAD982800255003 /* RegularExpressions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressions.swift; sourceTree = "<group>"; };
+		CF6CFAA22DE4D56600283F9C /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		CF6CFAA42DE4D81200283F9C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		CF6CFAA82DE4DDDB00283F9C /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
+		CF6CFAAE2DE5988500283F9C /* UserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDTO.swift; sourceTree = "<group>"; };
+		CF6CFAB02DE59AB700283F9C /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
+		CF6CFAB42DE5A54500283F9C /* UserTempData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTempData.swift; sourceTree = "<group>"; };
 		CF74057A2DD3A2D400B71E2B /* UserTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTextFieldDelegate.swift; sourceTree = "<group>"; };
 		CF74057C2DD3A32500B71E2B /* TripMembersCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripMembersCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		CF74057E2DD3A32500B71E2B /* CreateTripController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTripController.swift; sourceTree = "<group>"; };
@@ -260,6 +279,12 @@
 		CFB11FFB2DB6891B00609CEF /* TripsTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsTableDataSource.swift; sourceTree = "<group>"; };
 		CFB11FFC2DB6891B00609CEF /* TripTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
 		CFCD372C2DBF4EAC0037A854 /* SwinjectContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectContainer.swift; sourceTree = "<group>"; };
+		CFDA93172DE5B18300477BCC /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
+		CFDA93192DE5B49200477BCC /* KeyChainErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainErrors.swift; sourceTree = "<group>"; };
+		CFDA931B2DE5B6BD00477BCC /* TokenType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenType.swift; sourceTree = "<group>"; };
+		CFDA931E2DE5D96500477BCC /* INetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INetworkService.swift; sourceTree = "<group>"; };
+		CFDA93202DE5DF0900477BCC /* ITokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITokenManager.swift; sourceTree = "<group>"; };
+		CFDA93222DE5DF9E00477BCC /* TokenResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponseData.swift; sourceTree = "<group>"; };
 		CFF713022DDD23A70005C5AE /* Float+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -269,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFAFBEE52DB6EB74002FA8EF /* SkeletonView in Frameworks */,
+				CF6CFAA12DE3B35D00283F9C /* Alamofire in Frameworks */,
 				CF601D322DA93D7700E98B21 /* SnapKit in Frameworks */,
 				CF7405A22DD3A48D00B71E2B /* Swinject in Frameworks */,
 			);
@@ -432,6 +458,8 @@
 			children = (
 				CF7405882DD3A37500B71E2B /* UserService.swift */,
 				CF7405B92DD3E52900B71E2B /* RussianValidationService.swift */,
+				CF6CFAA42DE4D81200283F9C /* NetworkService.swift */,
+				CFDA93172DE5B18300477BCC /* TokenManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -540,6 +568,7 @@
 		CF8735752DD3A1EB00A45779 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				CFDA931D2DE5D95F00477BCC /* Services */,
 				CF0B92CD2DDFB102001CBAF8 /* Observers */,
 				CF87355F2DD3A1EB00A45779 /* Container */,
 				CF8735632DD3A1EB00A45779 /* Coordinators */,
@@ -606,6 +635,9 @@
 				CF3B469B2DB57DBB008C4CA0 /* TabBarScreenTags.swift */,
 				CFB11FE52DB637E500609CEF /* Sections.swift */,
 				CFB11FE72DB6511500609CEF /* Currency.swift */,
+				CF6CFAA22DE4D56600283F9C /* Network.swift */,
+				CF6CFAB02DE59AB700283F9C /* TypeAlias.swift */,
+				CFDA931B2DE5B6BD00477BCC /* TokenType.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -682,6 +714,7 @@
 			children = (
 				CFAD6AF32DACF814003930F3 /* LoginErrors.swift */,
 				CFAFBEF12DB787BC002FA8EF /* NetworkErrors.swift */,
+				CFDA93192DE5B49200477BCC /* KeyChainErrors.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -693,6 +726,10 @@
 				CFB11FDE2DB62F5600609CEF /* Trip.swift */,
 				CFAFBEEF2DB78631002FA8EF /* TripDetail.swift */,
 				CFAFC6042DB82608002FA8EF /* User.swift */,
+				CF6CFAA82DE4DDDB00283F9C /* CustomError.swift */,
+				CF6CFAAE2DE5988500283F9C /* UserDTO.swift */,
+				CF6CFAB42DE5A54500283F9C /* UserTempData.swift */,
+				CFDA93222DE5DF9E00477BCC /* TokenResponseData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -726,6 +763,15 @@
 			path = TableViewData;
 			sourceTree = "<group>";
 		};
+		CFDA931D2DE5D95F00477BCC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CFDA931E2DE5D96500477BCC /* INetworkService.swift */,
+				CFDA93202DE5DF0900477BCC /* ITokenManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -747,6 +793,7 @@
 				CF601D312DA93D7700E98B21 /* SnapKit */,
 				CFAFBEE42DB6EB74002FA8EF /* SkeletonView */,
 				CF7405A12DD3A48D00B71E2B /* Swinject */,
+				CF6CFAA02DE3B35D00283F9C /* Alamofire */,
 			);
 			productName = TTravelTogether;
 			productReference = CF3556522DA857DC00290A81 /* TTravelTogether.app */;
@@ -829,6 +876,7 @@
 				CF601D302DA93D7700E98B21 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				CFAFBEE32DB6EB74002FA8EF /* XCRemoteSwiftPackageReference "SkeletonView" */,
 				CF74059F2DD3A48700B71E2B /* XCRemoteSwiftPackageReference "Swinject" */,
+				CF6CFA9F2DE3B35D00283F9C /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CF3556532DA857DC00290A81 /* Products */;
@@ -920,11 +968,13 @@
 				CF7405992DD3A3DF00B71E2B /* ContactsView.swift in Sources */,
 				CF74059A2DD3A3DF00B71E2B /* ContactsViewModel.swift in Sources */,
 				CF74058C2DD3A38D00B71E2B /* Contact.swift in Sources */,
+				CFDA93212DE5DF0900477BCC /* ITokenManager.swift in Sources */,
 				CF0B92D32DE129FB001CBAF8 /* UICollectionView+extension.swift in Sources */,
 				CF74058A2DD3A37D00B71E2B /* UserService.swift in Sources */,
 				CF7405832DD3A35800B71E2B /* TripMembersCollectionViewDataSource.swift in Sources */,
 				CF7405842DD3A35800B71E2B /* CreateTripController.swift in Sources */,
 				CF7405852DD3A35800B71E2B /* CreateTripView.swift in Sources */,
+				CFDA931F2DE5D96500477BCC /* INetworkService.swift in Sources */,
 				CF7405862DD3A35800B71E2B /* CreateTripViewModel.swift in Sources */,
 				CF7405872DD3A35800B71E2B /* EmptyController.swift in Sources */,
 				CF74057B2DD3A2D400B71E2B /* UserTextFieldDelegate.swift in Sources */,
@@ -939,8 +989,11 @@
 				CFAD6AF42DACF814003930F3 /* LoginErrors.swift in Sources */,
 				CFB11FE82DB6511500609CEF /* Currency.swift in Sources */,
 				CFAD6AE72DAC1B88003930F3 /* UITextFieldDelegateDefaultImpl.swift in Sources */,
+				CF6CFAB12DE59AB700283F9C /* TypeAlias.swift in Sources */,
 				CFAD6AEC2DAC21D7003930F3 /* UIView+extension.swift in Sources */,
+				CF6CFAA92DE4DDDB00283F9C /* CustomError.swift in Sources */,
 				CFAD6A5B2DAAEEF5003930F3 /* FontValues.swift in Sources */,
+				CFDA93232DE5DF9E00477BCC /* TokenResponseData.swift in Sources */,
 				CFF713032DDD23A70005C5AE /* Float+extension.swift in Sources */,
 				CFAFBEF22DB787BC002FA8EF /* NetworkErrors.swift in Sources */,
 				CF3B469C2DB57DBB008C4CA0 /* TabBarScreenTags.swift in Sources */,
@@ -948,6 +1001,7 @@
 				CF0B92D12DDFC785001CBAF8 /* RegistrationTextFiedlDelegate.swift in Sources */,
 				CFAD6A682DABD381003930F3 /* RegistrationViewModel.swift in Sources */,
 				CFCD372D2DBF4EAC0037A854 /* SwinjectContainer.swift in Sources */,
+				CFDA931C2DE5B6BD00477BCC /* TokenType.swift in Sources */,
 				CFAD6AB22DABDC16003930F3 /* LabelBuilder.swift in Sources */,
 				CF64B92E2DAD982900255003 /* RegularExpressions.swift in Sources */,
 				CFAD6A642DABD36F003930F3 /* RegistrationView.swift in Sources */,
@@ -955,6 +1009,7 @@
 				CF8735772DD3A1EB00A45779 /* ICoordinator.swift in Sources */,
 				CF8735782DD3A1EB00A45779 /* IContactsViewModel.swift in Sources */,
 				CF8735792DD3A1EB00A45779 /* IAuthCoordinator.swift in Sources */,
+				CF6CFAA32DE4D56700283F9C /* Network.swift in Sources */,
 				CF7405BA2DD3E52900B71E2B /* RussianValidationService.swift in Sources */,
 				CF87357A2DD3A1EB00A45779 /* IRegistrationView.swift in Sources */,
 				CF87357B2DD3A1EB00A45779 /* ICreateTripViewModel.swift in Sources */,
@@ -970,8 +1025,10 @@
 				CF8735852DD3A1EB00A45779 /* ITextFieldBuilder.swift in Sources */,
 				CF8735862DD3A1EB00A45779 /* ICreateTripView.swift in Sources */,
 				CF8735872DD3A1EB00A45779 /* ITripDetailViewModel.swift in Sources */,
+				CFDA931A2DE5B49200477BCC /* KeyChainErrors.swift in Sources */,
 				CFAD6A542DAACE03003930F3 /* LoginController.swift in Sources */,
 				CF35569A2DA8581700290A81 /* SceneDelegate.swift in Sources */,
+				CF6CFAAF2DE5988500283F9C /* UserDTO.swift in Sources */,
 				CFAFBEF02DB78631002FA8EF /* TripDetail.swift in Sources */,
 				CF19AD3F2DBE8DC400FF45FE /* AuthCoordinator.swift in Sources */,
 				CFAD6A502DAACDEF003930F3 /* LoginView.swift in Sources */,
@@ -982,10 +1039,13 @@
 				CF7405BE2DD4B1DA00B71E2B /* UIBarButtonItem+extension.swift in Sources */,
 				CFAD6A522DAACDFC003930F3 /* LoginViewModel.swift in Sources */,
 				CFAFC60C2DB91431002FA8EF /* Int+extension.swift in Sources */,
+				CF6CFAA52DE4D81200283F9C /* NetworkService.swift in Sources */,
 				CFAFC60E2DB91BB3002FA8EF /* CGFLoat+extension.swift in Sources */,
 				CF19AD412DBE946600FF45FE /* MainCoordinator.swift in Sources */,
 				CFAD6AE52DAC1104003930F3 /* SystemImages.swift in Sources */,
+				CFDA93182DE5B18300477BCC /* TokenManager.swift in Sources */,
 				CFAD6AE32DAC0B30003930F3 /* UITextField+extension.swift in Sources */,
+				CF6CFAB52DE5A54500283F9C /* UserTempData.swift in Sources */,
 				CF0B92CC2DDFAC86001CBAF8 /* KeyboardObserver.swift in Sources */,
 				CFAD6A612DAB02C5003930F3 /* UIElementsValues.swift in Sources */,
 				CFAD6AF12DAC5E4D003930F3 /* ActivityIndicatorView.swift in Sources */,
@@ -1346,6 +1406,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		CF6CFA9F2DE3B35D00283F9C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
 		CF74059F2DD3A48700B71E2B /* XCRemoteSwiftPackageReference "Swinject" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Swinject/Swinject.git";
@@ -1369,6 +1437,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CF601D302DA93D7700E98B21 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		CF6CFAA02DE3B35D00283F9C /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF6CFA9F2DE3B35D00283F9C /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 		CF7405A12DD3A48D00B71E2B /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;

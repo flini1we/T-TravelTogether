@@ -21,10 +21,10 @@ struct TripDetail: Hashable, Identifiable, Codable {
             price: .AppIntegers.tripPricePlaceholder,
             startsAt: .now,
             finishAt: .now,
-            admin: User(phoneNumber: "0"),
+            admin: User(name: "admin", lastName: "", phoneNumber: "0"),
             members: [
-                User(phoneNumber: "1"),
-                User(phoneNumber: "2")
+                User(name: "user", lastName: "", phoneNumber: "1"),
+                User(name: "user", lastName: "", phoneNumber: "2")
             ]
         )
     }

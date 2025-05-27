@@ -59,6 +59,10 @@ final class SwinjectContainer: IDependencyContainer {
     func resolveMainTabBarController() -> UITabBarController {
         container.resolve(UITabBarController.self)!
     }
+
+    func resolveNetworkService() -> INetworkService {
+        container.resolve(INetworkService.self)!
+    }
 }
 
 private extension SwinjectContainer {
@@ -68,15 +72,18 @@ private extension SwinjectContainer {
         registerViewModels()
         registerControllers()
         registerTabBarController()
+        registerServices()
     }
 
     func registerViewModels() {
-        container.register(ILoginViewModel.self) { _ in
-            LoginViewModel()
+        container.register(ILoginViewModel.self) { resolver in
+            let networkService = resolver.resolve(INetworkService.self)!
+            return LoginViewModel(networkService: networkService)
         }
 
-        container.register(IRegistrationViewModel.self) { _ in
-            RegistrationViewModel()
+        container.register(IRegistrationViewModel.self) { resolver in
+            let networkService = resolver.resolve(INetworkService.self)!
+            return RegistrationViewModel(networkService: networkService)
         }
 
         container.register(IMyTripsViewModel.self) { _ in
@@ -164,5 +171,17 @@ private extension SwinjectContainer {
 
             return tabBar
         }
+    }
+
+    func registerServices() {
+        container.register(ITokenManager.self) { _ in
+            TokenManager()
+        }
+
+        container.register(INetworkService.self) { resolver in
+            let tokenManager = resolver.resolve(ITokenManager.self)!
+            return NetworkService(tokenManager: tokenManager)
+        }
+        .inObjectScope(.container)
     }
 }

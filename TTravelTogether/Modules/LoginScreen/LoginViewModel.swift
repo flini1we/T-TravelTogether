@@ -2,6 +2,7 @@ import Foundation
 import Combine
 
 final class LoginViewModel: ObservableObject, ILoginViewModel {
+    private var networkService: INetworkService
 
     @Published var isLoading: Bool = false
 
@@ -9,12 +10,32 @@ final class LoginViewModel: ObservableObject, ILoginViewModel {
         $isLoading
     }
 
-    func login(phoneNumber: String, password: String, completion: @escaping ((Result<String, LoginErrors>) -> Void)) {
-        guard !phoneNumber.isEmpty, !password.isEmpty else { return }
+    init(networkService: INetworkService) {
+        self.networkService = networkService
+    }
+
+    func login(
+        userData: LoginUserDataType,
+        completion: @escaping ((Result<LoginUserDataType, CustomError>) -> Void)
+    ) {
         isLoading = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            completion(.success("8(917)398-11-89"))
-            self.isLoading = false
+        networkService.login(userData: validateLoginUserData(userData)) { result in
+            switch result {
+            case .success(let success):
+                completion(.success(success))
+            case .failure(let failure):
+                completion(.failure(failure))
+            }
         }
+    }
+}
+
+private extension LoginViewModel {
+
+    func validateLoginUserData(_ data: LoginUserDataType) -> LoginUserDataType {
+        LoginUserDataType(
+            RussianValidationService.shared.invalidate(
+                phone: data.phoneNumber
+            ), data.password)
     }
 }

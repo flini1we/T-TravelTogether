@@ -25,9 +25,9 @@ final class TripDetailViewModel: ITripDetailViewModel {
                 finishAt: .now,
                 admin: self.currentUser,
                 members: [
-                    User(phoneNumber: "+79173981190"),
-                    User(phoneNumber: "+79173981129"),
-                    User(phoneNumber: "+79183981129")
+                    User(name: "user", lastName: "", phoneNumber: "+79173981190"),
+                    User(name: "user", lastName: "", phoneNumber: "+79173981129"),
+                    User(name: "user", lastName: "", phoneNumber: "+79183981129")
                 ]
             )
         }

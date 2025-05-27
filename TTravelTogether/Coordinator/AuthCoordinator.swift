@@ -2,13 +2,16 @@ import UIKit
 
 final class AuthCoordinator: IAuthCoordinator {
 
-    var onLoginSuccess: ((User) -> Void)?
+    var onLoginSuccess: ((LoginUserDataType) -> Void)?
 
     var dependencies: IDependencyContainer
     var childCoordinators: [ICoordinator] = []
     var navigationController: UINavigationController
 
-    init(navigationController: UINavigationController, dependencies: IDependencyContainer) {
+    init(
+        navigationController: UINavigationController,
+        dependencies: IDependencyContainer
+    ) {
         self.navigationController = navigationController
         self.dependencies = dependencies
     }
@@ -19,8 +22,8 @@ final class AuthCoordinator: IAuthCoordinator {
         navigationController.setViewControllers([loginScreen], animated: false)
     }
 
-    func onLoginSuccess(_ user: String) {
-        onLoginSuccess?(User(phoneNumber: user))
+    func onLoginSuccess(_ userData: LoginUserDataType) {
+        onLoginSuccess?(userData)
     }
 
     func goToRegistration() {
@@ -32,7 +35,7 @@ private extension AuthCoordinator {
 
     func showRegistration() {
         let registrationScreen = dependencies.resolveRegistrationController()
-        registrationScreen.registerButtonAction = { [weak self] _ in
+        registrationScreen.registerButtonAction = { [weak self] in
             self?.navigationController.popViewController(animated: true)
         }
         navigationController.pushViewController(registrationScreen, animated: true)

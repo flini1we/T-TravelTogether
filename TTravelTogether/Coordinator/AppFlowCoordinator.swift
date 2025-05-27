@@ -26,9 +26,10 @@ private extension AppFlowCoordinator {
             navigationController: navigationController,
             dependencies: dependencies
         )
-        coordinator.onLoginSuccess = { [weak self] user in
+        coordinator.onLoginSuccess = { [weak self] userData in
             guard let self else { return }
-            userService.login(user)
+            let authUser = User(phoneNumber: userData.phoneNumber)
+            userService.login(authUser)
             showMainFlow()
         }
         addChild(coordinator)
