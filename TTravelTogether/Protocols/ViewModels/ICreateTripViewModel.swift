@@ -21,9 +21,15 @@ protocol ICreateTripViewModel: AnyObject, CNContactPickerDelegate {
     var createdTrip: Trip? { get }
     var createdTripPublisher: Published<Trip?>.Publisher { get }
 
+    var editedTrip: TripDetail? { get set }
+    var editedTripPublisher: Published<TripDetail?>.Publisher { get }
+
+    var selectedUsers: Set<String> { get set }
+
     func addMembers(phoneNumbers: [String])
     func clearData()
     func updateMembers(users: [User])
     func obtainContacts() -> [Contact]
     func createTrip(dates: (start: Date, finish: Date))
+    func isEditing() -> Bool
 }

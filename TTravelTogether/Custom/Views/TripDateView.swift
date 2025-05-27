@@ -26,6 +26,7 @@ final class TripDateView: UIView {
         let stack = UIStackView(arrangedSubviews: [
             startsAtTitle, separatorView, finishAtTitle
         ])
+        stack.makeSkeletonable()
         stack.spacing = PaddingValues.small.value / 2
         stack.alignment = .center
         return stack
@@ -61,7 +62,7 @@ final class TripDateView: UIView {
 private extension TripDateView {
 
     func setup() {
-        isSkeletonable = true
+        makeSkeletonable()
         setupSubviews()
         setupConstraints()
     }

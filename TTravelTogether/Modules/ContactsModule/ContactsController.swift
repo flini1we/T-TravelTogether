@@ -10,7 +10,7 @@ final class ContactsController: UIViewController {
     private var contactsView: ContactsView {
         view as! ContactsView
     }
-    private var viewModel: IContactsViewModel
+    private(set) var viewModel: IContactsViewModel
 
     private var contactsDataSource: ContactsTableViewDataSource?
     private var contactsDelegate: ContactsTableViewDelegate?

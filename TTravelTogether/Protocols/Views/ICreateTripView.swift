@@ -11,4 +11,5 @@ protocol ICreateTripView: AnyObject {
     var tripPriceField: UITextField { get }
 
     func getTripDates() -> (start: Date, finish: Date)
+    func setupWithEditedTrip(tripDetail: TripDetail)
 }

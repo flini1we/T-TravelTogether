@@ -43,13 +43,15 @@ extension Trip {
                 startsAt: .now,
                 finishAt: .now,
                 price: .AppIntegers.tripPricePlaceholder
-            ),
+            )
+            ,
             .init(
                 title: .AppStrings.AppTitles.tripDetailTitle,
                 startsAt: .now,
                 finishAt: .now,
                 price: .AppIntegers.tripPricePlaceholder
-            ),
+            )
+            ,
             .init(
                 title: .AppStrings.AppTitles.tripDetailTitle,
                 startsAt: .now,
@@ -63,7 +65,8 @@ extension Trip {
         [
             .init(title: "Сочи", startsAt: .now, finishAt: .now, price: 1000000),
             .init(title: "London", startsAt: .now, finishAt: .now, price: 969830),
-            .init(title: "Saint-P", startsAt: .now, finishAt: .now, price: 1189890)
+            .init(title: "Saint-P", startsAt: .now, finishAt: .now, price: 1189890),
+            .init(title: "Kazan", startsAt: .now, finishAt: .now, price: 11890)
         ]
     }
 }

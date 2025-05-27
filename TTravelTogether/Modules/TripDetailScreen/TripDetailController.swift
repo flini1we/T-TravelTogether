@@ -2,6 +2,7 @@ import UIKit
 import Combine
 
 final class TripDetailController: UIViewController {
+    weak var coordinator: IMainCoordinator?
 
     private var tripDetailView: TripDetailView {
         view as! TripDetailView
@@ -29,21 +30,21 @@ final class TripDetailController: UIViewController {
         super.viewDidLoad()
 
         setup()
-        tripDetailView.tripMemebersCollectionView.showAnimatedGradientSkeleton()
     }
 }
 
 private extension TripDetailController {
 
     func setup() {
-        setupSkeletonable()
         setupDataSource()
+        setupSkeletonable()
         setupBindings()
         setupNavigationItem()
     }
 
     func setupSkeletonable() {
-        tripDetailView.tripTitle.showAnimatedGradientSkeleton()
+        tripDetailView.makeSkeletonable()
+        tripDetailView.tripMemebersCollectionView.showSkeleton()
     }
 
     func setupDataSource() {
@@ -55,11 +56,13 @@ private extension TripDetailController {
         viewModel.tripDetailPublisher
             .dropFirst()
             .sink { [weak self] tripDetail in
-                self?.tripDetailView.setupWithTrip(tripDetail)
-                self?.tripDetailView.tripMemebersCollectionView.reloadData()
-                self?.tripDetailView.tripMemebersCollectionView.hideSkeleton()
-                self?.tripDetailView.activateTransactionButton()
-                self?.navigationItem.rightBarButtonItems?.forEach {
+                guard let self else { return }
+                tripDetailView.setupWithTrip(tripDetail)
+                tripDetailView.tripMemebersCollectionView.reloadData()
+                tripDetailView.tripMemebersCollectionView.hideSkeleton()
+                tripDetailView.tripMemebersCollectionView.isSkeletonable = false
+                tripDetailView.activateTransactionButton()
+                navigationItem.rightBarButtonItems?.forEach {
                     $0.setEnabled(true, enableColor: $0.tag == 1 ? .primaryRed : nil)
                 }
             }
@@ -93,7 +96,7 @@ private extension TripDetailController {
                 if !viewModel.isAdmin() {
                     navigationController?.present(AlertFactory.createEditTripAlert(), animated: true)
                 } else {
-                    // TODO: edit action
+                    coordinator?.showEditTripScreen(for: viewModel.tripDetail)
                 }
             },
             menu: nil

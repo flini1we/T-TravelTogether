@@ -21,6 +21,7 @@ final class MainCoordinator: NSObject, IMainCoordinator {
 
     func showTripDetail(_ id: UUID) {
         let detailVC = dependencies.resolveTripDetailController(tripId: id, user: registratedUser)
+        detailVC.coordinator = self
         navigationController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(detailVC, animated: true)
     }
@@ -39,23 +40,12 @@ final class MainCoordinator: NSObject, IMainCoordinator {
         let navController = UINavigationController(rootViewController: contactsController)
         createTripController.present(navController, animated: true)
     }
-}
 
-private extension MainCoordinator {
-
-    func showMainTabBar() {
-        let tabBarController = dependencies.resolveMainTabBarController()
-        tabBarController.delegate = self
-
-        let myTripsController = dependencies.resolveMyTripsController()
+    func showEditTripScreen(for tripDetail: TripDetail) {
         let createTripController = dependencies.resolveCreateTripController(user: registratedUser)
-        myTripsController.coordinator = self
-        createTripController.coordinator = self
-        createTripController.onTripCreating = {
-            myTripsController.updateTrips()
-        }
-
-        navigationController.setViewControllers([tabBarController], animated: true)
+        createTripController.setupEditedTrip(tripDetail)
+        createSheetViewController(from: createTripController)
+        navigationController.present(createTripController, animated: true)
     }
 }
 
@@ -81,5 +71,36 @@ extension MainCoordinator: UITabBarControllerDelegate {
             return false
         }
         return true
+    }
+}
+
+private extension MainCoordinator {
+
+    func showMainTabBar() {
+        let tabBarController = dependencies.resolveMainTabBarController()
+        let createTripController = dependencies.resolveCreateTripController(user: registratedUser)
+        let myTripsController = dependencies.resolveMyTripsController()
+
+        tabBarController.delegate = self
+        myTripsController.coordinator = self
+        createTripController.coordinator = self
+        createTripController.onTripCreating = {
+            myTripsController.updateTrips()
+        }
+        navigationController.setViewControllers([tabBarController], animated: true)
+    }
+
+    func createSheetViewController(from vc: UIViewController) {
+        if let sheetController = vc.sheetPresentationController {
+            if #available(iOS 16.0, *) {
+                let customDetent = UISheetPresentationController.Detent.custom { context in
+                    return context.maximumDetentValue * 0.75
+                }
+                sheetController.detents = [customDetent]
+            } else {
+                sheetController.detents = [.large()]
+            }
+            sheetController.prefersGrabberVisible = true
+        }
     }
 }

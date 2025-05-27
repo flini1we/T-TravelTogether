@@ -14,49 +14,50 @@ final class TripTableViewCell: UITableViewCell {
         view.layer.shadowOpacity = 0.25
         view.layer.shadowOffset = CGSize(width: 0, height: 1.5)
         view.layer.shadowRadius = 3
-        makeSkeletonable()
         view.makeSkeletonable()
-        view.skeletonCornerRadius = Float(PaddingValues.default.value)
         return view
     }()
 
-    private lazy var travelTitle: UILabel = {
+    private(set) lazy var travelTitle: UILabel = {
         LabelBuilder()
             .font(CustomFonts.bold(FontValues.medium.value).font)
             .textColor(.label)
+            .text(.AppStrings.AppTitles.tripDetailTitle)
+            .makeSkeletonable()
+            .skeletonTextLineHeight(.relativeToFont)
+            .skeletonLinesCornerRadius(PaddingValues.tiny.value)
             .build()
-    }()
-
-    private lazy var titleAndImageStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [
-            travelTitle
-        ])
-        stack.spacing = PaddingValues.small.value
-        stack.alignment = .center
-        return stack
     }()
 
     private lazy var tripDateView: TripDateView = {
         let tripDateView = TripDateView()
         tripDateView.setupDateFont(CustomFonts.default(FontValues.small.value).font)
         tripDateView.setupTextColor(.secondaryLabel)
+        tripDateView.setupWithData(startsAt: .now, finishAt: .now)
+        tripDateView.makeSkeletonable()
+        tripDateView.skeletonCornerRadius = Float(PaddingValues.tiny.value)
         return tripDateView
     }()
 
     private lazy var titleAndTimeIntervalStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [
-            titleAndImageStackView, tripDateView
+            travelTitle, tripDateView
         ])
         stack.axis = .vertical
         stack.spacing = PaddingValues.small.value
         stack.alignment = .leading
+        stack.makeSkeletonable()
         return stack
     }()
 
     private lazy var priceTitle: UILabel = {
         LabelBuilder()
             .font(CustomFonts.default(FontValues.default.value).font)
+            .text(.AppStrings.AppTitles.tripDetailPrice)
             .textColor(.primaryBlue)
+            .makeSkeletonable()
+            .skeletonTextLineHeight(.relativeToFont)
+            .skeletonLinesCornerRadius(PaddingValues.tiny.value)
             .build()
     }()
 
@@ -64,6 +65,7 @@ final class TripTableViewCell: UITableViewCell {
         let stack = UIStackView(arrangedSubviews: [
             titleAndTimeIntervalStackView, priceTitle
         ])
+        stack.makeSkeletonable()
         stack.alignment = .center
         stack.spacing = PaddingValues.default.value
         return stack
@@ -91,6 +93,7 @@ final class TripTableViewCell: UITableViewCell {
 private extension TripTableViewCell {
 
     func setup() {
+        makeSkeletonable()
         backgroundColor = .clear
         selectionStyle = .none
         setupSubviews()

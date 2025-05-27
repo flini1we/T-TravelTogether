@@ -6,13 +6,10 @@ final class MyTripsViewModel: IMyTripsViewModel {
     var isLoadingDataPublisher: Published<Bool>.Publisher {
         $isLoadingData
     }
-
-    var tripsData: [Trip] = Trip.fake() {
-        didSet {
-            onTripsUpdate?(tripsData)
-        }
+    @Published var tripsData: [Trip] = []
+    var tripsDataPublisher: Published<[Trip]>.Publisher {
+        $tripsData
     }
-    var onTripsUpdate: (([Trip]) -> Void)?
 
     init() {
         loadData()
@@ -20,6 +17,7 @@ final class MyTripsViewModel: IMyTripsViewModel {
 
     func loadData() {
         isLoadingData = true
+        tripsData = []
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.isLoadingData = false
             self.tripsData = Trip.obtainData()
