@@ -4,12 +4,13 @@ import Combine
 final class TripDetailController: UIViewController {
     weak var coordinator: IMainCoordinator?
 
-    private var tripDetailView: TripDetailView {
+    var tripDetailView: TripDetailView {
         view as! TripDetailView
     }
-    private var viewModel: ITripDetailViewModel
+    private(set) var viewModel: ITripDetailViewModel
     private var membersCollectionViewDataSource: MembersCollectionDataSource?
     private var cancellables: Set<AnyCancellable> = []
+    var onTripDidLeave: (() -> Void)?
 
     init(viewModel: ITripDetailViewModel) {
         self.viewModel = viewModel
@@ -67,6 +68,10 @@ private extension TripDetailController {
                 }
             }
             .store(in: &cancellables)
+
+        viewModel.onErrorDidAppear = { [weak self] customError in
+            self?.present(AlertFactory.createErrorAlert(message: customError.message), animated: true)
+        }
     }
 
     func setupNavigationItem() {
@@ -77,8 +82,18 @@ private extension TripDetailController {
                 guard let self else { return }
                 let alert = AlertFactory.createLeaveTripAlert(
                     isAdmin: viewModel.isAdmin(),
-                    onConfirm: {
-                        // TODO: leave trip logic
+                    onConfirm: { [weak self] in
+                        self?.viewModel.leaveTrip { [weak self] result in
+                            switch result {
+                            case .success(_):
+                                self?.onTripDidLeave?()
+                            case .failure(let error):
+                                self?.present(
+                                    AlertFactory.createErrorAlert(message: error.message),
+                                    animated: true
+                                )
+                            }
+                        }
                     }
                 )
                 navigationController?.present(alert, animated: true)

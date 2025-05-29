@@ -82,5 +82,9 @@ private extension MyTripsController {
                 self?.tableViewDataSource?.update(trips)
             }
             .store(in: &cancellables)
+
+        viewModel.onErrorDidAppear = { [weak self] customError in
+            self?.present(AlertFactory.createErrorAlert(message: customError.message), animated: true)
+        }
     }
 }

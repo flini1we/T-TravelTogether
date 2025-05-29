@@ -15,4 +15,10 @@ struct User: Hashable, Identifiable, Codable {
     var id: String {
         phoneNumber
     }
+
+    enum CodingKeys: String, CodingKey {
+        case name = "firstName"
+        case lastName = "lastName"
+        case phoneNumber
+    }
 }

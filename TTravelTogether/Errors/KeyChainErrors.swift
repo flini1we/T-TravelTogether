@@ -1,14 +1,14 @@
 import Foundation
 
 enum KeychainError: Error {
-    
+
     case duplicateEntry
     case unknown(OSStatus)
     case updateTokensError
     case itemNotFound
     case invalidData
     case encodingFailed
-    
+
     var localizedDescription: String {
         switch self {
         case .duplicateEntry:

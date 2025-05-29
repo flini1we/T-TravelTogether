@@ -19,9 +19,20 @@ final class MainCoordinator: NSObject, IMainCoordinator {
         showMainTabBar()
     }
 
-    func showTripDetail(_ id: UUID) {
+    func showTripDetail(_ id: Int) {
         let detailVC = dependencies.resolveTripDetailController(tripId: id, user: registratedUser)
         detailVC.coordinator = self
+        detailVC.onTripDidLeave = { [weak self] in
+            guard let self else { return }
+            navigationController.popViewController(animated: true)
+            guard let tabBarController = navigationController.viewControllers.first as? UITabBarController
+            else { return }
+            guard let mainController = findViewController(
+                type: MyTripsController.self,
+                in: tabBarController.viewControllers ?? []
+            ) else { return }
+            mainController.updateTrips()
+        }
         navigationController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(detailVC, animated: true)
     }
@@ -43,9 +54,15 @@ final class MainCoordinator: NSObject, IMainCoordinator {
 
     func showEditTripScreen(for tripDetail: TripDetail) {
         let createTripController = dependencies.resolveCreateTripController(user: registratedUser)
-        createTripController.setupEditedTrip(tripDetail)
+        guard let tripDetailController = findViewController(
+            type: TripDetailController.self,
+            in: navigationController.viewControllers
+        ) else { return }
+        let tripDetailId = tripDetailController.viewModel.tripId
+        createTripController.setupEditedTrip(tripDetail, ogId: tripDetailId)
         createSheetViewController(from: createTripController)
         navigationController.present(createTripController, animated: true)
+        navigationController.present(AlertFactory.createErrorAlert(message: .AppStrings.Errors.editedIdIsNil), animated: true)
     }
 }
 
@@ -87,6 +104,16 @@ private extension MainCoordinator {
         createTripController.onTripCreating = {
             myTripsController.updateTrips()
         }
+        createTripController.onTripEditing = { [weak self] tripDetail in
+            guard
+                let self,
+                let tripDetailController = findViewController(
+                    type: TripDetailController.self,
+                    in: navigationController.viewControllers
+                )
+            else { return }
+            tripDetailController.tripDetailView.setupWithTrip(tripDetail)
+        }
         navigationController.setViewControllers([tabBarController], animated: true)
     }
 
@@ -102,5 +129,9 @@ private extension MainCoordinator {
             }
             sheetController.prefersGrabberVisible = true
         }
+    }
+
+    func findViewController<T>(type: T.Type, in controllers: [UIViewController]) -> T? {
+        controllers.filter { $0 is T }.first as? T
     }
 }

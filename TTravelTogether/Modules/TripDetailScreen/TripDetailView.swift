@@ -130,6 +130,10 @@ final class TripDetailView: UIView {
 
     func setupWithTrip(_ tripDetail: TripDetail) {
         deactivateSkeleton()
+        tripTitle.text = tripDetail.title
+        tripPriceLabel.text =
+        AppFormatter.shared.getValidNumberFromPrice(from: tripDetail.price) + " " + Currency.ruble.rawValue
+        tripDateView.setupWithData(startsAt: tripDetail.startsAt, finishAt: tripDetail.finishAt)
     }
 
     func activateTransactionButton() {

@@ -3,6 +3,8 @@ import Contacts
 import ContactsUI
 
 protocol ICreateTripViewModel: AnyObject, CNContactPickerDelegate {
+    var ogId: Int? { get set }
+    var onDataHandling: (() -> (Date, Date)?)? { get set }
     var onClearingController: (() -> Void)? { get set }
     var onShowingIncorrectPriceAlert: ((UIAlertController) -> Void)? { get set }
 
@@ -18,8 +20,8 @@ protocol ICreateTripViewModel: AnyObject, CNContactPickerDelegate {
     var tripPriceText: String { get set }
     var tripPricePublisher: Published<String>.Publisher { get }
 
-    var createdTrip: Trip? { get }
-    var createdTripPublisher: Published<Trip?>.Publisher { get }
+    var createdTrip: TripDetail? { get set }
+    var createdTripPublisher: Published<TripDetail?>.Publisher { get }
 
     var editedTrip: TripDetail? { get set }
     var editedTripPublisher: Published<TripDetail?>.Publisher { get }
@@ -30,6 +32,12 @@ protocol ICreateTripViewModel: AnyObject, CNContactPickerDelegate {
     func clearData()
     func updateMembers(users: [User])
     func obtainContacts() -> [Contact]
-    func createTrip(dates: (start: Date, finish: Date))
+    func createTrip(
+        dates: (start: Date, finish: Date),
+        completion: @escaping ((Result<TripDetail, CustomError>) -> Void)
+    )
+    func updateTrip(
+        completion: @escaping ((Result<EditTripDTO, CustomError>) -> Void)
+    )
     func isEditing() -> Bool
 }

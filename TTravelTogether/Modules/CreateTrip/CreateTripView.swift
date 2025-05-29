@@ -3,7 +3,6 @@ import SnapKit
 
 final class CreateTripView: UIView, ICreateTripView {
     var onShowingContacts: (() -> Void)?
-    var onCreatingTrip: (() -> Void)?
 
     private(set) lazy var tripTitleField: UITextField = {
         TextFieldBuilder()
@@ -159,17 +158,13 @@ final class CreateTripView: UIView, ICreateTripView {
     }()
 
     private(set) lazy var createButton: UIButton = {
-        let button = ButtonBuilder()
+        ButtonBuilder()
             .tintColor(.buttonLabel)
             .font(CustomFonts.bold(FontValues.default.value).font)
             .backgroundColor(.primaryYellow)
             .title(.AppStrings.CreateTrip.create)
             .cornerRadius(.default)
             .build()
-        button.addAction(UIAction { [weak self] _ in
-            self?.onCreatingTrip?()
-        }, for: .touchUpInside)
-        return button
     }()
 
     override init(frame: CGRect) {
@@ -190,6 +185,10 @@ final class CreateTripView: UIView, ICreateTripView {
         tripPriceField.text = "\(tripDetail.price)"
         startsAtCalendar.date = tripDetail.startsAt
         endsAtCalendar.date = tripDetail.finishAt
+    }
+
+    func addCreateTripAction(_ action: UIAction) {
+        createButton.addAction(action, for: .touchUpInside)
     }
 }
 

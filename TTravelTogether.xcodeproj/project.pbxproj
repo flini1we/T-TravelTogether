@@ -135,6 +135,13 @@
 		CFDA931F2DE5D96500477BCC /* INetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA931E2DE5D96500477BCC /* INetworkService.swift */; };
 		CFDA93212DE5DF0900477BCC /* ITokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA93202DE5DF0900477BCC /* ITokenManager.swift */; };
 		CFDA93232DE5DF9E00477BCC /* TokenResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA93222DE5DF9E00477BCC /* TokenResponseData.swift */; };
+		CFE072C52DE63E9500287877 /* StatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE072C42DE63E9500287877 /* StatusCodes.swift */; };
+		CFE072C72DE63F8D00287877 /* Dictionary+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE072C62DE63F8D00287877 /* Dictionary+extension.swift */; };
+		CFE072C92DE7198B00287877 /* TripDetailDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE072C82DE7198B00287877 /* TripDetailDTO.swift */; };
+		CFE072CB2DE74ADD00287877 /* TripDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE072CA2DE74ADD00287877 /* TripDTO.swift */; };
+		CFE072CD2DE74C2000287877 /* HTTPHeaders+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE072CC2DE74C2000287877 /* HTTPHeaders+extension.swift */; };
+		CFE072CF2DE7562E00287877 /* CreateTripDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE072CE2DE7562E00287877 /* CreateTripDTO.swift */; };
+		CFE072D12DE77A1000287877 /* EditTripDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE072D02DE77A1000287877 /* EditTripDTO.swift */; };
 		CFF713032DDD23A70005C5AE /* Float+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF713022DDD23A70005C5AE /* Float+extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -285,6 +292,13 @@
 		CFDA931E2DE5D96500477BCC /* INetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INetworkService.swift; sourceTree = "<group>"; };
 		CFDA93202DE5DF0900477BCC /* ITokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITokenManager.swift; sourceTree = "<group>"; };
 		CFDA93222DE5DF9E00477BCC /* TokenResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponseData.swift; sourceTree = "<group>"; };
+		CFE072C42DE63E9500287877 /* StatusCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCodes.swift; sourceTree = "<group>"; };
+		CFE072C62DE63F8D00287877 /* Dictionary+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+extension.swift"; sourceTree = "<group>"; };
+		CFE072C82DE7198B00287877 /* TripDetailDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetailDTO.swift; sourceTree = "<group>"; };
+		CFE072CA2DE74ADD00287877 /* TripDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDTO.swift; sourceTree = "<group>"; };
+		CFE072CC2DE74C2000287877 /* HTTPHeaders+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPHeaders+extension.swift"; sourceTree = "<group>"; };
+		CFE072CE2DE7562E00287877 /* CreateTripDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTripDTO.swift; sourceTree = "<group>"; };
+		CFE072D02DE77A1000287877 /* EditTripDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTripDTO.swift; sourceTree = "<group>"; };
 		CFF713022DDD23A70005C5AE /* Float+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -638,6 +652,7 @@
 				CF6CFAA22DE4D56600283F9C /* Network.swift */,
 				CF6CFAB02DE59AB700283F9C /* TypeAlias.swift */,
 				CFDA931B2DE5B6BD00477BCC /* TokenType.swift */,
+				CFE072C42DE63E9500287877 /* StatusCodes.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -695,6 +710,8 @@
 				CF0B92D22DE129FB001CBAF8 /* UICollectionView+extension.swift */,
 				CF7405BD2DD4B1DA00B71E2B /* UIBarButtonItem+extension.swift */,
 				CFF713022DDD23A70005C5AE /* Float+extension.swift */,
+				CFE072C62DE63F8D00287877 /* Dictionary+extension.swift */,
+				CFE072CC2DE74C2000287877 /* HTTPHeaders+extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -724,12 +741,16 @@
 			children = (
 				CF74058B2DD3A38D00B71E2B /* Contact.swift */,
 				CFB11FDE2DB62F5600609CEF /* Trip.swift */,
+				CFE072CA2DE74ADD00287877 /* TripDTO.swift */,
 				CFAFBEEF2DB78631002FA8EF /* TripDetail.swift */,
 				CFAFC6042DB82608002FA8EF /* User.swift */,
 				CF6CFAA82DE4DDDB00283F9C /* CustomError.swift */,
 				CF6CFAAE2DE5988500283F9C /* UserDTO.swift */,
 				CF6CFAB42DE5A54500283F9C /* UserTempData.swift */,
 				CFDA93222DE5DF9E00477BCC /* TokenResponseData.swift */,
+				CFE072C82DE7198B00287877 /* TripDetailDTO.swift */,
+				CFE072CE2DE7562E00287877 /* CreateTripDTO.swift */,
+				CFE072D02DE77A1000287877 /* EditTripDTO.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -979,6 +1000,7 @@
 				CF7405872DD3A35800B71E2B /* EmptyController.swift in Sources */,
 				CF74057B2DD3A2D400B71E2B /* UserTextFieldDelegate.swift in Sources */,
 				CF19AD3D2DBE8CD600FF45FE /* AppFlowCoordinator.swift in Sources */,
+				CFE072D12DE77A1000287877 /* EditTripDTO.swift in Sources */,
 				CFB11FFF2DB68B4400609CEF /* MyTripsController.swift in Sources */,
 				CFB11FF92DB688E900609CEF /* MyTripsView.swift in Sources */,
 				CFB11FFA2DB688E900609CEF /* MyTripsViewModel.swift in Sources */,
@@ -987,6 +1009,7 @@
 				CF3B469E2DB58013008C4CA0 /* UITabBar+extension.swift in Sources */,
 				CFAD6A572DAACFB5003930F3 /* TextFieldBuilder.swift in Sources */,
 				CFAD6AF42DACF814003930F3 /* LoginErrors.swift in Sources */,
+				CFE072C72DE63F8D00287877 /* Dictionary+extension.swift in Sources */,
 				CFB11FE82DB6511500609CEF /* Currency.swift in Sources */,
 				CFAD6AE72DAC1B88003930F3 /* UITextFieldDelegateDefaultImpl.swift in Sources */,
 				CF6CFAB12DE59AB700283F9C /* TypeAlias.swift in Sources */,
@@ -994,6 +1017,7 @@
 				CF6CFAA92DE4DDDB00283F9C /* CustomError.swift in Sources */,
 				CFAD6A5B2DAAEEF5003930F3 /* FontValues.swift in Sources */,
 				CFDA93232DE5DF9E00477BCC /* TokenResponseData.swift in Sources */,
+				CFE072CD2DE74C2000287877 /* HTTPHeaders+extension.swift in Sources */,
 				CFF713032DDD23A70005C5AE /* Float+extension.swift in Sources */,
 				CFAFBEF22DB787BC002FA8EF /* NetworkErrors.swift in Sources */,
 				CF3B469C2DB57DBB008C4CA0 /* TabBarScreenTags.swift in Sources */,
@@ -1004,6 +1028,7 @@
 				CFDA931C2DE5B6BD00477BCC /* TokenType.swift in Sources */,
 				CFAD6AB22DABDC16003930F3 /* LabelBuilder.swift in Sources */,
 				CF64B92E2DAD982900255003 /* RegularExpressions.swift in Sources */,
+				CFE072CF2DE7562E00287877 /* CreateTripDTO.swift in Sources */,
 				CFAD6A642DABD36F003930F3 /* RegistrationView.swift in Sources */,
 				CF8735762DD3A1EB00A45779 /* IAppFormatter.swift in Sources */,
 				CF8735772DD3A1EB00A45779 /* ICoordinator.swift in Sources */,
@@ -1027,9 +1052,11 @@
 				CF8735872DD3A1EB00A45779 /* ITripDetailViewModel.swift in Sources */,
 				CFDA931A2DE5B49200477BCC /* KeyChainErrors.swift in Sources */,
 				CFAD6A542DAACE03003930F3 /* LoginController.swift in Sources */,
+				CFE072C52DE63E9500287877 /* StatusCodes.swift in Sources */,
 				CF35569A2DA8581700290A81 /* SceneDelegate.swift in Sources */,
 				CF6CFAAF2DE5988500283F9C /* UserDTO.swift in Sources */,
 				CFAFBEF02DB78631002FA8EF /* TripDetail.swift in Sources */,
+				CFE072C92DE7198B00287877 /* TripDetailDTO.swift in Sources */,
 				CF19AD3F2DBE8DC400FF45FE /* AuthCoordinator.swift in Sources */,
 				CFAD6A502DAACDEF003930F3 /* LoginView.swift in Sources */,
 				CFB11FDA2DB62A7C00609CEF /* String+extension.swift in Sources */,
@@ -1060,6 +1087,7 @@
 				CFAD6A662DABD378003930F3 /* RegistrationController.swift in Sources */,
 				CFB11FFD2DB6891B00609CEF /* TripsTableDataSource.swift in Sources */,
 				CFB11FFE2DB6891B00609CEF /* TripTableViewCell.swift in Sources */,
+				CFE072CB2DE74ADD00287877 /* TripDTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

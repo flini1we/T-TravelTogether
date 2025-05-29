@@ -37,9 +37,9 @@ final class AlertFactory {
     }
 
     static func createErrorAlert(
-        title: String,
+        title: String = .AppStrings.Alert.error,
         message: String,
-        onDismiss: @escaping () -> Void
+        onDismiss: @escaping () -> Void = { }
     ) -> UIAlertController {
         let alert = UIAlertController(
             title: title,
