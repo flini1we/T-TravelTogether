@@ -48,6 +48,9 @@ final class MyTripsController: UIViewController {
 private extension MyTripsController {
 
     func setup() {
+        myTripsView.onTableViewRefresh = { [weak self] in
+            self?.viewModel.loadData()
+        }
         myTripsView.travellingsTableView.makeSkeletonable()
         setupDataSource()
         setupDelegate()
@@ -105,7 +108,6 @@ private extension MyTripsController {
     }
 
     @objc private func updateTheme(_ notification: NSNotification) {
-        print(1)
         myTripsView.updateTheme()
     }
 }

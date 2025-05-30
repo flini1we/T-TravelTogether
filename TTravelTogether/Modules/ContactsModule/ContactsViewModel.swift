@@ -22,6 +22,18 @@ final class ContactsViewModel: IContactsViewModel {
     func clearData() {
         selectedContacts = []
     }
+
+    func isContactSelected(_ contact: Contact) -> Bool {
+        return !(selectedContacts.filter {
+            RussianValidationService.shared.compareTwoPhones($0.phoneNumber, contact.phoneNumber)
+        }).isEmpty
+    }
+
+    func removeSelectedContact(_ contact: Contact) {
+        selectedContacts = selectedContacts.filter({
+            !RussianValidationService.shared.compareTwoPhones($0.phoneNumber, contact.phoneNumber)
+        })
+    }
 }
 
 private extension ContactsViewModel {

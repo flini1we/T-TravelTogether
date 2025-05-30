@@ -2,6 +2,7 @@ import UIKit
 import SnapKit
 
 final class MyTripsView: UIView {
+    var onTableViewRefresh: (() -> Void)?
 
     private lazy var title: UILabel = {
         LabelBuilder()
@@ -25,6 +26,13 @@ final class MyTripsView: UIView {
 
     private(set) lazy var travellingsTableView: UITableView = {
         let table = UITableView()
+        let refreshControl = UIRefreshControl()
+        refreshControl.addAction(UIAction { [weak self] _ in
+            self?.onTableViewRefresh?()
+            refreshControl.endRefreshing()
+        }, for: .valueChanged)
+        table.addSubview(refreshControl)
+        table.refreshControl = refreshControl
         table.backgroundColor = .clear
         table.separatorStyle = .none
         table.register(TripTableViewCell.self, forCellReuseIdentifier: TripTableViewCell.identifier)
@@ -52,7 +60,6 @@ final class MyTripsView: UIView {
     }
 
     func updateTheme() {
-        print(2)
         travellingsTableView.visibleCells.forEach {
             guard let cell = $0 as? TripTableViewCell else { return }
             cell.bgView.layer.shadowColor = ThemeManager.current == .light ? UIColor.label.cgColor : UIColor.white.cgColor

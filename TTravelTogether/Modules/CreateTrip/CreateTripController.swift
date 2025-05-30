@@ -164,6 +164,7 @@ private extension CreateTripController {
                 viewModel.tripPriceText = "\(editedTrip.price)"
             }
             .store(in: &cancellables)
+
         viewModel.onShowingIncorrectPriceAlert = { [weak self] alert in
             self?.onIncorrectPriceAlertDidSet?(alert)
         }

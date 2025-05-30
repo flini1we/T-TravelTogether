@@ -129,7 +129,7 @@ private extension MainCoordinator {
                     in: navigationController.viewControllers
                 )
             else { return }
-            tripDetailController.tripDetailView.setupWithTrip(tripDetail)
+            tripDetailController.viewModel.loadData()
         }
         profileController.coordinat = self
         navigationController.setViewControllers([tabBarController], animated: true)

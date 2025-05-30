@@ -32,9 +32,8 @@ final class ContactsController: UIViewController {
         setup()
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         onMembersUpdate?(viewModel.selectedContacts.map {
             User(name: $0.firstName, lastName: $0.secondName, phoneNumber: $0.phoneNumber)
         })

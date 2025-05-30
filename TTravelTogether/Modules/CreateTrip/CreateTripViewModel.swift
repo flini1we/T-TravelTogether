@@ -69,9 +69,7 @@ final class CreateTripViewModel: NSObject, ICreateTripViewModel {
 
     func updateMembers(users: [User]) {
         let users =  users.filter { $0.phoneNumber != currentUser.phoneNumber }
-        tripMembers = isEditing()
-        ? editedTrip!.getMembersSequence() + users
-        : [currentUser] + users
+        tripMembers = [currentUser] + users
     }
 
     func obtainContacts() -> [Contact] {

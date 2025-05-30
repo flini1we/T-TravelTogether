@@ -29,4 +29,8 @@ final class RussianValidationService {
         }
         return digits
     }
+
+    func compareTwoPhones(_ o1: String, _ o2: String) -> Bool {
+        RussianValidationService.shared.invalidate(phone: o1) == RussianValidationService.shared.invalidate(phone: o2)
+    }
 }
