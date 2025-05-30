@@ -1,6 +1,6 @@
 import UIKit
 
-final class AppFlowCoordinator: ICoordinator {
+final class AppFlowCoordinator: IAppFlowCoordinator {
 
     var childCoordinators: [ICoordinator] = []
     var navigationController: UINavigationController
@@ -16,6 +16,11 @@ final class AppFlowCoordinator: ICoordinator {
     func start() {
         let isLoggedIn = userService.isAuthenticated
         _ = isLoggedIn ? showMainFlow() : showAuthFlow()
+    }
+
+    func finish() {
+        userService.logout()
+        showAuthFlow()
     }
 }
 
@@ -39,15 +44,16 @@ private extension AppFlowCoordinator {
     func showMainFlow() {
         guard let user = userService.currentUser else {
             navigationController.present(AlertFactory.showUserError(), animated: true)
-            // TODO: когда будет выход из аккаунта тут тоже прокину сразу чтоб на решу кидало
+            userService.logout()
+            showAuthFlow()
             return
         }
-
         let coordinator = MainCoordinator(
             navigationController: navigationController,
             dependencieProvider: dependencies,
             user: user
         )
+        coordinator.coordinator = self
         addChild(coordinator)
         coordinator.start()
     }

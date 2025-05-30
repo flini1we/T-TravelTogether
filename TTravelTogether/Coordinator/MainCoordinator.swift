@@ -3,6 +3,7 @@ import Contacts
 import ContactsUI
 
 final class MainCoordinator: NSObject, IMainCoordinator {
+    weak var coordinator: IAppFlowCoordinator?
     private var registratedUser: User
 
     var childCoordinators: [ICoordinator] = []
@@ -64,6 +65,10 @@ final class MainCoordinator: NSObject, IMainCoordinator {
         navigationController.present(createTripController, animated: true)
         navigationController.present(AlertFactory.createErrorAlert(message: .AppStrings.Errors.editedIdIsNil), animated: true)
     }
+
+    func leaveProfile() {
+        coordinator?.finish()
+    }
 }
 
 extension MainCoordinator: UITabBarControllerDelegate {
@@ -81,6 +86,7 @@ extension MainCoordinator: UITabBarControllerDelegate {
                     sheetController.detents = [.large()]
                 }
             }
+            tabBarController.navigationItem.titleView = nil
             createTripController.onIncorrectPriceAlertDidSet = { incorrectPriceAlert in
                 createTripController.present(incorrectPriceAlert, animated: true)
             }
@@ -88,6 +94,16 @@ extension MainCoordinator: UITabBarControllerDelegate {
             return false
         }
         return true
+    }
+
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        let delay = viewController is ProfileController ? 0.15 : 0
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            tabBarController.navigationItem.titleView =
+            viewController is ProfileController
+            ? UILabel.showTitleLabel(.AppStrings.Profile.screenTitle)
+            : nil
+        }
     }
 }
 
@@ -97,7 +113,8 @@ private extension MainCoordinator {
         let tabBarController = dependencies.resolveMainTabBarController()
         let createTripController = dependencies.resolveCreateTripController(user: registratedUser)
         let myTripsController = dependencies.resolveMyTripsController()
-
+        let profileController = dependencies.resolveProfileController()
+        navigationController.navigationItem.title = "Sjl"
         tabBarController.delegate = self
         myTripsController.coordinator = self
         createTripController.coordinator = self
@@ -114,6 +131,7 @@ private extension MainCoordinator {
             else { return }
             tripDetailController.tripDetailView.setupWithTrip(tripDetail)
         }
+        profileController.coordinat = self
         navigationController.setViewControllers([tabBarController], animated: true)
     }
 

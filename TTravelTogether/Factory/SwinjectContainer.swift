@@ -56,6 +56,10 @@ final class SwinjectContainer: IDependencyContainer {
         container.resolve(ContactsController.self, argument: selectedContacts)!
     }
 
+    func resolveProfileController() -> ProfileController {
+        container.resolve(ProfileController.self)!
+    }
+
     func resolveMainTabBarController() -> UITabBarController {
         container.resolve(UITabBarController.self)!
     }
@@ -104,6 +108,11 @@ private extension SwinjectContainer {
         container.register(IContactsViewModel.self) { (_, selectedContacts) in
             ContactsViewModel(selectedContacts: selectedContacts)
         }
+
+        container.register(IProfileViewModel.self) { resolver in
+            let networkService = resolver.resolve(INetworkService.self)!
+            return ProfileViewModel(networkService: networkService)
+        }
     }
 
     func registerControllers() {
@@ -151,6 +160,12 @@ private extension SwinjectContainer {
             let viewModel = resolver.resolve(IContactsViewModel.self, argument: selectedUsers)!
             return ContactsController(viewModel: viewModel)
         }.inObjectScope(.container)
+
+        container.register(ProfileController.self) { resolver in
+            let viewModel = resolver.resolve(IProfileViewModel.self)!
+            let controller = ProfileController(viewModel: viewModel)
+            return controller
+        }
     }
 
     func registerTabBarController() {
@@ -165,11 +180,17 @@ private extension SwinjectContainer {
                 image: SystemImages.createTravelTabBarItem.image,
                 tag: TabBarScreenTags.createTravel.rawValue
             )
+            let profileController = resolver.resolve(ProfileController.self)!
+            profileController.tabBarItem = UITabBarItem(
+                title: nil,
+                image: SystemImages.profileTabBarItem.image,
+                tag: TabBarScreenTags.profile.rawValue
+            )
 
             tabBar.viewControllers = [
                 travellingVC,
                 sampleVC,
-                UIViewController()
+                profileController
             ]
 
             return tabBar

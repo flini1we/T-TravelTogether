@@ -14,6 +14,7 @@ protocol IDependencyContainer {
     func resolveTripDetailController(tripId: Int, user: User) -> TripDetailController
     func resolveCreateTripController(user: User) -> CreateTripController
     func resolveContactsController(selectedContacts: [Contact]) -> ContactsController
+    func resolveProfileController() -> ProfileController
 
     func resolveNetworkService() -> INetworkService
 

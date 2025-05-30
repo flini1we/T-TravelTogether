@@ -190,6 +190,10 @@ final class CreateTripView: UIView, ICreateTripView {
     func addCreateTripAction(_ action: UIAction) {
         createButton.addAction(action, for: .touchUpInside)
     }
+
+    func updateTheme(_ theme: AppTheme) {
+        backgroundColor = theme == .light ? .systemBackground : .black
+    }
 }
 
 extension CreateTripView: UITextFieldDelegate {

@@ -50,6 +50,14 @@ final class MyTripsView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    func updateTheme() {
+        print(2)
+        travellingsTableView.visibleCells.forEach {
+            guard let cell = $0 as? TripTableViewCell else { return }
+            cell.bgView.layer.shadowColor = ThemeManager.current == .light ? UIColor.label.cgColor : UIColor.white.cgColor
+        }
+    }
 }
 
 private extension MyTripsView {

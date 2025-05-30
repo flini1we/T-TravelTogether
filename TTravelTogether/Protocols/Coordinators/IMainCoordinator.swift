@@ -7,4 +7,5 @@ protocol IMainCoordinator: ICoordinator {
     func showTripDetail(_ id: Int)
     func showContactList()
     func showEditTripScreen(for tripDetail: TripDetail)
+    func leaveProfile()
 }

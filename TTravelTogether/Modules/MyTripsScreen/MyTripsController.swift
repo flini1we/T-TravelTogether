@@ -29,9 +29,16 @@ final class MyTripsController: UIViewController {
         setup()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNotification()
+    }
+
     func updateTrips() {
         viewModel.loadData()
     }
+
+    deinit { NotificationCenter.default.removeObserver(self) }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -86,5 +93,19 @@ private extension MyTripsController {
         viewModel.onErrorDidAppear = { [weak self] customError in
             self?.present(AlertFactory.createErrorAlert(message: customError.message), animated: true)
         }
+    }
+
+    func setupNotification() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateTheme(_:)),
+            name: NSNotification.Name(.AppStrings.Notification.updatedThemeKey),
+            object: nil
+        )
+    }
+
+    @objc private func updateTheme(_ notification: NSNotification) {
+        print(1)
+        myTripsView.updateTheme()
     }
 }

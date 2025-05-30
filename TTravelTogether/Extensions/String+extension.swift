@@ -8,6 +8,12 @@ extension String {
 
     enum AppStrings {
 
+        enum Notification {
+
+            static let changeTheme = "Change_Theme"
+            static let updatedThemeKey = "updatedTheme"
+        }
+
         enum Auth {
 
             static let phonePrefix89 = "89"
@@ -53,6 +59,9 @@ extension String {
             static let noSuchUserDescription = "Повторите попытку снова"
             static let incorrectTripPriceTitle = "Некорректная стоимость поездки"
             static let incorrectTripPriceMessage = "Стоимость поездки должна быть целым числом."
+            static let leaveProfileTitle = "Покинуть профиль"
+            static let leaveProfileMessage = "Вы уверены что хотите выйти из профиля?"
+            static let leaveProfile = "Покинуть"
         }
 
         enum AppTitles {
@@ -113,6 +122,22 @@ extension String {
 
             static let accessTokenHeder = "Authorization"
             static let tripIdRequestParam = "travelId"
+        }
+
+        enum Cache {
+
+            static let userKey = "Loaded.User"
+        }
+
+        enum Profile {
+
+            static let screenTitle = "Профиль"
+            static let namePlaceholder = "Ivan Ivanov"
+            static let phonePlaceholder = RussianValidationService.shared.validate(phone: "89999999999")
+            static let archiveTitle = "Архив поездок"
+            static let changeLanguageTitle = "Сменить язык"
+            static let changeThemeTitle = "Сменить тему"
+            static let leaveTitle = "Выйти из профиля"
         }
     }
 }

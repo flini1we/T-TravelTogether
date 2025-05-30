@@ -77,9 +77,7 @@ final class NetworkService: INetworkService {
         tripDetail: CreateTripDTO,
         completion: @escaping ((Result<CreateTripDTO, CustomError>) -> Void)
     ) {
-        guard
-            let accessToken = tokenManager.getToken(type: .access),
-            let refreshToken = tokenManager.getToken(type: .refresh)
+        guard let tokens = checkTokens()
         else {
             completion(.failure(.accessTokenIsNil()))
             return
@@ -96,7 +94,7 @@ final class NetworkService: INetworkService {
             method: .post,
             parameters: params,
             encoding: JSONEncoding.default,
-            headers: .getAccessHeader(for: accessToken)
+            headers: .getAccessHeader(for: tokens.access)
         )
         .validate()
         .response { [weak self] response in
@@ -106,7 +104,7 @@ final class NetworkService: INetworkService {
                 completion(.success(tripDetail))
             case .failure(let error):
                 if isUnauthorized(response.response?.statusCode) {
-                    refreshTokens(refreshToken: refreshToken) { [weak self] response in
+                    refreshTokens(refreshToken: tokens.refresh) { [weak self] response in
                         switch response {
                         case .success(_):
                             self?.createTrip(tripDetail: tripDetail, completion: completion)
@@ -122,9 +120,7 @@ final class NetworkService: INetworkService {
     }
 
     func getActiveTrips(completion: @escaping ((Result<[TripDTO], CustomError>) -> Void)) {
-        guard
-            let accessToken = tokenManager.getToken(type: .access),
-            let refreshToken = tokenManager.getToken(type: .refresh)
+        guard let tokens = checkTokens()
         else {
             completion(.failure(.accessTokenIsNil()))
             return
@@ -133,7 +129,7 @@ final class NetworkService: INetworkService {
             Network.BASE_URL + Network.myTrips.getQuery,
             method: .get,
             encoding: JSONEncoding.default,
-            headers: .getAccessHeader(for: accessToken)
+            headers: .getAccessHeader(for: tokens.access)
         )
         .validate()
         .responseDecodable(of: [TripDTO].self) { [weak self] response in
@@ -143,7 +139,7 @@ final class NetworkService: INetworkService {
                 completion(.success(tripsDTO))
             case .failure(let error):
                 if isUnauthorized(response.response?.statusCode) {
-                    refreshTokens(refreshToken: refreshToken) { [weak self] response in
+                    refreshTokens(refreshToken: tokens.refresh) { [weak self] response in
                         switch response {
                         case .success(_):
                             self?.getActiveTrips(completion: completion)
@@ -162,9 +158,7 @@ final class NetworkService: INetworkService {
         id: Int,
         completion: @escaping ((Result<TripDetailDTO, CustomError>) -> Void)
     ) {
-        guard
-            let accessToken = tokenManager.getToken(type: .access),
-            let refreshToken = tokenManager.getToken(type: .refresh)
+        guard let tokens = checkTokens()
         else {
             completion(.failure(.accessTokenIsNil()))
             return
@@ -173,7 +167,7 @@ final class NetworkService: INetworkService {
             Network.BASE_URL + Network.tripDetail(id).getQuery,
             method: .get,
             encoding: JSONEncoding.default,
-            headers: .getAccessHeader(for: accessToken)
+            headers: .getAccessHeader(for: tokens.access)
         )
         .validate()
         .responseDecodable(of: TripDetailDTO.self) { [weak self] result in
@@ -183,7 +177,7 @@ final class NetworkService: INetworkService {
                 completion(.success(tripDetailDTO))
             case .failure(let error):
                 if isUnauthorized(result.response?.statusCode) {
-                    refreshTokens(refreshToken: refreshToken) { [weak self] result in
+                    refreshTokens(refreshToken: tokens.refresh) { [weak self] result in
                         switch result {
                         case .success(_):
                             self?.getTripDetail(id: id, completion: completion)
@@ -202,9 +196,7 @@ final class NetworkService: INetworkService {
         tripDetail: EditTripDTO,
         completion: @escaping ((Result<EditTripDTO, CustomError>) -> Void)
     ) {
-        guard
-            let accessToken = tokenManager.getToken(type: .access),
-            let refreshToken = tokenManager.getToken(type: .refresh)
+        guard let tokens = checkTokens()
         else {
             completion(.failure(.accessTokenIsNil()))
             return
@@ -224,7 +216,7 @@ final class NetworkService: INetworkService {
             method: .put,
             parameters: params,
             encoding: JSONEncoding.default,
-            headers: .getAccessHeader(for: accessToken)
+            headers: .getAccessHeader(for: tokens.access)
         )
         .validate()
         .responseDecodable(of: EditTripDTO.self) { [weak self] response in
@@ -234,7 +226,7 @@ final class NetworkService: INetworkService {
                 completion(.success(tripDetailDTO))
             case .failure(let error):
                 if isUnauthorized(response.response?.statusCode) {
-                    refreshTokens(refreshToken: refreshToken) { [weak self] result in
+                    refreshTokens(refreshToken: tokens.refresh) { [weak self] result in
                         switch result {
                         case .success(_):
                             self?.updateTrip(tripDetail: tripDetail, completion: completion)
@@ -253,9 +245,7 @@ final class NetworkService: INetworkService {
         with id: Int,
         completion: @escaping ((Result<Void, CustomError>) -> Void)
     ) {
-        guard
-            let accessToken = tokenManager.getToken(type: .access),
-            let refreshToken = tokenManager.getToken(type: .refresh)
+        guard let tokens = checkTokens()
         else {
             completion(.failure(.accessTokenIsNil()))
             return
@@ -268,7 +258,7 @@ final class NetworkService: INetworkService {
             method: .delete,
             parameters: params,
             encoding: JSONEncoding.default,
-            headers: .getAccessHeader(for: accessToken)
+            headers: .getAccessHeader(for: tokens.access)
         )
         .validate()
         .response { [weak self] resul in
@@ -278,7 +268,7 @@ final class NetworkService: INetworkService {
                 completion(.success(()))
             case .failure(let error):
                 if isUnauthorized(resul.response?.statusCode) {
-                    refreshTokens(refreshToken: refreshToken) { [weak self] result in
+                    refreshTokens(refreshToken: tokens.refresh) { [weak self] result in
                         switch result {
                         case .success(_):
                             self?.leaveTrip(with: id, completion: completion)
@@ -292,9 +282,56 @@ final class NetworkService: INetworkService {
             }
         }
     }
+
+    func getUserProfile(
+        completion: @escaping ((Result<User, CustomError>) -> Void)
+    ) {
+        guard let tokens = checkTokens()
+        else {
+            completion(.failure(.accessTokenIsNil()))
+            return
+        }
+        AF.request(
+            Network.BASE_URL + Network.userProfile.getQuery,
+            method: .get,
+            encoding: JSONEncoding.default,
+            headers: .getAccessHeader(for: tokens.access)
+        )
+        .validate()
+        .responseDecodable(of: User.self) { [weak self] result in
+            guard let self else { return }
+            switch result.result {
+            case .success(let user):
+                completion(.success(user))
+            case .failure(let error):
+                if isUnauthorized(result.response?.statusCode) {
+                    refreshTokens(refreshToken: tokens.refresh) { [weak self] result in
+                        switch result {
+                        case .success(_):
+                            self?.getUserProfile(completion: completion)
+                        case .failure(let error):
+                            completion(.failure(error))
+                        }
+                    }
+                } else {
+                    completion(.failure(.hiddenError(error.localizedDescription)))
+                }
+            }
+        }
+    }
 }
 
 private extension NetworkService {
+
+    func checkTokens() -> (access: String, refresh: String)? {
+        guard
+            let accessToken = tokenManager.getToken(type: .access),
+            let refreshToken = tokenManager.getToken(type: .refresh)
+        else {
+            return nil
+        }
+        return (accessToken, refreshToken)
+    }
 
     func decodeToCustomError(response: AFDataResponse<String>) -> CustomError {
         if let data = response.data,

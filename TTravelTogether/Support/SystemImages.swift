@@ -12,13 +12,18 @@ enum SystemImages {
          editTrip,
          remove,
          handRaised,
-         circle(Bool)
+         circle(Bool),
+         profileTabBarItem,
+         profileDefault,
+         changeLanguage,
+         changeTheme,
+         archiveTrips
 
     var image: UIImage {
         switch self {
         case .slashedEye(let isSlashed):
             return UIImage(systemName: isSlashed ? "eye.slash" : "eye")!
-        case .travellingTabBarImage, .createTravelTabBarItem, .archiveTabBarItem:
+        case .travellingTabBarImage, .createTravelTabBarItem, .archiveTabBarItem, .profileTabBarItem:
             var image: UIImage!
             switch self {
             case .travellingTabBarImage:
@@ -27,6 +32,8 @@ enum SystemImages {
                 image = .newTravelTab
             case .archiveTabBarItem:
                 image = .archiveTab
+            case .profileTabBarItem:
+                image = .profileTabBar
             default: break
             }
             image = image.resized(to: CGSize(
@@ -59,6 +66,14 @@ enum SystemImages {
             return UIImage(systemName: "hand.raised.square.fill")!
         case .circle(let isSelected):
             return UIImage(systemName: isSelected ? "checkmark.circle.fill" : "circle")!
+        case .profileDefault:
+            return UIImage(systemName: "person.crop.circle.fill")!
+        case .changeLanguage:
+            return .changeLanguage
+        case .changeTheme:
+            return UIImage(systemName: "circle.lefthalf.filled")!
+        case .archiveTrips:
+            return .archiveTab
         }
     }
 }

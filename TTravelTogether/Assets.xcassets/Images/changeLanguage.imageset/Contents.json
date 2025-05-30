@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "archiveTabImage.png",
+      "filename" : "changeLanguage.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,7 +12,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "archiveTabImage 1.png",
+      "filename" : "changeLanguage 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },

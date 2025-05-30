@@ -27,7 +27,20 @@
 		CF3B469C2DB57DBB008C4CA0 /* TabBarScreenTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B469B2DB57DBB008C4CA0 /* TabBarScreenTags.swift */; };
 		CF3B469E2DB58013008C4CA0 /* UITabBar+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B469D2DB58013008C4CA0 /* UITabBar+extension.swift */; };
 		CF601D322DA93D7700E98B21 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CF601D312DA93D7700E98B21 /* SnapKit */; };
+		CF602C542DE887C8009BB5A6 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF602C532DE887C8009BB5A6 /* ProfileController.swift */; };
+		CF602C562DE887DC009BB5A6 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF602C552DE887DC009BB5A6 /* ProfileViewModel.swift */; };
+		CF602C582DE88815009BB5A6 /* IProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF602C572DE88815009BB5A6 /* IProfileViewModel.swift */; };
+		CF602C5A2DE88843009BB5A6 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF602C592DE88843009BB5A6 /* ProfileView.swift */; };
 		CF64B92E2DAD982900255003 /* RegularExpressions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF64B92D2DAD982800255003 /* RegularExpressions.swift */; };
+		CF682A1F2DE88D9E0035D819 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF682A1E2DE88D9E0035D819 /* UserProfileView.swift */; };
+		CF682A222DE894750035D819 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF682A212DE894750035D819 /* ProfileTableViewCell.swift */; };
+		CF682A242DE894C40035D819 /* ProfileTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF682A232DE894C40035D819 /* ProfileTableViewDataSource.swift */; };
+		CF682A262DE8953A0035D819 /* ProfileScreenCellTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF682A252DE8953A0035D819 /* ProfileScreenCellTypes.swift */; };
+		CF682A282DE8A01F0035D819 /* ProfileTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF682A272DE8A01F0035D819 /* ProfileTableViewDelegate.swift */; };
+		CF682A2A2DE8E8BD0035D819 /* UILabel+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF682A292DE8E8BD0035D819 /* UILabel+extension.swift */; };
+		CF682A2C2DE8F4700035D819 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF682A2B2DE8F4700035D819 /* AppTheme.swift */; };
+		CF682A2E2DE8F4900035D819 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF682A2D2DE8F4900035D819 /* ThemeManager.swift */; };
+		CF682A302DE994640035D819 /* IAppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF682A2F2DE994640035D819 /* IAppFlowCoordinator.swift */; };
 		CF6CFAA12DE3B35D00283F9C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CF6CFAA02DE3B35D00283F9C /* Alamofire */; };
 		CF6CFAA32DE4D56700283F9C /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6CFAA22DE4D56600283F9C /* Network.swift */; };
 		CF6CFAA52DE4D81200283F9C /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6CFAA42DE4D81200283F9C /* NetworkService.swift */; };
@@ -186,7 +199,20 @@
 		CF3B468B2DB2E0B0008C4CA0 /* RegistrationModuleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModuleTest.swift; sourceTree = "<group>"; };
 		CF3B469B2DB57DBB008C4CA0 /* TabBarScreenTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarScreenTags.swift; sourceTree = "<group>"; };
 		CF3B469D2DB58013008C4CA0 /* UITabBar+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBar+extension.swift"; sourceTree = "<group>"; };
+		CF602C532DE887C8009BB5A6 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		CF602C552DE887DC009BB5A6 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		CF602C572DE88815009BB5A6 /* IProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IProfileViewModel.swift; sourceTree = "<group>"; };
+		CF602C592DE88843009BB5A6 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		CF64B92D2DAD982800255003 /* RegularExpressions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressions.swift; sourceTree = "<group>"; };
+		CF682A1E2DE88D9E0035D819 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		CF682A212DE894750035D819 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		CF682A232DE894C40035D819 /* ProfileTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewDataSource.swift; sourceTree = "<group>"; };
+		CF682A252DE8953A0035D819 /* ProfileScreenCellTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenCellTypes.swift; sourceTree = "<group>"; };
+		CF682A272DE8A01F0035D819 /* ProfileTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewDelegate.swift; sourceTree = "<group>"; };
+		CF682A292DE8E8BD0035D819 /* UILabel+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+extension.swift"; sourceTree = "<group>"; };
+		CF682A2B2DE8F4700035D819 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		CF682A2D2DE8F4900035D819 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		CF682A2F2DE994640035D819 /* IAppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAppFlowCoordinator.swift; sourceTree = "<group>"; };
 		CF6CFAA22DE4D56600283F9C /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		CF6CFAA42DE4D81200283F9C /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		CF6CFAA82DE4DDDB00283F9C /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
@@ -447,6 +473,27 @@
 			path = RegistrationModuleTests;
 			sourceTree = "<group>";
 		};
+		CF602C522DE884EF009BB5A6 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				CF602C532DE887C8009BB5A6 /* ProfileController.swift */,
+				CF602C552DE887DC009BB5A6 /* ProfileViewModel.swift */,
+				CF602C592DE88843009BB5A6 /* ProfileView.swift */,
+				CF682A202DE894640035D819 /* TableViewData */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		CF682A202DE894640035D819 /* TableViewData */ = {
+			isa = PBXGroup;
+			children = (
+				CF682A212DE894750035D819 /* ProfileTableViewCell.swift */,
+				CF682A272DE8A01F0035D819 /* ProfileTableViewDelegate.swift */,
+				CF682A232DE894C40035D819 /* ProfileTableViewDataSource.swift */,
+			);
+			path = TableViewData;
+			sourceTree = "<group>";
+		};
 		CF74057D2DD3A32500B71E2B /* CollectionViewData */ = {
 			isa = PBXGroup;
 			children = (
@@ -474,6 +521,7 @@
 				CF7405B92DD3E52900B71E2B /* RussianValidationService.swift */,
 				CF6CFAA42DE4D81200283F9C /* NetworkService.swift */,
 				CFDA93172DE5B18300477BCC /* TokenManager.swift */,
+				CF682A2D2DE8F4900035D819 /* ThemeManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -538,6 +586,7 @@
 			isa = PBXGroup;
 			children = (
 				CF8735602DD3A1EB00A45779 /* IAuthCoordinator.swift */,
+				CF682A2F2DE994640035D819 /* IAppFlowCoordinator.swift */,
 				CF8735612DD3A1EB00A45779 /* ICoordinator.swift */,
 				CF8735622DD3A1EB00A45779 /* IMainCoordinator.swift */,
 			);
@@ -561,6 +610,7 @@
 				CF8735692DD3A1EB00A45779 /* IMyTripsViewModel.swift */,
 				CF87356A2DD3A1EB00A45779 /* IRegistrationViewModel.swift */,
 				CF87356B2DD3A1EB00A45779 /* ITripDetailViewModel.swift */,
+				CF602C572DE88815009BB5A6 /* IProfileViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -600,6 +650,7 @@
 				CFAD6A622DABD35E003930F3 /* RegistrationScreen */,
 				CFB11FF32DB688E300609CEF /* MyTripsScreen */,
 				CF7405822DD3A32500B71E2B /* CreateTrip */,
+				CF602C522DE884EF009BB5A6 /* Profile */,
 				CF7405942DD3A3D100B71E2B /* ContactsModule */,
 				CF7405B32DD3B60000B71E2B /* TripDetailScreen */,
 			);
@@ -653,6 +704,8 @@
 				CF6CFAB02DE59AB700283F9C /* TypeAlias.swift */,
 				CFDA931B2DE5B6BD00477BCC /* TokenType.swift */,
 				CFE072C42DE63E9500287877 /* StatusCodes.swift */,
+				CF682A252DE8953A0035D819 /* ProfileScreenCellTypes.swift */,
+				CF682A2B2DE8F4700035D819 /* AppTheme.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -712,6 +765,7 @@
 				CFF713022DDD23A70005C5AE /* Float+extension.swift */,
 				CFE072C62DE63F8D00287877 /* Dictionary+extension.swift */,
 				CFE072CC2DE74C2000287877 /* HTTPHeaders+extension.swift */,
+				CF682A292DE8E8BD0035D819 /* UILabel+extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -722,6 +776,7 @@
 				CF74059D2DD3A42D00B71E2B /* ICloudNavTitle.swift */,
 				CFAD6AF02DAC5E4D003930F3 /* ActivityIndicatorView.swift */,
 				CFAFC6022DB7F497002FA8EF /* TripDateView.swift */,
+				CF682A1E2DE88D9E0035D819 /* UserProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -976,6 +1031,7 @@
 			files = (
 				CF7405B42DD3B60F00B71E2B /* MemberCollectionViewCell.swift in Sources */,
 				CF7405B52DD3B60F00B71E2B /* MembersCollectionDataSource.swift in Sources */,
+				CF602C562DE887DC009BB5A6 /* ProfileViewModel.swift in Sources */,
 				CF7405B62DD3B60F00B71E2B /* TripDetailController.swift in Sources */,
 				CF7405B72DD3B60F00B71E2B /* TripDetailView.swift in Sources */,
 				CF7405B82DD3B60F00B71E2B /* TripDetailViewModel.swift in Sources */,
@@ -989,6 +1045,7 @@
 				CF7405992DD3A3DF00B71E2B /* ContactsView.swift in Sources */,
 				CF74059A2DD3A3DF00B71E2B /* ContactsViewModel.swift in Sources */,
 				CF74058C2DD3A38D00B71E2B /* Contact.swift in Sources */,
+				CF602C5A2DE88843009BB5A6 /* ProfileView.swift in Sources */,
 				CFDA93212DE5DF0900477BCC /* ITokenManager.swift in Sources */,
 				CF0B92D32DE129FB001CBAF8 /* UICollectionView+extension.swift in Sources */,
 				CF74058A2DD3A37D00B71E2B /* UserService.swift in Sources */,
@@ -1003,15 +1060,21 @@
 				CFE072D12DE77A1000287877 /* EditTripDTO.swift in Sources */,
 				CFB11FFF2DB68B4400609CEF /* MyTripsController.swift in Sources */,
 				CFB11FF92DB688E900609CEF /* MyTripsView.swift in Sources */,
+				CF682A282DE8A01F0035D819 /* ProfileTableViewDelegate.swift in Sources */,
 				CFB11FFA2DB688E900609CEF /* MyTripsViewModel.swift in Sources */,
 				CF3556992DA8581700290A81 /* AppDelegate.swift in Sources */,
+				CF682A222DE894750035D819 /* ProfileTableViewCell.swift in Sources */,
 				CF0B92CF2DDFB109001CBAF8 /* KeyboardObservable.swift in Sources */,
+				CF682A2A2DE8E8BD0035D819 /* UILabel+extension.swift in Sources */,
 				CF3B469E2DB58013008C4CA0 /* UITabBar+extension.swift in Sources */,
 				CFAD6A572DAACFB5003930F3 /* TextFieldBuilder.swift in Sources */,
 				CFAD6AF42DACF814003930F3 /* LoginErrors.swift in Sources */,
 				CFE072C72DE63F8D00287877 /* Dictionary+extension.swift in Sources */,
+				CF682A2E2DE8F4900035D819 /* ThemeManager.swift in Sources */,
+				CF682A262DE8953A0035D819 /* ProfileScreenCellTypes.swift in Sources */,
 				CFB11FE82DB6511500609CEF /* Currency.swift in Sources */,
 				CFAD6AE72DAC1B88003930F3 /* UITextFieldDelegateDefaultImpl.swift in Sources */,
+				CF682A2C2DE8F4700035D819 /* AppTheme.swift in Sources */,
 				CF6CFAB12DE59AB700283F9C /* TypeAlias.swift in Sources */,
 				CFAD6AEC2DAC21D7003930F3 /* UIView+extension.swift in Sources */,
 				CF6CFAA92DE4DDDB00283F9C /* CustomError.swift in Sources */,
@@ -1029,8 +1092,10 @@
 				CFAD6AB22DABDC16003930F3 /* LabelBuilder.swift in Sources */,
 				CF64B92E2DAD982900255003 /* RegularExpressions.swift in Sources */,
 				CFE072CF2DE7562E00287877 /* CreateTripDTO.swift in Sources */,
+				CF602C542DE887C8009BB5A6 /* ProfileController.swift in Sources */,
 				CFAD6A642DABD36F003930F3 /* RegistrationView.swift in Sources */,
 				CF8735762DD3A1EB00A45779 /* IAppFormatter.swift in Sources */,
+				CF682A242DE894C40035D819 /* ProfileTableViewDataSource.swift in Sources */,
 				CF8735772DD3A1EB00A45779 /* ICoordinator.swift in Sources */,
 				CF8735782DD3A1EB00A45779 /* IContactsViewModel.swift in Sources */,
 				CF8735792DD3A1EB00A45779 /* IAuthCoordinator.swift in Sources */,
@@ -1045,8 +1110,10 @@
 				CF8735802DD3A1EB00A45779 /* IButtonBuilder.swift in Sources */,
 				CF8735812DD3A1EB00A45779 /* ILoginViewModel.swift in Sources */,
 				CF8735822DD3A1EB00A45779 /* IMainCoordinator.swift in Sources */,
+				CF682A302DE994640035D819 /* IAppFlowCoordinator.swift in Sources */,
 				CF8735832DD3A1EB00A45779 /* IRegistrationViewModel.swift in Sources */,
 				CF8735842DD3A1EB00A45779 /* ILabelBuilder.swift in Sources */,
+				CF602C582DE88815009BB5A6 /* IProfileViewModel.swift in Sources */,
 				CF8735852DD3A1EB00A45779 /* ITextFieldBuilder.swift in Sources */,
 				CF8735862DD3A1EB00A45779 /* ICreateTripView.swift in Sources */,
 				CF8735872DD3A1EB00A45779 /* ITripDetailViewModel.swift in Sources */,
@@ -1082,6 +1149,7 @@
 				CFAFBEE22DB6C1D3002FA8EF /* TripsTableDelegate.swift in Sources */,
 				CFB11FD12DB59D7300609CEF /* UIImage+extension.swift in Sources */,
 				CFB11FDF2DB62F5600609CEF /* Trip.swift in Sources */,
+				CF682A1F2DE88D9E0035D819 /* UserProfileView.swift in Sources */,
 				CF3B46812DB24B04008C4CA0 /* ModuleTypes.swift in Sources */,
 				CFB11FF02DB6855B00609CEF /* AppFormatter.swift in Sources */,
 				CFAD6A662DABD378003930F3 /* RegistrationController.swift in Sources */,

@@ -29,4 +29,7 @@ protocol INetworkService {
         with id: Int,
         completion: @escaping ((Result<Void, CustomError>) -> Void)
     )
+    func getUserProfile(
+        completion: @escaping ((Result<User, CustomError>) -> Void)
+    )
 }

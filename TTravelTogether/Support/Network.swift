@@ -3,7 +3,7 @@ import Foundation
 enum Network {
     static let BASE_URL = "http://141.105.71.181:8080"
 
-    case register, login, createTrip, refresh, myTrips, tripDetail(Int), updateTrip, leaveTrip(Int)
+    case register, login, createTrip, refresh, myTrips, tripDetail(Int), updateTrip, leaveTrip(Int), userProfile
 
     var getQuery: String {
         switch self {
@@ -23,6 +23,8 @@ enum Network {
             "/api/v1/travels"
         case .leaveTrip(let id):
             "/api/v1/travels/leave/\(id)"
+        case .userProfile:
+            "/api/v1/profile"
         }
     }
 

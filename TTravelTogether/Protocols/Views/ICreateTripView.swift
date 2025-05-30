@@ -12,4 +12,5 @@ protocol ICreateTripView: AnyObject {
     func getTripDates() -> (start: Date, finish: Date)
     func setupWithEditedTrip(tripDetail: TripDetail)
     func addCreateTripAction(_ action: UIAction)
+    func updateTheme(_ theme: AppTheme)
 }
