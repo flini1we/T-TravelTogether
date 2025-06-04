@@ -37,9 +37,9 @@ final class AlertFactory {
     }
 
     static func createErrorAlert(
-        title: String,
+        title: String = .AppStrings.Alert.error,
         message: String,
-        onDismiss: @escaping () -> Void
+        onDismiss: @escaping () -> Void = { }
     ) -> UIAlertController {
         let alert = UIAlertController(
             title: title,
@@ -108,6 +108,20 @@ final class AlertFactory {
             preferredStyle: .alert
         )
         alert.addAction(UIAlertAction(title: .AppStrings.Alert.cancel, style: .cancel) { _ in onCancel() })
+        return alert
+    }
+
+    static func createLeaveProfileAlert(
+        onCancel: @escaping () -> Void = {},
+        onConfirm: @escaping () -> Void
+    ) -> UIAlertController {
+        let alert = UIAlertController(
+            title: .AppStrings.Alert.leaveProfileTitle,
+            message: .AppStrings.Alert.leaveProfileMessage,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: .AppStrings.Alert.cancel, style: .cancel) { _ in onCancel() })
+        alert.addAction(UIAlertAction(title: .AppStrings.Alert.leaveProfile, style: .destructive) { _ in onConfirm() })
         return alert
     }
 }

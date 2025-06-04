@@ -17,11 +17,11 @@ protocol IRegistrationView: AnyObject {
     var transparentBG: UIView { get }
 
     func addRegisterAction(_ action: UIAction)
-    func getData() -> (name: String, password1: String, password2: String)
     func validateButton(isValid: Bool)
     func toggleTransparentBGVisibility()
     func activateIndicator()
     func deactivateIndicator()
     func onKeyboardWillShow(frame: CGRect)
     func onKeyboardWillHide()
+    func getUserData() -> UserTempData
 }

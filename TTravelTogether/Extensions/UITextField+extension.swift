@@ -13,6 +13,10 @@ extension UITextField {
         .map { $0.text ?? "" }
         .eraseToAnyPublisher()
     }
+
+    var textSafe: String {
+        self.text ?? ""
+    }
 }
 
 extension UITextField {

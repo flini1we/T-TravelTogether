@@ -32,10 +32,11 @@ final class ContactsController: UIViewController {
         setup()
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        onMembersUpdate?(viewModel.selectedContacts.map { User(phoneNumber: $0.phoneNumber) })
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        onMembersUpdate?(viewModel.selectedContacts.map {
+            User(name: $0.firstName, lastName: $0.secondName, phoneNumber: $0.phoneNumber)
+        })
     }
 
     required init?(coder: NSCoder) {
@@ -73,7 +74,9 @@ private extension ContactsController {
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .done, primaryAction: UIAction { [weak self] _ in
             guard let self else { return }
-            onMembersUpdate?(viewModel.selectedContacts.map { User(phoneNumber: $0.phoneNumber) })
+            onMembersUpdate?(viewModel.selectedContacts.map {
+                User(name: $0.firstName, lastName: $0.secondName, phoneNumber: $0.phoneNumber)
+            })
             dismiss(animated: true)
         })
     }

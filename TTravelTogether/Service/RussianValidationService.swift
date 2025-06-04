@@ -24,9 +24,13 @@ final class RussianValidationService {
     func invalidate(phone: String) -> String {
         let digits = phone.filter { $0.isNumber }
 
-        if digits.first == "+" {
-            return "8" + String(digits.dropFirst(2))
+        if digits.first == "7" {
+            return "8" + String(digits.dropFirst(1))
         }
         return digits
+    }
+
+    func compareTwoPhones(_ o1: String, _ o2: String) -> Bool {
+        RussianValidationService.shared.invalidate(phone: o1) == RussianValidationService.shared.invalidate(phone: o2)
     }
 }

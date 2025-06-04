@@ -2,7 +2,17 @@ import UIKit
 
 extension String {
 
+    func addCurrency(_ currency: Currency) -> Self {
+        self + " \(currency.rawValue)"
+    }
+
     enum AppStrings {
+
+        enum Notification {
+
+            static let changeTheme = "Change_Theme"
+            static let updatedThemeKey = "updatedTheme"
+        }
 
         enum Auth {
 
@@ -35,6 +45,7 @@ extension String {
         enum Alert {
 
             static let ok = "Ок"
+            static let error = "Ошибка"
             static let confirm = "Подтвердить"
             static let settings = "Настройки"
             static let cancel = "Отмена"
@@ -48,6 +59,9 @@ extension String {
             static let noSuchUserDescription = "Повторите попытку снова"
             static let incorrectTripPriceTitle = "Некорректная стоимость поездки"
             static let incorrectTripPriceMessage = "Стоимость поездки должна быть целым числом."
+            static let leaveProfileTitle = "Покинуть профиль"
+            static let leaveProfileMessage = "Вы уверены что хотите выйти из профиля?"
+            static let leaveProfile = "Покинуть"
         }
 
         enum AppTitles {
@@ -80,6 +94,50 @@ extension String {
         enum UserDefaults {
 
             static let originUserKey = "current_user"
+        }
+
+        enum Errors {
+
+            static let hiddenMessage = "Неизвестная ошибка"
+            static let registerError = "Ошибка регистрации"
+            static let tokensDecoderError = "Ошибка при раскодировании токенов"
+            static let accessTokenInNil = "Доступ ограничен, перейдите к регистрации"
+            static let saveTokensError = "Доступ ограничен, попробуйте еще раз"
+            static let dataIsNil = "Данные о датах поездки отстуствуют."
+            static let editTrip = "Доступ к реадктированию запрещен."
+            static let editedIdIsNil = "Реадктируемая поездка не валидна."
+            static let errorToAccessTripData = "Даты редактируемой поездки не валидны. Попробуйте снова позже"
+            static let errorToConvertData = "Ошибка в преобразовании данных. Попробуйте снова"
+        }
+
+        enum KeyChain {
+
+            static let storage = "keychain.TokenStorage"
+            static let accessId = ".access"
+            static let refreshId = ".refresh"
+            static let refreshTokenHeader = "refreshToken"
+        }
+
+        enum Network {
+
+            static let accessTokenHeder = "Authorization"
+            static let tripIdRequestParam = "travelId"
+        }
+
+        enum Cache {
+
+            static let userKey = "Loaded.User"
+        }
+
+        enum Profile {
+
+            static let screenTitle = "Профиль"
+            static let namePlaceholder = "Ivan Ivanov"
+            static let phonePlaceholder = RussianValidationService.shared.validate(phone: "89999999999")
+            static let archiveTitle = "Архив поездок"
+            static let changeLanguageTitle = "Сменить язык"
+            static let changeThemeTitle = "Сменить тему"
+            static let leaveTitle = "Выйти из профиля"
         }
     }
 }

@@ -3,6 +3,7 @@ import Contacts
 import ContactsUI
 
 final class MainCoordinator: NSObject, IMainCoordinator {
+    weak var coordinator: IAppFlowCoordinator?
     private var registratedUser: User
 
     var childCoordinators: [ICoordinator] = []
@@ -19,9 +20,20 @@ final class MainCoordinator: NSObject, IMainCoordinator {
         showMainTabBar()
     }
 
-    func showTripDetail(_ id: UUID) {
+    func showTripDetail(_ id: Int) {
         let detailVC = dependencies.resolveTripDetailController(tripId: id, user: registratedUser)
         detailVC.coordinator = self
+        detailVC.onTripDidLeave = { [weak self] in
+            guard let self else { return }
+            navigationController.popViewController(animated: true)
+            guard let tabBarController = navigationController.viewControllers.first as? UITabBarController
+            else { return }
+            guard let mainController = findViewController(
+                type: MyTripsController.self,
+                in: tabBarController.viewControllers ?? []
+            ) else { return }
+            mainController.updateTrips()
+        }
         navigationController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(detailVC, animated: true)
     }
@@ -43,9 +55,19 @@ final class MainCoordinator: NSObject, IMainCoordinator {
 
     func showEditTripScreen(for tripDetail: TripDetail) {
         let createTripController = dependencies.resolveCreateTripController(user: registratedUser)
-        createTripController.setupEditedTrip(tripDetail)
+        guard let tripDetailController = findViewController(
+            type: TripDetailController.self,
+            in: navigationController.viewControllers
+        ) else { return }
+        let tripDetailId = tripDetailController.viewModel.tripId
+        createTripController.setupEditedTrip(tripDetail, ogId: tripDetailId)
         createSheetViewController(from: createTripController)
         navigationController.present(createTripController, animated: true)
+        navigationController.present(AlertFactory.createErrorAlert(message: .AppStrings.Errors.editedIdIsNil), animated: true)
+    }
+
+    func leaveProfile() {
+        coordinator?.finish()
     }
 }
 
@@ -64,6 +86,7 @@ extension MainCoordinator: UITabBarControllerDelegate {
                     sheetController.detents = [.large()]
                 }
             }
+            tabBarController.navigationItem.titleView = nil
             createTripController.onIncorrectPriceAlertDidSet = { incorrectPriceAlert in
                 createTripController.present(incorrectPriceAlert, animated: true)
             }
@@ -71,6 +94,16 @@ extension MainCoordinator: UITabBarControllerDelegate {
             return false
         }
         return true
+    }
+
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        let delay = viewController is ProfileController ? 0.15 : 0
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            tabBarController.navigationItem.titleView =
+            viewController is ProfileController
+            ? UILabel.showTitleLabel(.AppStrings.Profile.screenTitle)
+            : nil
+        }
     }
 }
 
@@ -80,13 +113,25 @@ private extension MainCoordinator {
         let tabBarController = dependencies.resolveMainTabBarController()
         let createTripController = dependencies.resolveCreateTripController(user: registratedUser)
         let myTripsController = dependencies.resolveMyTripsController()
-
+        let profileController = dependencies.resolveProfileController()
+        navigationController.navigationItem.title = "Sjl"
         tabBarController.delegate = self
         myTripsController.coordinator = self
         createTripController.coordinator = self
         createTripController.onTripCreating = {
             myTripsController.updateTrips()
         }
+        createTripController.onTripEditing = { [weak self] tripDetail in
+            guard
+                let self,
+                let tripDetailController = findViewController(
+                    type: TripDetailController.self,
+                    in: navigationController.viewControllers
+                )
+            else { return }
+            tripDetailController.viewModel.loadData()
+        }
+        profileController.coordinat = self
         navigationController.setViewControllers([tabBarController], animated: true)
     }
 
@@ -102,5 +147,9 @@ private extension MainCoordinator {
             }
             sheetController.prefersGrabberVisible = true
         }
+    }
+
+    func findViewController<T>(type: T.Type, in controllers: [UIViewController]) -> T? {
+        controllers.filter { $0 is T }.first as? T
     }
 }

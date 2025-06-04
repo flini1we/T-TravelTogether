@@ -44,7 +44,7 @@ final class SwinjectContainer: IDependencyContainer {
         container.resolve(MyTripsController.self)!
     }
 
-    func resolveTripDetailController(tripId: UUID, user: User) -> TripDetailController {
+    func resolveTripDetailController(tripId: Int, user: User) -> TripDetailController {
         container.resolve(TripDetailController.self, arguments: tripId, user)!
     }
 
@@ -56,8 +56,16 @@ final class SwinjectContainer: IDependencyContainer {
         container.resolve(ContactsController.self, argument: selectedContacts)!
     }
 
+    func resolveProfileController() -> ProfileController {
+        container.resolve(ProfileController.self)!
+    }
+
     func resolveMainTabBarController() -> UITabBarController {
         container.resolve(UITabBarController.self)!
+    }
+
+    func resolveNetworkService() -> INetworkService {
+        container.resolve(INetworkService.self)!
     }
 }
 
@@ -68,31 +76,42 @@ private extension SwinjectContainer {
         registerViewModels()
         registerControllers()
         registerTabBarController()
+        registerServices()
     }
 
     func registerViewModels() {
-        container.register(ILoginViewModel.self) { _ in
-            LoginViewModel()
+        container.register(ILoginViewModel.self) { resolver in
+            let networkService = resolver.resolve(INetworkService.self)!
+            return LoginViewModel(networkService: networkService)
         }
 
-        container.register(IRegistrationViewModel.self) { _ in
-            RegistrationViewModel()
+        container.register(IRegistrationViewModel.self) { resolver in
+            let networkService = resolver.resolve(INetworkService.self)!
+            return RegistrationViewModel(networkService: networkService)
         }
 
-        container.register(IMyTripsViewModel.self) { _ in
-            MyTripsViewModel()
+        container.register(IMyTripsViewModel.self) { resolver in
+            let networkService = resolver.resolve(INetworkService.self)!
+            return MyTripsViewModel(networkService: networkService)
         }
 
-        container.register(ITripDetailViewModel.self) { (_, tripId: UUID, user: User) in
-            TripDetailViewModel(tripId: tripId, user: user)
+        container.register(ITripDetailViewModel.self) { (resolver, tripId: Int, user: User) in
+            let networkService = resolver.resolve(INetworkService.self)!
+            return TripDetailViewModel(tripId: tripId, user: user, networkService: networkService)
         }
 
-        container.register(ICreateTripViewModel.self) { (_, user: User) in
-            CreateTripViewModel(user)
+        container.register(ICreateTripViewModel.self) { (resolver, user: User) in
+            let networkService = resolver.resolve(INetworkService.self)!
+            return CreateTripViewModel(user, networkService: networkService)
         }
 
         container.register(IContactsViewModel.self) { (_, selectedContacts) in
             ContactsViewModel(selectedContacts: selectedContacts)
+        }
+
+        container.register(IProfileViewModel.self) { resolver in
+            let networkService = resolver.resolve(INetworkService.self)!
+            return ProfileViewModel(networkService: networkService)
         }
     }
 
@@ -119,7 +138,7 @@ private extension SwinjectContainer {
             return myTipsController
         }.inObjectScope(.container)
 
-        container.register(TripDetailController.self) { (resolver, tripId: UUID, user: User) in
+        container.register(TripDetailController.self) { (resolver, tripId: Int, user: User) in
             let tripDetailVM = resolver.resolve(ITripDetailViewModel.self, arguments: tripId, user)!
             let controller = TripDetailController(viewModel: tripDetailVM)
             controller.hidesBottomBarWhenPushed = true
@@ -141,6 +160,12 @@ private extension SwinjectContainer {
             let viewModel = resolver.resolve(IContactsViewModel.self, argument: selectedUsers)!
             return ContactsController(viewModel: viewModel)
         }.inObjectScope(.container)
+
+        container.register(ProfileController.self) { resolver in
+            let viewModel = resolver.resolve(IProfileViewModel.self)!
+            let controller = ProfileController(viewModel: viewModel)
+            return controller
+        }
     }
 
     func registerTabBarController() {
@@ -155,14 +180,32 @@ private extension SwinjectContainer {
                 image: SystemImages.createTravelTabBarItem.image,
                 tag: TabBarScreenTags.createTravel.rawValue
             )
+            let profileController = resolver.resolve(ProfileController.self)!
+            profileController.tabBarItem = UITabBarItem(
+                title: nil,
+                image: SystemImages.profileTabBarItem.image,
+                tag: TabBarScreenTags.profile.rawValue
+            )
 
             tabBar.viewControllers = [
                 travellingVC,
                 sampleVC,
-                UIViewController()
+                profileController
             ]
 
             return tabBar
         }
+    }
+
+    func registerServices() {
+        container.register(ITokenManager.self) { _ in
+            TokenManager()
+        }
+
+        container.register(INetworkService.self) { resolver in
+            let tokenManager = resolver.resolve(ITokenManager.self)!
+            return NetworkService(tokenManager: tokenManager)
+        }
+        .inObjectScope(.container)
     }
 }

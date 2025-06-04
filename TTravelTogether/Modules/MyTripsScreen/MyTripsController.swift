@@ -29,9 +29,16 @@ final class MyTripsController: UIViewController {
         setup()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNotification()
+    }
+
     func updateTrips() {
         viewModel.loadData()
     }
+
+    deinit { NotificationCenter.default.removeObserver(self) }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -41,6 +48,9 @@ final class MyTripsController: UIViewController {
 private extension MyTripsController {
 
     func setup() {
+        myTripsView.onTableViewRefresh = { [weak self] in
+            self?.viewModel.loadData()
+        }
         myTripsView.travellingsTableView.makeSkeletonable()
         setupDataSource()
         setupDelegate()
@@ -82,5 +92,22 @@ private extension MyTripsController {
                 self?.tableViewDataSource?.update(trips)
             }
             .store(in: &cancellables)
+
+        viewModel.onErrorDidAppear = { [weak self] customError in
+            self?.present(AlertFactory.createErrorAlert(message: customError.message), animated: true)
+        }
+    }
+
+    func setupNotification() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateTheme(_:)),
+            name: NSNotification.Name(.AppStrings.Notification.updatedThemeKey),
+            object: nil
+        )
+    }
+
+    @objc private func updateTheme(_ notification: NSNotification) {
+        myTripsView.updateTheme()
     }
 }

@@ -33,7 +33,7 @@ final class ContactsTableViewDataSource: NSObject {
                     withIdentifier: ContactsTableViewCell.identifier,
                     for: indexPath
                 ) as? ContactsTableViewCell else { return UITableViewCell() }
-                cell.setupWithUser(contact, alreadySelected: viewModel.selectedContacts.contains(contact))
+                cell.setupWithUser(contact, alreadySelected: viewModel.isContactSelected(contact))
                 return cell
             }
         )

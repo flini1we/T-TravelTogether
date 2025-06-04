@@ -18,7 +18,7 @@ final class LoginController: UIViewController {
         UIAction { [weak self] _ in
             guard let self else { return }
             let (phone, password) = loginView.getData()
-            viewModel.login(phoneNumber: phone, password: password) { [weak self] result in
+            viewModel.login(userData: (phone, password)) { [weak self] result in
                 self?.handleLoginResult(result)
             }
         }
@@ -50,14 +50,15 @@ final class LoginController: UIViewController {
 
 private extension LoginController {
 
-    func handleLoginResult(_ result: Result<String, LoginErrors>) {
+    func handleLoginResult(_ result: Result<LoginUserDataType, CustomError>) {
         switch result {
-        case .success(let user):
-            coordinator?.onLoginSuccess(user)
+        case .success(let userData):
+            coordinator?.onLoginSuccess(userData)
             loginView.errorMessageTitle.text = ""
         case .failure(let error):
-            loginView.errorMessageTitle.text = error.getError
+            loginView.errorMessageTitle.text = error.localizedDescription
         }
+        viewModel.isLoading = false
     }
 
     func setup() {

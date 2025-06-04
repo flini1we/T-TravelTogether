@@ -8,4 +8,6 @@ protocol IAppFormatter {
 
     func getStringRepresentationOfDate(from: Date) -> String
     func getValidNumberFromPrice(from: Int) -> String
+    func getStringRepresentationOfDateISO(_ date: Date) -> String
+    func getDateRepresentationOfString(_ date: String) -> Date?
 }

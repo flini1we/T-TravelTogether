@@ -179,10 +179,6 @@ final class RegistrationView: UIView, IRegistrationView {
         registerButton.addAction(action, for: .touchUpInside)
     }
 
-    func getData() -> (name: String, password1: String, password2: String) {
-        (phoneNumberField.text ?? "", passwordFieldFirst.text ?? "", passwordFieldConfirmed.text ?? "")
-    }
-
     func validateButton(isValid: Bool) {
         registerButton.alpha = isValid ? 1 : 0.5
         registerButton.isEnabled = isValid
@@ -216,6 +212,16 @@ final class RegistrationView: UIView, IRegistrationView {
     func onKeyboardWillHide() {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
+    }
+
+    func getUserData() -> UserTempData {
+        UserTempData(
+            name: userNameField.textSafe,
+            lastName: userLastNameField.textSafe,
+            phoneNumber: phoneNumberField.textSafe,
+            password: passwordFieldFirst.textSafe,
+            confirmPassword: passwordFieldConfirmed.textSafe
+        )
     }
 }
 

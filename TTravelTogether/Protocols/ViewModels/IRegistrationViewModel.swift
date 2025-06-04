@@ -19,7 +19,7 @@ protocol IRegistrationViewModel: AnyObject {
 
     var isDataValid: AnyPublisher<Bool, Never> { get }
 
-    func register(completion: @escaping ((Result<String, Error>) -> Void))
+    func register(user: UserDTO, completion: @escaping ((Result<String, CustomError>) -> Void))
     func validateName(_ name: String) -> Bool
     func validateLastName(_ lastName: String) -> Bool
     func validatePhone(_ phone: String) -> Bool

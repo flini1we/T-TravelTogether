@@ -1,9 +1,10 @@
 import UIKit
 import Combine
+import Alamofire
 
 final class RegistrationController: UIViewController, KeyboardObservable {
 
-    var registerButtonAction: ((String) -> Void)?
+    var registerButtonAction: (() -> Void)?
 
     private var registrationView: IRegistrationView {
         view as! IRegistrationView
@@ -13,14 +14,9 @@ final class RegistrationController: UIViewController, KeyboardObservable {
 
     private lazy var registerAction: UIAction = {
         UIAction { [weak self] _ in
-            self?.viewModel.register(completion: { result in
-                switch result {
-                case .success(let user):
-                    /// отправка на бек user с форматированныем номером
-                    self?.registerButtonAction?(user)
-                case .failure(let failure):
-                    print(failure.localizedDescription)
-                }
+            guard let self else { return }
+            viewModel.register(user: getUser(), completion: { [weak self] result in
+                self?.handleRegisterResult(result: result)
             })
         }
     }()
@@ -53,9 +49,38 @@ final class RegistrationController: UIViewController, KeyboardObservable {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    func getUser() -> UserDTO {
+        let userTempData = registrationView.getUserData()
+        return UserDTO(
+            name: userTempData.name,
+            lastName: userTempData.lastName,
+            phoneNumber: RussianValidationService.shared.invalidate(phone: userTempData.phoneNumber),
+            password: userTempData.password,
+            passwordConfirmation: userTempData.confirmPassword
+        )
+    }
 }
 
 private extension RegistrationController {
+
+    func handleRegisterResult(
+        result : Result<String, CustomError>
+    ) {
+        switch result {
+        case .success(let message):
+            registerButtonAction?()
+        case .failure(let customError):
+            present(
+                AlertFactory.createErrorAlert(
+                    title: .AppStrings.Errors.registerError,
+                    message: customError.message,
+                    onDismiss: { }
+                ), animated: true
+            )
+        }
+        viewModel.isFetchingRequest = false
+    }
 
     func setup() {
         setupObservers()

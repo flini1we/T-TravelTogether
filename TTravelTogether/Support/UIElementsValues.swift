@@ -13,13 +13,15 @@ enum UIElementsValues {
          calendarIcon,
          memberCollectionViewCell,
          anyNavigationBarItem,
-         searchBar
+         searchBar,
+         profileCellsIcon,
+         profileCellsHeight
 
     var value: CGFloat {
         switch self {
         case .textFieldHeight, .buttonHeight, .searchBar:
             55
-        case .systemButtonHeight, .locationMark:
+        case .systemButtonHeight, .locationMark, .profileCellsIcon:
             30
         case .activiryIndicator:
             75
@@ -31,6 +33,8 @@ enum UIElementsValues {
             20
         case .anyNavigationBarItem:
             24
+        case .profileCellsHeight:
+            60
         default:
             0
         }

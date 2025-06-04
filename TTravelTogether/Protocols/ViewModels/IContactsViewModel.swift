@@ -8,4 +8,6 @@ protocol IContactsViewModel: AnyObject {
     var onRequestAccess: ((UIAlertController) -> Void)? { get set }
 
     func clearData()
+    func isContactSelected(_ contact: Contact) -> Bool
+    func removeSelectedContact(_ contact: Contact)
 }

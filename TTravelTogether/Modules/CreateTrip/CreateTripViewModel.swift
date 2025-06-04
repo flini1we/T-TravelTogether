@@ -4,6 +4,8 @@ import Contacts
 import ContactsUI
 
 final class CreateTripViewModel: NSObject, ICreateTripViewModel {
+    private var networkService: INetworkService
+    var ogId: Int?
     var onClearingController: (() -> Void)?
     var onShowingIncorrectPriceAlert: ((UIAlertController) -> Void)?
 
@@ -11,7 +13,7 @@ final class CreateTripViewModel: NSObject, ICreateTripViewModel {
     @Published private(set) var isCreateButtonEnable: Bool = false
     @Published var tripTitleText: String = ""
     @Published var tripPriceText: String = ""
-    @Published var createdTrip: Trip?
+    @Published var createdTrip: TripDetail?
     @Published var editedTrip: TripDetail?
 
     var isCreateButtonEnablePublisher: Published<Bool>.Publisher {
@@ -26,19 +28,21 @@ final class CreateTripViewModel: NSObject, ICreateTripViewModel {
     var tripMembersPublisher: Published<[User]>.Publisher {
         $tripMembers
     }
-    var createdTripPublisher: Published<Trip?>.Publisher {
+    var createdTripPublisher: Published<TripDetail?>.Publisher {
         $createdTrip
     }
     var editedTripPublisher: Published<TripDetail?>.Publisher {
         $editedTrip
     }
     var selectedUsers = Set<String>()
+    var onDataHandling: (() -> (Date, Date)?)?
 
     private var cancellables = Set<AnyCancellable>()
     private let currentUser: User
 
-    init(_ user: User) {
+    init(_ user: User, networkService: INetworkService) {
         self.currentUser = user
+        self.networkService = networkService
         super.init()
         if !isEditing() {
             tripMembers.append(currentUser)
@@ -47,7 +51,9 @@ final class CreateTripViewModel: NSObject, ICreateTripViewModel {
     }
 
     func addMembers(phoneNumbers: [String]) {
-        let users = phoneNumbers.map { User(phoneNumber: $0) }
+        let users = phoneNumbers.map {
+            User(phoneNumber: $0)
+        }
         tripMembers.append(contentsOf: users)
     }
 
@@ -63,9 +69,7 @@ final class CreateTripViewModel: NSObject, ICreateTripViewModel {
 
     func updateMembers(users: [User]) {
         let users =  users.filter { $0.phoneNumber != currentUser.phoneNumber }
-        tripMembers = isEditing()
-        ? editedTrip!.getMembersSequence() + users
-        : [currentUser] + users
+        tripMembers = [currentUser] + users
     }
 
     func obtainContacts() -> [Contact] {
@@ -78,29 +82,73 @@ final class CreateTripViewModel: NSObject, ICreateTripViewModel {
         }
     }
 
-    func createTrip(dates: (start: Date, finish: Date)) {
+    func createTrip(
+        dates: (start: Date, finish: Date),
+        completion: @escaping ((Result<TripDetail, CustomError>) -> Void)
+    ) {
         guard let price = Int(tripPriceText) else {
             onShowingIncorrectPriceAlert?(AlertFactory.showIncorrectTripPriceAlert())
             return
         }
-
-        let trip = Trip(
+        let tripDetail = TripDetail(
+            id: nil,
             title: tripTitleText,
+            price: price,
             startsAt: dates.start,
             finishAt: dates.finish,
-            price: price
-        )
-        let tripDetail = TripDetail(
-            id: trip.id,
-            title: trip.title,
-            price: trip.price,
-            startsAt: trip.startsAt,
-            finishAt: trip.finishAt,
             admin: tripMembers[0],
             members: Array(tripMembers[1...])
         )
-        // TODO: send to backend
-        createdTrip = trip
+
+        let tripDetailDTO = CreateTripDTO(
+            title: tripDetail.title,
+            price: price,
+            start: AppFormatter.shared.getStringRepresentationOfDateISO(tripDetail.startsAt),
+            end: AppFormatter.shared.getStringRepresentationOfDateISO(tripDetail.finishAt),
+            participants: tripDetail.members.map({
+                RussianValidationService.shared.invalidate(phone: $0.phoneNumber)
+            })
+        )
+        networkService.createTrip(tripDetail: tripDetailDTO) { result in
+            switch result {
+            case .success(let tripDetailDTO):
+                completion(.success(tripDetail))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func updateTrip(
+        completion: @escaping ((Result<EditTripDTO, CustomError>) -> Void)
+    ) {
+        guard let editedTrip else { completion(.failure(.errorToEditTrip())); return }
+        guard let ogId else { completion(.failure(.editedTripIdIsNil())); return }
+        guard let price = Int(tripPriceText) else { completion(.failure(.errorToParseData())); return }
+        guard
+            let tripData = self.onDataHandling,
+            let start = tripData()?.0,
+            let end = tripData()?.1
+        else { completion(.failure(.errorToAccassTripData())); return }
+        let editedTripStart = AppFormatter.shared.getStringRepresentationOfDateISO(start),
+            editedTripEnd = AppFormatter.shared.getStringRepresentationOfDateISO(end)
+        let tripDetailDTO = EditTripDTO(
+            id: ogId,
+            title: tripTitleText,
+            price: price,
+            start: editedTripStart,
+            end: editedTripEnd,
+            admin: editedTrip.admin,
+            members: Array(tripMembers[1...])
+        )
+        networkService.updateTrip(tripDetail: tripDetailDTO) { result in
+            switch result {
+            case .success(let editedTripDTO):
+                completion(.success(editedTripDTO))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 
     func isEditing() -> Bool {

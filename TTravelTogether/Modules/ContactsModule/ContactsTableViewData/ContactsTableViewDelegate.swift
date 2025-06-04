@@ -15,9 +15,9 @@ final class ContactsTableViewDelegate: NSObject, UITableViewDelegate {
             return
         }
 
-        if viewModel.selectedContacts.contains(contact) {
+        if viewModel.isContactSelected(contact) {
             cell.updateSelectionState(isSelected: false)
-            viewModel.selectedContacts.remove(contact)
+            viewModel.removeSelectedContact(contact)
         } else {
             viewModel.selectedContacts.insert(contact)
             cell.updateSelectionState(isSelected: true)

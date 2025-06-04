@@ -1,5 +1,5 @@
 import Foundation
 
 enum TabBarScreenTags: Int {
-    case travellings, createTravel, placeholder
+    case travellings, createTravel, profile
 }

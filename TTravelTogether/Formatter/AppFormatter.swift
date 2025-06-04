@@ -13,6 +13,13 @@ final class AppFormatter: IAppFormatter {
         return formatter
     }()
 
+    var isoDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.locale = .current
+        return formatter
+    }()
+
     var numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
@@ -27,5 +34,13 @@ final class AppFormatter: IAppFormatter {
 
     func getValidNumberFromPrice(from price: Int) -> String {
         numberFormatter.string(from: NSNumber(value: price)) ?? "NAN"
+    }
+
+    func getStringRepresentationOfDateISO(_ date: Date) -> String {
+        isoDateFormatter.string(from: date)
+    }
+
+    func getDateRepresentationOfString(_ date: String) -> Date? {
+        isoDateFormatter.date(from: date)
     }
 }

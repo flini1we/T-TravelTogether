@@ -11,9 +11,12 @@ protocol IDependencyContainer {
     func resolveLoginController() -> LoginController
     func resolveRegistrationController() -> RegistrationController
     func resolveMyTripsController() -> MyTripsController
-    func resolveTripDetailController(tripId: UUID, user: User) -> TripDetailController
+    func resolveTripDetailController(tripId: Int, user: User) -> TripDetailController
     func resolveCreateTripController(user: User) -> CreateTripController
     func resolveContactsController(selectedContacts: [Contact]) -> ContactsController
+    func resolveProfileController() -> ProfileController
+
+    func resolveNetworkService() -> INetworkService
 
     func resolveMainTabBarController() -> UITabBarController
 }
