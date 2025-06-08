@@ -53,6 +53,20 @@ final class TextFieldBuilder: ITextFieldBuilder {
         return self
     }
 
+    func padding(_ value: CGFloat) -> Self {
+        let paddinView = UIView(frame: .init(x: 0, y: 0, width: value, height: 1))
+        textField.leftView = paddinView
+        textField.rightView = paddinView
+        textField.leftViewMode = .always
+        textField.rightViewMode = .always
+        return self
+    }
+
+    func textAlignment(_ alignment: NSTextAlignment) -> Self {
+        textField.textAlignment = alignment
+        return self
+    }
+
     func clearButtonEnable() -> Self {
         textField.clearButtonMode = .whileEditing
         return self

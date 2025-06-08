@@ -2,6 +2,26 @@ import UIKit
 
 final class AlertFactory {
 
+    static func showTransactionEditingNotAllowedAlert() -> UIAlertController {
+        let alert = UIAlertController(
+            title: .AppStrings.Alert.error,
+            message: .AppStrings.Alert.transactionEditingNotAllowed,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: .AppStrings.Alert.ok, style: .default))
+        return alert
+    }
+
+    static func showDebtNotificationSuccessAlert() -> UIAlertController {
+        let alert = UIAlertController(
+            title: .AppStrings.Alert.successTitle,
+            message: .AppStrings.Alert.notificateDebtorsMessage,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: .AppStrings.Alert.ok, style: .default))
+        return alert
+    }
+
     static func showUserError() -> UIAlertController {
         let alert = UIAlertController(
             title: .AppStrings.Alert.noSuchUser,

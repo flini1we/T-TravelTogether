@@ -14,17 +14,33 @@ final class AppFlowCoordinator: IAppFlowCoordinator {
     }
 
     func start() {
-        let isLoggedIn = userService.isAuthenticated
-        _ = isLoggedIn ? showMainFlow() : showAuthFlow()
+        showFakeLaunch()
     }
 
     func finish() {
         userService.logout()
+        NotificationCenter
+            .default
+            .post(name: NSNotification.Name(.AppStrings.Notification.clearScreend), object: nil)
         showAuthFlow()
     }
 }
 
 private extension AppFlowCoordinator {
+
+    func showFakeLaunch() {
+        let launchController = FakeModuleViewController()
+        navigationController.setViewControllers([launchController], animated: false)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            UIView.animate(withDuration: 0.25) {
+                launchController.titleImageView.alpha = 0
+            } completion: { _ in
+                let isLoggedIn = self.userService.isAuthenticated
+                _ = isLoggedIn ? self.showMainFlow() : self.showAuthFlow()
+            }
+        }
+    }
 
     func showAuthFlow() {
         let coordinator = AuthCoordinator(

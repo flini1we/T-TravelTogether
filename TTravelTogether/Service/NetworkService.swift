@@ -1,27 +1,20 @@
 import UIKit
 import Alamofire
 
+//swiftlint:disable:next type_body_length
 final class NetworkService: INetworkService {
     private var tokenManager: ITokenManager
 
     private lazy var jsonDecoder: JSONDecoder = { JSONDecoder() }()
     private lazy var jsonEncoder: JSONEncoder = { JSONEncoder() }()
 
-    init(tokenManager: ITokenManager) {
-        self.tokenManager = tokenManager
-    }
+    init(tokenManager: ITokenManager) { self.tokenManager = tokenManager }
 
     func register(
         user: UserDTO,
         completion: @escaping (Result<String, CustomError>) -> Void
     ) {
-        let parameters: [String: String] = [
-            "phoneNumber": user.phoneNumber,
-            "firstName": user.name,
-            "lastName": user.lastName,
-            "password": user.password,
-            "confirmPassword": user.passwordConfirmation
-        ]
+        let parameters: [String: String] = user.convertToRegisterParams()
         AF.request(
             Network.BASE_URL + Network.register.getQuery,
             method: .post,
@@ -34,8 +27,8 @@ final class NetworkService: INetworkService {
             switch response.result {
             case .success(let message):
                 completion(.success(message))
-            case .failure(_):
-                completion(.failure(decodeToCustomError(response: response)))
+            case .failure(let error):
+                completion(.failure(.hiddenError(error.localizedDescription)))
             }
         }
     }
@@ -82,13 +75,7 @@ final class NetworkService: INetworkService {
             completion(.failure(.accessTokenIsNil()))
             return
         }
-        let params: [String: Any] = [
-            "name": tripDetail.title,
-            "totalBudget": tripDetail.price,
-            "dateOfBegin": tripDetail.start,
-            "dateOfEnd": tripDetail.end,
-            "participantPhones": tripDetail.participants
-        ]
+        let params: [String: Any] = tripDetail.convertToParams()
         AF.request(
             Network.BASE_URL + Network.createTrip.getQuery,
             method: .post,
@@ -201,16 +188,7 @@ final class NetworkService: INetworkService {
             completion(.failure(.accessTokenIsNil()))
             return
         }
-        let params: [String: Any] = [
-            "id": tripDetail.id,
-            "name": tripDetail.title,
-            "totalBudget": tripDetail.price,
-            "dateOfBegin": tripDetail.start,
-            "dateOfEnd": tripDetail.end,
-            "participantPhones": tripDetail.members.compactMap({
-                RussianValidationService.shared.invalidate(phone: $0.phoneNumber)
-            })
-        ]
+        let params: [String: Any] = tripDetail.convertToParams()
         AF.request(
             Network.BASE_URL + Network.updateTrip.getQuery,
             method: .put,
@@ -319,6 +297,316 @@ final class NetworkService: INetworkService {
             }
         }
     }
+
+    func getTransactions(
+        tripId: Int,
+        completion: @escaping ((Result<[TransactionDTO], CustomError>) -> Void)
+    ) {
+        guard let tokens = checkTokens()
+        else {
+            completion(.failure(.accessTokenIsNil()))
+            return
+        }
+        let params: [String: Any] = [
+            .AppStrings.Network.tripIdRequestParam: tripId
+        ]
+        AF.request(
+            Network.BASE_URL + Network.getTransactions.getQuery,
+            method: .get,
+            parameters: params,
+            headers: .getAccessHeader(for: tokens.access)
+        )
+        .validate()
+        .responseDecodable(of: [TransactionDTO].self) { [weak self] result in
+            guard let self else { return }
+            switch result.result {
+            case .success(let transactionsDTO):
+                completion(.success(transactionsDTO))
+            case .failure(let error):
+                guard let statusCode = result.response?.statusCode else {
+                    completion(.failure(.hiddenError(error.localizedDescription)))
+                    return
+                }
+                if statusCode.isCode(.unauthorized) {
+                    refreshTokens(refreshToken: tokens.refresh) { [weak self] result in
+                        switch result {
+                        case .success(_):
+                            self?.getTransactions(tripId: tripId, completion: completion)
+                        case .failure(let error):
+                            completion(.failure(error))
+                        }
+                    }
+                } else {
+                    completion(.failure(.hiddenError(error.localizedDescription)))
+                }
+            }
+        }
+    }
+
+    func createTransaction(
+        travelId: Int,
+        createdTransaction: CreatedTransactionDTO,
+        completion: @escaping ((Result<Void, CustomError>) -> Void)
+    ) {
+        guard let tokens = checkTokens()
+        else {
+            completion(.failure(.accessTokenIsNil()))
+            return
+        }
+        let participantsDicts = createdTransaction.participants
+            .map { participant -> [String: Any] in
+                [
+                    "phoneNumber": participant.phoneNumber,
+                    "shareAmount": participant.shareAmount
+                ]
+            }
+        let params: [String: Any] = [
+            "category": createdTransaction.category,
+            "totalCost": createdTransaction.price,
+            "description": createdTransaction.description,
+            "createdAt": createdTransaction.createdAt,
+            "participant": participantsDicts
+        ]
+        AF.request(
+            Network.BASE_URL + Network.createTransaction(travelId).getQuery,
+            method: .post,
+            parameters: params,
+            encoding: JSONEncoding.default,
+            headers: .getAccessHeader(for: tokens.access)
+        )
+        .validate()
+        .response { [weak self] result in
+            guard let self else { return }
+            switch result.result {
+            case .success(_):
+                completion(.success(()))
+            case .failure(let error):
+                if isUnauthorized(result.response?.statusCode) {
+                    refreshTokens(refreshToken: tokens.refresh) { [weak self] result in
+                        switch result {
+                        case .success(_):
+                            self?.createTransaction(
+                                travelId: travelId,
+                                createdTransaction: createdTransaction,
+                                completion: completion
+                            )
+                        case .failure(let error):
+                            completion(.failure(error))
+                        }
+                    }
+                } else {
+                    if let data = result.data {
+                        do {
+                            let errorDTO = try JSONDecoder().decode(ErrorDTO.self, from: data)
+                            print(errorDTO)
+                            completion(.failure(.hiddenError(errorDTO.message)))
+                        } catch {
+                            if let rawResponse = String(data: data, encoding: .utf8) {
+                                completion(.failure(.hiddenError(rawResponse)))
+                            } else {
+                                completion(.failure(.hiddenError(error.localizedDescription)))
+                            }
+                        }
+                    } else {
+                        completion(.failure(.hiddenError(error.localizedDescription)))
+                    }
+                }
+            }
+        }
+    }
+
+    func getTransactionDetail(
+        transactionId id: Int,
+        completion: @escaping ((Result<TransactionDetailDTO, CustomError>) -> Void)
+    ) {
+        guard let tokens = checkTokens()
+        else {
+            completion(.failure(.accessTokenIsNil()))
+            return
+        }
+        AF.request(
+            Network.BASE_URL + Network.transactionDetail(id).getQuery,
+            method: .get,
+            encoding: JSONEncoding.default,
+            headers: .getAccessHeader(for: tokens.access)
+        )
+        .validate()
+        .responseDecodable(of: TransactionDetailDTO.self) { [weak self] result in
+            guard let self else { return }
+            switch result.result {
+            case .success(let transactionDetailDTO):
+                completion(.success(transactionDetailDTO))
+            case .failure(let error):
+                if isUnauthorized(result.response?.statusCode) {
+                    refreshTokens(refreshToken: tokens.refresh) { [weak self] result in
+                        switch result {
+                        case .success(_):
+                            self?.getTransactionDetail(transactionId: id, completion: completion)
+                        case .failure(let error):
+                            completion(.failure(.hiddenError(error.localizedDescription)))
+                        }
+                    }
+                } else {
+                    completion(.failure(.hiddenError(error.localizedDescription)))
+                }
+            }
+        }
+    }
+
+    func updateTransaction(
+        transactionDetailDTO: TransactionDetailDTO,
+        completion: @escaping ((Result<Void, CustomError>) -> Void)
+    ) {
+        guard let tokens = checkTokens()
+        else {
+            completion(.failure(.accessTokenIsNil()))
+            return
+        }
+        let participantsDicts = transactionDetailDTO.participants
+            .map { participant -> [String: Any] in
+                [
+                    "phoneNumber": participant.phoneNumber,
+                    "shareAmount": participant.shareAmount
+                ]
+            }
+        let params: [String: Any] = [
+            "totalCost": transactionDetailDTO.price,
+            "description": transactionDetailDTO.description,
+            "category": transactionDetailDTO.category,
+            "participant": participantsDicts
+        ]
+        AF.request(
+            Network.BASE_URL + Network.updateTransaction(transactionDetailDTO.id).getQuery,
+            method: .put,
+            parameters: params,
+            encoding: JSONEncoding.default,
+            headers: .getAccessHeader(for: tokens.access)
+        )
+        .validate()
+        .response { [weak self] result in
+            guard let self else { return }
+            switch result.result {
+            case .success(_):
+                completion(.success(()))
+            case .failure(let error):
+                if isUnauthorized(result.response?.statusCode) {
+                    refreshTokens(refreshToken: tokens.refresh) { [weak self] result in
+                        switch result {
+                        case .success(_):
+                            self?.updateTransaction(
+                                transactionDetailDTO: transactionDetailDTO,
+                                completion: completion
+                            )
+                        case .failure(let error):
+                            completion(.failure(error))
+                        }
+                    }
+                } else {
+                    if let data = result.data {
+                        do {
+                            let errorDTO = try JSONDecoder().decode(ErrorDTO.self, from: data)
+                            completion(.failure(.hiddenError(errorDTO.message)))
+                        } catch {
+                            if let rawResponse = String(data: data, encoding: .utf8) {
+                                completion(.failure(.hiddenError(rawResponse)))
+                            } else {
+                                completion(.failure(.hiddenError(error.localizedDescription)))
+                            }
+                        }
+                    } else {
+                        completion(.failure(.hiddenError(error.localizedDescription)))
+                    }
+                }
+            }
+        }
+    }
+
+    func deleteTransaction(
+        id: Int,
+        completion: @escaping ((Result<Void, CustomError>) -> Void)
+    ) {
+        guard let tokens = checkTokens()
+        else {
+            completion(.failure(.accessTokenIsNil()))
+            return
+        }
+        AF.request(
+            Network.BASE_URL + Network.deleteTransaction(id).getQuery,
+            method: .delete,
+            headers: .getAccessHeader(for: tokens.access)
+        )
+        .validate()
+        .response { [weak self] result in
+            guard let self else { return }
+            switch result.result {
+            case .success(_):
+                completion(.success(()))
+            case .failure(let error):
+                if isUnauthorized(result.response?.statusCode) {
+                    refreshTokens(refreshToken: tokens.refresh) { [weak self] result in
+                        switch result {
+                        case .success(_):
+                            self?.deleteTransaction(id: id, completion: completion)
+                        case .failure(let error):
+                            completion(.failure(.hiddenError(error.localizedDescription)))
+                        }
+                    }
+                } else {
+                    if let data = result.data {
+                        do {
+                            let errorDTO = try JSONDecoder().decode(ErrorDTO.self, from: data)
+                            completion(.failure(.hiddenError(errorDTO.message)))
+                        } catch {
+                            if let rawResponse = String(data: data, encoding: .utf8) {
+                                completion(.failure(.hiddenError(rawResponse)))
+                            } else {
+                                completion(.failure(.hiddenError(error.localizedDescription)))
+                            }
+                        }
+                    } else {
+                        completion(.failure(.hiddenError(error.localizedDescription)))
+                    }
+                }
+            }
+        }
+    }
+
+    func remindDebtors(
+        transactionId: Int,
+        completion: @escaping ((Result<Void, CustomError>) -> Void)
+    ) {
+        guard let tokens = checkTokens()
+        else {
+            completion(.failure(.accessTokenIsNil()))
+            return
+        }
+        AF.request(
+            Network.BASE_URL + Network.remideDebtor(transactionId).getQuery,
+            method: .get,
+            headers: .getAccessHeader(for: tokens.access)
+        )
+        .validate()
+        .response { [weak self] result in
+            guard let self else { return }
+            switch result.result {
+            case .success(_):
+                completion(.success(()))
+            case .failure(let error):
+                if isUnauthorized(result.response?.statusCode) {
+                    refreshTokens(refreshToken: tokens.refresh) { [weak self] result in
+                        switch result {
+                        case .success(_):
+                            self?.remindDebtors(transactionId: transactionId, completion: completion)
+                        case .failure(let error):
+                            completion(.failure(.hiddenError(error.localizedDescription)))
+                        }
+                    }
+                } else {
+                    completion(.failure(.hiddenError(error.localizedDescription)))
+                }
+            }
+        }
+    }
 }
 
 private extension NetworkService {
@@ -331,15 +619,6 @@ private extension NetworkService {
             return nil
         }
         return (accessToken, refreshToken)
-    }
-
-    func decodeToCustomError(response: AFDataResponse<String>) -> CustomError {
-        if let data = response.data,
-           let errorResponse = try? self.jsonDecoder.decode(CustomError.self, from: data) {
-            return errorResponse
-        } else {
-            return .hiddenError(.AppStrings.Errors.hiddenMessage)
-        }
     }
 
     func refreshTokens(

@@ -15,7 +15,9 @@ enum UIElementsValues {
          anyNavigationBarItem,
          searchBar,
          profileCellsIcon,
-         profileCellsHeight
+         profileCellsHeight,
+         transactionCategoryItem,
+         debtCell
 
     var value: CGFloat {
         switch self {
@@ -23,7 +25,7 @@ enum UIElementsValues {
             55
         case .systemButtonHeight, .locationMark, .profileCellsIcon:
             30
-        case .activiryIndicator:
+        case .activiryIndicator, .debtCell:
             75
         case .tabBarItem:
             35
@@ -35,8 +37,10 @@ enum UIElementsValues {
             24
         case .profileCellsHeight:
             60
-        default:
-            0
+        case .memberCollectionViewCell:
+            65
+        case .transactionCategoryItem:
+            35
         }
     }
 

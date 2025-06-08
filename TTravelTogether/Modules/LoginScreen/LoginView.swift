@@ -14,9 +14,10 @@ final class LoginView: UIView, ILoginView {
 
     private lazy var secondaryImageLabel: UIImageView = {
         let imageView = UIImageView(image: .secondaryLogo)
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.snp.makeConstraints { make in
             make.height.equalTo(UIScreen.main.bounds.width / 8)
+            make.width.equalTo(UIScreen.main.bounds.width / 3)
         }
         return imageView
     }()

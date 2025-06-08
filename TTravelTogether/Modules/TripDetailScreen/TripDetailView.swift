@@ -3,6 +3,7 @@ import SnapKit
 import SkeletonView
 
 final class TripDetailView: UIView {
+    var onShowTransactionsButtonAction: (() -> Void)?
 
     private(set) lazy var tripTitle: UILabel = {
         LabelBuilder()
@@ -100,7 +101,7 @@ final class TripDetailView: UIView {
     }()
 
     private lazy var transactionsButton: UIButton = {
-        ButtonBuilder()
+        let button = ButtonBuilder()
             .backgroundColor(.primaryYellow)
             .cornerRadius(.default)
             .tintColor(.buttonLabel)
@@ -108,6 +109,10 @@ final class TripDetailView: UIView {
             .font(CustomFonts.bold(FontValues.default.value).font)
             .deactivate()
             .build()
+        button.addPressAnimation { [weak self] in
+            self?.onShowTransactionsButtonAction?()
+        }
+        return button
     }()
 
     private lazy var bgImageView: UIImageView = {

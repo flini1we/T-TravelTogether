@@ -10,4 +10,5 @@ protocol IProfileViewModel {
     var userPublisher: Published<User?>.Publisher { get }
 
     func loadData()
+    func clearUserCache()
 }

@@ -20,6 +20,12 @@ final class AppFormatter: IAppFormatter {
         return formatter
     }()
 
+    var iso8601DataFormatter: ISO8601DateFormatter = {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        return formatter
+    }()
+
     var numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
@@ -32,8 +38,8 @@ final class AppFormatter: IAppFormatter {
         dateFormatter.string(from: date)
     }
 
-    func getValidNumberFromPrice(from price: Int) -> String {
-        numberFormatter.string(from: NSNumber(value: price)) ?? "NAN"
+    func getValidNumberFromPrice(from price: NSNumberConvertible) -> String {
+        numberFormatter.string(from: price.asNSNumber) ?? "NAN"
     }
 
     func getStringRepresentationOfDateISO(_ date: Date) -> String {
@@ -42,5 +48,9 @@ final class AppFormatter: IAppFormatter {
 
     func getDateRepresentationOfString(_ date: String) -> Date? {
         isoDateFormatter.date(from: date)
+    }
+
+    func getStringRepresentationOfDateISO8601(_ date: Date) -> String {
+        iso8601DataFormatter.string(from: date)
     }
 }

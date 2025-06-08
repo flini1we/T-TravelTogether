@@ -11,6 +11,8 @@ protocol ITextFieldBuilder {
     func cornerRadius(_ cr: PaddingValues) -> Self
     func font(_ font: UIFont) -> Self
     func paddinLeft(_ left: CGFloat) -> Self
+    func padding(_ value: CGFloat) -> Self
+    func textAlignment(_ alignment: NSTextAlignment) -> Self
     func clearButtonEnable() -> Self
     func enableTogglingSecure() -> Self
     func tag(_ tag: Int) -> Self

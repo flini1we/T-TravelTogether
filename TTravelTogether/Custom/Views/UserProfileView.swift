@@ -2,6 +2,9 @@ import UIKit
 import SnapKit
 
 final class UserProfileView: UIView {
+    private enum Constants {
+        static let profileImageSize = UIScreen.main.bounds.width / 6
+    }
 
     private lazy var userNameLabel: UILabel = {
         LabelBuilder()
@@ -36,12 +39,12 @@ final class UserProfileView: UIView {
 
     private lazy var userAvatarImage: UIImageView = {
         let image = UIImageView(image: SystemImages.profileDefault.image)
-        let imageHeight = UIScreen.main.bounds.width / 6
+        
         image.snp.makeConstraints { make in
-            make.width.height.equalTo(imageHeight)
+            make.width.height.equalTo(Constants.profileImageSize)
         }
         image.makeSkeletonable()
-        image.skeletonCornerRadius = Float(imageHeight / 2)
+        image.skeletonCornerRadius = Float(Constants.profileImageSize / 2)
         image.tintColor = .secondaryLabel
         return image
     }()
@@ -84,6 +87,20 @@ final class UserProfileView: UIView {
         userAvatarImage.image = SystemImages.profileDefault.image
         userNameLabel.text = user.name + " " + user.lastName
         userPhoneNumber.text = RussianValidationService.shared.validate(phone: user.phoneNumber)
+    }
+
+    init(isEditable: Bool, shoulDecendTextSize: Bool) {
+        super.init(frame: .zero)
+        editProfileButton.isHidden = !isEditable
+        if shoulDecendTextSize {
+            userNameLabel.font = CustomFonts.default(FontValues.semiDefault.value).font
+            userPhoneNumber.font = CustomFonts.default(FontValues.default.value).font
+            userAvatarImage.skeletonCornerRadius = Float(Constants.profileImageSize * 0.8 / 2)
+            userAvatarImage.snp.remakeConstraints { make in
+                make.width.height.equalTo(Constants.profileImageSize * 0.8)
+            }
+        }
+        setup()
     }
 
     override init(frame: CGRect) {

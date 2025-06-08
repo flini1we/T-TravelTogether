@@ -3,7 +3,21 @@ import Foundation
 enum Network {
     static let BASE_URL = "http://141.105.71.181:8080"
 
-    case register, login, createTrip, refresh, myTrips, tripDetail(Int), updateTrip, leaveTrip(Int), userProfile
+    case register,
+         login,
+         createTrip,
+         refresh,
+         myTrips,
+         tripDetail(Int),
+         updateTrip,
+         leaveTrip(Int),
+         userProfile,
+         getTransactions,
+         createTransaction(Int),
+         transactionDetail(Int),
+         updateTransaction(Int),
+         deleteTransaction(Int),
+         remideDebtor(Int)
 
     var getQuery: String {
         switch self {
@@ -12,7 +26,7 @@ enum Network {
         case .login:
             "/api/v1/login"
         case .createTrip:
-            "/api/v1/travels/create"
+            "/api/v1/travels"
         case .refresh:
             "/api/v1/refresh"
         case .myTrips:
@@ -25,6 +39,18 @@ enum Network {
             "/api/v1/travels/leave/\(id)"
         case .userProfile:
             "/api/v1/profile"
+        case .getTransactions:
+            "/api/v1/transactions"
+        case .createTransaction(let id):
+            "/api/v1/transactions?travelId=\(id)"
+        case .transactionDetail(let id):
+            "/api/v1/transactions/\(id)"
+        case .updateTransaction(let id):
+            "/api/v1/transactions/\(id)"
+        case .deleteTransaction(let id):
+            "/api/v1/transactions/\(id)"
+        case .remideDebtor(let transcationId):
+            "/api/v1/transactions/remind/\(transcationId)"
         }
     }
 

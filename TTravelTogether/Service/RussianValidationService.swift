@@ -18,7 +18,7 @@ final class RussianValidationService {
         let secondPart = String(last11Digits.dropFirst(7).prefix(2))
         let thirdPart = String(last11Digits.dropFirst(9))
 
-        return "8(\(areaCode))\(firstPart)-\(secondPart)-\(thirdPart)"
+        return "+7 (\(areaCode)) \(firstPart)-\(secondPart)-\(thirdPart)"
     }
 
     func invalidate(phone: String) -> String {
