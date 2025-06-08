@@ -2,7 +2,7 @@ import UIKit
 import Combine
 
 final class ProfileController: UIViewController {
-    weak var coordinat: IMainCoordinator?
+    var coordinator: IMainCoordinator?
     private var profileView: ProfileView {
         view as! ProfileView
     }
@@ -44,6 +44,7 @@ private extension ProfileController {
         profileView.makeSkeletonable()
         setupDataSource()
         setupBindings()
+        setupNotification()
     }
 
     func setupDataSource() {
@@ -52,7 +53,7 @@ private extension ProfileController {
         profileTableViewDelegate = ProfileTableViewDelegate { [weak self] in
             self?.present(
                 AlertFactory.createLeaveProfileAlert(onConfirm: { [weak self] in
-                    self?.coordinat?.leaveProfile()
+                    self?.coordinator?.leaveProfile()
                 }),
                 animated: true
             )
@@ -84,5 +85,18 @@ private extension ProfileController {
         viewModel.onErrorDidAppear = { [weak self] error in
             self?.present(AlertFactory.createErrorAlert(message: error.localizedDescription), animated: true)
         }
+    }
+
+    func setupNotification() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(clearUserData),
+            name: NSNotification.Name(.AppStrings.Notification.clearScreend),
+            object: nil
+        )
+    }
+
+    @objc private func clearUserData() {
+        viewModel.clearUserCache()
     }
 }

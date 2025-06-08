@@ -20,6 +20,19 @@ struct EditTripDTO: Codable {
         case members = "participants"
     }
 
+    func convertToParams() -> [String: Any] {
+        [
+            "id": id,
+            "name": title,
+            "totalBudget": price,
+            "dateOfBegin": start,
+            "dateOfEnd": end,
+            "participantPhones": members.compactMap({
+                RussianValidationService.shared.invalidate(phone: $0.phoneNumber)
+            })
+        ]
+    }
+
     static func convertToTripDetai(_ dto: EditTripDTO) -> TripDetail? {
         guard
             let startDate = AppFormatter.shared.getDateRepresentationOfString(dto.start),

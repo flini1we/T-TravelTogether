@@ -4,18 +4,9 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>SFProText-HeavyItalic.ttf</string>
-		<string>SFProText-Heavy.ttf</string>
-		<string>SFProText-BoldItalic.ttf</string>
-		<string>SFProText-Bold.ttf</string>
-		<string>SFProText-SemiboldItalic.ttf</string>
-		<string>SFProText-Semibold.ttf</string>
-		<string>SFProText-MediumItalic.ttf</string>
-		<string>SFProText-Medium.ttf</string>
-		<string>SFProText-Regular.ttf</string>
-		<string>SFProText-RegularItalic.ttf</string>
-		<string>SFProText-LightItalic.ttf</string>
-		<string>SFProText-Light.ttf</string>
+        <string>TinkoffSans-Regular.ttf</string>
+        <string>TinkoffSans-Medium.ttf</string>
+        <string>TinkoffSans-Bold.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

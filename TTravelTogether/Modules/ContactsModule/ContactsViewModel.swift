@@ -84,7 +84,6 @@ private extension ContactsViewModel {
             contacts.send(fetchedContacts)
         } catch {
             // TODO: Handle Error
-            print(error.localizedDescription)
             contacts.send([])
         }
     }

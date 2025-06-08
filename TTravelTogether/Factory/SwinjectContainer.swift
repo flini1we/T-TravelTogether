@@ -60,6 +60,18 @@ final class SwinjectContainer: IDependencyContainer {
         container.resolve(ProfileController.self)!
     }
 
+    func resolveTransactionsController() -> TransactionsController {
+        container.resolve(TransactionsController.self)!
+    }
+
+    func resolveCreateTransactionController(travelId: Int) -> CreateTransactionController {
+        container.resolve(CreateTransactionController.self, argument: travelId)!
+    }
+
+    func resolveTransactionDetailController(transactionId: Int, travelId: Int, user: User) -> TransactionDetailController {
+        container.resolve(TransactionDetailController.self, arguments: transactionId, travelId, user)!
+    }
+
     func resolveMainTabBarController() -> UITabBarController {
         container.resolve(UITabBarController.self)!
     }
@@ -113,6 +125,27 @@ private extension SwinjectContainer {
             let networkService = resolver.resolve(INetworkService.self)!
             return ProfileViewModel(networkService: networkService)
         }
+
+        container.register(ITransactionsViewModel.self) { resolver in
+            let networkService = resolver.resolve(INetworkService.self)!
+            return TransactionsViewModel(networkService: networkService)
+        }
+
+        container.register(ICreateTransactionViewModel.self) { (resolver, travelId: Int) in
+            let networkService = resolver.resolve(INetworkService.self)!
+            return CreateTransactionViewModel(networkService: networkService, travelId: travelId)
+        }
+
+        container.register(ITransactionDetailViewModel.self) { (resolver, transactionId: Int, travelId: Int) in
+            let networkService = resolver.resolve(INetworkService.self)!
+            let notificationCenter = resolver.resolve(IPushNotificationCenter.self)!
+            return TransactionDetailViewModel(
+                networkService: networkService,
+                notificationCenter: notificationCenter,
+                transactionId: transactionId,
+                travelId: travelId
+            )
+        }
     }
 
     func registerControllers() {
@@ -165,6 +198,21 @@ private extension SwinjectContainer {
             let viewModel = resolver.resolve(IProfileViewModel.self)!
             let controller = ProfileController(viewModel: viewModel)
             return controller
+        }.inObjectScope(.container)
+
+        container.register(TransactionsController.self) { resolver in
+            let viewModel = resolver.resolve(ITransactionsViewModel.self)!
+            return TransactionsController(viewModel: viewModel)
+        }
+
+        container.register(CreateTransactionController.self) { (resolver, travelId: Int) in
+            let viewModel = resolver.resolve(ICreateTransactionViewModel.self, argument: travelId)!
+            return CreateTransactionController(viewModel: viewModel)
+        }
+
+        container.register(TransactionDetailController.self) { (resolver, transactionId: Int, travelId: Int, user: User) in
+            let viewMode = resolver.resolve(ITransactionDetailViewModel.self, arguments: transactionId, travelId)!
+            return TransactionDetailController(viewModel: viewMode, currentUser: user)
         }
     }
 
@@ -205,6 +253,11 @@ private extension SwinjectContainer {
         container.register(INetworkService.self) { resolver in
             let tokenManager = resolver.resolve(ITokenManager.self)!
             return NetworkService(tokenManager: tokenManager)
+        }
+        .inObjectScope(.container)
+
+        container.register(IPushNotificationCenter.self) { _ in
+            return PushNotificationCenter()
         }
         .inObjectScope(.container)
     }

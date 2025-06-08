@@ -4,13 +4,8 @@ import SnapKit
 final class MyTripsView: UIView {
     var onTableViewRefresh: (() -> Void)?
 
-    private lazy var title: UILabel = {
-        LabelBuilder()
-            .text(.AppStrings.AppTitles.myTravellingsTitle)
-            .textColor(.label)
-            .font(CustomFonts.bold(FontValues.big.value).font)
-            .build()
-    }()
+    private lazy var title: UILabel =
+        .showTitleLabel(.AppStrings.AppTitles.myTravellingsTitle, size: .big)
 
     private(set) lazy var searchBar: UISearchBar = {
         let search = UISearchBar()

@@ -9,6 +9,7 @@ enum SystemImages {
          location,
          calendar,
          leaveTrip,
+         delete,
          editTrip,
          remove,
          handRaised,
@@ -17,7 +18,10 @@ enum SystemImages {
          profileDefault,
          changeLanguage,
          changeTheme,
-         archiveTrips
+         archiveTrips,
+         addTransactionButtonTitle,
+         menu(Bool),
+         debt
 
     var image: UIImage {
         switch self {
@@ -74,6 +78,14 @@ enum SystemImages {
             return UIImage(systemName: "circle.lefthalf.filled")!
         case .archiveTrips:
             return .archiveTab
+        case .addTransactionButtonTitle:
+            return .addTranscationButtonTitle
+        case .menu(let isOpened):
+            return UIImage(systemName: isOpened ? "chevron.up.circle.fill" : "chevron.down.circle.fill")!
+        case .debt:
+            return .debtCell
+        case .delete:
+            return UIImage(systemName: "trash")!
         }
     }
 }

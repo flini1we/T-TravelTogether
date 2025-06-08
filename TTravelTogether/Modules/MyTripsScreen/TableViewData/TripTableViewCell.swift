@@ -10,19 +10,22 @@ final class TripTableViewCell: UITableViewCell {
         let view = UIView()
         view.backgroundColor = .systemBackground
         view.layer.cornerRadius = PaddingValues.medium.value
-        view.layer.shadowColor = UIColor.label.cgColor
-        view.layer.shadowOpacity = 0.25
-        view.layer.shadowOffset = CGSize(width: 0, height: 1.5)
-        view.layer.shadowRadius = 3
+        view.addShadow(
+            color: .label,
+            opacity: 0.25,
+            offset: CGSize(width: 0, height: 1.5),
+            radius: 3,
+            shouldRasterize: true
+        )
         view.makeSkeletonable()
         return view
     }()
 
     private(set) lazy var travelTitle: UILabel = {
         LabelBuilder()
-            .font(CustomFonts.bold(FontValues.medium.value).font)
+            .font(CustomFonts.medium(FontValues.medium.value).font)
             .textColor(.label)
-            .text(.AppStrings.AppTitles.tripDetailTitle)
+            .text(.AppStrings.WhiteSpaces.xl)
             .makeSkeletonable()
             .skeletonTextLineHeight(.relativeToFont)
             .skeletonLinesCornerRadius(PaddingValues.tiny.value)
@@ -53,7 +56,7 @@ final class TripTableViewCell: UITableViewCell {
     private lazy var priceTitle: UILabel = {
         LabelBuilder()
             .font(CustomFonts.default(FontValues.default.value).font)
-            .text(.AppStrings.AppTitles.tripDetailPrice)
+            .text(.AppStrings.WhiteSpaces.l)
             .textColor(.primaryBlue)
             .makeSkeletonable()
             .skeletonTextLineHeight(.relativeToFont)

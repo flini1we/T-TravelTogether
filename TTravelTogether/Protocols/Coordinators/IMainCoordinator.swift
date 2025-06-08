@@ -8,4 +8,8 @@ protocol IMainCoordinator: ICoordinator {
     func showContactList()
     func showEditTripScreen(for tripDetail: TripDetail)
     func leaveProfile()
+    func showTransactionsScreen(travelId: Int)
+    func showCreateTransactionScreen(travelId: Int)
+    func showTransactionDetailScreen(transactionId: Int, travelId: Int)
+    func showEditTransactionScreen(transaction: TransactionDetail, travelId: Int)
 }

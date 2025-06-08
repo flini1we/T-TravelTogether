@@ -11,4 +11,12 @@ extension Int {
     var getSize: CGSize {
         CGSize(width: self, height: self)
     }
+
+    var desc: String {
+        "\(self)"
+    }
+
+    func isCode(_ code: StatusCodes) -> Bool {
+        self == code.rawValue
+    }
 }

@@ -49,7 +49,7 @@ final class TripDetailViewModel: ITripDetailViewModel {
     }
 
     func isAdmin() -> Bool {
-        currentUser.phoneNumber == tripDetail.admin.phoneNumber
+        RussianValidationService.shared.compareTwoPhones(currentUser.phoneNumber, tripDetail.admin.phoneNumber)
     }
 
     func leaveTrip(

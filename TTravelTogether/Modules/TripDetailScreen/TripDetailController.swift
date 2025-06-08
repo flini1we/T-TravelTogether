@@ -72,6 +72,11 @@ private extension TripDetailController {
         viewModel.onErrorDidAppear = { [weak self] customError in
             self?.present(AlertFactory.createErrorAlert(message: customError.message), animated: true)
         }
+
+        tripDetailView.onShowTransactionsButtonAction = { [weak self] in
+            guard let self else { return }
+            coordinator?.showTransactionsScreen(travelId: viewModel.tripId)
+        }
     }
 
     func setupNavigationItem() {

@@ -32,4 +32,29 @@ protocol INetworkService {
     func getUserProfile(
         completion: @escaping ((Result<User, CustomError>) -> Void)
     )
+    func getTransactions(
+        tripId: Int,
+        completion: @escaping ((Result<[TransactionDTO], CustomError>) -> Void)
+    )
+    func createTransaction(
+        travelId: Int,
+        createdTransaction: CreatedTransactionDTO,
+        completion: @escaping ((Result<Void, CustomError>) -> Void)
+    )
+    func getTransactionDetail(
+        transactionId id: Int,
+        completion: @escaping ((Result<TransactionDetailDTO, CustomError>) -> Void)
+    )
+    func updateTransaction(
+        transactionDetailDTO: TransactionDetailDTO,
+        completion: @escaping ((Result<Void, CustomError>) -> Void)
+    )
+    func deleteTransaction(
+        id: Int,
+        completion: @escaping ((Result<Void, CustomError>) -> Void)
+    )
+    func remindDebtors(
+        transactionId: Int,
+        completion: @escaping ((Result<Void, CustomError>) -> Void)
+    )
 }

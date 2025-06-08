@@ -161,7 +161,7 @@ private extension CreateTripController {
                 createTripView.setupWithEditedTrip(tripDetail: editedTrip)
                 updateDataSource(with: editedTrip.getMembersSequence())
                 viewModel.tripTitleText = editedTrip.title
-                viewModel.tripPriceText = "\(editedTrip.price)"
+                viewModel.tripPriceText = editedTrip.price.desc
             }
             .store(in: &cancellables)
 

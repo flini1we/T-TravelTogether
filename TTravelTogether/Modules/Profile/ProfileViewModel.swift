@@ -46,6 +46,11 @@ final class ProfileViewModel: IProfileViewModel {
             }
         }
     }
+
+    func clearUserCache() {
+        cache.removeAllObjects()
+        user = nil
+    }
 }
 
 private extension ProfileViewModel {

@@ -182,7 +182,7 @@ final class CreateTripView: UIView, ICreateTripView {
 
     func setupWithEditedTrip(tripDetail: TripDetail) {
         tripTitleField.text = tripDetail.title
-        tripPriceField.text = "\(tripDetail.price)"
+        tripPriceField.text = tripDetail.price.desc
         startsAtCalendar.date = tripDetail.startsAt
         endsAtCalendar.date = tripDetail.finishAt
     }

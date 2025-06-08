@@ -66,6 +66,49 @@ final class MainCoordinator: NSObject, IMainCoordinator {
         navigationController.present(AlertFactory.createErrorAlert(message: .AppStrings.Errors.editedIdIsNil), animated: true)
     }
 
+    func showTransactionsScreen(travelId: Int) {
+        let transactionsController = dependencies.resolveTransactionsController()
+        transactionsController.setId(travelId)
+        transactionsController.coordinator = self
+        navigationController.hidesBottomBarWhenPushed = true
+        navigationController.pushViewController(transactionsController, animated: true)
+    }
+
+    func showTransactionDetailScreen(transactionId: Int, travelId: Int) {
+        let transactionDetailController = dependencies.resolveTransactionDetailController(
+            transactionId: transactionId,
+            travelId: travelId,
+            user: registratedUser
+        )
+        transactionDetailController.coordinator = self
+        transactionDetailController.onTransactionDeleting = { [weak self] in
+            self?.navigationController.popViewController(animated: true)
+        }
+        navigationController.hidesBottomBarWhenPushed = true
+        navigationController.pushViewController(transactionDetailController, animated: true)
+    }
+
+    func showCreateTransactionScreen(travelId: Int) {
+        let createTransactionController = dependencies.resolveCreateTransactionController(travelId: travelId)
+        createTransactionController.onTransactionCreating = { [weak self] in
+            self?.navigationController.popViewController(animated: true)
+        }
+        navigationController.pushViewController(createTransactionController, animated: true)
+    }
+
+    func showEditTransactionScreen(transaction: TransactionDetail, travelId: Int) {
+        let createTransactionController = dependencies.resolveCreateTransactionController(travelId: travelId)
+        createTransactionController.setupEditingMode(transaction)
+        createTransactionController.onTransactionEdited = { [weak self] in
+            guard let self, let transactionsController = findViewController(
+                type: TransactionsController.self,
+                in: navigationController.viewControllers
+            ) else { return }
+            navigationController.popToViewController(transactionsController, animated: true)
+        }
+        navigationController.pushViewController(createTransactionController, animated: true)
+    }
+
     func leaveProfile() {
         coordinator?.finish()
     }
@@ -97,11 +140,12 @@ extension MainCoordinator: UITabBarControllerDelegate {
     }
 
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        let delay = viewController is ProfileController ? 0.15 : 0
+        let showTitle = viewController is ProfileController || viewController is CreateTripController
+        let delay = showTitle ? 0.15 : 0
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             tabBarController.navigationItem.titleView =
-            viewController is ProfileController
-            ? UILabel.showTitleLabel(.AppStrings.Profile.screenTitle)
+            showTitle
+            ? UILabel.showTitleLabel(.AppStrings.Profile.screenTitle, size: .big)
             : nil
         }
     }
@@ -114,14 +158,13 @@ private extension MainCoordinator {
         let createTripController = dependencies.resolveCreateTripController(user: registratedUser)
         let myTripsController = dependencies.resolveMyTripsController()
         let profileController = dependencies.resolveProfileController()
-        navigationController.navigationItem.title = "Sjl"
         tabBarController.delegate = self
         myTripsController.coordinator = self
         createTripController.coordinator = self
         createTripController.onTripCreating = {
             myTripsController.updateTrips()
         }
-        createTripController.onTripEditing = { [weak self] tripDetail in
+        createTripController.onTripEditing = { [weak self] _ in
             guard
                 let self,
                 let tripDetailController = findViewController(
@@ -131,8 +174,8 @@ private extension MainCoordinator {
             else { return }
             tripDetailController.viewModel.loadData()
         }
-        profileController.coordinat = self
-        navigationController.setViewControllers([tabBarController], animated: true)
+        profileController.coordinator = self
+        navigationController.setViewControllers([tabBarController], animated: false)
     }
 
     func createSheetViewController(from vc: UIViewController) {

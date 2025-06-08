@@ -6,12 +6,39 @@ extension String {
         self + " \(currency.rawValue)"
     }
 
+    func eraseToCategory() -> TransactionCategory {
+        let lowercasedSelf = self.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        switch lowercasedSelf {
+        case "транспорт":
+            return .transport
+        case "проживание":
+            return .accommodation
+        case "питание":
+            return .food
+        case "развлечения":
+            return .entertainment
+        case "покупки":
+            return .shopping
+        case "здоровье":
+            return .health
+        case "связь", "связь и интернет":
+            return .communication
+        case "виза", "виза и документы":
+            return .visaAndDocuments
+        default:
+            return .other
+        }
+    }
+
     enum AppStrings {
 
         enum Notification {
 
             static let changeTheme = "Change_Theme"
             static let updatedThemeKey = "updatedTheme"
+            static let clearScreend = "clear_screen"
+            static let grantedForNotifications = "Для отправки уведомлений разрешите их в настройках"
+            static let reminderNotification = "reminder"
         }
 
         enum Auth {
@@ -62,6 +89,9 @@ extension String {
             static let leaveProfileTitle = "Покинуть профиль"
             static let leaveProfileMessage = "Вы уверены что хотите выйти из профиля?"
             static let leaveProfile = "Покинуть"
+            static let successTitle = "Успешно!"
+            static let notificateDebtorsMessage = "Уведомление о долгах отправлено всем пользователям"
+            static let transactionEditingNotAllowed = "Кто-то из участников выплатил долг. Редактирование транзакции невозможно"
         }
 
         enum AppTitles {
@@ -94,6 +124,49 @@ extension String {
         enum UserDefaults {
 
             static let originUserKey = "current_user"
+        }
+
+        enum Transactions {
+
+            static let screenTitle = "История транзакций"
+            static let titlePlaceholder = "Transaction"
+            static let descriptionPlaceholder = "Something about current transaction"
+            static let pricePlaceholder = "777.777"
+            static let emptyTableTitle = "Здесь будут ваши транзакции"
+            static let selectedCategoryHint = "Выберите категорию"
+            static let descriptionTextFieldPlaceholder = "Добавьте описание к транзакции"
+            static let priceTextFieldPlaceholder = "Введите стоимость"
+            static let paymentOption = "Заплатить"
+            static let paymentPriceTextFieldPlaceholder = "Сумма"
+            static let createTransactionButtonTitle = "Создать"
+
+            enum Errors {
+
+                static let emptyDescription = "Описание транзакции не может быть пустым"
+                static let priceInvalid = "Цена транзакции должна быть числом"
+                static let missingPrice = "При выборе опции \"Сплит между участниками\" сумма долгов должна быть равна сумме транзакции"
+            }
+
+            enum Detail {
+
+                static let screenTitle = "Детали транзакции"
+                static let debtTitle = "Данные о долгах"
+                static let payDebtTitle = "Оплатит свой долг"
+                static let creatorTitle = "Создатель транзакции"
+                static let payDebt = "Оплатить долг"
+                static let notificateDebtors = "Напомнить о долге"
+                static let deletingAdminRequired = "Удалить транзакцию может только ее создатель"
+                static let editingAdminRequired = "Редактировать транзакцию может только ее создатель"
+                static let confirmDeletingTitle = "Вы уверены что хотите удалить транзакцию?"
+                static let confirmDelegingMessage = "Действие невозможно будет отменить. Данные очистятся"
+                static let noTransaction = "Транзакции не сущесвует. Попробуйте снова позже"
+            }
+
+            enum Create {
+
+                static let updateButtonTitle = "Сохранить"
+                static let editedTransactionIsNil = "Ошибка. Редактируемой транзакции не существует, попробуйте повторить похже"
+            }
         }
 
         enum Errors {
@@ -138,6 +211,14 @@ extension String {
             static let changeLanguageTitle = "Сменить язык"
             static let changeThemeTitle = "Сменить тему"
             static let leaveTitle = "Выйти из профиля"
+        }
+
+        enum WhiteSpaces {
+
+            static let s = Array(repeating: " ", count: 18).joined()
+            static let m = Array(repeating: " ", count: 36).joined()
+            static let l = Array(repeating: " ", count: 54).joined()
+            static let xl = Array(repeating: " ", count: 72).joined()
         }
     }
 }

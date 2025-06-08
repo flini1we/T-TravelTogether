@@ -31,14 +31,16 @@ final class MyTripsController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupNotification()
+        viewModel.loadData()
     }
 
     func updateTrips() {
         viewModel.loadData()
     }
 
-    deinit { NotificationCenter.default.removeObserver(self) }
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -55,6 +57,7 @@ private extension MyTripsController {
         setupDataSource()
         setupDelegate()
         setupBindings()
+        setupNotification()
     }
 
     func setupDataSource() {
