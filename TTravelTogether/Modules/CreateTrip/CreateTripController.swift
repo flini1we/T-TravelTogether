@@ -99,7 +99,6 @@ private extension CreateTripController {
         setupFields()
         setupActions()
         setupBindings()
-        setupNotification()
     }
 
     func setupFields() {
@@ -208,21 +207,5 @@ private extension CreateTripController {
         viewModel.clearData()
         tripMembersCollectionViewDataSource?.updateUsers(data: viewModel.tripMembers)
         onDisappear?()
-    }
-
-    func setupNotification() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(updateColor(_:)),
-            name: NSNotification.Name(.AppStrings.Notification.changeTheme),
-            object: nil
-        )
-    }
-
-    @objc private func updateColor(_ notification: NSNotification) {
-        guard
-            let currentColor = notification.userInfo?[String.AppStrings.Notification.updatedThemeKey] as? AppTheme
-        else { return }
-        createTripView.updateTheme(currentColor)
     }
 }

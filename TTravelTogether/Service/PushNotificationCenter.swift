@@ -13,22 +13,6 @@ protocol IPushNotificationCenter {
     func registerForNotification() -> Bool
 }
 
-private extension String {
-
-    static let notificationDenied = "Уведомления не разрешены"
-    enum NotificationError {
-        
-        case errorShowingNotification(Error)
-
-        var description: String {
-            switch self {
-            case .errorShowingNotification(let error):
-                "Ошибка показа уведомления: \(error.localizedDescription)"
-            }
-        }
-    }
-}
-
 final class PushNotificationCenter: NSObject, IPushNotificationCenter {
 
     private let notificationCenter = UNUserNotificationCenter.current()
@@ -46,7 +30,7 @@ final class PushNotificationCenter: NSObject, IPushNotificationCenter {
             guard
                 settings.authorizationStatus == .authorized
             else {
-                completion(.failure(.hiddenError(.notificationDenied)))
+                completion(.failure(.hiddenError(.AppStrings.Notification.notificationDenied)))
                 return
             }
             self.notificationCenter.add(request) { error in
@@ -54,7 +38,7 @@ final class PushNotificationCenter: NSObject, IPushNotificationCenter {
                     completion(
                         .failure(
                             .hiddenError(
-                                .NotificationError.errorShowingNotification(error).description
+                                .AppStrings.Notification.errorShowingNotification + " \(error.localizedDescription)"
                             )
                         )
                     )

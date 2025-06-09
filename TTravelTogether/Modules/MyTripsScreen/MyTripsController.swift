@@ -77,7 +77,6 @@ private extension MyTripsController {
         setupDataSource()
         setupDelegate()
         setupBindings()
-        setupNotification()
     }
 
     func setupDataSource() {
@@ -119,18 +118,5 @@ private extension MyTripsController {
         viewModel.onErrorDidAppear = { [weak self] customError in
             self?.present(AlertFactory.createErrorAlert(message: customError.message), animated: true)
         }
-    }
-
-    func setupNotification() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(updateTheme(_:)),
-            name: NSNotification.Name(.AppStrings.Notification.updatedThemeKey),
-            object: nil
-        )
-    }
-
-    @objc private func updateTheme(_ notification: NSNotification) {
-        myTripsView.updateTheme()
     }
 }

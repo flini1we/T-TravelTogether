@@ -43,7 +43,6 @@ final class TransactionsView: UIView {
         button.addSubview(buttonTitleImageView)
         button.backgroundColor = .primaryYellow
         button.addShadow(
-            color: .label,
             opacity: 0.25,
             radius: 3,
             shouldRasterize: true

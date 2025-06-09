@@ -7,18 +7,6 @@ final class MyTripsView: UIView {
     private lazy var title: UILabel =
         .showTitleLabel(.AppStrings.AppTitles.myTravellingsTitle, size: .big)
 
-    private(set) lazy var searchBar: UISearchBar = {
-        let search = UISearchBar()
-        search.placeholder = .AppStrings.AppTitles.searchBar
-        search.searchBarStyle = .minimal
-        search.backgroundColor = .clear
-        search.searchTextField.backgroundColor = .secondaryBG.withAlphaComponent(0.75)
-        search.searchTextField.layer.cornerRadius = PaddingValues.default.value
-        search.searchTextField.layer.masksToBounds = true
-        search.searchTextField.font = CustomFonts.default(FontValues.default.value).font
-        return search
-    }()
-
     private(set) lazy var travellingsTableView: UITableView = {
         let table = UITableView()
         let refreshControl = UIRefreshControl()
@@ -74,7 +62,6 @@ private extension MyTripsView {
     func setupSubviews() {
         addSubview(bgImageView)
         addSubview(title)
-        addSubview(searchBar)
         addSubview(travellingsTableView)
     }
 
@@ -90,13 +77,8 @@ private extension MyTripsView {
             make.leading.equalToSuperview().inset(PaddingValues.medium.value)
         }
 
-        searchBar.snp.makeConstraints { make in
-            make.top.equalTo(title.snp.bottom).offset(PaddingValues.small.value)
-            make.leading.trailing.equalToSuperview().inset(PaddingValues.small.value)
-        }
-
         travellingsTableView.snp.makeConstraints { make in
-            make.top.equalTo(searchBar.snp.bottom)
+            make.top.equalTo(title.snp.bottom).offset(PaddingValues.small.value)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
         }

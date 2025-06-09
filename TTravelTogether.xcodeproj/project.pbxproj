@@ -190,6 +190,7 @@
 		CFCD372D2DBF4EAC0037A854 /* SwinjectContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD372C2DBF4EAC0037A854 /* SwinjectContainer.swift */; };
 		CFD0150E2DF7202300F266EB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CFD0150C2DF7202300F266EB /* Localizable.strings */; };
 		CFD0150F2DF7202300F266EB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CFD015092DF7202300F266EB /* Localizable.strings */; };
+		CFD015132DF76EDE00F266EB /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD015122DF76EDE00F266EB /* Localizable.swift */; };
 		CFDA93182DE5B18300477BCC /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA93172DE5B18300477BCC /* TokenManager.swift */; };
 		CFDA931A2DE5B49200477BCC /* KeyChainErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA93192DE5B49200477BCC /* KeyChainErrors.swift */; };
 		CFDA931C2DE5B6BD00477BCC /* TokenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDA931B2DE5B6BD00477BCC /* TokenType.swift */; };
@@ -408,6 +409,7 @@
 		CFCD372C2DBF4EAC0037A854 /* SwinjectContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectContainer.swift; sourceTree = "<group>"; };
 		CFD015082DF7202300F266EB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		CFD0150B2DF7202300F266EB /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = Localizable.strings; sourceTree = "<group>"; };
+		CFD015122DF76EDE00F266EB /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		CFDA93172DE5B18300477BCC /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
 		CFDA93192DE5B49200477BCC /* KeyChainErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainErrors.swift; sourceTree = "<group>"; };
 		CFDA931B2DE5B6BD00477BCC /* TokenType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenType.swift; sourceTree = "<group>"; };
@@ -838,6 +840,7 @@
 				CF8735652DD3A1EB00A45779 /* Formatters */,
 				CF87356C2DD3A1EB00A45779 /* ViewModels */,
 				CF8735742DD3A1EB00A45779 /* Views */,
+				CFD015112DF76ECB00F266EB /* Localizable */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1143,6 +1146,14 @@
 			path = ru.lproj;
 			sourceTree = "<group>";
 		};
+		CFD015112DF76ECB00F266EB /* Localizable */ = {
+			isa = PBXGroup;
+			children = (
+				CFD015122DF76EDE00F266EB /* Localizable.swift */,
+			);
+			path = Localizable;
+			sourceTree = "<group>";
+		};
 		CFDA931D2DE5D95F00477BCC /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -1340,6 +1351,7 @@
 			files = (
 				CF7405B42DD3B60F00B71E2B /* MemberCollectionViewCell.swift in Sources */,
 				CF7405B52DD3B60F00B71E2B /* MembersCollectionDataSource.swift in Sources */,
+				CFD015132DF76EDE00F266EB /* Localizable.swift in Sources */,
 				CF602C562DE887DC009BB5A6 /* ProfileViewModel.swift in Sources */,
 				CF7405B62DD3B60F00B71E2B /* TripDetailController.swift in Sources */,
 				CF7405B72DD3B60F00B71E2B /* TripDetailView.swift in Sources */,

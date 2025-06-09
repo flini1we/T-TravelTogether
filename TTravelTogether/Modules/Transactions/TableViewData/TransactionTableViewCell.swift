@@ -13,7 +13,6 @@ final class TransactionTableViewCell: UITableViewCell {
         view.backgroundColor = .systemBackground
         view.layer.cornerRadius = PaddingValues.medium.value
         view.addShadow(
-            color: .label,
             opacity: 0.25,
             offset: CGSize(width: 0, height: 1.5),
             radius: 3,

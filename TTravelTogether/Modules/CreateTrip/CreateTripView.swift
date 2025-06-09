@@ -214,7 +214,7 @@ extension CreateTripView: UITextFieldDelegate {
 private extension CreateTripView {
 
     func setup() {
-        backgroundColor = .systemBackground
+        backgroundColor = ThemeManager.current == .light ? .systemBackground : .systemGray5
         setupDismiss()
         setupSubviews()
         setupConstraints()
