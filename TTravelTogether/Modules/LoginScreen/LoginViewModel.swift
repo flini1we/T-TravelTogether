@@ -1,6 +1,10 @@
 import Foundation
 import Combine
 
+private extension String {
+    static let wrongPhoneNumberOrPassword = "Неправильный номер телефона или пароль."
+}
+
 final class LoginViewModel: ObservableObject, ILoginViewModel {
     private var networkService: INetworkService
 
@@ -24,7 +28,9 @@ final class LoginViewModel: ObservableObject, ILoginViewModel {
             case .success(let success):
                 completion(.success(success))
             case .failure(let failure):
-                completion(.failure(failure))
+                completion(.failure(failure.message.contains("401")
+                                    ? .hiddenError(.wrongPhoneNumberOrPassword)
+                                    : failure))
             }
         }
     }

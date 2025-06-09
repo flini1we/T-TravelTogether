@@ -58,6 +58,6 @@ extension UITextField {
 
     func setValidationBorder(_ isValid: Bool) {
         layer.borderWidth = CGFloat(Float(1))
-        layer.borderColor = isValid ? UIColor.systemGreen.cgColor : UIColor.primaryRed.cgColor
+        layer.borderColor = isValid ? UIColor.clear.cgColor : UIColor.primaryRed.cgColor
     }
 }

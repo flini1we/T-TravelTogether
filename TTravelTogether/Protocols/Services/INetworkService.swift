@@ -57,4 +57,8 @@ protocol INetworkService {
         transactionId: Int,
         completion: @escaping ((Result<Void, CustomError>) -> Void)
     )
+    func deleteTrip(
+        tripId: Int,
+        completion: @escaping ((Result<Void, CustomError>) -> Void)
+    )
 }

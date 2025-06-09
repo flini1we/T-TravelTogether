@@ -88,34 +88,31 @@ final class AlertFactory {
         return alert
     }
 
-    static func createLeaveTripAlert(
+    static func createTripActionAlert(
         isAdmin: Bool,
-        onConfirm: @escaping () -> Void = {},
-        onCancel: @escaping () -> Void = {}
+        onConfirm: @escaping () -> Void
     ) -> UIAlertController {
         let title: String = isAdmin
-            ? .AppStrings.Alert.leaveTripAdminTitle
+            ? .AppStrings.Alert.deleteTripTitle
             : .AppStrings.Alert.leaveTripTitle
-        let message: String? = isAdmin
-            ? nil
+        let message: String = isAdmin
+            ? .AppStrings.Alert.deleteTripMessage
             : .AppStrings.Alert.leaveTripMessage
         let alert = UIAlertController(
             title: title,
             message: message,
             preferredStyle: .alert
         )
-        if !isAdmin {
-            alert.addAction(UIAlertAction(
-                title: .AppStrings.Alert.confirm,
-                style: .default,
-                handler: { _ in onConfirm() }
-            ))
-        }
+        alert.addAction(UIAlertAction(
+            title: .AppStrings.Alert.confirm,
+            style: .default,
+            handler: { _ in onConfirm() }
+        ))
         alert.addAction(UIAlertAction(
             title: .AppStrings.Alert.cancel,
-            style: .cancel,
-            handler: { _ in onCancel() }
+            style: .cancel
         ))
+
         return alert
     }
 

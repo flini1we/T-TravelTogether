@@ -104,7 +104,8 @@ private extension SwinjectContainer {
 
         container.register(IMyTripsViewModel.self) { resolver in
             let networkService = resolver.resolve(INetworkService.self)!
-            return MyTripsViewModel(networkService: networkService)
+            let notificationCenter = resolver.resolve(IPushNotificationCenter.self)!
+            return MyTripsViewModel(networkService: networkService, notificationCenter: notificationCenter)
         }
 
         container.register(ITripDetailViewModel.self) { (resolver, tripId: Int, user: User) in

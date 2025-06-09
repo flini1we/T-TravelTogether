@@ -14,5 +14,8 @@ protocol ITripDetailViewModel: AnyObject {
     func leaveTrip(
         completion: @escaping ((Result<Void, CustomError>) -> Void)
     )
+    func deleteTrip(
+        completion: @escaping ((Result<Void, CustomError>) -> Void)
+    )
     func loadData()
 }

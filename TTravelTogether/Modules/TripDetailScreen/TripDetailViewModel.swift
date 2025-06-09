@@ -48,6 +48,19 @@ final class TripDetailViewModel: ITripDetailViewModel {
         }
     }
 
+    func deleteTrip(
+        completion: @escaping ((Result<Void, CustomError>) -> Void)
+    ) {
+        networkService.deleteTrip(tripId: tripId) { result in
+            switch result {
+            case .success(_):
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
     func isAdmin() -> Bool {
         RussianValidationService.shared.compareTwoPhones(currentUser.phoneNumber, tripDetail.admin.phoneNumber)
     }

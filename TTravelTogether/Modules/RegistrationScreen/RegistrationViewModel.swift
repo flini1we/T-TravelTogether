@@ -1,6 +1,10 @@
 import Foundation
 import Combine
 
+private extension String {
+    static let alreadyExists = "Пользователь с таким номером телефона уже зарегистрирован."
+}
+
 final class RegistrationViewModel: IRegistrationViewModel {
     private var networkService: INetworkService
 
@@ -54,7 +58,10 @@ final class RegistrationViewModel: IRegistrationViewModel {
             case .success(let message):
                 completion(.success(message))
             case .failure(let error):
-                completion(.failure(error))
+                completion(error.message.contains("400")
+                           ? .failure(.hiddenError(.alreadyExists))
+                           : .failure(error)
+                )
             }
         }
     }

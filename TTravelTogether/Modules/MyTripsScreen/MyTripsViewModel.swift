@@ -1,8 +1,10 @@
 import Foundation
 import Combine
+import UserNotifications
 
 final class MyTripsViewModel: IMyTripsViewModel {
     private var networkService: INetworkService
+    private let notificationCenter: IPushNotificationCenter
     var onErrorDidAppear: ((CustomError) -> Void)?
 
     @Published var isLoadingData: Bool = false
@@ -14,8 +16,9 @@ final class MyTripsViewModel: IMyTripsViewModel {
         $tripsData
     }
 
-    init(networkService: INetworkService) {
+    init(networkService: INetworkService, notificationCenter: IPushNotificationCenter) {
         self.networkService = networkService
+        self.notificationCenter = notificationCenter
         loadData()
     }
 
@@ -43,6 +46,17 @@ final class MyTripsViewModel: IMyTripsViewModel {
                 isLoadingData = false
             case .failure(let error):
                 onErrorDidAppear?(error)
+            }
+        }
+    }
+
+    func mockPush(request: UNNotificationRequest) {
+        notificationCenter.showNotification(for: request) { result in
+            switch result {
+            case .failure(let error):
+                self.onErrorDidAppear?(error)
+            default:
+                break
             }
         }
     }
