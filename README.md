@@ -30,13 +30,20 @@ TTravelTogether is an iOS application that extends the T-Bank's travel service b
 - Profile management
 - Contact synchronization
 - Push notifications for important updates
-- Offline mode support
+- Offline mode support with caching
 
 ### 🔐 Security & Data Management
-- Secure data storage using CoreData
+- Secure data storage using CoreData and KeyChain
 - Encrypted data transmission
 - Privacy-first approach
 - Secure authentication system
+
+### 🎨 UI/UX Features
+- Skeleton loading animations for better user experience
+- Smooth transitions between screens
+- Dark mode support
+- Custom UI components
+- Responsive layouts
 
 ## Technical Implementation
 
@@ -50,8 +57,13 @@ TTravelTogether is an iOS application that extends the T-Bank's travel service b
 ### Architecture
 - MVVM (Model-View-ViewModel) architecture
 - Coordinator pattern for navigation
+  - Centralized navigation management
+  - Type-safe routing
+  - Deep linking support
+  - Flow-based navigation
+  - Dependency injection for coordinators
 - Protocol-oriented programming
-- Dependency injection
+- Dependency injection with Swinject
 
 ### Key Components
 - **Views**: UIKit-based UI components with programmatic layout (SnapKit)
@@ -59,16 +71,23 @@ TTravelTogether is an iOS application that extends the T-Bank's travel service b
 - **Models**: CoreData entities and business objects
 - **Services**: Network, storage, and utility services
 - **Utils**: Helper functions and extensions
+- **Coordinators**: Navigation flow management
+  - AppFlowCoordinator: Main application flow
+  - Feature-specific coordinators
+  - Deep link handling
+  - Navigation state management
 
 ### Dependencies
 - SnapKit for programmatic UI
-- URLSession/Alamofire for networking
+- URLSession for networking
 - CoreData for local storage
+- KeyChain for secure storage
 - SwiftLint for code style
 
 ### Testing
 - Unit tests
-- UI tests
+- Clean architecture principles
+- Code reusability
 
 ## Project Structure
 
@@ -86,6 +105,8 @@ TTravelTogether/
 │   └── Profile/
 ├── Custom/
 │   ├── Views/
+│   │   ├── SkeletonViews/
+│   │   └── Components/
 │   ├── Extensions/
 │   └── Utils/
 ├── Resources/
@@ -97,9 +118,15 @@ TTravelTogether/
 ├── Model/
 ├── Protocols/
 ├── Coordinator/
+│   ├── AppFlowCoordinator.swift
+│   ├── ICoordinator.swift
+│   └── FeatureCoordinators/
 ├── Factory/
 ├── Support/
-└── Tests/
+├── Errors/
+├── Formatter/
+├── Observers/
+└── Fonts/
 ```
 
 ## Features Implementation
@@ -108,17 +135,21 @@ TTravelTogether/
 - ✅ Programmatic UI with UIKit and SnapKit
 - ✅ Dark mode support
 - ✅ Localization (Russian/English)
-- ✅ Cahing
+- ✅ Caching
 - ✅ Push notifications
 - ✅ Contact synchronization
 - ✅ CoreData/KeyChain integration
 - ✅ Custom views and components
+- ✅ Skeleton loading animations
+- ✅ Coordinator-based navigation
 
 ### Code Quality
 - ✅ SwiftLint integration
 - ✅ Unit tests
 - ✅ Clean architecture
 - ✅ Code reusability
+- ✅ Protocol-oriented programming
+- ✅ Dependency injection
 
 ## Getting Started
 
