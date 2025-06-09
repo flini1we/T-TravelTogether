@@ -29,6 +29,26 @@ final class MyTripsController: UIViewController {
         setup()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            let mockTitle = "Напоминание о долгах."
+            let mockBody = "Заплати долг по категории Билеты поездка Москва"
+            let notification = UNMutableNotificationContent()
+            notification.title = mockTitle
+            notification.body = mockBody
+            notification.sound = .defaultRingtone
+
+            let notificationRequest = UNNotificationRequest(
+                identifier: .AppStrings.Notification.reminderNotification,
+                content: notification,
+                trigger: nil
+            )
+
+            self.viewModel.mockPush(request: notificationRequest)
+        }
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.loadData()

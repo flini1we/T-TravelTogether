@@ -17,7 +17,8 @@ enum Network {
          transactionDetail(Int),
          updateTransaction(Int),
          deleteTransaction(Int),
-         remideDebtor(Int)
+         remideDebtor(Int),
+         deleteTrip(Int)
 
     var getQuery: String {
         switch self {
@@ -51,6 +52,8 @@ enum Network {
             "/api/v1/transactions/\(id)"
         case .remideDebtor(let transcationId):
             "/api/v1/transactions/remind/\(transcationId)"
+        case .deleteTrip(let tripId):
+            "/api/v1/transactions/\(tripId)"
         }
     }
 

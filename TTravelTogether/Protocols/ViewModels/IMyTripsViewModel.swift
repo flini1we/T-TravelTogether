@@ -1,5 +1,6 @@
 import Foundation
 import Combine
+import UserNotifications
 
 protocol IMyTripsViewModel: AnyObject {
 
@@ -10,4 +11,5 @@ protocol IMyTripsViewModel: AnyObject {
     var tripsDataPublisher: Published<[Trip]>.Publisher { get }
 
     func loadData()
+    func mockPush(request: UNNotificationRequest)
 }

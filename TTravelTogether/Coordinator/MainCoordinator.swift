@@ -23,16 +23,9 @@ final class MainCoordinator: NSObject, IMainCoordinator {
     func showTripDetail(_ id: Int) {
         let detailVC = dependencies.resolveTripDetailController(tripId: id, user: registratedUser)
         detailVC.coordinator = self
-        detailVC.onTripDidLeave = { [weak self] in
+        detailVC.backToMainController = { [weak self] in
             guard let self else { return }
             navigationController.popViewController(animated: true)
-            guard let tabBarController = navigationController.viewControllers.first as? UITabBarController
-            else { return }
-            guard let mainController = findViewController(
-                type: MyTripsController.self,
-                in: tabBarController.viewControllers ?? []
-            ) else { return }
-            mainController.updateTrips()
         }
         navigationController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(detailVC, animated: true)

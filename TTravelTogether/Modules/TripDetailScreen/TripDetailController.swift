@@ -10,7 +10,7 @@ final class TripDetailController: UIViewController {
     private(set) var viewModel: ITripDetailViewModel
     private var membersCollectionViewDataSource: MembersCollectionDataSource?
     private var cancellables: Set<AnyCancellable> = []
-    var onTripDidLeave: (() -> Void)?
+    var backToMainController: (() -> Void)?
 
     init(viewModel: ITripDetailViewModel) {
         self.viewModel = viewModel
@@ -85,23 +85,36 @@ private extension TripDetailController {
             image: SystemImages.leaveTrip.image.resized(to: UIElementsValues.tabBarItem.padding(PaddingValues.semiSmall.value).getSize),
             primaryAction: UIAction { [weak self] _ in
                 guard let self else { return }
-                let alert = AlertFactory.createLeaveTripAlert(
-                    isAdmin: viewModel.isAdmin(),
-                    onConfirm: { [weak self] in
-                        self?.viewModel.leaveTrip { [weak self] result in
-                            switch result {
-                            case .success(_):
-                                self?.onTripDidLeave?()
-                            case .failure(let error):
-                                self?.present(
-                                    AlertFactory.createErrorAlert(message: error.message),
-                                    animated: true
-                                )
+                present(
+                    AlertFactory.createTripActionAlert(isAdmin: viewModel.isAdmin(), onConfirm: {
+                        if self.viewModel.isAdmin() {
+                            self.viewModel.deleteTrip { result in
+                                switch result {
+                                case .success(_):
+                                    self.backToMainController?()
+                                case .failure(let error):
+                                    self.present(
+                                        AlertFactory.createErrorAlert(message: error.message),
+                                        animated: true
+                                    )
+                                }
+                            }
+                        } else {
+                            self.viewModel.leaveTrip { result in
+                                switch result {
+                                case .success(_):
+                                    self.backToMainController?()
+                                case .failure(let error):
+                                    self.present(
+                                        AlertFactory.createErrorAlert(message: error.message),
+                                        animated: true
+                                    )
+                                }
                             }
                         }
-                    }
+                    }),
+                    animated: true
                 )
-                navigationController?.present(alert, animated: true)
             },
             menu: nil
         )

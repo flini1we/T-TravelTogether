@@ -607,6 +607,43 @@ final class NetworkService: INetworkService {
             }
         }
     }
+
+    func deleteTrip(
+        tripId: Int,
+        completion: @escaping ((Result<Void, CustomError>) -> Void)
+    ) {
+        guard let tokens = checkTokens()
+        else {
+            completion(.failure(.accessTokenIsNil()))
+            return
+        }
+        AF.request(
+            Network.BASE_URL + Network.deleteTrip(tripId).getQuery,
+            method: .delete,
+            headers: .getAccessHeader(for: tokens.access)
+        )
+        .validate()
+        .response { [weak self] result in
+            guard let self else { return }
+            switch result.result {
+            case .success(_):
+                completion(.success(()))
+            case .failure(let error):
+                if isUnauthorized(result.response?.statusCode) {
+                    refreshTokens(refreshToken: tokens.refresh) { [weak self] result in
+                        switch result {
+                        case .success(_):
+                            self?.deleteTrip(tripId: tripId, completion: completion)
+                        case .failure(let failure):
+                            completion(.failure(failure))
+                        }
+                    }
+                } else {
+                    completion(.failure(.hiddenError(error.localizedDescription)))
+                }
+            }
+        }
+    }
 }
 
 private extension NetworkService {

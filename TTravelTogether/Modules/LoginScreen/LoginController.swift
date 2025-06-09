@@ -56,7 +56,7 @@ private extension LoginController {
             coordinator?.onLoginSuccess(userData)
             loginView.errorMessageTitle.text = ""
         case .failure(let error):
-            loginView.errorMessageTitle.text = error.localizedDescription
+            loginView.errorMessageTitle.text = error.message
         }
         viewModel.isLoading = false
     }

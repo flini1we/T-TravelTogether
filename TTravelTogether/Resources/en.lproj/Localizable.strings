@@ -1,0 +1,102 @@
+// MARK: - Notification
+"Change_Theme" = "Change Theme";
+"updatedTheme" = "Updated Theme";
+"clear_screen" = "Clear Screen";
+"reminder" = "Reminder";
+"Для отправки уведомлений разрешите их в настройках" = "Please allow notifications in settings to send them";
+
+// MARK: - Auth
+"Имя не должно быть пустым" = "Name cannot be empty";
+"Имя должно начинаться с загловной буквы" = "Name must start with a capital letter";
+"Имя содержит недопустимые символы" = "Name contains invalid characters";
+"Фамилия не должна быть пустой" = "Last name cannot be empty";
+"Фамилия должна начинаться с загловной буквы" = "Last name must start with a capital letter";
+"Фамилия содержит недопустимые символы" = "Last name contains invalid characters";
+"Введите номер в формате 89... или +79..." = "Enter number in format 89... or +79...";
+"Номер слишком длинный" = "Number is too long";
+"Хотя бы 1 заглавная буква и 1 цифра" = "At least 1 capital letter and 1 number";
+"Слишком короткий пароль" = "Password is too short";
+"Слишком длинный пароль" = "Password is too long";
+"Пароли должны совпадать" = "Passwords must match";
+"Номер телефона" = "Phone Number";
+"Пароль" = "Password";
+"Повторите пароль" = "Confirm Password";
+"Войти" = "Sign In";
+"Регистрация" = "Registration";
+"Зарегистрироваться" = "Register";
+"Авторизация" = "Authorization";
+"Имя" = "Name";
+"Фамилия" = "Last Name";
+
+// MARK: - Alert
+"Ок" = "OK";
+"Ошибка" = "Error";
+"Подтвердить" = "Confirm";
+"Настройки" = "Settings";
+"Отмена" = "Cancel";
+"Доступ к списку контактов" = "Access to Contacts";
+"Пожалуйста предоставьте доступ к контактам для добавления в поездку" = "Please provide access to contacts to add them to the trip";
+"Покинуть поездку" = "Leave Trip";
+"Удалить поездку" = "Delete Trip";
+"Админ не может покинуть поездку." = "Admin cannot leave the trip.";
+"Вы уверены что хотете покинуть данное путешествие?" = "Are you sure you want to leave this trip?";
+"Вы уверены что хотете удалить данное путешествие?" = "Are you sure you want to delete this trip?";
+"Только админ может редактировать поездку" = "Only admin can edit the trip";
+"Пользователь не найден" = "User not found";
+"Повторите попытку снова" = "Please try again";
+"Некорректная стоимость поездки" = "Invalid trip cost";
+
+// MARK: - Transaction
+"История транзакций" = "Transaction History";
+"Transaction" = "Transaction";
+"Something about current transaction" = "Something about current transaction";
+"777.777" = "777.777";
+"Здесь будут ваши транзакции" = "Your transactions will appear here";
+"Выберите категорию" = "Select category";
+"Добавьте описание к транзакции" = "Add description to transaction";
+"Введите стоимость" = "Enter cost";
+"Заплатить" = "Pay";
+"Сумма" = "Amount";
+"Создать" = "Create";
+
+// MARK: - Transaction Errors
+"Описание транзакции не может быть пустым" = "Transaction description cannot be empty";
+"Цена транзакции должна быть числом" = "Transaction price must be a number";
+"При выборе опции \"Сплит между участниками\" сумма долгов должна быть равна сумме транзакции" = "When selecting \"Split between participants\" option, the sum of debts must equal the transaction amount";
+
+// MARK: - Transaction Detail
+"Детали транзакции" = "Transaction Details";
+"Данные о долгах" = "Debt Information";
+"Оплатит свой долг" = "Will pay their debt";
+"Создатель транзакции" = "Transaction Creator";
+"Оплатить долг" = "Pay Debt";
+"Напомнить о долге" = "Remind about Debt";
+"Удалить транзакцию может только ее создатель" = "Only the creator can delete the transaction";
+"Редактировать транзакцию может только ее создатель" = "Only the creator can edit the transaction";
+"Вы уверены что хотите удалить транзакцию?" = "Are you sure you want to delete the transaction?";
+"Действие невозможно будет отменить. Данные очистятся" = "This action cannot be undone. Data will be cleared";
+"Транзакции не сущесвует. Попробуйте снова позже" = "Transaction does not exist. Please try again later";
+
+// MARK: - Transaction Create
+"Сохранить" = "Save";
+"Ошибка. Редактируемой транзакции не существует, попробуйте повторить похже" = "Error. The transaction being edited does not exist, please try again later";
+
+// MARK: - Errors
+"Неизвестная ошибка" = "Unknown error";
+"Ошибка регистрации" = "Registration error";
+"Ошибка при раскодировании токенов" = "Error decoding tokens";
+"Доступ ограничен, перейдите к регистрации" = "Access restricted, please proceed to registration";
+"Доступ ограничен, попробуйте еще раз" = "Access restricted, please try again";
+"Данные о датах поездки отстуствуют." = "Trip date data is missing.";
+"Доступ к реадктированию запрещен." = "Editing access is prohibited.";
+"Реадктируемая поездка не валидна." = "The trip being edited is not valid.";
+"Даты редактируемой поездки не валидны. Попробуйте снова позже" = "The dates of the trip being edited are not valid. Please try again later";
+"Ошибка в преобразовании данных. Попробуйте снова" = "Error converting data. Please try again";
+
+// MARK: - Profile
+"Профиль" = "Profile";
+"Ivan Ivanov" = "Ivan Ivanov";
+"Архив поездок" = "Trip Archive";
+"Сменить язык" = "Change Language";
+"Сменить тему" = "Change Theme";
+"Выйти из профиля" = "Sign Out"; 
