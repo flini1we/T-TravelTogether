@@ -26,22 +26,24 @@ final class PushNotificationCenter: NSObject, IPushNotificationCenter {
         for request: UNNotificationRequest,
         completion: @escaping ((Result<Void, CustomError>) -> Void)
     ) {
-        notificationCenter.getNotificationSettings { settings in
-            guard
-                settings.authorizationStatus == .authorized
-            else {
-                completion(.failure(.hiddenError(.AppStrings.Notification.notificationDenied)))
-                return
-            }
-            self.notificationCenter.add(request) { error in
-                if let error = error {
-                    completion(
-                        .failure(
-                            .hiddenError(
-                                .AppStrings.Notification.errorShowingNotification + " \(error.localizedDescription)"
+        DispatchQueue.main.async {
+            self.notificationCenter.getNotificationSettings { settings in
+                guard
+                    settings.authorizationStatus == .authorized
+                else {
+                    completion(.failure(.hiddenError(.AppStrings.Notification.notificationDenied)))
+                    return
+                }
+                self.notificationCenter.add(request) { error in
+                    if let error = error {
+                        completion(
+                            .failure(
+                                .hiddenError(
+                                    .AppStrings.Notification.errorShowingNotification + " \(error.localizedDescription)"
+                                )
                             )
                         )
-                    )
+                    }
                 }
             }
         }

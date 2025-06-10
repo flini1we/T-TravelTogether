@@ -14,7 +14,8 @@ final class AppFlowCoordinator: IAppFlowCoordinator {
     }
 
     func start() {
-        showFakeLaunch()
+        let isLoggedIn = self.userService.isAuthenticated
+        _ = isLoggedIn ? self.showMainFlow() : self.showAuthFlow()
     }
 
     func finish() {
@@ -27,20 +28,6 @@ final class AppFlowCoordinator: IAppFlowCoordinator {
 }
 
 private extension AppFlowCoordinator {
-
-    func showFakeLaunch() {
-        let launchController = FakeModuleViewController()
-        navigationController.setViewControllers([launchController], animated: false)
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            UIView.animate(withDuration: 0.25) {
-                launchController.titleImageView.alpha = 0
-            } completion: { _ in
-                let isLoggedIn = self.userService.isAuthenticated
-                _ = isLoggedIn ? self.showMainFlow() : self.showAuthFlow()
-            }
-        }
-    }
 
     func showAuthFlow() {
         let coordinator = AuthCoordinator(

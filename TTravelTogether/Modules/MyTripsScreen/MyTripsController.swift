@@ -31,20 +31,21 @@ final class MyTripsController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
             let mockTitle = "Напоминание о долгах."
-            let mockBody = "Заплати долг по категории Билеты поездка Москва"
+            let mockBody = "Заплати долг по категории Еда поездка Турция"
             let notification = UNMutableNotificationContent()
             notification.title = mockTitle
             notification.body = mockBody
             notification.sound = .defaultRingtone
-
+            
             let notificationRequest = UNNotificationRequest(
                 identifier: .AppStrings.Notification.reminderNotification,
                 content: notification,
                 trigger: nil
             )
-
+            
             self.viewModel.mockPush(request: notificationRequest)
         }
     }

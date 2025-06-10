@@ -19,7 +19,7 @@ final class FakeModuleViewController: UIViewController {
 private extension FakeModuleViewController {
 
     func setup() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .primaryYellow
         setupView()
     }
 

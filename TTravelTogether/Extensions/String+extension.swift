@@ -54,14 +54,14 @@ extension String {
 
         enum Auth {
             static let phonePrefix89 = "89"
-            static let phonePrefixPlus79 = "+79"
+            static let phonePrefixPlus79 = "79"
             static let invalidUserName = "Имя не должно быть пустым"
             static let invalidStartUserName = "Имя должно начинаться с загловной буквы"
             static let invalidUserNameSymbols = "Имя содержит недопустимые символы"
             static let invalidUserLastName = "Фамилия не должна быть пустой"
             static let invalidStartUserLastName = "Фамилия должна начинаться с загловной буквы"
             static let invalidUserLastNameSymbols = "Фамилия содержит недопустимые символы"
-            static let invalidPhoneStartsWith = "Введите номер в формате 89... или +79..."
+            static let invalidPhoneStartsWith = "Некорректный номер телефона"
             static let invalidPhoneLenght = "Номер слишком длинный"
             static let invalidPasswordData = "Хотя бы 1 заглавная буква и 1 цифра"
             static let invalidPasswordLengthMin = "Слишком короткий пароль"

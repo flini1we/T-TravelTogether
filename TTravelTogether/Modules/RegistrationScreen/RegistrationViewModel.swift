@@ -115,8 +115,7 @@ final class RegistrationViewModel: IRegistrationViewModel {
             return .AppStrings.Auth.invalidPhoneLenght
         }
 
-        if !phone.starts(with: String.AppStrings.Auth.phonePrefix89) &&
-           !phone.starts(with: String.AppStrings.Auth.phonePrefixPlus79) {
+        if !phone.starts(with: String.AppStrings.Auth.phonePrefixPlus79) {
             return .AppStrings.Auth.invalidPhoneStartsWith
         }
 

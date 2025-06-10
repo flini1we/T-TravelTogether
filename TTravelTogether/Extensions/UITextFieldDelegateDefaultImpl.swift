@@ -25,27 +25,32 @@ func formatPhoneNumberForPhoneFields(
     replacementString string: String
 ) -> Bool {
     if string.isEmpty { return true }
-
     guard let currentText = textField.text else { return true }
     let updatedText = (currentText as NSString).replacingCharacters(in: range, with: string)
     let digits = updatedText.filter { $0.isNumber }
     var formattedNumber = ""
 
     var cleanDigits = Array(digits)
-    if !digits.isEmpty {
-        let firstDigit = digits[digits.startIndex]
-        if firstDigit == "7" {
-            cleanDigits = Array("8" + digits.dropFirst())
+    if !cleanDigits.isEmpty {
+        let firstDigit = cleanDigits[0]
+        if firstDigit == "8" {
+            cleanDigits[0] = "7"
+            formattedNumber = "+7"
+        } else if firstDigit == "7" {
+            formattedNumber = "+7"
+        } else {
+            formattedNumber = String(firstDigit)
         }
     }
 
     if !cleanDigits.isEmpty {
-        let firstDigit = cleanDigits[0]
-        formattedNumber = "\(firstDigit)"
-
         if cleanDigits.count > 1 {
             let areaCode = String(cleanDigits[1..<min(4, cleanDigits.count)])
-            formattedNumber += " (\(areaCode)) "
+            if formattedNumber.hasPrefix("+") {
+                formattedNumber += " (\(areaCode)) "
+            } else {
+                formattedNumber += " (\(areaCode)) "
+            }
         }
         if cleanDigits.count > 4 {
             let nextPart = String(cleanDigits[4..<min(7, cleanDigits.count)])
@@ -60,7 +65,6 @@ func formatPhoneNumberForPhoneFields(
             formattedNumber += "-\(extraPart)"
         }
     }
-
     textField.text = formattedNumber
     NotificationCenter.default.post(name: UITextField.textDidChangeNotification, object: textField)
     return false

@@ -53,7 +53,7 @@ enum Network {
         case .remideDebtor(let transcationId):
             "/api/v1/transactions/remind/\(transcationId)"
         case .deleteTrip(let tripId):
-            "/api/v1/transactions/\(tripId)"
+            "/api/v1/travels/\(tripId)"
         }
     }
 

@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,19 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchSceenImage" translatesAutoresizingMaskIntoConstraints="NO" id="lae-0t-Zv1">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                                <color key="backgroundColor" name="primaryYellow"/>
-                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="thin"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchSceenImage" translatesAutoresizingMaskIntoConstraints="NO" id="VIU-4V-sGq">
+                                <rect key="frame" x="16" y="321" width="361" height="211"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="primaryYellow"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="lae-0t-Zv1" secondAttribute="bottom" id="0pW-KU-esc"/>
-                            <constraint firstItem="lae-0t-Zv1" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="88K-nY-uoD"/>
-                            <constraint firstItem="lae-0t-Zv1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Zua-Lp-AYd"/>
-                            <constraint firstItem="lae-0t-Zv1" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="diO-7e-6bF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VIU-4V-sGq" secondAttribute="trailing" constant="16" id="TcW-vH-aFy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="VIU-4V-sGq" secondAttribute="bottom" constant="286" id="YiD-HZ-kyy"/>
+                            <constraint firstItem="VIU-4V-sGq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="rIu-6o-ylR"/>
+                            <constraint firstItem="VIU-4V-sGq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="262" id="wtd-HS-YbE"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -44,8 +41,5 @@
         <namedColor name="primaryYellow">
             <color red="1" green="0.8666666666666667" blue="0.17647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

@@ -51,12 +51,14 @@ final class MyTripsViewModel: IMyTripsViewModel {
     }
 
     func mockPush(request: UNNotificationRequest) {
-        notificationCenter.showNotification(for: request) { result in
-            switch result {
-            case .failure(let error):
-                self.onErrorDidAppear?(error)
-            default:
-                break
+        DispatchQueue.main.async {
+            self.notificationCenter.showNotification(for: request) { result in
+                switch result {
+                case .failure(let error):
+                    self.onErrorDidAppear?(error)
+                default:
+                    break
+                }
             }
         }
     }

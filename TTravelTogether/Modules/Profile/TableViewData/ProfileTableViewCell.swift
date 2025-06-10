@@ -8,7 +8,7 @@ final class ProfileTableViewCell: UITableViewCell {
 
     private lazy var cellTitle: UILabel = {
         LabelBuilder()
-            .font(CustomFonts.default(FontValues.default.value).font)
+            .font(CustomFonts.medium(FontValues.default.value).font)
             .textColor(.label)
             .build()
     }()
