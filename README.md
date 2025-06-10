@@ -1,9 +1,7 @@
 # TTravelTogether
 
 <div align="center">
-  <img src="[Your App Icon]" alt="TTravelTogether Logo" width="200"/>
-  
-  [Screenshots will be added here]
+  <img src="./images/ChatGPT Image 7 июн. 2025 г., 00_03_05 1.png" alt="TTravelTogether Logo" width="200"/>
 </div>
 
 ## Overview
@@ -12,11 +10,25 @@ TTravelTogether is an iOS application that extends the T-Bank's travel service b
 
 ## Features
 
+## Authentication Module
+This module provides user authentication functionality, including both login and registration screens.
+### Features
+- **User Registration:**  
+  Users can create new accounts via the registration screen, with input validation to ensure data integrity.
+- **User Login:**  
+  Existing users can log in securely using their credentials.
+- **JWT Token Support:**  
+  Upon successful authentication, a JWT (JSON Web Token) is issued. This token is used to authorize subsequent requests and manage user sessions securely.
+- **Validation:**  
+  All user input is validated both on the client side and before authentication, ensuring only valid data is processed.
+<img src="./gifs/loginv.gif" alt="login" width="400" />
+
 ### 🏷️ Trip Management
 - Create and manage group trips with start and end dates
 - Add participants via contacts or phone numbers
 - Track trip status and participant confirmations
 - View trip details and statistics
+<img src="./gifs/tripsv.gif" alt="trips" width="400" />
 
 ### 💰 Expense Management
 - Set and track overall trip budget
@@ -24,6 +36,7 @@ TTravelTogether is an iOS application that extends the T-Bank's travel service b
 - Record individual and group expenses
 - Automatic calculation of shared costs and debts
 - View expense history and summaries
+<img src="./gifs/transactionsv.gif" alt="transactions" width="400" />
 
 ### 👥 User Management
 - Secure user authentication
@@ -31,6 +44,8 @@ TTravelTogether is an iOS application that extends the T-Bank's travel service b
 - Contact synchronization
 - Push notifications for important updates
 - Offline mode support with caching
+<img src="./gifs/profilev.gif" alt="profile" width="400" />
+<img src="./gifs/pushv.gif" alt="push" width="400" />
 
 ### 🔐 Security & Data Management
 - Secure data storage using CoreData and KeyChain
