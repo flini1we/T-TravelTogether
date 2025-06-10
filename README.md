@@ -1,4 +1,4 @@
-# TTravelTogether
+# T-TravelTogether
 
 <div align="center">
   <img src="./images/ChatGPT Image 7 июн. 2025 г., 00_03_05 1.png" alt="TTravelTogether Logo" width="200"/>
@@ -6,7 +6,7 @@
 
 ## Overview
 
-TTravelTogether is an iOS application that extends the T-Bank's travel service by enabling users to organize group trips, manage shared expenses, and coordinate with travel companions. The app helps users plan trips, track expenses, and automatically calculate shared costs among participants.
+T-TravelTogether is an iOS application that extends the T-Bank's travel service by enabling users to organize group trips, manage shared expenses, and coordinate with travel companions. The app helps users plan trips, track expenses, and automatically calculate shared costs among participants.
 
 ## Features
 
